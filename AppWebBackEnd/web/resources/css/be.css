@@ -1,0 +1,297 @@
+﻿/* css reset http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/  */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:11px;font-family:inherit;vertical-align:baseline}:focus{outline:0}body{line-height:1;color:black;}ol,ul{list-style:none}table{border-collapse:separate;border-spacing:0}caption,th,td{text-align:left;font-weight:normal}blockquote:before,blockquote:after,q:before,q:after{content:""}blockquote,q{quotes:"" ""}
+body strong{font-weight:bold;}
+.clearfix:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}.clearfix{display:inline-block}html[xmlns].clearfix{display:block}* html .clearfix{height:1%}
+
+/* classes reutilizaveis */
+.imgrpl{display:block;font-size:1px;text-indent:-9000px;}
+.show{display:block;}
+.hide{display:none;}
+.hidden{visibility:hidden;}
+.nb{border:none;background:transparent;}
+.fl{float:left;display:inline;}
+.fr{float:right;display:inline;}
+.cb{clear: both;}
+.selfix{vertical-align: 0 !important;vertical-align: -2px;}
+.radfix{width:13px !important;height:13px !important;width:15px;height:15px;vertical-align: -2px;border:none;background:none;padding:0;margin:0;}
+
+/*HTML */
+html{height:100%;}
+/* fonte */
+body *{font: 11px arial, verdana, tahoma, sans-serif; color:#666666;}
+
+/* forms  */
+input,select,textarea{border: 1px solid #ccc;background: #fff;color: #474747;}
+textarea{overflow:auto;}
+
+/* links */
+a{text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* sirf */
+@media screen {
+	.sIFR-hasFlash h3.tit_green, .sIFR-hasFlash h3.tit_watergreen {
+		visibility: hidden;
+		font-family: Arial;
+		font-size: 18pt;
+		height: 29px;
+    }
+
+	.sIFR-hasFlash h3.tit_green {color: #0c6128}
+	.sIFR-hasFlash h3.tit_watergreen {color: #97cbb5}
+}
+
+/* container */
+#container {
+	width: 972px;
+	margin: 0 auto;
+	overflow:hidden;
+}
+
+/* header */
+#header {
+	position:relative;
+	width: 972px;
+	height:170px;
+	z-index:2;
+}
+
+#header h1 a{
+	position:absolute;
+	top:26px;
+	left:0;
+	width:150px;
+	height:80px;
+	background:url(/AppWebFrontEnd/resources/img/logo.png) no-repeat left top;
+	text-indent:-9999px;
+}
+
+/* Navegação */
+#nav{
+	position:absolute;
+	top:140px;
+	left:10px;
+	width:960px;
+	border-bottom:1px solid #767778;
+	}
+
+#nav li{
+	float:left;
+	margin:0 10px 0 0;
+	}
+	
+#nav li a{
+	display:block;
+	padding:3px 5px 3px 5px;
+	color:#767778;
+	font-weight:bold;
+	background-color:#fff;
+	text-transform:uppercase;
+	text-decoration:none;
+	}
+
+#nav li a:hover, #nav li a.selected{
+	color:#fff;
+	background-color:#767778;
+	}
+	
+/* Usuário logado e botão sair*/
+#user{
+	float:right;
+	margin:20px 10px 20px 0;
+	text-align:right;
+	}	
+#user p{margin:0 0 5px 0;}
+#user a.bt{float:right;}
+
+
+/* content e elementos estruturais da area de conteudo */
+#content{
+	display: block;
+	width:947px;
+	margin:0 0 30px 0;
+	padding:5px 10px 5px 15px;
+	}
+	
+#content h2{
+	margin:10px 0 15px 0;
+	font-size:18px;
+	font-weight:bold;
+	}
+
+/*Opções para pesquisa */
+div.filtro{
+	padding:10px;
+	padding-bottom:0;
+	margin:0 0 15px 0;
+	background-color:#f6f6f6;
+}
+
+div.filtro ul.frm li label{
+	float:none;
+	margin:0 0 0 10px;
+	color:#f00;
+}
+
+div.filtro ul.frm li input.bt_grey{
+	display:inline;
+	float:none;
+}
+
+/* Formatação para formulários */
+div.frm_content{
+	padding:20px;
+	margin:0 0 10px 0;
+	border:1px solid #ccc;
+	}
+ul.frm{width:902px;}
+ul.frm li{margin:0 0 10px 0; overflow:hidden;}	
+ul.frm li label{color:#f00;}	
+ul.frm li label strong{
+	display:block;
+	float:left;
+	width:120px;
+	color:#f00;
+	}
+	
+ul.frm li div{
+	float:left;
+	margin:0 15px 0 0;
+	}
+	
+ul.frm li span.nota{
+	display:block;
+	margin:5px 0;
+	color:#999;
+	text-indent:120px;
+}
+	
+textarea.content_area{
+	width:650px;
+	height:150px;
+	}
+
+
+/* Tela de Login */
+fieldset.fieldset_login{
+	width:250px;
+	padding:20px;
+	margin:50px auto 0 auto;
+	border:1px solid #F77E78;
+	}
+	
+fieldset.fieldset_login ul li{
+	margin:0 0 15px 0;
+	}
+	
+fieldset.fieldset_login ul li label{
+	color:#EB3321;
+	}
+	
+fieldset.fieldset_login ul li label strong{
+	display:block;
+	float:left;
+	width:50px;
+	color:#EB3321;
+	}
+	
+fieldset.fieldset_login ul li a{
+	text-decoration:underline;
+	}
+	
+#footer{
+	clear:both;
+	width:942px;
+	margin:30px 0 0 10px;
+	padding:20px 10px;
+	border-top:1px solid #ccc;
+	background-color:#f6f6f6;
+	}
+	
+#footer p{
+	text-align:right;
+	}
+	
+/* Formatação tabela de listagem */	
+table.tb_list{
+	margin:10px 0;
+	width:947px;
+	}
+	
+table.tb_list thead tr th{
+	padding:7px 5px;
+	color:#f00;
+	}
+	
+table.tb_list tbody tr td{
+	padding:7px 5px;
+	color:#898787;
+	}
+	
+table.tb_list tbody tr td a{
+	color:#898787;
+	text-decoration:underline;
+	}	
+	
+tr.even td{background-color:#f3f3f3;}
+tr.odd td{background-color:#fff;}
+	
+/* Formatação dos botões */
+
+li.bts input, a.bt, input.bt, a.bt_grey, input.bt_grey{
+	display:block;
+	float:left;
+	padding:5px 10px;
+	margin:0 3px;
+	font-weight:bold;
+	text-transform:uppercase;
+	color:#fff;
+	background-color:#f00;
+	border:0 none;
+	}
+	
+a.bt_grey, input.bt_grey{
+	background-color:#e1e1e1;
+	color:#333;
+	}
+
+/* Paginação */
+ul#paginacao {
+	margin-top: 10px;
+	float: right;
+	height: 35px;
+}
+ul#paginacao li {
+	display: block;
+	float: left;
+	margin-right: 2px;
+}
+ul#paginacao li a {
+	background-color: #e5e5e5;
+	padding: 1px 3px;
+	color: #666;
+	font-size: 10px;
+}
+ul#paginacao li a:hover, ul#paginacao li a.selected {
+	color: #fff;
+	background-color: #999;
+	text-decoration: none;
+}
+ul#paginacao li a.anterior, ul#paginacao li a.proximo {
+	display: block;
+	width: 12px;
+	height: 13px;
+	text-indent: -9999px;	
+	line-height: 0em;
+	background: url(/AppWebFrontEnd/resources/img/bt/seta_prev.png) no-repeat;
+}
+ul#paginacao li a.proximo {
+	background: url(/AppWebFrontEnd/resources/img/bt/seta_next.png) no-repeat;
+	width: 7px;
+}
+
+ul#paginacao li a.anterior, ul#paginacao li a.proximo {
+	background-position:center center !important;
+	background-position:center 5px;
+	}
+ul#paginacao li a.proximo:hover, ul#paginacao li a.anterior:hover {background-color: transparent;}

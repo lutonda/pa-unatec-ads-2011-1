@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 import una.pa.model.Console;
+import una.pa.service.ConsoleService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -26,25 +27,10 @@ public class ConsoleListagemController extends AbstractController {
             HttpServletRequest request,
             HttpServletResponse response) throws Exception {
 
-        List<Console> objC = new ArrayList<Console>();
-
-        String sql = "SELECT ID_CONSOLE, DS_CONSOLE FROM CONSOLE";
-
-
+        List<Console> objC;
         try {
-            Connection c = Data.openConnection();
-            ResultSet rs = Data.executeQuery(c, sql);
 
-            while (rs.next()) {
-                Console o = new Console();
-                o.setId_console(Integer.parseInt(rs.getString("id").toString()));
-                o.setDs_console(rs.getString("id"));
-                objC.add(o);
-            }
-
-            rs.close();
-            c.close();
-
+            objC = ConsoleService.listar();
 
         } catch (Exception e) {
             return new ModelAndView("console/listagem", "msg", e.getMessage());

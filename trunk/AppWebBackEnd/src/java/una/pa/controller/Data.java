@@ -18,14 +18,15 @@ import java.sql.Statement;
 public class Data {
 
     public static Connection openConnection() throws Exception {
-        return openConnectionSqlServer("localhost", "trocajogos", "sa", "senha");
+        return openConnectionSqlServer("192.168.0.101", "trocajogos", "sa", "senha");
     }
 
     public static Connection openConnectionSqlServer(String server,
             String database, String user, String password) throws Exception {
         Connection conn = null;
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        conn = DriverManager.getConnection("jdbc:sqlserver://PCMAC/datauser;instance=SQLEXPRESS;databaseName=" + database + ";user=" + user + ";password=" + password);
+        conn = DriverManager.getConnection("jdbc:sqlserver://" + server +
+                ":1433;databaseName=" + database + ";user=" + user + ";password=" + password);
         return conn;
     }
 

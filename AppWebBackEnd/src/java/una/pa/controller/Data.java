@@ -18,7 +18,7 @@ import java.sql.Statement;
 public class Data {
 
     public static Connection openConnection() throws Exception {
-        return openConnectionSqlServer("192.168.0.101", "trocajogos", "sa", "senha");
+        return openConnectionSqlServer("devserver", "trocajogos", "sa", "senha");
     }
 
     public static Connection openConnectionSqlServer(String server,

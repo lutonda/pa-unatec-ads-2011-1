@@ -7,7 +7,7 @@ package una.pa.model;
 
 /**
  *
- * @author Magno | Felipe
+ * @author Magno 
  */
 public class Console {
     protected int id_console;

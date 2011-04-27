@@ -19,7 +19,11 @@
         <property name="mappings">
             <props>
                 <prop key="index.htm">indexController</prop>
+                <prop key="login.htm">loginController</prop>
                 <prop key="console/listagem.htm">consoleListagemController</prop>
+                <prop key="genero/listagem.htm">generoListagemController</prop>
+                <prop key="desenvolvedor/listagem.htm">desenvolvedorListagemController</prop>
+                <prop key="editora/listagem.htm">editoraListagemController</prop>
             </props>
         </property>
     </bean>
@@ -36,10 +40,25 @@
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
 
+    <bean name="loginController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="login" />
+
     <!-- Console -->
     <bean name="consoleListagemController"
             class="una.pa.controller.ConsoleListagemController">
     </bean>
+     <!-- Genero -->
+    <bean name="generoListagemController"
+            class="una.pa.controller.GeneroListagemController">
+    </bean>
 
+    <bean name="desenvolvedorListagemController"
+            class="una.pa.controller.DesenvolvedorListagemController">
+    </bean>
+
+    <bean name="editoraListagemController"
+            class="una.pa.controller.EditoraListagemController">
+    </bean>
 
 </beans>

@@ -1,22 +1,15 @@
-
 package una.pa.repository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.*;
-import una.pa.model.Console;
+import una.pa.model.*;
 
-/**
- *
- * @author Magno
- */
-public class ConsoleDal {
+public class GeneroDal {
+    public static List<Genero> listarGeneroDal(){
+         List<Genero> objC = new ArrayList<Genero>();
 
-    public static List<Console> listarDal() {
-
-        List<Console> objC = new ArrayList<Console>();
-
-        String sql = "SELECT ID_CONSOLE, DS_CONSOLE FROM CONSOLE";
+        String sql = "SELECT ID_GENERO, DS_GENERO  FROM DBO.GENERO";
 
 
         try {
@@ -24,9 +17,9 @@ public class ConsoleDal {
             ResultSet rs = Data.executeQuery(c, sql);
 
             while (rs.next()) {
-                Console o = new Console();
-                o.setId_console(Integer.parseInt(rs.getString("ID_CONSOLE").toString()));
-                o.setDs_console(rs.getString("DS_CONSOLE"));
+                Genero o = new Genero();
+                o.setId_genero(Integer.parseInt(rs.getString("ID_GENERO").toString()));
+                o.setDs_genero(rs.getString("DS_GENERO"));
                 objC.add(o);
             }
 
@@ -37,13 +30,14 @@ public class ConsoleDal {
         } catch (Exception e) {
             return null;
         }
+
     }
-      public static boolean alteraConsole(Console _obj){
+ public static boolean alteraGenero(Genero _obj){
 
         try {
             Connection c = Data.openConnection();
-            String sql = "update console set ds_console = ? where id_console = ?";
-            Object[] vetor =  {_obj.getDs_console(),_obj.getId_console()};
+            String sql = "update genero set ds_genero = ? where id_genero = ?";
+            Object[] vetor =  {_obj.getDs_genero(),_obj.getId_genero()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();
@@ -54,12 +48,12 @@ public class ConsoleDal {
         }
     }
 
-    public static boolean incluiConsole(Console _obj){
+    public static boolean incluiGenero(Genero _obj){
 
         try {
             Connection c = Data.openConnection();
-            String sql = "insert into console (ds_console) values (?)";
-            Object[] vetor =  {_obj.getDs_console()};
+            String sql = "insert into genero (ds_genero) values (?)";
+            Object[] vetor =  {_obj.getDs_genero()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();
@@ -70,11 +64,11 @@ public class ConsoleDal {
         }
     }
 
-    public static boolean excluiConsole(int _id){
+    public static boolean excluiGenero(int _id){
 
         try {
             Connection c = Data.openConnection();
-            String sql = "delete console where id_console = ?";
+            String sql = "delete genero where id_genero = ?";
             Object[] vetor =  {_id};
 
             Data.executeUpdate(c, sql, vetor);

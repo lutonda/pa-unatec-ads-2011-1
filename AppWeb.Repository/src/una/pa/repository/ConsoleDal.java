@@ -1,4 +1,3 @@
-
 package una.pa.repository;
 
 import java.sql.Connection;
@@ -38,51 +37,52 @@ public class ConsoleDal {
             return null;
         }
     }
-      public static boolean alteraConsole(Console _obj){
+
+    public static boolean alteraConsole(Console _obj) {
 
         try {
             Connection c = Data.openConnection();
             String sql = "update console set ds_console = ? where id_console = ?";
-            Object[] vetor =  {_obj.getDs_console(),_obj.getId_console()};
+            Object[] vetor = {_obj.getDs_console(), _obj.getId_console()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();
             return true;
 
-           }catch(Exception e){
-                return false;
+        } catch (Exception e) {
+            return false;
         }
     }
 
-    public static boolean incluiConsole(Console _obj){
+    public static boolean incluiConsole(Console _obj) {
 
         try {
             Connection c = Data.openConnection();
             String sql = "insert into console (ds_console) values (?)";
-            Object[] vetor =  {_obj.getDs_console()};
+            Object[] vetor = {_obj.getDs_console()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();
             return true;
 
-           }catch(Exception e){
-                return false;
+        } catch (Exception e) {
+            return false;
         }
     }
 
-    public static boolean excluiConsole(int _id){
+    public static boolean excluiConsole(int _id) {
 
         try {
             Connection c = Data.openConnection();
             String sql = "DELETE FROM CONSOLE WHERE id_console = ?";
-            Object[] vetor =  {_id};
+            Object[] vetor = {_id};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();
             return true;
 
-           }catch(Exception e){
-                return false;
+        } catch (Exception e) {
+            return false;
         }
     }
 }

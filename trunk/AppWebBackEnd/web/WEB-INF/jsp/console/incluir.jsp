@@ -11,7 +11,9 @@
             </div>
 
             <!-- Content -->
-            <%@ include file="inc_formulario.jsp" %>
+            <form action="incluirForm.htm" method="post">
+                <%@ include file="inc_formulario.jsp" %>
+            </form>
 
             <!-- Footer -->
             <div id="footer">

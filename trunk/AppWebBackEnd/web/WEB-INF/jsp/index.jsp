@@ -13,7 +13,7 @@
             <!-- Content -->
             <div id="content" class="clearfix">
 
-
+${message}
             </div>
 
             <!-- Footer -->

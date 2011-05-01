@@ -24,6 +24,7 @@
                 <prop key="genero/listagem.htm">generoListagemController</prop>
                 <prop key="desenvolvedor/*.htm">desenvolvedorController</prop>
                 <prop key="editora/listagem.htm">editoraListagemController</prop>
+                <prop key="titulojogo/*.htm">tituloJogoController</prop>
             </props>
         </property>
     </bean>
@@ -44,11 +45,14 @@
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="login" />
 
-    <!-- Console -->
     <bean name="consoleController"
             class="una.pa.controller.ConsoleController">
     </bean>
     
+    <bean name="tituloJogoController"
+            class="una.pa.controller.TituloJogoController">
+    </bean>
+
     <bean name="generoListagemController"
             class="una.pa.controller.GeneroListagemController">
     </bean>

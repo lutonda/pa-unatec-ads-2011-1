@@ -74,7 +74,7 @@ public class ConsoleDal {
 
         try {
             Connection c = Data.openConnection();
-            String sql = "delete console where id_console = ?";
+            String sql = "DELETE FROM CONSOLE WHERE id_console = ?";
             Object[] vetor =  {_id};
 
             Data.executeUpdate(c, sql, vetor);

@@ -10,62 +10,62 @@ import una.pa.service.*;
 
 import java.util.*;
 
-public class ConsoleController extends MultiActionController {
+public class DesenvolvedorController extends MultiActionController {
 
     public ModelAndView editar(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
 
-        Console objC = ConsoleService.unico(Integer.parseInt(request.getParameter("id")));
+        Desenvolvedor objC = DesenvolvedorService.unico(Integer.parseInt(request.getParameter("id")));
 
-        return new ModelAndView("console/editar", "console", objC);
+        return new ModelAndView("desenvolvedor/editar", "desenvolvedor", objC);
     }
 
     public ModelAndView editarForm(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         boolean flag;
-        Console objC = new Console();
-        objC.setId_console(Integer.parseInt(request.getParameter("id_console")));
-        objC.setDs_console(request.getParameter("ds_console"));
+        Desenvolvedor objC = new Desenvolvedor();
+        objC.setId_desenv(Integer.parseInt(request.getParameter("id_desenv")));
+        objC.setDs_desenv(request.getParameter("ds_desenv"));
 
         try {
 
-            flag = ConsoleService.alterar(objC);
+            flag = DesenvolvedorService.alterar(objC);
 
         } catch (Exception e) {
-            return new ModelAndView("console/editar", "msg", e.getMessage());
+            return new ModelAndView("desenvolvedor/editar", "msg", e.getMessage());
         }
 
         if (flag) {
             response.sendRedirect("listar.htm");
         }
 
-        return new ModelAndView("console/editar", "console", objC);
+        return new ModelAndView("desenvolvedor/editar", "desenvolvedor", objC);
     }
 
     public ModelAndView incluir(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        return new ModelAndView("console/incluir", "msg", "");
+        return new ModelAndView("desenvolvedor/incluir", "msg", "");
     }
 
     public ModelAndView incluirForm(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         boolean flag;
-        Console objC = new Console();
-        objC.setDs_console(request.getParameter("ds_console"));
+        Desenvolvedor objC = new Desenvolvedor();
+        objC.setDs_desenv(request.getParameter("ds_desenv"));
 
         try {
 
-            flag = ConsoleService.incluir(objC);
+            flag = DesenvolvedorService.incluir(objC);
 
         } catch (Exception e) {
-            return new ModelAndView("console/incluir", "msg", e.getMessage());
+            return new ModelAndView("desenvolvedor/incluir", "msg", e.getMessage());
         }
 
         if (flag) {
             response.sendRedirect("listar.htm");
         }
 
-        return new ModelAndView("console/incluir", "console", objC);
+        return new ModelAndView("desenvolvedor/incluir", "console", objC);
     }
 
     public ModelAndView remove(HttpServletRequest request,
@@ -73,29 +73,29 @@ public class ConsoleController extends MultiActionController {
         boolean flag;
         try {
 
-            flag = ConsoleService.excluir(Integer.parseInt(request.getParameter("id")));
+            flag = DesenvolvedorService.excluir(Integer.parseInt(request.getParameter("id")));
 
         } catch (Exception e) {
-            return new ModelAndView("console/listagem", "msg", e.getMessage());
+            return new ModelAndView("desenvolvedor/listagem", "msg", e.getMessage());
         }
 
         if (flag) {
             response.sendRedirect("listar.htm");
         }
 
-        return new ModelAndView("console/listagem", "msg", "Erro ao excluir o item.");
+        return new ModelAndView("desenvolvedor/listagem", "msg", "Erro ao excluir o item.");
     }
 
     public ModelAndView listar(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        List<Console> objC;
+        List<Desenvolvedor> objC;
         try {
 
-            objC = ConsoleService.listar();
+            objC = DesenvolvedorService.listar();
 
         } catch (Exception e) {
-            return new ModelAndView("console/listagem", "msg", e.getMessage());
+            return new ModelAndView("desenvolvedor/listagem", "msg", e.getMessage());
         }
-        return new ModelAndView("console/listagem", "consoles", objC);
+        return new ModelAndView("desenvolvedor/listagem", "desenvolvedores", objC);
     }
 }

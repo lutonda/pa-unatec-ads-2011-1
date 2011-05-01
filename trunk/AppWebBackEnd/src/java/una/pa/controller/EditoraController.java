@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package una.pa.controller;
 
@@ -15,29 +12,25 @@ import una.pa.service.*;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-
 import java.util.*;
-/**
- *
- * @author Tiago
- */
-public class GeneroListagemController extends AbstractController {
 
-    public GeneroListagemController() {
+public class EditoraController extends AbstractController {
+
+    public EditoraController() {
     }
     
     protected ModelAndView handleRequestInternal(
             HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
-            List<Genero> objC;
+            List<Editora> objC;
         try {
 
-            objC = GeneroService.listar();
+            objC = EditoraService.listar();
 
         } catch (Exception e) {
-            return new ModelAndView("genero/listagem", "msg", e.getMessage());
+            return new ModelAndView("editora/listagem", "msg", e.getMessage());
         }
-        return new ModelAndView("genero/listagem", "generos", objC);
+        return new ModelAndView("editora/listagem", "editoras", objC);
     }
 
 }

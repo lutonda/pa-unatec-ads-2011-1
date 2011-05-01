@@ -22,7 +22,7 @@
                 <prop key="login.htm">loginController</prop>
                 <prop key="console/*.htm">consoleController</prop>
                 <prop key="genero/listagem.htm">generoListagemController</prop>
-                <prop key="desenvolvedor/listagem.htm">desenvolvedorListagemController</prop>
+                <prop key="desenvolvedor/*.htm">desenvolvedorController</prop>
                 <prop key="editora/listagem.htm">editoraListagemController</prop>
             </props>
         </property>
@@ -53,8 +53,8 @@
             class="una.pa.controller.GeneroListagemController">
     </bean>
 
-    <bean name="desenvolvedorListagemController"
-            class="una.pa.controller.DesenvolvedorListagemController">
+    <bean name="desenvolvedorController"
+            class="una.pa.controller.DesenvolvedorController">
     </bean>
 
     <bean name="editoraListagemController"

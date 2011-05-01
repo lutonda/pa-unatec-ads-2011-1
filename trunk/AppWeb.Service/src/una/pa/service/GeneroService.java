@@ -7,6 +7,18 @@ public class GeneroService {
      public static List<Genero> listar() {
         return GeneroDal.listarGeneroDal();
     }
+     public static Genero unico(int id) {
+
+        List<Genero> lObjec = GeneroDal.listarGeneroDal();
+        Genero retorno = new Genero();
+        for (Iterator<Genero> it = lObjec.iterator(); it.hasNext();) {
+            Genero genero = it.next();
+
+            if (genero.getId_genero() == id)
+                retorno = genero;
+        }
+        return retorno;
+    }
      public static boolean alterar(Genero _obj){
         return GeneroDal.alteraGenero(_obj);
     }

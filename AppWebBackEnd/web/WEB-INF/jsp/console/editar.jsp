@@ -11,7 +11,10 @@
             </div>
 
             <!-- Content -->
-            <%@ include file="inc_formulario.jsp" %>
+            <form action="editarForm.htm" method="post">
+                <input type="hidden" name="id_console" value="${console.id_console}"/>
+                <%@ include file="inc_formulario.jsp" %>
+            </form>
 
             <!-- Footer -->
             <div id="footer">

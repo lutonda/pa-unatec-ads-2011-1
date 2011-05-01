@@ -9,7 +9,7 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
-
+    
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but
     for the index controller we are using ParameterizableViewController, so we must
@@ -20,7 +20,7 @@
             <props>
                 <prop key="index.htm">indexController</prop>
                 <prop key="login.htm">loginController</prop>
-                <prop key="console/listagem.htm">consoleListagemController</prop>
+                <prop key="console/*.htm">consoleController</prop>
                 <prop key="genero/listagem.htm">generoListagemController</prop>
                 <prop key="desenvolvedor/listagem.htm">desenvolvedorListagemController</prop>
                 <prop key="editora/listagem.htm">editoraListagemController</prop>
@@ -45,10 +45,10 @@
           p:viewName="login" />
 
     <!-- Console -->
-    <bean name="consoleListagemController"
-            class="una.pa.controller.ConsoleListagemController">
+    <bean name="consoleController"
+            class="una.pa.controller.ConsoleController">
     </bean>
-     <!-- Genero -->
+    
     <bean name="generoListagemController"
             class="una.pa.controller.GeneroListagemController">
     </bean>

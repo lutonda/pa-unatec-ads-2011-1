@@ -6,7 +6,7 @@
     <li>
         <a href="#" title="Cadastros" class="selected">Cadastros</a>
         <ul>
-            <li><a href="/AppWebBackEnd/console/listagem.htm" title="Consoles">Consoles</a></li>
+            <li><a href="/AppWebBackEnd/console/listar.htm" title="Consoles">Consoles</a></li>
             <li><a href="/AppWebBackEnd/genero/listagem.htm" title="Genero">Gêneros</a></li>
             <li><a href="/AppWebBackEnd/desenvolvedor/listagem.htm" title="Desenvolvedor">Desenvolvedor</a></li>
             <li><a href="/AppWebBackEnd/editora/listagem.htm" title="Editora">Editora</a></li>

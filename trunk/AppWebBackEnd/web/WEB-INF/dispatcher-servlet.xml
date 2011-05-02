@@ -21,9 +21,9 @@
                 <prop key="index.htm">indexController</prop>
                 <prop key="login.htm">loginController</prop>
                 <prop key="console/*.htm">consoleController</prop>
-                <prop key="genero/*.htm">generoListagemController</prop>
+                <prop key="genero/*.htm">generoController</prop>
                 <prop key="desenvolvedor/*.htm">desenvolvedorController</prop>
-                <prop key="editora/listagem.htm">editoraListagemController</prop>
+                <prop key="editora/listagem.htm">editoraController</prop>
                 <prop key="titulojogo/*.htm">tituloJogoController</prop>
             </props>
         </property>
@@ -53,16 +53,16 @@
             class="una.pa.controller.TituloJogoController">
     </bean>
 
-    <bean name="generoListagemController"
-            class="una.pa.controller.GeneroListagemController">
+    <bean name="generoController"
+            class="una.pa.controller.GeneroController">
     </bean>
 
     <bean name="desenvolvedorController"
             class="una.pa.controller.DesenvolvedorController">
     </bean>
 
-    <bean name="editoraListagemController"
-            class="una.pa.controller.EditoraListagemController">
+    <bean name="editoraController"
+            class="una.pa.controller.EditoraController">
     </bean>
 
 </beans>

@@ -3,7 +3,7 @@
     <p>
         <a href="listar.htm" title="Voltar para a listagem">&lt; Voltar para a listagem</a>
     </p>
-    <h2>Incluir Console</h2>
+    <h2>Incluir Titulos</h2>
 
     <div class="frm_content">
 

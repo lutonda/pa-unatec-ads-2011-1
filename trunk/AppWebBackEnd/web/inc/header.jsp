@@ -9,7 +9,7 @@
             <li><a href="/AppWebBackEnd/console/listar.htm" title="Consoles">Consoles</a></li>
             <li><a href="/AppWebBackEnd/genero/listar.htm" title="Generos">Gêneros</a></li>
             <li><a href="/AppWebBackEnd/desenvolvedor/listar.htm" title="Desenvolvedor">Desenvolvedor</a></li>
-            <li><a href="/AppWebBackEnd/editora/listagem.htm" title="Editora">Editora</a></li>
+            <li><a href="/AppWebBackEnd/editora/listar.htm" title="Editora">Editora</a></li>
             <li><a href="/AppWebBackEnd/titulojogo/listar.htm" title="Editora">Titulo Jogo</a></li>
         </ul>
     </li>

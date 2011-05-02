@@ -15,7 +15,7 @@ public class ConsoleDal {
 
         List<Console> objC = new ArrayList<Console>();
 
-        String sql = "SELECT ID_CONSOLE, DS_CONSOLE FROM CONSOLE";
+        String sql = "SELECT ID_CONSOLE, DS_CONSOLE FROM DBO.CONSOLE";
 
 
         try {

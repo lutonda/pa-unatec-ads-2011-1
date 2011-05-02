@@ -17,7 +17,7 @@
                 <div class="filtro">
                     <ul class="frm clearfix">
                         <li>
-                            <a href="#" class="bt_grey">Incluir</a> <c:out value="${msg}"/>
+                            <a href="incluir.htm" class="bt_grey">Incluir</a> <c:out value="${msg}"/>
                         </li>
                     </ul>
                 </div>
@@ -52,9 +52,9 @@
                                     <c:out value="${Editora.nm_editora}"/>
                                 </td>
                                 <td>
-                                    <a href="#" title="Editar">Editar</a>
+                                    <a href="editar.htm?id=${Editora.id_editora}" title="Editar">Editar</a>
 								|
-                                    <a href="#" title="Excluir">Excluir</a>
+                                    <a href="remove.htm?id=${Editora.id_editora}" onclick="return(window.confirm('Confirma a exclusão?'))" title="Excluir">Excluir</a>
                                 </td>
                             </tr>
                         </c:forEach>

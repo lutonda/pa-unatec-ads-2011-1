@@ -25,6 +25,7 @@
                 <prop key="desenvolvedor/*.htm">desenvolvedorController</prop>
                 <prop key="editora/listagem.htm">editoraController</prop>
                 <prop key="titulojogo/*.htm">tituloJogoController</prop>
+                <prop key="usuariosistema/*.htm">usuarioSistemaController</prop>
             </props>
         </property>
     </bean>
@@ -51,6 +52,10 @@
     
     <bean name="tituloJogoController"
             class="una.pa.controller.TituloJogoController">
+    </bean>
+
+    <bean name="usuarioSistemaController"
+            class="una.pa.controller.UsuarioSistemaController">
     </bean>
 
     <bean name="generoController"

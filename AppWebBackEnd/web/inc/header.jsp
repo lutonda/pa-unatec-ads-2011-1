@@ -10,10 +10,11 @@
             <li><a href="/AppWebBackEnd/genero/listar.htm" title="Generos">Gêneros</a></li>
             <li><a href="/AppWebBackEnd/desenvolvedor/listar.htm" title="Desenvolvedor">Desenvolvedor</a></li>
             <li><a href="/AppWebBackEnd/editora/listar.htm" title="Editora">Editora</a></li>
-            <li><a href="/AppWebBackEnd/titulojogo/listar.htm" title="Editora">Titulo Jogo</a></li>
+            <li><a href="/AppWebBackEnd/titulojogo/listar.htm" title="TituloJogo">Titulo Jogo</a></li>
+            
         </ul>
     </li>
-    <li><a href="#" title="Segundo Item">Segundo Item</a></li>
+    <li><a href="/AppWebBackEnd/usuariosistema/listar.htm" title="UsuarioSistema">Usuário Sistema</a></li>
     <li><a href="#" title="Terceiro Item">Terceiro Item</a></li>
     <li><a href="#" title="Quarto Item">Quarto Item</a></li>
 </ul> 

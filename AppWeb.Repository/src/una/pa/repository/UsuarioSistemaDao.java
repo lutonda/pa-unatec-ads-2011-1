@@ -2,8 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package una.pa.repository;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.List;
@@ -16,7 +16,7 @@ import una.pa.model.UsuarioSistema;
  */
 public class UsuarioSistemaDao {
 
-     public static List<UsuarioSistema> listarDao() {
+    public static List<UsuarioSistema> listarDao() {
 
         List<UsuarioSistema> objC = new ArrayList<UsuarioSistema>();
 
@@ -32,9 +32,9 @@ public class UsuarioSistemaDao {
                 o.setId_user_sistema(Integer.parseInt(rs.getString("ID_USER_SISTEMA").toString()));
                 o.setUsername(rs.getString("USERNAME"));
                 o.setPassword(rs.getString("PASSWORD"));
-                if (rs.getString("SN_ATIVO").equals("1")){
+                if (rs.getString("SN_ATIVO").equals("1")) {
                     o.setSn_ativo(true);
-                }else{
+                } else {
                     o.setSn_ativo(false);
                 }
                 o.setPerfil(rs.getString("PERFIL"));
@@ -63,7 +63,7 @@ public class UsuarioSistemaDao {
                     + ",PERFIL = ? "
                     + "WHERE ID_USER_SISTEMA = ?";
 
-            Object[] vetor = {_obj.getUsername(),_obj.getPassword(),_obj.isSn_ativo(), _obj.getPerfil(), _obj.getId_user_sistema()};
+            Object[] vetor = {_obj.getUsername(), _obj.getPassword(), _obj.isSn_ativo(), _obj.getPerfil(), _obj.getId_user_sistema()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();
@@ -83,7 +83,7 @@ public class UsuarioSistemaDao {
                     + ",PASSWORD "
                     + ",SN_ATIVO "
                     + ",PERFIL) VALUES (?,?,?,?)";
-           Object[] vetor = {_obj.getUsername(),_obj.getPassword(),_obj.isSn_ativo(), _obj.getPerfil()};
+            Object[] vetor = {_obj.getUsername(), _obj.getPassword(), _obj.isSn_ativo(), _obj.getPerfil()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();
@@ -110,4 +110,29 @@ public class UsuarioSistemaDao {
         }
     }
 
+    public static boolean autenticar(String user, String pass) {
+
+        boolean flag = false;
+        String sql = "select username from usuario_sistema where username = ? and PASSWORD = ?";
+
+        try {
+            Connection c = Data.openConnection();
+            Object[] vetor = {user, pass};
+            ResultSet rs = Data.executeQuery(c, sql, vetor);
+            boolean result = rs.next();
+            int result2 = rs.getRow();
+            
+            if (rs.getRow() == 1) {
+                flag = true;
+            }
+
+            rs.close();
+            c.close();
+
+            return flag;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

@@ -16,7 +16,6 @@ import una.pa.service.UsuarioSistemaService;
 
 import java.util.*;
 import una.pa.repository.Criptografia;
-import una.pa.service.TituloJogoService;
 
 public class UsuarioSistemaController extends MultiActionController {
 
@@ -24,8 +23,7 @@ public class UsuarioSistemaController extends MultiActionController {
             HttpServletResponse response) throws Exception {
 
         UsuarioSistema objC = UsuarioSistemaService.unico(Integer.parseInt(request.getParameter("id")));
-
-        List<UsuarioSistema> objEditora = UsuarioSistemaService.listar();
+        objC.setPassword("");
 
         ModelAndView mav = new ModelAndView("usuariosistema/editar");
         mav.addObject("usuariosistema", objC);
@@ -39,7 +37,9 @@ public class UsuarioSistemaController extends MultiActionController {
         UsuarioSistema objC = new UsuarioSistema();
         objC.setId_user_sistema(Integer.parseInt(request.getParameter("id_user_sistema")));
         objC.setUsername(request.getParameter("username"));
-        objC.setPassword(request.getParameter("password"));
+        if (request.getParameter("password").length() != 0)
+            objC.setPassword(Criptografia.md5(request.getParameter("password")));
+        
         if (request.getParameter("sn_ativo").equals("true")){
             objC.setSn_ativo(true);
         }else{

@@ -20,6 +20,8 @@
             <props>
                 <prop key="index.htm">indexController</prop>
                 <prop key="login.htm">loginController</prop>
+                <prop key="loginForm.htm">loginController</prop>
+                <prop key="logout.htm">loginController</prop>
                 <prop key="console/*.htm">consoleController</prop>
                 <prop key="genero/*.htm">generoController</prop>
                 <prop key="desenvolvedor/*.htm">desenvolvedorController</prop>
@@ -43,8 +45,7 @@
           p:viewName="index" />
 
     <bean name="loginController"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-          p:viewName="login" />
+          class="una.pa.controller.LoginController" />
 
     <bean name="consoleController"
             class="una.pa.controller.ConsoleController">

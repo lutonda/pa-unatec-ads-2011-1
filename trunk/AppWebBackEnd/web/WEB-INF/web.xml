@@ -4,6 +4,20 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
+    <filter>
+        <filter-name>AcessoRestrito</filter-name>
+        <filter-class>una.pa.acesso.AcessoRestrito</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AcessoRestrito</filter-name>
+        <url-pattern>/index.htm</url-pattern>
+        <url-pattern>/console/*</url-pattern>
+        <url-pattern>/desenvolvedor/*</url-pattern>
+        <url-pattern>/editora/*</url-pattern>
+        <url-pattern>/genero/*</url-pattern>
+        <url-pattern>/titulojogo/*</url-pattern>
+        <url-pattern>/usuariosistema/*</url-pattern>
+    </filter-mapping>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>

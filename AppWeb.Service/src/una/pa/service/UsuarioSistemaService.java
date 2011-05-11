@@ -42,4 +42,7 @@ public class UsuarioSistemaService {
     public static boolean excluir(int id){
         return UsuarioSistemaDao.exclui(id);
     }
+    public static boolean aut(String user, String pass){
+        return UsuarioSistemaDao.autenticar(user, pass);
+    }
 }

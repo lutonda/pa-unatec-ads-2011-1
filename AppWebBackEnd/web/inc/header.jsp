@@ -21,5 +21,5 @@
 
 <div id="user">
     <p>Logado como: <strong> Fulano da Silva</strong></p>
-    <a href="/index.jsp" title="SAIR" class="bt">Sair</a>
+    <a href="/AppWebBackEnd/logout.htm" title="SAIR" class="bt">Sair</a>
 </div> 

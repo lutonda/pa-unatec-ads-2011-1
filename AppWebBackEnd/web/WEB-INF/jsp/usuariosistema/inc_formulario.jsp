@@ -29,7 +29,7 @@
                         <input checked type="radio" name="sn_ativo" value="false">Desativado
                     </c:if>
                     <c:if test="${(usuariosistema.sn_ativo == null)}">
-                        <input checked type="radio" name="sn_ativo" value="true">Ativado
+                        <input type="radio" name="sn_ativo" value="true">Ativado
                         <input type="radio" name="sn_ativo" value="false">Desativado
                     </c:if>
             </li>
@@ -53,13 +53,13 @@
                 <c:if test="${(usuariosistema.perfil!='L')&&(usuariosistema.perfil!='E')&&(usuariosistema.perfil!='A')}">
                     <input type="radio" name="perfil" value="A">Administrador
                     <input type="radio" name="perfil" value="E">Editor
-                    <input checked type="radio" name="perfil" value="L">Leitura
+                    <input type="radio" name="perfil" value="L">Leitura
                 </c:if>
             </li>
 
             <li>
                 <label><strong>Senha</strong></label>
-                    <input type="password" name="password" value="${usuariosistema.password}">
+                <input type="password" maxlength="8" name="password" value="${usuariosistema.password}">
             </li>
 
             <li>

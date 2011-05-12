@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 import una.pa.model.Jogos;
 import una.pa.repository.JogosDal;
-import una.pa.service.upload.uploadServices;
+import una.pa.util.upload.uploadServices;
 
 /**
  *

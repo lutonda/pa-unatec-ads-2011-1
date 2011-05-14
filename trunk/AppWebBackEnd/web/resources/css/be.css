@@ -67,6 +67,7 @@ a:hover{text-decoration:underline;}
 }
 
 /* Navegação */
+/*
 #nav{
 	position:absolute;
 	top:140px;
@@ -94,7 +95,66 @@ a:hover{text-decoration:underline;}
 	color:#fff;
 	background-color:#767778;
 	}
-	
+	*/
+
+/* Navegação§Ã£o */
+#nav
+{
+    position: absolute;
+    top: 140px;
+    left: 10px;
+    width: 100%;
+    border-bottom: 1px solid #767778;
+}
+
+#nav li
+{
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+#nav li a
+{
+    display: block;
+    padding: 3px 5px 3px 5px;
+    color: #767778;
+    font-weight: bold;
+    background-color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#nav li a:hover
+{
+    color:#fff;
+    background-color:#767778;
+}
+#nav li ul
+{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    visibility: hidden;
+    border-top: 1px solid #ccc;
+}
+
+#nav li ul li
+{
+    float: none;
+}
+
+#nav li ul li a
+{
+    width: auto;
+    background-color: #fff;
+    color:#767778;
+}
+
+#nav li ul li a:hover
+{
+    background-color: #767778;
+}
+
 /* Usuário logado e botão sair*/
 #user{
 	float:right;

@@ -1,16 +1,49 @@
 /**
-* Inicializa as funções assim que os elementos (DOM) são carregados
-* @author Leonardo Souza <leonardo.souza@agenciaclick.com.br>
-*/
+* Inicializa as funÃ§Ãµes assim que os elementos (DOM) sÃ£o carregados
+
 jQuery(function() {
 	BaseProject._init();
 });
+*/
 
+/**
+* FunÃ§Ã£o Menu Simples Drop-Down
+*/
+var timeout = 500;
+var closetimer = 0;
+var ddmenuitem = 0;
+
+function jsddm_open() {
+    jsddm_canceltimer();
+    jsddm_close();
+    ddmenuitem = $(this).find('ul').css('visibility', 'visible');
+}
+
+function jsddm_close()
+{ if (ddmenuitem) ddmenuitem.css('visibility', 'hidden'); }
+
+function jsddm_timer()
+{ closetimer = window.setTimeout(jsddm_close, timeout); }
+
+function jsddm_canceltimer() {
+    if (closetimer) {
+        window.clearTimeout(closetimer);
+        closetimer = null;
+    }
+}
+
+$(document).ready(function() {
+    $('#nav > li').bind('mouseover', jsddm_open)
+    $('#nav > li').bind('mouseout', jsddm_timer)
+});
+
+document.onclick = jsddm_close;
+
+/*
 var BaseProject = {
 	/**
-	* Função de chamada das outras funções que inicializam o site
-	* @author Leonardo Souza <leonardo.souza@agenciaclick.com.br>
-	*/
+	* FunÃ§Ã£o de chamada das outras funÃ§Ãµes que inicializam o site
+
 	_init: function() {
 		try {
 			BaseProject._helloWorldConsole();
@@ -18,12 +51,10 @@ var BaseProject = {
 			console.log('Error: ' + e.description);
 		}
 	},
-		
-	/**
-	* Tenta exibir a mensagem "Hello World" através do console do firebug, caso falhe exibe a mensagem via alert
-	* @author Leonardo Souza <leonardo.souza@agenciaclick.com.br>
-	* @modified Leonardo Souza <leonardo.souza@agenciaclick.com.br>
 	*/
+	/**
+	* Tenta exibir a mensagem "Hello World" atravÃ©s do console do firebug, caso falhe exibe a mensagem via alert
+
 	_helloWorldConsole: function() {
 		try {
 			console.log('Hello World!');
@@ -31,4 +62,6 @@ var BaseProject = {
 			alert('Hello World!');
 		}
 	}
+
 };
+*/

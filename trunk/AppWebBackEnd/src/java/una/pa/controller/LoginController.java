@@ -13,6 +13,9 @@ import una.pa.service.UsuarioSistemaService;
 import javax.servlet.http.HttpSession;
 
 import java.util.*;
+import org.springframework.web.servlet.view.InternalResourceView;
+import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.RedirectView;
 import una.pa.repository.Criptografia;
 
 public class LoginController extends MultiActionController {
@@ -21,6 +24,8 @@ public class LoginController extends MultiActionController {
             HttpServletResponse response) throws Exception {
 
         ModelAndView mav = new ModelAndView("login");
+        if (request.getParameter("erro") != null)
+            mav.addObject("msgErro", "Usuário e/ou senha inválidos!");
         return mav;
     }
 
@@ -48,8 +53,7 @@ public class LoginController extends MultiActionController {
             response.sendRedirect("index.htm");
         } else {
             session.setAttribute("usuario", null);
-            mav.addObject("msgErro", "Usuário e/ou senha inválidos!");
-            response.sendRedirect("login.htm");
+            return new ModelAndView(new RedirectView("login.htm?erro"));
         }
 
         return mav;

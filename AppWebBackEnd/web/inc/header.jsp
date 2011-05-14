@@ -15,7 +15,7 @@
         </ul>
     </li>
     <li><a href="/AppWebBackEnd/usuariosistema/listar.htm" title="UsuarioSistema">Usuário Sistema</a></li>
-    <li><a href="#" title="Terceiro Item">Terceiro Item</a></li>
+    <li><a href="/AppWebBackEnd/convite/listar.htm" title="Convite">Convite</a></li>
     <li><a href="#" title="Quarto Item">Quarto Item</a></li>
 </ul> 
 

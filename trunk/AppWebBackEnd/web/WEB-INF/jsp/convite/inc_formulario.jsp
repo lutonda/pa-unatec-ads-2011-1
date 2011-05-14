@@ -21,7 +21,7 @@
             </li>
             <li>
                 <label><strong>Corpo Convite</strong></label>
-                <textarea name="corpo_convite" rows="20" cols="130">${convite.corpo_convite}"</textarea>
+                <textarea name="corpo_convite" rows="20" cols="130">${convite.corpo_convite}</textarea>
             </li>
             <li>
                 <input type="submit" value="Salvar" class="bt" />

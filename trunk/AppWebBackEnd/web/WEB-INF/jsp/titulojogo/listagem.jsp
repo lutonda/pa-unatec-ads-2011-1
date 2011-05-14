@@ -12,7 +12,7 @@
 
             <!-- Content -->
             <div id="content" class="clearfix">
-                <h2>Consoles</h2>
+                <h2>Titulo Jogos</h2>
 
                 <div class="filtro">
                     <ul class="frm clearfix">

@@ -16,13 +16,13 @@
 
             </ul>
         </li>
-        <li><a href="/AppWebBackEnd/usuariosistema/listar.htm" title="UsuarioSistema">Usuário Sistema</a></li>
+        <li><a href="#" title="Relatórios">Relatórios</a></li>
         <li><a href="#" title="Configuração">Configuração</a>
             <ul>
                 <li><a href="/AppWebBackEnd/convite/listar.htm" title="Convite">Convite</a></li>
             </ul>
         </li>
-        <li><a href="#" title="Quarto Item">Quarto Item</a></li>
+        <li><a href="/AppWebBackEnd/usuariosistema/listar.htm" title="UsuarioSistema">Usuário Sistema</a></li>
     </ul>
 </div>
 <div id="user">

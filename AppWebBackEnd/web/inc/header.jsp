@@ -26,6 +26,6 @@
     </ul>
 </div>
 <div id="user">
-    <p>Logado como: <strong> Fulano da Silva</strong></p>
+    <p>Logado como: <strong> <%=(String)request.getSession().getAttribute("usuario") %></strong></p>
     <a href="/AppWebBackEnd/logout.htm" title="SAIR" class="bt">Sair</a>
 </div> 

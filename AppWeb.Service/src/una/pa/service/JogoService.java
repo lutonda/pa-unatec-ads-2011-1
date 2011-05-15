@@ -4,11 +4,9 @@
  */
 package una.pa.service;
 
-import java.io.IOException;
 import java.util.List;
-import org.springframework.web.multipart.MultipartFile;
-import una.pa.model.Jogos;
-import una.pa.repository.JogosDal;
+import una.pa.model.Jogo;
+import una.pa.repository.JogoDal;
 //import una.pa.util.upload.uploadServices;
 
 /**
@@ -16,23 +14,12 @@ import una.pa.repository.JogosDal;
  * @author Felipe
  */
 public class JogoService {
-    /*
-    private uploadServices upload = new uploadServices();
-    
-     public static List<Jogos> listar() {
-        return JogosDal.listaDal();
+
+    public static List<Jogo> listar() {
+        return JogoDal.listaDal();
     }
-     
-      public  boolean incluir(Jogos _obj, MultipartFile mpf,String path, String url) throws IOException, Exception {
-         _obj.setUrl_IMG(upload.fazUpload(mpf, path, url));
-          return JogosDal.addJogo(_obj);
+
+    public static boolean excluir(int id) {
+        return JogoDal.exclui(id);
     }
-      
-     public static boolean excluir(int id) {
-        return JogosDal.exclui(id);
-    }
-     
-     
-     */
-    
 }

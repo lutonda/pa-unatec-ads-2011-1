@@ -29,6 +29,7 @@
                 <prop key="titulojogo/*.htm">tituloJogoController</prop>
                 <prop key="usuariosistema/*.htm">usuarioSistemaController</prop>
                 <prop key="convite/*.htm">conviteController</prop>
+                <prop key="jogo/*.htm">jogoController</prop>
             </props>
         </property>
     </bean>
@@ -38,12 +39,19 @@
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp" />
 
-    <!--
-    The index controller.
-    -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <bean name="fileController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="file" />
+
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
+
+    <bean name="jogoController"
+            class="una.pa.controller.JogoController">
+    </bean>
 
     <bean name="loginController"
           class="una.pa.controller.LoginController" />
@@ -71,7 +79,7 @@
     <bean name="editoraController"
             class="una.pa.controller.EditoraController">
     </bean>
-     <bean name="conviteController"
+    <bean name="conviteController"
             class="una.pa.controller.ConviteController">
     </bean>
 

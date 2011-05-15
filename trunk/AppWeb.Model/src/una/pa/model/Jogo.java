@@ -8,12 +8,12 @@ package una.pa.model;
  *
  * @author Felipe
  */
-public class Jogos {
+public class Jogo {
         
     protected int id_jogo;
     protected int id_titulo_jogo;
     protected int id_console;
-    protected String url_IMG;
+    protected String imagem;
     
     protected String console;
     protected String titulo_jogo;
@@ -25,15 +25,6 @@ public class Jogos {
     public void setConsole(String console) {
         this.console = console;
     }
-
-    public String getTitulo_jogo() {
-        return titulo_jogo;
-    }
-
-    public void setTitulo_jogo(String titulo_jogo) {
-        this.titulo_jogo = titulo_jogo;
-    }
-    
 
     public int getId_console() {
         return id_console;
@@ -59,15 +50,19 @@ public class Jogos {
         this.id_titulo_jogo = id_titulo_jogo;
     }
 
-    public String getUrl_IMG() {
-        return url_IMG;
+    public String getImagem() {
+        return imagem;
     }
 
-    public void setUrl_IMG(String url_IMG) {
-        this.url_IMG = url_IMG;
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
-    
 
-    
-    
+    public String getTitulo_jogo() {
+        return titulo_jogo;
+    }
+
+    public void setTitulo_jogo(String titulo_jogo) {
+        this.titulo_jogo = titulo_jogo;
+    }
 }

@@ -45,7 +45,7 @@ public class ConviteDal {
         try{
             Connection c = Data.openConnection();
             String sql = "update convite set assunto = ?, corpo_convite = ? where id_convite = ?";
-            Object[] vetor = {_obj.getAssunto(),_obj.getCorpo_convite()};
+            Object[] vetor = {_obj.getAssunto(),_obj.getCorpo_convite(), _obj.getId_convite()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();

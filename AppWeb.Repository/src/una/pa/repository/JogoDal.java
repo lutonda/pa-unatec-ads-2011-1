@@ -8,22 +8,22 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import una.pa.model.Jogos;
+import una.pa.model.Jogo;
 
 /**
  *
  * @author Felipe
  */
-public class JogosDal {
+public class JogoDal {
 
-    public static boolean addJogo(Jogos _obj) {
+    public static boolean incluir(Jogo _obj) {
 
         try {
             Connection c = Data.openConnection();
-            String sql = "INSERT INTO JOGO(ID_TITULO_JOGO,ID_CONSOLE,IMAGEM)"
+            String sql = "INSERT INTO JOGO(ID_TITULO_JOGO,ID_CONSOLE,IMAGEM) "
                     + "VALUES(?,?,?)";
 
-            Object[] vetor = {_obj.getId_titulo_jogo(), _obj.getId_console(), _obj.getUrl_IMG()};
+            Object[] vetor = {_obj.getId_titulo_jogo(), _obj.getId_console(), _obj.getImagem()};
             Data.executeUpdate(c, sql, vetor);
             c.close();
             return true;
@@ -32,16 +32,20 @@ public class JogosDal {
         }
     }
 
-    public static List<Jogos> listaDal() {
+    public static List<Jogo> listaDal() {
 
-        List<Jogos> objC = new ArrayList<Jogos>();
+        List<Jogo> objC = new ArrayList<Jogo>();
 
-
+/*
         String sql = "SELECT J.*,(SELECT NM_TITULO FROM TITULO_JOGO"
                 + "WHERE ID_TITULO_JOGO = J.ID_TITULO_JOGO) AS TITITULO_JOGO,"
                 + "(SELECT DS_CONSOLE FROM CONSOLE"
                 + "WHERE ID_CONSOLE = J.ID_CONSOLE)AS CONSOLE"
                 + "FROM JOGO AS J";
+ 
+ */
+
+        String sql = "select * from jogo j left join titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo left join console c on j.id_console = c.id_console";
 
 
         try {
@@ -49,12 +53,12 @@ public class JogosDal {
             ResultSet rs = Data.executeQuery(c, sql);
 
             while (rs.next()) {
-                Jogos o = new Jogos();
+                Jogo o = new Jogo();
 
                 o.setId_jogo(Integer.parseInt(rs.getString("ID_JOGO").toString()));
                 o.setId_jogo(Integer.parseInt(rs.getString("NM_TITULO")));
                 o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_CONSOLE")));
-                o.setUrl_IMG(rs.getString("IMAGEM"));
+                o.setImagem(rs.getString("IMAGEM"));
                 o.setTitulo_jogo(rs.getString("TITULO_JOGO"));
                 o.setConsole(rs.getString("CONSOLE"));
                 objC.add(o);

@@ -13,7 +13,7 @@
                 <li><a href="/AppWebBackEnd/desenvolvedor/listar.htm" title="Desenvolvedor">Desenvolvedor</a></li>
                 <li><a href="/AppWebBackEnd/editora/listar.htm" title="Editora">Editora</a></li>
                 <li><a href="/AppWebBackEnd/titulojogo/listar.htm" title="TituloJogo">Titulo Jogo</a></li>
-
+                <li><a href="/AppWebBackEnd/jogo/listar.htm" title="Jogos">Jogos</a></li>
             </ul>
         </li>
         <li><a href="#" title="Relatórios">Relatórios</a></li>

@@ -4,10 +4,10 @@
  */
 package una.pa.service;
 
-import java.util.List;
-import una.pa.model.Jogo;
-import una.pa.repository.JogoDal;
-//import una.pa.util.upload.uploadServices;
+import una.pa.model.*;
+import una.pa.repository.*;
+import java.util.*;
+
 
 /**
  *
@@ -17,6 +17,29 @@ public class JogoService {
 
     public static List<Jogo> listar() {
         return JogoDal.listaDal();
+    }
+
+    public static Jogo unico(int id) {
+
+        List<Jogo> lObjec = JogoDal.listaDal();
+
+        Jogo retorno = new Jogo();
+        for (Iterator<Jogo> it = lObjec.iterator(); it.hasNext();) {
+            Jogo obj = it.next();
+
+            if (obj.getId_jogo() == id) {
+                retorno = obj;
+            }
+        }
+        return retorno;
+    }
+
+    public static boolean alterar(Jogo _obj) {
+        return JogoDal.altera(_obj);
+    }
+
+    public static boolean incluir(Jogo _obj) {
+        return JogoDal.incluir(_obj);
     }
 
     public static boolean excluir(int id) {

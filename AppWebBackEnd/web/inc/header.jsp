@@ -16,7 +16,12 @@
                 <li><a href="/AppWebBackEnd/jogo/listar.htm" title="Jogos">Jogos</a></li>
             </ul>
         </li>
-        <li><a href="#" title="Relatórios">Relatórios</a></li>
+        <li>
+            <a href="#" title="Relatórios">Relatórios</a>
+            <ul>
+                 <li><a href="/AppWebBackEnd/trocajogos/listar.htm" title="Trocajogos">Jogos Trocados</a></li>
+            </ul>
+        </li>
         <li><a href="#" title="Configuração">Configuração</a>
             <ul>
                 <li><a href="/AppWebBackEnd/convite/listar.htm" title="Convite">Convite</a></li>

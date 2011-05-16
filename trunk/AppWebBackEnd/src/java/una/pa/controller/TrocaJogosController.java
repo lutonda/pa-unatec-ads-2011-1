@@ -32,6 +32,6 @@ public class TrocaJogosController extends MultiActionController {
         } catch (Exception e) {
             return new ModelAndView("trocajogos/listagem", "msg", e.getMessage());
         }
-        return new ModelAndView("trocajogos/listagem", "Trocajogos", objTr);
+        return new ModelAndView("trocajogos/listagem", "trocajogos", objTr);
     }
 }

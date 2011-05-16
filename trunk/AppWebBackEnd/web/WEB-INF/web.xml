@@ -19,6 +19,7 @@
         <url-pattern>/usuariosistema/*</url-pattern>
         <url-pattern>/convite/*</url-pattern>
         <url-pattern>/jogo/*</url-pattern>
+        <url-pattern>/trocajogos/*</url-pattern>
     </filter-mapping>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

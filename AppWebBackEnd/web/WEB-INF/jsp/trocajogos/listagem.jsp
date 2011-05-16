@@ -22,28 +22,28 @@
 
                 <table cellpadding="0" cellspacing="0" class="tb_list">
                     <colgroup>
-                        <col width="50" />
-                        <col  />
-                        <col  />
-                        <col  />
-                        <col width="100" />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
                     </colgroup>
                     <thead>
                         <tr>
-                            <th>Dt Troca</th>
-                            <th>Dt Solicitação</th>
+                            <th>Data Solicitação</th>
+                            <th>Data Troca </th>
                             <th>Status</th>
-                            <th>Usuário Origem</th>
-                            <th>Jogo Origem</th>
-                            <th>Console Origem</th>
-                            <th>Dt Avaliação Origem</th>
-                            <th>Pontuação Origem</th>
-                            <th>Usuário Destino</th>
-                            <th>Titulo Destino</th>
-                            <th>Console Destino</th>
-                            <th>Dt Avaliação Destino</th>
-                            <th>Pontuaçao Destino</th>
-                            <th></th>
+                            <th>Tipo</th>
+                            <th>Usuário</th>
+                            <th>Jogo</th>
+                            <th>Console</th>
+                            <th>Data Avaliação</th>
+                            <th>Pontuação</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -57,14 +57,15 @@
 
                             <tr class="${estiloLinha}">
                                 <td>
-                                    <c:out value="${Trocajogos.dt_troca}"/>
+                                    <c:out value="${Trocajogos.dt_solicitacao}"/>
                                 </td>
                                 <td>
-                                    <c:out value="${Trocajogos.dt_solicitacao}"/>
+                                    <c:out value="${Trocajogos.dt_troca}"/>
                                 </td>
                                 <td>
                                     <c:out value="${Trocajogos.status_troca}"/>
                                 </td>
+                                <td>Origem</td>
                                 <td>
                                     <c:out value="${Trocajogos.nm_usuario_origem}"/>
                                 </td>
@@ -80,6 +81,13 @@
                                 <td>
                                     <c:out value="${Trocajogos.pontos_origem}"/>
                                 </td>
+
+                            </tr>
+                            <tr class="${estiloLinha}">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Destino</td>
                                 <td>
                                     <c:out value="${Trocajogos.nm_usuario_destino}"/>
                                 </td>

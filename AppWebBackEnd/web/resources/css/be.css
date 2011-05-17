@@ -62,7 +62,7 @@ a:hover{text-decoration:underline;}
 	left:0;
 	width:150px;
 	height:80px;
-	background:url(/AppWebFrontEnd/resources/img/logo.png) no-repeat left top;
+	background:url(/AppWebBackEnd/resources/img/logo.png) no-repeat left top;
 	text-indent:-9999px;
 }
 

@@ -20,6 +20,7 @@
             <a href="#" title="Relatórios">Relatórios</a>
             <ul>
                  <li><a href="/AppWebBackEnd/trocajogos/listar.htm" title="Trocajogos">Jogos Trocados</a></li>
+                 <li><a href="/AppWebBackEnd/usuario/listar.htm" title="Usuario">Listar Usuario</a></li>
             </ul>
         </li>
         <li><a href="#" title="Configuração">Configuração</a>

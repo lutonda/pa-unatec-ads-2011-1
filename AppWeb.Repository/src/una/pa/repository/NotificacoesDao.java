@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import una.pa.model.*;
-import una.pa.repository.FormataData;
+import una.pa.repository.ConvData;
 import java.util.List;
 
 
@@ -46,7 +46,8 @@ public class NotificacoesDao {
                o.setNm_nome(rs.getString("nm_usuario"));
                o.setDescricao(rs.getString("descricao"));
                o.setBroadcast(rs.getString("broadcast"));
-               o.setDt_notificacoes(rs.getString("dt_notificacao"));
+               String data = ConvData.parseDataBra(rs.getString("dt_notificacao"));
+               o.setDt_notificacoes(data);
                objc.add(o);
            }
            c.close();

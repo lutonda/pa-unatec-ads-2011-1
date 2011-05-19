@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import una.pa.model.Notificacoes;
-import una.pa.service.NotificacoesService;
+import una.pa.service.*;
+
 
 /**
  *

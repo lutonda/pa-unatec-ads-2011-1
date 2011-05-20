@@ -33,6 +33,7 @@
                 <prop key="trocajogos/*.htm">trocajosController</prop>
                 <prop key="usuario/*.htm">usuarioController</prop>
                 <prop key="notificacoes/*.htm">notificacoesController</prop>
+                <prop key="configuracao/*.htm">configuracaoController</prop>
             </props>
         </property>
     </bean>
@@ -86,7 +87,7 @@
             class="una.pa.controller.ConviteController">
     </bean>
 
-     <bean name="trocajosController"
+    <bean name="trocajosController"
             class="una.pa.controller.TrocaJogosController">
     </bean>
 
@@ -94,8 +95,12 @@
             class="una.pa.controller.UsuarioController">
     </bean>
 
-     <bean name="notificacoesController"
+    <bean name="notificacoesController"
             class="una.pa.controller.NotificacaoController">
+    </bean>
+
+    <bean name="configuracaoController"
+            class="una.pa.controller.ConfiguracaoController">
     </bean>
 
 </beans>

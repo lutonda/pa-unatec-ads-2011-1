@@ -27,7 +27,7 @@
         <li><a href="#" title="Configuração">Configuração</a>
             <ul>
                 <li><a href="/AppWebBackEnd/convite/listar.htm" title="Convite">Convite</a></li>
-                <li><a href="#" title="E-mail">E-mail</a></li>
+                <li><a href="/AppWebBackEnd/configuracao/editar.htm" title="E-mail">E-mail</a></li>
             </ul>
         </li>
         <li><a href="/AppWebBackEnd/usuariosistema/listar.htm" title="UsuarioSistema">Usuário Sistema</a></li>

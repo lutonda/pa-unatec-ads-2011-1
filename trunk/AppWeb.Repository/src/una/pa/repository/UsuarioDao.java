@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import sun.misc.Request;
 import una.pa.model.*;
 
 /**
@@ -14,7 +15,7 @@ public class UsuarioDao {
 
     public static Usuario listarTodos(int _id) {
         //List<Usuario> objC = new ArrayList<Usuario>();
-        String sql = " select id_usuario,nm_usuario,nm_sobrenome,email "
+        String sql = " select id_usuario,nm_usuario,nm_sobrenome,email, "
                 + " dt_nascimento,dt_cadastro,sn_ativo,tel_usuario, "
                 + " usuario,email_notificacoes,email_parceiro, "
                 + " aceite_acordo,descricao_usuario,sexo, "
@@ -115,5 +116,5 @@ public class UsuarioDao {
         } catch (Exception e) {
             return null;
         }
-    }
+    }  
 }

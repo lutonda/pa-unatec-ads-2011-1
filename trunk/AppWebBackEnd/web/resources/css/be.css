@@ -355,3 +355,21 @@ ul#paginacao li a.anterior, ul#paginacao li a.proximo {
 	background-position:center 5px;
 	}
 ul#paginacao li a.proximo:hover, ul#paginacao li a.anterior:hover {background-color: transparent;}
+
+div.divisaoDiv{
+    width: 426px;
+    float: left;
+    margin-right: 10px;
+}
+
+div.diviaoDivE{
+    width: 426px;
+    float: left;
+}
+
+table.tb_list_divisao{
+    width: 430px;
+}
+div.rolagemDivisao{
+    overflow: auto; overflow-x:hidden; height: 150px;
+}

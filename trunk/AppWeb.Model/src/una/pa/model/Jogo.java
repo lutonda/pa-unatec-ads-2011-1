@@ -8,7 +8,7 @@ package una.pa.model;
  *
  * @author Felipe
  */
-public class Jogo {
+public class Jogo extends TituloJogo{
         
     protected int id_jogo;
     protected int id_titulo_jogo;

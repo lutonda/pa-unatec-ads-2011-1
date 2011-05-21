@@ -76,7 +76,7 @@
                                     <c:out value="${Usuario.ds_Estado}"/>
                                 </td>
                                 <td>
-                                    
+                                    <a href="visualizar.htm?id=${Usuario.id_usuario}" title="Visualizar">Visualizar</a>
                                 </td>
                             </tr>
                         </c:forEach>

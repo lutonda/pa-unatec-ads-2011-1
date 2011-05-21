@@ -10,16 +10,19 @@
                 <div  class="rolagemDivisao">
                     <table cellpadding="0" cellspacing="0" class="tb_list tb_list_divisao">
                         <colgroup>
-                            <col width="50" />
-                            <col  />
+                            <col width="20" />
+                            <col width="50"  />
+                            <col width="50"  />
                         </colgroup>
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Notificação</th>
+                                <th>Data</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${usuarios}" var="Usuario" varStatus="count" >
+                        <c:forEach items="${notificacoes}" var="Notificacoes" varStatus="count" >
                             <c:if test="${(count.index%2==0)}">
                                 <c:set var="estiloLinha" value="even"/>
                             </c:if>
@@ -29,8 +32,14 @@
 
                             <tr class="${estiloLinha}">
                                 <td>
-                            <c:out value="${Usuario.id_usuario}"/>
-                            </td>
+                                     <c:out value="${Notificacoes.id_notificacao}"/>
+                                </td>
+                                <td>
+                                     <c:out value="${Notificacoes.descricao}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${Notificacoes.dt_notificacoes}"/>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

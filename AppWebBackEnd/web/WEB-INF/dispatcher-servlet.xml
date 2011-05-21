@@ -99,8 +99,17 @@
             class="una.pa.controller.NotificacaoController">
     </bean>
 
-    <bean name="configuracaoController"
-            class="una.pa.controller.ConfiguracaoController">
+    <bean name="amigoUsuarioController"
+            class="una.pa.controller.AmigoUsuarioController">
     </bean>
 
+    <bean name="tagsController"
+            class="una.pa.controller.TagsController">
+    </bean>
+
+    <bean name="listaNegracontroller"
+            class="una.pa.controller.ListaNegraController">
+    </bean>
+
+   
 </beans>

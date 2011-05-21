@@ -13,8 +13,8 @@ public class ConvData{
 
    public static String parseDataBra(String dataIso)
    {
-      SimpleDateFormat formatIso = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-      SimpleDateFormat formatBra = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+      SimpleDateFormat formatIso = new SimpleDateFormat("yyyy-MM-dd");
+      SimpleDateFormat formatBra = new SimpleDateFormat("dd/MM/yyyy");
       try
       {
          Date date = formatIso.parse(dataIso);
@@ -22,7 +22,6 @@ public class ConvData{
       }
       catch(ParseException e)
       {
-         e.printStackTrace();
          return("Parse Date Error");
       }
    }

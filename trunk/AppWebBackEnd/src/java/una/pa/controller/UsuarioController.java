@@ -8,7 +8,7 @@ package una.pa.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;;
+import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import una.pa.model.*;
 import una.pa.service.*;
 
@@ -33,6 +33,32 @@ public class UsuarioController extends MultiActionController {
             return new ModelAndView("usuario/listagem", "msg", e.getMessage());
         }
         return new ModelAndView("usuario/listagem", "usuarios", objTr);
+    }
+   public ModelAndView visualizar(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+       int _id = Integer.parseInt(request.getParameter("id"));
+
+         ModelAndView mav = new ModelAndView("usuario/visualizar");
+
+        //Usuario usuario = new Usuario();
+
+        try {
+
+            Usuario usuario = UsuarioService.listarUnico(_id);
+            List<AmigoUsuario>  amigoUsuario = AmigoUsuarioService.listarAmigo(_id);
+            Endereco endereco = EnderecoService.listarEndereco(_id);
+            List<Tags> tag = TagsService.listarTags(_id);
+            List<ListaNegra> listaNegra = ListaNegraService.listar(_id);
+            mav.addObject("Usuario", usuario);
+            mav.addObject("amigoUsuarios", amigoUsuario);
+            mav.addObject("Endereco", endereco);
+            mav.addObject("tags", tag);
+            mav.addObject("listasNegras", listaNegra);
+
+        } catch (Exception e) {
+            return new ModelAndView("usuario/visualizar", "msg", e.getMessage());
+        }
+        return mav; //ModelAndView("usuario/visualizar", "Usuario", usuario);
     }
 
 }

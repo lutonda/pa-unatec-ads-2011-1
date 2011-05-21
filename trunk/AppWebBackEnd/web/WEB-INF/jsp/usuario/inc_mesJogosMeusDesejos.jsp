@@ -8,23 +8,23 @@
             </li>
             <li>
                 <div  class="rolagemDivisao">
-                    <table cellpadding="0" cellspacing="0" class="tb_list">
+                    <table cellpadding="0" cellspacing="0" class="tb_list tb_list_divisao">
                         <colgroup>
+                            <col width="150" />
+                            <col width="70" />
                             <col width="50" />
-                            <col  />
-                            <col  />
-                            <col  />
-                            <col  />
-                            <col  />
                             <col width="100" />
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Titulo</th>
+                                <th>Console</th>
+                                <th>Data Inclusão</th>
+                                <th>Descrição</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${usuarios}" var="Usuario" varStatus="count" >
+                        <c:forEach items="${jogosusuarios}" var="Jogousuario" varStatus="count" >
                             <c:if test="${(count.index%2==0)}">
                                 <c:set var="estiloLinha" value="even"/>
                             </c:if>
@@ -33,8 +33,17 @@
                             </c:if>
 
                             <tr class="${estiloLinha}">
-                                <td>
-                            <c:out value="${Usuario.id_usuario}"/>
+                            <td>
+                            <c:out value="${Jogousuario.nm_titulo}"/>
+                            </td>
+                            <td>
+                            <c:out value="${Jogousuario.ds_console}"/>
+                            </td>
+                            <td>
+                            <c:out value="${Jogousuario.dt_cadastro_jogo}"/>
+                            </td>
+                            <td>
+                            <c:out value="${Jogousuario.descricao}"/>
                             </td>
                             </tr>
                         </c:forEach>

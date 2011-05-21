@@ -34,6 +34,19 @@ public class NotificacaoController extends MultiActionController {
         return new ModelAndView("notificacoes/listagem", "notificacoes", objct);
     }
     
-    
+    public ModelAndView visualizar(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+
+        int _id = Integer.parseInt(request.getParameter("id"));
+        List<Notificacoes> notificacao;
+       // AmigoUsuario amigoUsuario = new AmigoUsuario();
+
+        try{
+            notificacao = NotificacoesService.listarUnico(_id);
+       }catch(Exception e){
+           return new ModelAndView("notificacoes/visualizar", "msg", e.getMessage());
+       }
+        return new ModelAndView("notificacoes/visualizar", "notificacoes", notificacao);
+   }
 
 }

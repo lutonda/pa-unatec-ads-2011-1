@@ -1,7 +1,7 @@
 
 package una.pa.model;
 //teste
-public class Console {
+public class Console extends Jogo{
     protected int id_console;
     protected String ds_console;
 

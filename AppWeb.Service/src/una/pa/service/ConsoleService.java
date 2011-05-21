@@ -13,11 +13,12 @@ import java.util.*;
  *
  * @author Magno
  */
-public class ConsoleService {
+public class ConsoleService extends Jogo{
 
     public static List<Console> listar() {
         return ConsoleDal.listarDal();
     }
+
     public static Console unico(int id) {
 
         List<Console> lObjec = ConsoleDal.listarDal();

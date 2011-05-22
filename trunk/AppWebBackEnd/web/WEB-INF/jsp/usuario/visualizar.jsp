@@ -18,15 +18,15 @@
                 </p>
                 <h2>Visualiza Detalhes</h2>
 
-                 <%@ include file="inc_dadosPessoais.jsp" %>
-                 <%@ include file="inc_endereco.jsp" %>
-                 <%@ include file="inc_mesJogosMeusDesejos.jsp" %>
-                 <%@ include file="inc_jogosTrocados.jsp" %>
-                 <%@ include file="inc_notificacoesTags.jsp" %>
-                 <%@ include file="inc_amigosListaNegra.jsp" %>
+                 <%@ include file="inc_dadosPessoais.jsp"%>
+                 <%@ include file="inc_endereco.jsp"%>
+                 <%@ include file="inc_mesJogosMeusDesejos.jsp"%>
+                 <%@ include file="inc_jogosTrocados.jsp"%>
+                 <%@ include file="inc_notificacoesTags.jsp"%>
+                 <%@ include file="inc_amigosListaNegra.jsp"%>
 
                 <!-- Inicio da DIV de Amigos do Usuário-->
-                
+
             </div>
                 <p>
                     <a href="listar.htm" title="Voltar para a listagem">&lt; Voltar para a listagem</a>

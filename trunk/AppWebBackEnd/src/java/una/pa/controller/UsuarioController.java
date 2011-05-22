@@ -49,11 +49,20 @@ public class UsuarioController extends MultiActionController {
             Endereco endereco = EnderecoService.listarEndereco(_id);
             List<Tags> tag = TagsService.listarTags(_id);
             List<ListaNegra> listaNegra = ListaNegraService.listar(_id);
+            List<Desejousuario> desejoUsuario = DesejoUsuarioService.listarDesejo(_id);
+            List<Jogousuario> jogoUsuario = JogoUsuarioService.listarJogoUsuario(_id);
+            List<Notificacoes> notificacao = NotificacoesService.listarUnico(_id);
+            List<TrocaJogos> trocajogo  =   TrocaJogosService.listarUnico(_id);
+
             mav.addObject("Usuario", usuario);
             mav.addObject("amigoUsuarios", amigoUsuario);
             mav.addObject("Endereco", endereco);
             mav.addObject("tags", tag);
             mav.addObject("listasNegras", listaNegra);
+            mav.addObject("desejosUsuarios", desejoUsuario);
+            mav.addObject("jogosusuarios", jogoUsuario);
+            mav.addObject("notificacoes", notificacao);
+            mav.addObject("trocajogos", trocajogo);
 
         } catch (Exception e) {
             return new ModelAndView("usuario/visualizar", "msg", e.getMessage());

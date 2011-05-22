@@ -4,7 +4,7 @@
     <ul class="frm clearfix">
 
         <li>
-            <b>Endereco</b>
+            <b>Endereço</b>
         </li>
         <li>
             <label><strong>Logradouro</strong></label>

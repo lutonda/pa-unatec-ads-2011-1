@@ -26,7 +26,7 @@
         <c:out value="${Usuario.tel_usuario}"/>
         </li>
         <li>
-            <label><strong>Usuario</strong></label>
+            <label><strong>Usuário</strong></label>
         <c:out value="${Usuario.usuario}"/>
         </li>
         <li>

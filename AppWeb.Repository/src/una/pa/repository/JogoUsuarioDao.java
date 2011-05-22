@@ -40,7 +40,8 @@ public class JogoUsuarioDao {
                 Jogousuario o = new Jogousuario();
                 o.setNm_titulo(rs.getString("nm_titulo"));
                 o.setDs_console(rs.getString("ds_console"));
-                o.setDt_cadastro_jogo(rs.getString("dt_cadastro"));
+                String data = ConvData.parseDataBra(rs.getString("dt_cadastro"));
+                o.setDt_cadastro_jogo(data);
                 o.setDescricao(rs.getString("descricao"));
                 objct.add(o);
 

@@ -4,7 +4,7 @@
         <ul class="frm clearfix">
 
             <li>
-                <b>Notificacoes</b>
+                <b>Notificações</b>
             </li>
             <li>
                 <div  class="rolagemDivisao">

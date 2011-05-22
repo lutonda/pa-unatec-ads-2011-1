@@ -10,6 +10,7 @@ package una.pa.model;
  * @author Tiago
  */
 public class TrocaJogos {
+    private int id_usuario;
     private String dt_troca;
     private String dt_solicitacao;
     private String status_troca;
@@ -30,6 +31,12 @@ public class TrocaJogos {
 
     public void setDs_console_destino(String ds_console_destino) {
         this.ds_console_destino = ds_console_destino;
+    }
+    public int getId_usuario(){
+        return id_usuario;
+    }
+    public void setId_usuario(int id_usuario){
+        this.id_usuario = id_usuario;
     }
 
     public String getDs_console_origem() {

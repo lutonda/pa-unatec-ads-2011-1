@@ -129,6 +129,7 @@ public class UsuarioSistemaController extends MultiActionController {
 
     public ModelAndView listar(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
+
         List<UsuarioSistema> objUS;
         try {
 

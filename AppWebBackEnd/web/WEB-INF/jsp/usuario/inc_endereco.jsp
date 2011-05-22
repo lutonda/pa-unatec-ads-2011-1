@@ -16,7 +16,7 @@
         </li>
          <li>
             <label><strong>Complemento</strong></label>
-         <c:if test="${Endereco.complemento == ''}">Não informado</c:if>
+         <c:out value="${Endereco.complemento}"/>
         </li>
         <li>
             <label><strong>Bairro</strong></label>

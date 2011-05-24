@@ -20,7 +20,7 @@
             <props>
                 <prop key="index.html">indexController</prop>
                 <prop key="site/inicio/index.html">index2Controller</prop>
-                <prop key="site/*.html">includesController</prop>
+                <prop key="site/*.html">includeController</prop>
             </props>
         </property>
     </bean>
@@ -36,10 +36,10 @@
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
-    <bean name="includesController"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController" />
     <bean name="index2Controller"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="site/inicio/index" />
+
+    <bean name="includeController" class="una.pa.controller.IncludeController"/>
     
 </beans>

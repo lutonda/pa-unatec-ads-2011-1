@@ -12,8 +12,8 @@
 <meta name="revisit-after" content="7 days" />
 <meta name="rating" content="general" />
 <c:url value="/resources" var="url" />
-<link rel="SHORTCUT ICON" href="${url}/img/ico/favicon.ico" />
-<link rel="apple-touch-icon" href="${url}/img/ico/apple-touch-icon.png" />
+<!--link rel="SHORTCUT ICON" href="${url}/img/ico/favicon.ico" /-->
+<!--link rel="apple-touch-icon" href="${url}/img/ico/apple-touch-icon.png" /-->
 <link rel="stylesheet" type="text/css" href="${url}/css/libs/sifr.css?v=1_0" media="screen" />
 <link rel="stylesheet" type="text/css" href="${url}/css/plugins/agc-calendar.css?v=1_0" media="screen" />
 <link rel="stylesheet" type="text/css" href="${url}/css/plugins/agc-modal.css?v=1_0" media="screen" />

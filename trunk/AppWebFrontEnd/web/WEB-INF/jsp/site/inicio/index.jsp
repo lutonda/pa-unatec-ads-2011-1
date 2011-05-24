@@ -15,7 +15,7 @@
     <body>
         <div id="container">
             <div id="header">
-                <%@ include file="/inc/header.jsp" %>
+                <%@ include file="/AppWebFrontEnd/site/inc_topo_padrao.jsp" %>
             </div>
             <div id="content">
                 <div id="sidebarleft"></div>

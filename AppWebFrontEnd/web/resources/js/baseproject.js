@@ -1,6 +1,5 @@
 /**
-* Inicializa as funções assim que os elementos (DOM) são carregados
-* @author Leonardo Souza <leonardo.souza@agenciaclick.com.br>
+* Inicializa as funï¿½ï¿½es assim que os elementos (DOM) sï¿½o carregados
 */
 jQuery(function() {
 	BaseProject._init();
@@ -8,21 +7,19 @@ jQuery(function() {
 
 var BaseProject = {
 	/**
-	* Função de chamada das outras funções que inicializam o site
-	* @author Leonardo Souza <leonardo.souza@agenciaclick.com.br>
+	* Funï¿½ï¿½o de chamada das outras funï¿½ï¿½es que inicializam o site
 	*/
 	_init: function() {
+            /*
 		try {
 			BaseProject._helloWorldConsole();
 		} catch (e) {
 			console.log('Error: ' + e.description);
-		}
+		}*/
 	},
 		
 	/**
-	* Tenta exibir a mensagem "Hello World" através do console do firebug, caso falhe exibe a mensagem via alert
-	* @author Leonardo Souza <leonardo.souza@agenciaclick.com.br>
-	* @modified Leonardo Souza <leonardo.souza@agenciaclick.com.br>
+	* Tenta exibir a mensagem "Hello World" atravï¿½s do console do firebug, caso falhe exibe a mensagem via alert
 	*/
 	_helloWorldConsole: function() {
 		try {

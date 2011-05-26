@@ -60,12 +60,15 @@ estrutura
 	display: block;
 	width: 972px;
 	margin: 0 auto;
-	border: 1px solid #000;
 }
 
 #header {
 	display: block;
-	border: 1px solid #999;
+        margin-bottom: 10px;
+        border-bottom:#ececed;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        height: 115px;
 }
 
 #content {
@@ -75,16 +78,15 @@ estrutura
 #sidebarleft {
 	display: block;
 	float: left;
-	width: 15%;
-	border-right: 1px solid #999;
+	width: 388px;
+        margin-right: 10px;
+
 }
 		
 #main {
 	display: block;
 	float: left;
-	width: 69%;
-	border-right: 1px solid #999;
-	text-align: center;
+	width: 574px;
 }
 		
 #sidebarright {
@@ -96,5 +98,18 @@ estrutura
 	
 #footer {
 	display: block;
-	border: 1px solid #999;
+        border-top:#ececed;
+        border-top-style: solid;
+        border-top-width: 1px;
+}
+
+/* Box Default */
+.box-df {
+    border: 1px #ececed solid;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+ul#notificacao li {
+    margin-bottom: 10px;
 }

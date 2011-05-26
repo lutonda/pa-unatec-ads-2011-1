@@ -18,9 +18,22 @@
                 <%@ include file="../inc_topo_padrao.jsp" %>
             </div>
             <div id="content">
-                <div id="sidebarleft"></div>
-                <div id="main"><h1>BASE PROJECT</h1></div>
-                <div id="sidebarright"></div>
+                <div id="sidebarleft">
+                    <div class="box-nav">box-nav</div>
+                </div>
+                <div id="main">
+                    <div class="box-df">box</div>
+                    <div class="box-df">
+                        <ul id="notificacao">
+                            <li><input type="text" name="txtMsgNotifica"></input><input type="submit" name="btnSendNotica"></input>  </li>
+                            <li>Fulano de Tal troca jogo (Grand Theft Auto? IV) com Fulanito</li>
+                            <li>Fulano de Tal troca jogo (Grand Theft Auto? IV) com Fulanito</li>
+                            <li>Fulano de Tal troca jogo (Grand Theft Auto? IV) com Fulanito</li>
+                            <li>Fulano de Tal troca jogo (Grand Theft Auto? IV) com Fulanito</li>
+                        </ul>
+                    </div>
+                </div>
+                <br class="cb"/>
             </div>
             <div id="footer">
                 <%@ include file="/inc/footer.jsp" %>

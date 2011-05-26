@@ -19,7 +19,26 @@
             </div>
             <div id="content">
                 <div id="sidebarleft">
-                    <div class="box-nav">box-nav</div>
+                    <div class="box-nav">
+                        <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" class="imgPerfil" alt="teste"/>
+                        <ul id="nav-user">
+                            <li><b>Magno Dias</b></li>
+                            <li><a href="#"> Editar Meus Dados</a></li>
+                        </ul>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="box-nav">
+                        <ul id="nav-itens">
+                            <li>1</li>
+                            <li>2</li>
+                        </ul>
+                    </div>
+                    <div class="box-nav">
+                        Convidar Amigo
+                    </div>
+                    <div class="box-nav">
+                        tags
+                    </div>
                 </div>
                 <div id="main">
                     <div class="box-df">box</div>

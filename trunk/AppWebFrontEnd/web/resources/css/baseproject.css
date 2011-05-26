@@ -43,73 +43,96 @@ a:hover{text-decoration:underline;}
 
 /* sirf */
 @media screen {
-	.sIFR-hasFlash h3.tit_green, .sIFR-hasFlash h3.tit_watergreen {
-		visibility: hidden;
-		font-family: Arial;
-		font-size: 18pt;
-		height: 29px;
-	}
-	.sIFR-hasFlash h3.tit_green {color: #0c6128}
-	.sIFR-hasFlash h3.tit_watergreen {color: #97cbb5}
+    .sIFR-hasFlash h3.tit_green, .sIFR-hasFlash h3.tit_watergreen {
+        visibility: hidden;
+        font-family: Arial;
+        font-size: 18pt;
+        height: 29px;
+    }
+    .sIFR-hasFlash h3.tit_green {color: #0c6128}
+    .sIFR-hasFlash h3.tit_watergreen {color: #97cbb5}
 }
 
 /*
 estrutura
 */
 #container {
-	display: block;
-	width: 972px;
-	margin: 0 auto;
+    display: block;
+    width: 972px;
+    margin: 0 auto;
 }
 
 #header {
-	display: block;
-        margin-bottom: 10px;
-        border-bottom:#ececed;
-        border-bottom-style: solid;
-        border-bottom-width: 1px;
-        height: 115px;
+    display: block;
+    margin-bottom: 10px;
+    border-bottom:#ececed;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    height: 115px;
 }
 
 #content {
-	display: block;
+    display: block;
 }
-	
+
 #sidebarleft {
-	display: block;
-	float: left;
-	width: 388px;
-        margin-right: 10px;
+    display: block;
+    float: left;
+    width: 388px;
+    margin-right: 10px;
 
 }
-		
+
 #main {
-	display: block;
-	float: left;
-	width: 574px;
-}
-		
-#sidebarright {
-	display: block;
-	float: left;
-	width: 15%;
-	text-align: right;
-}
-	
-#footer {
-	display: block;
-        border-top:#ececed;
-        border-top-style: solid;
-        border-top-width: 1px;
+    display: block;
+    float: left;
+    width: 574px;
 }
 
-/* Box Default */
+#sidebarright {
+    display: block;
+    float: left;
+    width: 15%;
+    text-align: right;
+}
+
+#footer {
+    display: block;
+    border-top:#ececed;
+    border-top-style: solid;
+    border-top-width: 1px;
+}
+
+/* Box */
 .box-df {
     border: 1px #ececed solid;
     padding: 20px;
     margin-bottom: 10px;
 }
+.box-nav {
+    /*margin-bottom: 10px;*/
+    border-bottom:#ececed;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-right: 20px;
+}
 
 ul#notificacao li {
     margin-bottom: 10px;
+}
+
+
+/* Perfil */
+
+.imgPerfil {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 10px;
+}
+#nav-user {
+    float: left;
+    margin-left: 10px;
 }

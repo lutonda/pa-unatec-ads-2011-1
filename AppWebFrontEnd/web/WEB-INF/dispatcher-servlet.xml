@@ -19,7 +19,7 @@
         <property name="mappings">
             <props>
                 <prop key="index.html">indexController</prop>
-                <prop key="site/inicio/index.html">index2Controller</prop>
+                <prop key="site/inicio/*.html">inicioController</prop>
                 <prop key="site/*.html">index3Controller</prop>
             </props>
         </property>
@@ -34,13 +34,10 @@
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
 
-    <bean name="index2Controller"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-          p:viewName="site/inicio/index" />
-
     <bean name="index3Controller"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController" />
 
     <bean name="includeController" class="una.pa.controller.IncludeController"/>
+    <bean name="inicioController" class="una.pa.controller.InicioController"/>
     
 </beans>

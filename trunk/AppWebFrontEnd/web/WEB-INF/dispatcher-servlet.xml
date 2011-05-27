@@ -21,6 +21,8 @@
                 <prop key="index.html">indexController</prop>
                 <prop key="site/inicio/*.html">inicioController</prop>
                 <prop key="site/*.html">index3Controller</prop>
+                <prop key="site/jogo/*.html">jogoController</prop>
+
             </props>
         </property>
     </bean>
@@ -39,5 +41,6 @@
 
     <bean name="includeController" class="una.pa.controller.IncludeController"/>
     <bean name="inicioController" class="una.pa.controller.InicioController"/>
+    <bean name="jogoController" class="una.pa.controller.JogoController"/>
     
 </beans>

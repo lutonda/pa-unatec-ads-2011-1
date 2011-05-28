@@ -42,22 +42,28 @@
                     
                     <div class="box-df">
                         <ul>
-                            <li style="float: left; height: 110px; width: 255px; margin-right: 10px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
-                            <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
-                            <li style="float: left; height: 110px; width: 255px; margin-right: 10px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
-                            <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
+                           <c:forEach items="${usuarios}" var="Usuario" varStatus="count" >
+                            <li style="float: left; height: 110px; width: 255px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
+                            <div>${Usuario.nm_usuario} ${Usuario.nm_sobrenome}<br/>${Usuario.status}<br/><br/>Oferta de Troca</div></li>
+                   
+                           <!-- <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
                                 <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
                             <li style="float: left; height: 110px; width: 255px; margin-right: 10px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
                                 <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
                             <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
                                 <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
-                            <span style="float: right"><< anterior | próxima >></span>
+                            <li style="float: left; height: 110px; width: 255px; margin-right: 10px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
+                                <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
+                            <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
+                                <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>-->
+
+
+                            </c:forEach> 
                             <div class="cb"></div>
+                            
                         </ul>
                     </div>
+                    <span style="float: right; margin-top: 0"><< anterior | próxima >></span>
                 </div>
                 <br class="cb"/>
             </div>

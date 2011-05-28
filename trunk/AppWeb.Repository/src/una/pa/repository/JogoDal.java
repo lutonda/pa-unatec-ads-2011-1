@@ -104,78 +104,78 @@ public class JogoDal {
     }
 
     public static Jogo detalesJogo(int _id) {
-        String sql = " SELECT	ID_JOGO " +
-		" NM_TITULO, " +
-		" TIPO," +
-		" NM_EDITORA," +
-		" DS_CONSOLE," +
-		" DS_GENERO," +
-		" DS_DESENV," +
-		" DESCRICAO," +
-		" pontos," +
-		" IMAGEM," +
-		" proprietario ," +
-		" interessado ," +
-		" oferta" +
-                " FROM" +
-                " (SELECT  ID_JOGO," +
-                "   NM_TITULO," +
-                "   TIPO," +
-                "   NM_EDITORA, " +
-                "   DS_CONSOLE," +
-                "   DS_GENERO," +
-                "   DS_DESENV," +
-                "   DESCRICAO," +
-                "   avg(PONTOS) as pontos, IMAGEM " +
-                "   FROM (" +
-                "   	SELECT	JOGO.ID_JOGO," +
-                "   		TITULO_JOGO.NM_TITULO," +
-                "   		TITULO_JOGO.TIPO," +
-                "   		EDITORA.NM_EDITORA," +
-                "   		CONSOLE.DS_CONSOLE," +
-                "   		GENERO.DS_GENERO," +
-                "   		DESENVOLVEDOR.DS_DESENV," +
-                "   		JOGO.DESCRICAO," +
-                "   		isnull( PONTOS, 0) as PONTOS, jOGO.IMAGEM" +
-                "   	FROM JOGO" +
-                "   		INNER JOIN TITULO_JOGO	 ON JOGO.ID_TITULO_JOGO    = TITULO_JOGO.ID_TITULO_JOGO" +
-                "  		INNER JOIN CONSOLE	 ON JOGO.ID_CONSOLE	   = CONSOLE.ID_CONSOLE" +
-                "  		INNER JOIN EDITORA	 ON TITULO_JOGO.ID_EDITORA = EDITORA.ID_EDITORA 	" +
-                "   		INNER JOIN GENERO	 ON TITULO_JOGO.ID_GENERO  = GENERO.ID_GENERO" +
-                "   		INNER JOIN DESENVOLVEDOR ON TITULO_JOGO.ID_DESENV  = DESENVOLVEDOR.ID_DESENV" +
-                "   		LEFT JOIN AVALIACAO_JOGO ON JOGO.ID_JOGO	   = AVALIACAO_JOGO.ID_JOGO" +
-                "   	)a	" +
-                "   WHERE ID_JOGO = ? " +
-                "    GROUP BY ID_JOGO," +
-                "   NM_TITULO," +
-                "   TIPO," +
-                "   NM_EDITORA," +
-                "   DS_CONSOLE," +
-                "   DS_GENERO," +
-                "   DS_DESENV," +
-                "   DESCRICAO, IMAGEM)DETALHES, " +
-		"  (select p.proprietario," +
-		"          i.interessado," +
-		"          o.oferta " +
-		"    from 		" +
-		"       (SELECT isnull(count(*),0) as proprietario -- proprietários" +
-		"          FROM JOGO_USUARIO" +
-		"         where id_jogo = ?) p," +
-		"       (SELECT	isnull(count(*),0) as interessado-- interessados" +
-		"          FROM	JOGO_DESEJADO" +
-		"         WHERE ID_JOGO = ?)i, " +
-		"       (select isnull(count(*),0) as oferta-- Ofertados " +
-		"          from jogo_usuario " +
-		"         where id_jogo = ? " +
-		"           and nivel_interesse = 0) o) OUTROS" ;
+        String sql = " SELECT	ID_JOGO, "
+                + " NM_TITULO, "
+                + " TIPO,"
+                + " NM_EDITORA,"
+                + " DS_CONSOLE,"
+                + " DS_GENERO,"
+                + " DS_DESENV,"
+                + " DESCRICAO,"
+                + " pontos,"
+                + " IMAGEM,"
+                + " proprietario ,"
+                + " interessado ,"
+                + " oferta"
+                + " FROM"
+                + " (SELECT  ID_JOGO,"
+                + "   NM_TITULO,"
+                + "   TIPO,"
+                + "   NM_EDITORA, "
+                + "   DS_CONSOLE,"
+                + "   DS_GENERO,"
+                + "   DS_DESENV,"
+                + "   DESCRICAO,"
+                + "   avg(PONTOS) as pontos, IMAGEM "
+                + "   FROM ("
+                + "   	SELECT	JOGO.ID_JOGO,"
+                + "   		TITULO_JOGO.NM_TITULO,"
+                + "   		TITULO_JOGO.TIPO,"
+                + "   		EDITORA.NM_EDITORA,"
+                + "   		CONSOLE.DS_CONSOLE,"
+                + "   		GENERO.DS_GENERO,"
+                + "   		DESENVOLVEDOR.DS_DESENV,"
+                + "   		JOGO.DESCRICAO,"
+                + "   		isnull( PONTOS, 0) as PONTOS, jOGO.IMAGEM"
+                + "   	FROM JOGO"
+                + "   		INNER JOIN TITULO_JOGO	 ON JOGO.ID_TITULO_JOGO    = TITULO_JOGO.ID_TITULO_JOGO"
+                + "  		INNER JOIN CONSOLE	 ON JOGO.ID_CONSOLE	   = CONSOLE.ID_CONSOLE"
+                + "  		INNER JOIN EDITORA	 ON TITULO_JOGO.ID_EDITORA = EDITORA.ID_EDITORA 	"
+                + "   		INNER JOIN GENERO	 ON TITULO_JOGO.ID_GENERO  = GENERO.ID_GENERO"
+                + "   		INNER JOIN DESENVOLVEDOR ON TITULO_JOGO.ID_DESENV  = DESENVOLVEDOR.ID_DESENV"
+                + "   		LEFT JOIN AVALIACAO_JOGO ON JOGO.ID_JOGO	   = AVALIACAO_JOGO.ID_JOGO"
+                + "   	)a	"
+                + "   WHERE ID_JOGO = ? "
+                + "    GROUP BY ID_JOGO,"
+                + "   NM_TITULO,"
+                + "   TIPO,"
+                + "   NM_EDITORA,"
+                + "   DS_CONSOLE,"
+                + "   DS_GENERO,"
+                + "   DS_DESENV,"
+                + "   DESCRICAO, IMAGEM)DETALHES, "
+                + "  (select p.proprietario,"
+                + "          i.interessado,"
+                + "          o.oferta "
+                + "    from 		"
+                + "       (SELECT isnull(count(*),0) as proprietario "
+                + "          FROM JOGO_USUARIO"
+                + "         where id_jogo = ?) p,"
+                + "       (SELECT	isnull(count(*),0) as interessado "
+                + "          FROM	JOGO_DESEJADO"
+                + "         WHERE ID_JOGO = ?)i, "
+                + "       (select isnull(count(*),0) as oferta "
+                + "          from jogo_usuario "
+                + "         where id_jogo = ? "
+                + "           and nivel_interesse = 0) o) OUTROS";
 
 
         Object[] vetor = {_id, _id, _id, _id};
         try {
-            Connection c  = Data.openConnection();
+            Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql, vetor);
             Jogo o = new Jogo();
-            if(rs.next()){
+            if (rs.next()) {
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
                 o.setTitulo_jogo(rs.getString("nm_titulo"));
                 o.setTipo(rs.getString("tipo"));
@@ -190,7 +190,7 @@ public class JogoDal {
                 o.setProprietario(Integer.parseInt(rs.getString("proprietario")));
                 o.setOferta(Integer.parseInt(rs.getString("oferta")));
             }
-           return o;
+            return o;
 
         } catch (Exception c) {
             return null;

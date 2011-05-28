@@ -15,6 +15,34 @@ public class Jogo extends TituloJogo{
     protected String imagem;
     private String descricao;
     private int pontos;
+    private int proprietario;
+    private int interessado;
+    private int oferta;
+
+    public int getInteressado() {
+        return interessado;
+    }
+
+    public void setInteressado(int interessado) {
+        this.interessado = interessado;
+    }
+
+    public int getOferta() {
+        return oferta;
+    }
+
+    public void setOferta(int oferta) {
+        this.oferta = oferta;
+    }
+
+    public int getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(int proprietario) {
+        this.proprietario = proprietario;
+    }
+
     
     protected String console;
     protected String titulo_jogo;

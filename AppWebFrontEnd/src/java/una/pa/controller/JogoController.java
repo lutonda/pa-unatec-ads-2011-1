@@ -4,12 +4,15 @@
  */
 package una.pa.controller;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import una.pa.model.Jogo;
+import una.pa.model.Usuario;
 import una.pa.service.JogoService;
+import una.pa.service.UsuarioService;
 
 /**
  *
@@ -24,7 +27,9 @@ public class JogoController extends MultiActionController {
             int id = Integer.parseInt(request.getParameter("id"));
 
             Jogo objct = JogoService.detalheJogo(id);
+           List <Usuario> usu = UsuarioService.usuarioJogos(id);
             mav.addObject("Jogo", objct);
+            mav.addObject("usuarios", usu);
 
         } catch (Exception e) {
             response.sendRedirect("/site/inicio/index.html");

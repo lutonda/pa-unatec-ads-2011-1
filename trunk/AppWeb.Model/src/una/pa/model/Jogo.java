@@ -11,12 +11,29 @@ package una.pa.model;
 public class Jogo extends TituloJogo{
         
     protected int id_jogo;
-    protected int id_titulo_jogo;
     protected int id_console;
     protected String imagem;
+    private String descricao;
+    private int pontos;
     
     protected String console;
     protected String titulo_jogo;
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
 
     public String getConsole() {
         return console;
@@ -42,13 +59,7 @@ public class Jogo extends TituloJogo{
         this.id_jogo = id_jogo;
     }
 
-    public int getId_titulo_jogo() {
-        return id_titulo_jogo;
-    }
 
-    public void setId_titulo_jogo(int id_titulo_jogo) {
-        this.id_titulo_jogo = id_titulo_jogo;
-    }
 
     public String getImagem() {
         return imagem;

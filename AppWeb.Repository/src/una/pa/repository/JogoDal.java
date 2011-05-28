@@ -20,15 +20,6 @@ public class JogoDal {
 
         List<Jogo> objC = new ArrayList<Jogo>();
 
-        /* Coisa do Felipe
-        String sql = "SELECT J.*,(SELECT NM_TITULO FROM TITULO_JOGO"
-        + "WHERE ID_TITULO_JOGO = J.ID_TITULO_JOGO) AS TITITULO_JOGO,"
-        + "(SELECT DS_CONSOLE FROM CONSOLE"
-        + "WHERE ID_CONSOLE = J.ID_CONSOLE)AS CONSOLE"
-        + "FROM JOGO AS J";
-
-         */
-
         String sql = "select * from jogo j left join titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo left join console c on j.id_console = c.id_console";
 
 
@@ -109,6 +100,67 @@ public class JogoDal {
 
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    public static Jogo detalesJogo(int _id) {
+        String sql = " SELECT	ID_JOGO,"
+                + " NM_TITULO,"
+                + " TIPO,"
+                + " NM_EDITORA, "
+                + " DS_CONSOLE,"
+                + " DS_GENERO,"
+                + " DS_DESENV,"
+                + " DESCRICAO,"
+                + " avg(PONTOS) as pontos, IMAGEM "
+                + " FROM ("
+                + " 	SELECT	JOGO.ID_JOGO,"
+                + " 		TITULO_JOGO.NM_TITULO,"
+                + " 		TITULO_JOGO.TIPO,"
+                + " 		EDITORA.NM_EDITORA,"
+                + " 		CONSOLE.DS_CONSOLE,"
+                + " 		GENERO.DS_GENERO,"
+                + " 		DESENVOLVEDOR.DS_DESENV,"
+                + " 		JOGO.DESCRICAO,"
+                + " 		isnull( PONTOS, 0) as PONTOS, jOGO.IMAGEM"
+                + " 	FROM JOGO"
+                + " 		INNER JOIN TITULO_JOGO		ON	JOGO.ID_TITULO_JOGO		= TITULO_JOGO.ID_TITULO_JOGO"
+                + " 		INNER JOIN CONSOLE			ON	JOGO.ID_CONSOLE			= CONSOLE.ID_CONSOLE"
+                + " 		INNER JOIN EDITORA			ON	TITULO_JOGO.ID_EDITORA	= EDITORA.ID_EDITORA 	"
+                + " 		INNER JOIN GENERO			ON	TITULO_JOGO.ID_GENERO	= GENERO.ID_GENERO"
+                + " 		INNER JOIN DESENVOLVEDOR	ON	TITULO_JOGO.ID_DESENV	= DESENVOLVEDOR.ID_DESENV"
+                + " 		LEFT JOIN AVALIACAO_JOGO	ON	JOGO.ID_JOGO			= AVALIACAO_JOGO.ID_JOGO"
+                + " 	)a	"
+                + " WHERE ID_JOGO = ? "
+                + "  GROUP BY ID_JOGO,"
+                + " NM_TITULO,"
+                + " TIPO,"
+                + " NM_EDITORA,"
+                + " DS_CONSOLE,"
+                + " DS_GENERO,"
+                + " DS_DESENV,"
+                + " DESCRICAO, IMAGEM";
+        Object[] vetor = {_id};
+        try {
+            Connection c  = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql, vetor);
+            Jogo o = new Jogo();
+            if(rs.next()){
+                o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
+                o.setTitulo_jogo(rs.getString("nm_titulo"));
+                o.setTipo(rs.getString("tipo"));
+                o.setEditora(rs.getString("nm_editora"));
+                o.setGenero(rs.getString("DS_GENERO"));
+                o.setConsole(rs.getString("ds_console"));
+                o.setDesenv(rs.getString("ds_desenv"));
+                o.setDescricao(rs.getString("descricao"));
+                o.setPontos(Integer.parseInt(rs.getString("pontos")));
+                o.setImagem(rs.getString("imagem"));
+            }
+           return o;
+
+        } catch (Exception c) {
+            return null;
         }
     }
 }

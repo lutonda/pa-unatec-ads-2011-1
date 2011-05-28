@@ -23,7 +23,17 @@
                 <div id="main">
                     <span>Início > Detalhes Jogos<br/><br/></span>
                     <div class="box-df" style="position: relative">
-                        <div style="position: absolute; top: 10px; right: 10px;">${Jogo.console}</div>
+                        <div style="position: absolute; top: 10px; right: 10px;">
+                            <c:if test="${Jogo.console == 'Wii'}">
+                                <img src="/AppWebFrontEnd/resources/img/logo_wii.png" alt="teste"/>
+                            </c:if>
+                            <c:if test="${Jogo.console == 'Play Station III'}">
+                                <img src="/AppWebFrontEnd/resources/img/logo_ps3.png" alt="teste"/>
+                            </c:if>
+                            <c:if test="${Jogo.console == 'Xbox 360'}">
+                                <img src="/AppWebFrontEnd/resources/img/logo_x360.png" alt="teste"/>
+                            </c:if>
+                        </div>
                         <c:if test="${Jogo.imagem == null}">
                         <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 128px; height: 147px; margin-right: 10px;" alt="teste"/>
                         </c:if>

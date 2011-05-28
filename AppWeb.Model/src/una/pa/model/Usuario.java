@@ -28,6 +28,15 @@ public class Usuario {
     private boolean pref_transp;
     private String ds_cidade;
     private String ds_Estado;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public boolean isAceite_acordo() {
         return aceite_acordo;

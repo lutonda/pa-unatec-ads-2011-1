@@ -118,6 +118,7 @@ public class UsuarioDao {
         }
     }
     public static List<Usuario> jogoUsuario (int _id){
+        
         List<Usuario> objct = new ArrayList<Usuario>();
 
         String sql = " SELECT USUARIO.ID_USUARIO, " +
@@ -126,7 +127,7 @@ public class UsuarioDao {
                     " FROM JOGO_USUARIO" +
                     " INNER JOIN	USUARIO		ON	JOGO_USUARIO.ID_USUARIO	=	USUARIO.ID_USUARIO" +
                     " INNER JOIN	JOGO		ON	JOGO_USUARIO.ID_JOGO	=	JOGO.ID_JOGO" +
-                    " where jogo.id_jogo = 12" +
+                    " where jogo.id_jogo = ? " +
                     " UNION ALL" +
                     " SELECT	USUARIO.ID_USUARIO," +
                     " USUARIO.NM_USUARIO,usuario.nm_sobrenome," +
@@ -136,8 +137,8 @@ public class UsuarioDao {
                     " JOGO" +
                     " WHERE JOGO_DESEJADO.ID_JOGO = JOGO.ID_JOGO" +
                     " AND JOGO_DESEJADO.ID_USUARIO = USUARIO.ID_USUARIO " +
-                    " AND JOGO.ID_JOGO = 12";
-        Object[] vetor = {_id};
+                    " AND JOGO.ID_JOGO = ? ";
+        Object[] vetor = {_id, _id};
         try{
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql, vetor);

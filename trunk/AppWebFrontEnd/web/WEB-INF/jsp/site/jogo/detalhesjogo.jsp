@@ -38,7 +38,7 @@
                         </ul>
                         <div class="cb"></div>
                     </div>
-                    <div class="box-df"><span>${Jogo.pontos} Avalie</span> <span style="float: right">Oferta (2) - Proprietarios (4) - Interesados (6)</span>  </div>
+                    <div class="box-df"><span>Avalie( ${Jogo.pontos})</span> <span style="float: right">Oferta (${Jogo.oferta}) - Proprietarios (${Jogo.proprietario}) - Interesados (${Jogo.interessado})</span>  </div>
                     
                     <div class="box-df">
                         <ul>

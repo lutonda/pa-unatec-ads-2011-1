@@ -23,17 +23,22 @@
                 <div id="main">
                     <span>Início > Detalhes Jogos<br/><br/></span>
                     <div class="box-df" style="position: relative">
-                        <div style="position: absolute; top: 10px; right: 10px;">PS3</div>
+                        <div style="position: absolute; top: 10px; right: 10px;">${Jogo.console}</div>
+                        <c:if test="${Jogo.imagem == null}">
                         <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 128px; height: 147px; margin-right: 10px;" alt="teste"/>
+                        </c:if>
+                        <c:if test="${Jogo.imagem != null}">
+                        <img src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" style="float: left; width: 128px; height: 147px; margin-right: 10px;" alt="teste"/>
+                        </c:if>
                         <ul style="float: left; width: 392px;">
-                            <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">Nome do Jogo Teste</li>
-                            <li style="margin-bottom: 5px;">Ação</li>
-                            <li style="margin-bottom: 15px;">Mult-Playe</li>
-                            <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</li>
+                            <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${Jogo.titulo_jogo}</li>
+                            <li style="margin-bottom: 5px;">${Jogo.genero}</li>
+                            <li style="margin-bottom: 15px;">${Jogo.tipo}</li>
+                            <li>${Jogo.descricao}</li>
                         </ul>
                         <div class="cb"></div>
                     </div>
-                    <div class="box-df"><span>(34) Avalie</span> <span style="float: right">Oferta (2) - Proprietarios (4) - Interesados (6)</span>  </div>
+                    <div class="box-df"><span>${Jogo.pontos} Avalie</span> <span style="float: right">Oferta (2) - Proprietarios (4) - Interesados (6)</span>  </div>
                     
                     <div class="box-df">
                         <ul>

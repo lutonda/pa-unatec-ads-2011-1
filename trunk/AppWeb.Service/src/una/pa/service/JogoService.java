@@ -45,4 +45,7 @@ public class JogoService {
     public static boolean excluir(int id) {
         return JogoDal.exclui(id);
     }
+    public static Jogo detalheJogo(int _id){
+        return JogoDal.detalesJogo(_id);
+    }
 }

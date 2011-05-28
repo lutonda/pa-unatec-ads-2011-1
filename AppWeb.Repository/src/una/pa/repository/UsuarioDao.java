@@ -116,5 +116,43 @@ public class UsuarioDao {
         } catch (Exception e) {
             return null;
         }
-    }  
+    }
+    public static List<Usuario> jogoUsuario (int _id){
+        List<Usuario> objct = new ArrayList<Usuario>();
+
+        String sql = " SELECT USUARIO.ID_USUARIO, " +
+                    " USUARIO.NM_USUARIO, usuario.nm_sobrenome," +
+                    " 'Proprietario' status" +
+                    " FROM JOGO_USUARIO" +
+                    " INNER JOIN	USUARIO		ON	JOGO_USUARIO.ID_USUARIO	=	USUARIO.ID_USUARIO" +
+                    " INNER JOIN	JOGO		ON	JOGO_USUARIO.ID_JOGO	=	JOGO.ID_JOGO" +
+                    " where jogo.id_jogo = 12" +
+                    " UNION ALL" +
+                    " SELECT	USUARIO.ID_USUARIO," +
+                    " USUARIO.NM_USUARIO,usuario.nm_sobrenome," +
+                    " 'Interessado' status " +
+                    " FROM	JOGO_DESEJADO," +
+                    " USUARIO," +
+                    " JOGO" +
+                    " WHERE JOGO_DESEJADO.ID_JOGO = JOGO.ID_JOGO" +
+                    " AND JOGO_DESEJADO.ID_USUARIO = USUARIO.ID_USUARIO " +
+                    " AND JOGO.ID_JOGO = 12";
+        Object[] vetor = {_id};
+        try{
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql, vetor);
+            while(rs.next()){
+                Usuario o = new Usuario();
+                o.setId_usuario(Integer.parseInt(rs.getString("id_usuario")));
+                o.setNm_usuario(rs.getString("nm_usuario"));
+                o.setNm_sobrenome(rs.getString("nm_sobrenome"));
+                o.setStatus(rs.getString("status"));
+                objct.add(o);
+            }
+            return objct;
+
+        }catch(Exception e){
+            return null;
+        }
+    }
 }

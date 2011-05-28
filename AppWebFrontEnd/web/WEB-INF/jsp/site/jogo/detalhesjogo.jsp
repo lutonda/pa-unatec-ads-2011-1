@@ -40,7 +40,7 @@
                         <c:if test="${Jogo.imagem != null}">
                         <img src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" style="float: left; width: 128px; height: 147px; margin-right: 10px;" alt="teste"/>
                         </c:if>
-                        <ul style="float: left; width: 392px;">
+                        <ul style="float: left; width: 392px;">             
                             <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${Jogo.titulo_jogo}</li>
                             <li style="margin-bottom: 5px;">${Jogo.genero}</li>
                             <li style="margin-bottom: 15px;">${Jogo.tipo}</li>

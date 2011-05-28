@@ -29,7 +29,7 @@ uso geral
 */ 
 
 /* fonte */
-body,div,td,p,span,input,select,textarea {font: 12px verdana, tahoma, sans-serif;color:#000;}
+body,div,td,p,span,input,select,textarea{font: 11px arial, verdana, tahoma, sans-serif; color:#666666;}
 
 /* forms  */
 input,select,textarea{border: 1px solid #000;background: #fff;color: #000;}

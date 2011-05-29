@@ -23,9 +23,16 @@ public class JogoController extends MultiActionController {
     public ModelAndView detalhesjogo(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mav = new ModelAndView("site/jogo/detalhesjogo");
+
+        int cod;// = Integer.parseInt(request.getParameter("cod"));
+        if (request.getParameter("cod") == null)
+            cod = 0;
+        else
+            cod = Integer.parseInt(request.getParameter("cod"));
+
         try {
             int id  = Integer.parseInt(request.getParameter("id"));
-            int cod = Integer.parseInt(request.getParameter("cod"));
+            
 
             Jogo objct = JogoService.detalheJogo(id);
             List <Usuario> usu = UsuarioService.usuarioJogos(id, cod);

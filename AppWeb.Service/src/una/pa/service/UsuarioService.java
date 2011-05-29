@@ -19,8 +19,8 @@ public class UsuarioService {
     public static Usuario listarUnico (int _id){
         return UsuarioDao.listarTodos(_id);
     }
-    public static List<Usuario> usuarioJogos(int _id){
-        return UsuarioDao.jogoUsuario(_id);
+    public static List<Usuario> usuarioJogos(int _id, int _cod){
+       return UsuarioDao.jogoUsuario(_id,_cod);
     }
 
 

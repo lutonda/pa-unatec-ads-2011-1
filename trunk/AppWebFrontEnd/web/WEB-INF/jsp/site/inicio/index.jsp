@@ -24,7 +24,7 @@
                             <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" class="imgPerfil" alt=""/>
                         </c:if>
                         <c:if test="${DadosIniciais.imagem != null}">
-                            <img src="/AppWebFrontEnd/resources/img/perfil/${DadosIniciais.imagem}" class="imgPerfil" alt=""/>
+                            <img src="/AppWebFrontEnd/resources/perfil/${DadosIniciais.imagem}" class="imgPerfil" alt=""/>
                         </c:if>
                         <ul id="nav-user">
                             <li><b>${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</b></li>
@@ -42,16 +42,32 @@
                         </ul>
                     </div>
                     <div class="box-nav">
-                        Convidar Amigo
+                        Convidar Amigo<span style="float: right"><a href="#">Enviar Convite</a></span>
                     </div>
-                            <div class="box-nav box-nav-final">
+                    <div class="box-nav box-nav-final">
                         <c:forEach items="${tags}" var="Tags" varStatus="count" >
-                            <c:out value="${Tags.ds_tag}"/><br/>
+                            <c:out value="${Tags.ds_tag}${count.index}"/><br/>
                         </c:forEach>
+                        <span style="float: right"><a href="#">Adicionar Tags</a></span>
                     </div>
                 </div>
                 <div id="main">
-                    <div class="box-df">box</div>
+                    <div id="usuarios"class="box-df">
+                        <ul style="margin-left: 15px;">
+                            <li style="margin-bottom: 20px; margin-left: -2px;"><input type="text" name="txtMsgNotifica"></input><input type="submit" value="Buscar" name="btnSendNotica"></input></li>
+                            <c:forEach items="${jogos}" var="Jogo" varStatus="count2" >
+                                <c:set var="estiloLinha" value="margin-right: 25px;"/>
+                                <c:if test="${((count2.index+1)%5==0)}">
+                                    <c:set var="estiloLinha" value=""/>
+                                </c:if>
+                                <li style="float: left; height: 130px; ${estiloLinha}"><c:if test="${Jogo.imagem == null}">${count2.index}<img width="80px" src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" alt=""/></c:if>
+                                    <c:if test="${Jogo.imagem != null}"><img width="80px" src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" alt=""/></c:if></li>
+                                </c:forEach>
+                            <div class="cb"></div>
+
+                        </ul>
+                        <span style="float: right; margin-top: 0"><< anterior | próxima >></span>
+                    </div>
                     <div class="box-df">
                         <ul id="notificacao">
                             <li><input type="text" name="txtMsgNotifica"></input><input type="submit" name="btnSendNotica"></input>  </li>
@@ -65,7 +81,7 @@
                 <br class="cb"/>
             </div>
             <div id="footer">
-                <%@ include file="/inc/footer.jsp" %>
+                <%@ include file="../inc_rsp.jsp" %>
             </div>
         </div>
         <%@ include file="/inc/scripts.jsp" %>

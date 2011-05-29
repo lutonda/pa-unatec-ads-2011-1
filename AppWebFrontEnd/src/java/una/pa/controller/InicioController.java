@@ -17,8 +17,11 @@ public class InicioController extends MultiActionController {
 
             DadosIniciais obj = UsuarioService.inicioPerfil("magno");
             List<Tags> objTags = TagsService.listarTags(obj.getId_usuario());
+            List<Jogo> objJogo = JogoService.listar(obj.getId_usuario());
+
             mav.addObject("DadosIniciais", obj);
             mav.addObject("tags", objTags);
+            mav.addObject("jogos", objJogo);
 
         } catch (Exception e) {
             return null;

@@ -29,6 +29,15 @@ public class Usuario {
     private String ds_cidade;
     private String ds_Estado;
     private String status;
+    private String imagem;
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
 
     public String getStatus() {
         return status;

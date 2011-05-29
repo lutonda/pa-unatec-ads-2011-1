@@ -117,28 +117,38 @@ public class UsuarioDao {
             return null;
         }
     }
-    public static List<Usuario> jogoUsuario (int _id){
+    public static List<Usuario> jogoUsuario (int _id, int _cod){
         
         List<Usuario> objct = new ArrayList<Usuario>();
 
-        String sql = " SELECT USUARIO.ID_USUARIO, " +
-                    " USUARIO.NM_USUARIO, usuario.nm_sobrenome," +
-                    " 'Proprietario' status" +
-                    " FROM JOGO_USUARIO" +
-                    " INNER JOIN	USUARIO		ON	JOGO_USUARIO.ID_USUARIO	=	USUARIO.ID_USUARIO" +
-                    " INNER JOIN	JOGO		ON	JOGO_USUARIO.ID_JOGO	=	JOGO.ID_JOGO" +
-                    " where jogo.id_jogo = ? " +
-                    " UNION ALL" +
-                    " SELECT	USUARIO.ID_USUARIO," +
-                    " USUARIO.NM_USUARIO,usuario.nm_sobrenome," +
-                    " 'Interessado' status " +
-                    " FROM	JOGO_DESEJADO," +
-                    " USUARIO," +
-                    " JOGO" +
-                    " WHERE JOGO_DESEJADO.ID_JOGO = JOGO.ID_JOGO" +
-                    " AND JOGO_DESEJADO.ID_USUARIO = USUARIO.ID_USUARIO " +
-                    " AND JOGO.ID_JOGO = ? ";
-        Object[] vetor = {_id, _id};
+        String sql = " SELECT	ID_USUARIO, NM_USUARIO, " +
+                     " NM_SOBRENOME, " +
+                     " STATUS, " +
+                     " ID " +
+                     " FROM( " +
+                     "      SELECT USUARIO.ID_USUARIO,	" +
+                     "        USUARIO.NM_USUARIO, " +
+		     "		USUARIO.NM_SOBRENOME, " +
+		     "  	'Proprietario' status, " +
+                     "          1 ID " +
+                     " FROM JOGO_USUARIO, USUARIO " +
+                     " where id_jogo = ? " +
+                     " AND JOGO_USUARIO.ID_USUARIO = USUARIO.ID_USUARIO " +
+
+                    " UNION ALL " +
+
+                    " SELECT USUARIO.ID_USUARIO, " +
+                    " USUARIO.NM_USUARIO, " +
+                    "	USUARIO.NM_SOBRENOME, " +
+                    "		'Interessado' status, " +
+		    "   	2 ID " +
+                    " FROM	JOGO_DESEJADO, USUARIO " +
+                    " WHERE ID_JOGO = ? " +
+                    "	AND JOGO_DESEJADO.ID_USUARIO = USUARIO.ID_USUARIO " +
+                    " )A " +
+                    " WHERE ID  = case when ? = 0 then ID else ? end " ;
+
+        Object[] vetor = {_id, _id, _cod, _cod};
         try{
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql, vetor);

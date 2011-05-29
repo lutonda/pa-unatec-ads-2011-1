@@ -49,7 +49,7 @@
                         <div class="cb"></div>
                     </div>
                     <div class="box-df"><span>Avalie( ${Jogo.pontos})</span>
-                        <span style="float: right"><a href="#" title="Oferta">Oferta (${Jogo.oferta})</a> - <a href="detalhesjogo.html?id=${Jogo.id_jogo}&cod=1" title="Oferta">Proprietarios (${Jogo.proprietario})</a> - <a href="detalhesjogo.html?id=${Jogo.id_jogo}&cod=2" title="Oferta">Interesados (${Jogo.interessado})</a></span>
+                        <span style="float: right"><a href="detalhesjogo.html?id=${Jogo.id_jogo}&cod=3" title="Oferta">Oferta (${Jogo.oferta})</a> - <a href="detalhesjogo.html?id=${Jogo.id_jogo}&cod=1" title="Proprietario">Proprietarios (${Jogo.proprietario})</a> - <a href="detalhesjogo.html?id=${Jogo.id_jogo}&cod=2" title="Interessados">Interesados (${Jogo.interessado})</a></span>
                     </div>
                     
                     <div id="usuarios"class="box-df">

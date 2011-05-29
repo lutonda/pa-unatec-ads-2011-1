@@ -24,10 +24,11 @@ public class JogoController extends MultiActionController {
             HttpServletResponse response) throws Exception {
         ModelAndView mav = new ModelAndView("site/jogo/detalhesjogo");
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
+            int id  = Integer.parseInt(request.getParameter("id"));
+            int cod = Integer.parseInt(request.getParameter("cod"));
 
             Jogo objct = JogoService.detalheJogo(id);
-            List <Usuario> usu = UsuarioService.usuarioJogos(id);
+            List <Usuario> usu = UsuarioService.usuarioJogos(id, cod);
             mav.addObject("Jogo", objct);
             mav.addObject("usuarios", usu);
 

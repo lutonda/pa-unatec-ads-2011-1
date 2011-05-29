@@ -48,9 +48,11 @@
                         </ul>
                         <div class="cb"></div>
                     </div>
-                    <div class="box-df"><span>Avalie( ${Jogo.pontos})</span> <span style="float: right">Oferta (${Jogo.oferta}) - Proprietarios (${Jogo.proprietario}) - Interesados (${Jogo.interessado})</span>  </div>
+                    <div class="box-df"><span>Avalie( ${Jogo.pontos})</span>
+                        <span style="float: right"><a href="#" title="Oferta">Oferta (${Jogo.oferta}) - </a><a href="detalhesjogo.html?id=12&cod=1" title="Oferta">Proprietarios (${Jogo.proprietario}) - </a><a href="detalhesjogo.html?id=12&cod=2" title="Oferta">Interesados (${Jogo.interessado})</a></span>
+                    </div>
                     
-                    <div class="box-df">
+                    <div id="usuarios"class="box-df">
                         <ul>
                            <c:forEach items="${usuarios}" var="Usuario" varStatus="count" >
                             <li style="float: left; height: 110px; width: 255px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
@@ -72,8 +74,8 @@
                             <div class="cb"></div>
                             
                         </ul>
-                    </div>
-                    <span style="float: right; margin-top: 0"><< anterior | próxima >></span>
+                        <span style="float: right; margin-top: 0"><< anterior | próxima >></span>
+                    </div>    
                 </div>
                 <br class="cb"/>
             </div>

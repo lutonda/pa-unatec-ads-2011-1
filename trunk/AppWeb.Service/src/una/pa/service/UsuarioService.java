@@ -22,7 +22,7 @@ public class UsuarioService {
     public static List<Usuario> usuarioJogos(int _id, int _cod){
        return UsuarioDao.jogoUsuario(_id,_cod);
     }
-
-
-
+    public static DadosIniciais inicioPerfil(String username){
+        return UsuarioDao.inicioPerfil(username);
+    }
 }

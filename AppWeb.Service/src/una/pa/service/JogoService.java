@@ -18,6 +18,9 @@ public class JogoService {
     public static List<Jogo> listar() {
         return JogoDal.listaDal();
     }
+    public static List<Jogo> listar(int pId_usuario) {
+        return JogoDal.listaDal(pId_usuario);
+    }
 
     public static Jogo unico(int id) {
 

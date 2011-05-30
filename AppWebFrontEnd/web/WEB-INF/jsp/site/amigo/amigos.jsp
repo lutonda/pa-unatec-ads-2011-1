@@ -46,7 +46,7 @@
                                 <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">Fulano de Tal</li>
                                 <li style="margin-bottom: 5px;">9 Jogos</li>
                                 <li style="margin-bottom: 15px;">5 Desejados</li><br/>
-                                
+
                             </ul>
                             <div class="cb"></div>
 
@@ -54,7 +54,11 @@
                         <span>Amigos</span>
                         <div id="usuarios"class="box-df">
                             <ul>
-                                <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
+                                <c:forEach items="${amigos}" var="AmigoUsuario" varStatus="count" >
+                                    <li style="float: left; height: 110px; width: 255px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
+                                        <div>${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})<br/><br/>${AmigoUsuario.qtd_jogo} Jogos<br/>${AmigoUsuario.qtd_desejo} Jogos</div></li>
+                                </c:forEach>
+                                <!--<li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
                                     <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
                                 <li style="float: left; height: 110px; width: 255px; margin-right: 10px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
                                     <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
@@ -65,7 +69,7 @@
                                 <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
                                     <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
                                 <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                    <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
+                                    <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>-->
 
                                 <div class="cb"></div>
                                 <span style="float: right; margin-top: 0"><< anterior | próxima >></span>

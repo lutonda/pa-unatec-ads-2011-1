@@ -6,17 +6,17 @@
 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="/inc/taglibs.jsp" %>
 <html>
-     <head>
+    <head>
         <title>Joga Trocas</title>
         <%@ include file="/inc/taghead.jsp" %>
     </head>
     <body>
         <div id="container">
             <div id="header">
-               <%@ include file="../inc_topo_padrao.jsp" %>
+                <%@ include file="../inc_topo_padrao.jsp" %>
             </div>
             <div id="content">
                 <div id="sidebarleft">
@@ -37,10 +37,10 @@
                             </c:if>
                         </div>
                         <c:if test="${Jogo.imagem == null}">
-                        <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 128px; height: 147px; margin-right: 10px;" alt="teste"/>
+                            <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 128px; height: 147px; margin-right: 10px;" alt="teste"/>
                         </c:if>
                         <c:if test="${Jogo.imagem != null}">
-                        <img src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" style="float: left; width: 128px; height: 147px; margin-right: 10px;" alt="teste"/>
+                            <img src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" style="float: left; width: 128px; height: 147px; margin-right: 10px;" alt="teste"/>
                         </c:if>
                         <ul style="float: left; width: 392px;">             
                             <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${Jogo.titulo_jogo}</li>
@@ -53,14 +53,14 @@
                     <div class="box-df"><span>Avalie( ${Jogo.pontos})</span>
                         <span style="float: right"><a href="detalhesjogo.html?id=${Jogo.id_jogo}&cod=3" title="Oferta">Oferta (${Jogo.oferta})</a> - <a href="detalhesjogo.html?id=${Jogo.id_jogo}&cod=1" title="Proprietario">Proprietarios (${Jogo.proprietario})</a> - <a href="detalhesjogo.html?id=${Jogo.id_jogo}&cod=2" title="Interessados">Interesados (${Jogo.interessado})</a></span>
                     </div>
-                    
+
                     <div id="usuarios"class="box-df">
                         <ul>
-                           <c:forEach items="${usuarios}" var="Usuario" varStatus="count" >
-                            <li style="float: left; height: 110px; width: 255px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                            <div>${Usuario.nm_usuario} ${Usuario.nm_sobrenome}<br/>${Usuario.status}<br/><br/>Oferta de Troca</div></li>
-                   
-                           <!-- <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
+                            <c:forEach items="${usuarios}" var="Usuario" varStatus="count" >
+                                <li style="float: left; height: 110px; width: 255px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
+                                    <div>${Usuario.nm_usuario} ${Usuario.nm_sobrenome}<br/>${Usuario.status}<br/><br/>Oferta de Troca</div></li>
+                                    </c:forEach>
+                            <!-- <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
                                 <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
                             <li style="float: left; height: 110px; width: 255px; margin-right: 10px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
                                 <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
@@ -71,10 +71,8 @@
                             <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
                                 <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>-->
 
-
-                            </c:forEach> 
                             <div class="cb"></div>
-                            
+
                         </ul>
                         <span style="float: right; margin-top: 0"><< anterior | próxima >></span>
                     </div>    

@@ -19,7 +19,9 @@
                <%@ include file="../inc_topo_padrao.jsp" %>
             </div>
             <div id="content">
-                <div id="sidebarleft">navegação</div>
+                <div id="sidebarleft">
+                    <%@ include file="../inc_navegacao.jsp" %>
+                </div>
                 <div id="main">
                     <span>Início > Detalhes Jogos<br/><br/></span>
                     <div class="box-df" style="position: relative">
@@ -80,7 +82,7 @@
                 <br class="cb"/>
             </div>
             <div id="footer">
-                <%@ include file="/inc/footer.jsp" %>
+                <%@ include file="../inc_rdp.jsp" %>
             </div>
         </div>
         <%@ include file="/inc/scripts.jsp" %>

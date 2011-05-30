@@ -18,6 +18,33 @@ public class AmigoUsuario  extends Usuario{
     private String ds_convite;
     private Date dt_aceite;
     private int sn_aceite;
+    private int qtd_jogo;
+    private int qtd_desejo;
+    private int pontos;
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
+
+    public int getQtd_desejo() {
+        return qtd_desejo;
+    }
+
+    public void setQtd_desejo(int qtd_desejo) {
+        this.qtd_desejo = qtd_desejo;
+    }
+
+    public int getQtd_jogo() {
+        return qtd_jogo;
+    }
+
+    public void setQtd_jogo(int qtd_jogo) {
+        this.qtd_jogo = qtd_jogo;
+    }
 
     public String getDs_convite() {
         return ds_convite;

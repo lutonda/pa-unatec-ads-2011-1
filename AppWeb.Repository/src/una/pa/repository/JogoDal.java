@@ -25,7 +25,7 @@ public class JogoDal {
         List<Jogo> objC = new ArrayList<Jogo>();
 
         Object[] vetor = {pId_usuario};
-        String sql = "select * from jogo j left join titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo left join console c on j.id_console = c.id_console";
+        String sql = "select " + ((pId_usuario != 0)? "top 10":"") +  " * from jogo j left join titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo left join console c on j.id_console = c.id_console";
         if (pId_usuario != 0) {
             sql += " left join jogo_usuario ju on j.id_jogo = ju.id_jogo";
             sql += " where ju.id_usuario = ?";

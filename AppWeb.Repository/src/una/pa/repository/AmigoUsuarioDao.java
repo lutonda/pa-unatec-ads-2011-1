@@ -53,7 +53,7 @@ public class AmigoUsuarioDao {
           String sql = " SELECT	USUARIO.ID_USUARIO," +
                        " USUARIO.NM_USUARIO," +
                        " USUARIO.NM_SOBRENOME," +
-                       " (SELECT isnull(COUNT(*),0) FROM JOGO_USUARIO WHERE ID_USUARIO = AMIGO_USUARIO.ID_USUARIO_AMIGO) as QDT_JOGO," +
+                       " (SELECT isnull(COUNT(*),0) FROM JOGO_USUARIO WHERE ID_USUARIO = AMIGO_USUARIO.ID_USUARIO_AMIGO) as QTD_JOGO," +
                        " (SELECT isnull(COUNT(*),0) FROM JOGO_DESEJADO WHERE ID_USUARIO = AMIGO_USUARIO.ID_USUARIO_AMIGO)as QTD_DESEJO," +
                        " (select isnull(avg(pontos),0) from avaliacao_usuario where id_usuario = AMIGO_USUARIO.ID_USUARIO_AMIGO) as pontos" +
                        " FROM	USUARIO," +

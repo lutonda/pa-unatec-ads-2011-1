@@ -5,11 +5,12 @@
     <c:if test="${DadosIniciais.imagem != null}">
         <img src="/AppWebFrontEnd/resources/perfil/${DadosIniciais.imagem}" class="imgPerfil" alt=""/>
     </c:if>
+    <div style="float: right;">
+        ${DadosIniciais.pontos}<br/><a href="#" title="Replicas Pendentes">Avaliações (${DadosIniciais.replica_pendente})</a>
+    </div>
     <ul id="nav-user">
         <li><b>${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</b></li>
         <li><a href="#">Editar Meus Dados</a></li>
-        <li>${DadosIniciais.pontos}</li>
-        <li><a href="#" title="Replicas Pendentes">Avaliações (${DadosIniciais.replica_pendente})</a></li>
     </ul>
     <div class="cb"></div>
 </div>

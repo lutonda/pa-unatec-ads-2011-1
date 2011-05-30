@@ -194,7 +194,7 @@ public class UsuarioDao {
                 + ", isnull((select count(*) from jogo_usuario ju where ju.id_usuario = u.id_usuario),0) as jogos "
                 + ", isnull((select count(*) from jogo_desejado jd where jd.id_usuario = u.id_usuario),0) as desejo "
                 + ", isnull((select count(*) from avaliacao_usuario au left join replica_avaliacao ra on au.id_avaliacao_usuario = ra.id_avaliacao_usuario where au.id_usuario = u.id_usuario and ra.id_replica is null),0) as replica_pendente "
-                + ", isnull((select count(*) from amigo_usuario aiu where aiu.id_usuario = u.id_usuario and aiu.sn_aceite = 0),0) as amigos_pendentes "
+                + ", isnull((select count(id_usuario) from amigo_usuario where id_usuario_amigo = u.id_usuario and sn_aceite = 0 and ignorado = 0),0) as amigos_pendentes "
                 + " from usuario u "
                 + "where u.usuario = ?";
 

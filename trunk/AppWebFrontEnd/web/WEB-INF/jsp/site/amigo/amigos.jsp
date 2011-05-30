@@ -23,57 +23,39 @@
                     </div>
                     <div id="main">
                         <span>Início > Amigos<br/><br/></span>
-                        <span>Solicitações de Amizade</span>
-                        <div class="box-df" style="position: relative">
-                            <div style="position: absolute; top: 40px; right: 50px;">
-                                <input type="submit" name="btnAceita" value="Aceitar"><br/><br/>
-                                <input type="submit" name="btnAceita" value="Nao Agora">
+                            <c:if test="${amigosPendentes != null}">
+                            <b>Solicitações de Amizade</b>
+                            <div class="box-df">
+                                <c:forEach items="${amigosPendentes}" var="AmigoUsuario" varStatus="count" >
+                                    <div style="float: right;">
+                                        Aceitar<br/>Não agora
+                                    </div>
+                                    <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>
+                                    <ul style="float: left; width: 392px;">
+                                        <li style="font-weight: bold; margin-bottom: 5px;">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</li>
+                                        <li>${AmigoUsuario.qtd_jogo} Jogos</li>
+                                        <li>${AmigoUsuario.qtd_desejo} Desejados</li><br/>
+                                    </ul>
+                                    <div style="border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px" class="cb"></div>
+                                </c:forEach>
                             </div>
-                            <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 70px; height: 70px; margin-right: 10px;" alt="teste"/>
-                            <ul style="float: left; width: 392px;">
-                                <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">Fulano de Tal</li>
-                                <li style="margin-bottom: 5px;">9 Jogos</li>
-                                <li style="margin-bottom: 15px;">5 Desejados</li><br/>
-                                <li><hr></li><br/>
-                            </ul>
-
-                            <div style="position: absolute; top: 150px; right: 50px;">
-                                <input type="submit" name="btnAceita" value="Aceitar"><br/><br/>
-                                <input type="submit" name="btnAceita" value="Nao Agora">
-                            </div>
-                            <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 70px; height: 70px; margin-right: 10px;" alt="teste"/>
-                            <ul style="float: left; width: 392px;">
-                                <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">Fulano de Tal</li>
-                                <li style="margin-bottom: 5px;">9 Jogos</li>
-                                <li style="margin-bottom: 15px;">5 Desejados</li><br/>
-
-                            </ul>
-                            <div class="cb"></div>
-
-                        </div>
-                        <span>Amigos</span>
+                        </c:if>
+                        <b>Amigos</b>
                         <div id="usuarios"class="box-df">
                             <ul>
                                 <c:forEach items="${amigos}" var="AmigoUsuario" varStatus="count" >
-                                    <li style="float: left; height: 110px; width: 255px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                        <div>${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})<br/><br/>${AmigoUsuario.qtd_jogo} Jogos<br/>${AmigoUsuario.qtd_desejo} Jogos</div></li>
+                                    <li style="float: left; height: 110px; width: 255px;">
+                                        <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>
+                                        <ul>
+                                            <li style="margin-bottom: 5px;"><b>${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</b></li>
+                                            <li>${AmigoUsuario.qtd_jogo} Jogos</li>
+                                            <li>${AmigoUsuario.qtd_desejo} Desejados</li>
+                                        </ul>
+                                    </li>
                                 </c:forEach>
-                                <!--<li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                    <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
-                                <li style="float: left; height: 110px; width: 255px; margin-right: 10px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                    <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
-                                <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                    <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
-                                <li style="float: left; height: 110px; width: 255px; margin-right: 10px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                    <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
-                                <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                    <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>
-                                <li style="float: left; height: 110px; width: 255px"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                    <div>Fulanito Soares de Souza<br/>Proprietario<br/><br/>Oferta de Troca</div></li>-->
-
-                                <div class="cb"></div>
-                                <span style="float: right; margin-top: 0"><< anterior | próxima >></span>
                             </ul>
+                            <div class="cb"></div>
+                            <span style="float: right;"><< anterior | próxima >></span>
                         </div>
                     </div>
                 </div>

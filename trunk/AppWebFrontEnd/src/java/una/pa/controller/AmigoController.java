@@ -5,13 +5,13 @@
 
 package una.pa.controller;
 
-import java.util.List;
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
-import una.pa.model.AmigoUsuario;
-import una.pa.repository.AmigoUsuarioDao;
+import una.pa.model.*;
+import una.pa.service.*;
 
 /**
  *
@@ -24,10 +24,18 @@ public class AmigoController extends MultiActionController {
         ModelAndView mav = new ModelAndView("site/amigo/amigos");
         
         try{
-            int id = Integer.parseInt(request.getParameter("id"));
 
-            List<AmigoUsuario> obj = AmigoUsuarioDao.detalheAmigos(id);
-            mav.addObject("amigos", obj);
+            DadosIniciais obj = UsuarioService.inicioPerfil();
+            List<Tags> objTags = TagsService.listarTags(obj.getId_usuario());
+            List<AmigoUsuario> objListAmigos = AmigoUsuarioService.listarAmigos(obj.getId_usuario());
+            List<AmigoUsuario> objListAmigosPendetes = AmigoUsuarioService.listarAmigosPendentes(obj.getId_usuario());
+
+            mav.addObject("DadosIniciais", obj);
+            mav.addObject("tags", objTags);
+            mav.addObject("amigos", objListAmigos);
+            mav.addObject("amigosPendentes", (objListAmigosPendetes.size() == 0)? null: objListAmigosPendetes);
+
+
             return mav;
         }catch(Exception e){
             return null;

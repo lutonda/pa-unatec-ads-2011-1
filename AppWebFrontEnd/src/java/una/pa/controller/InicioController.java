@@ -15,7 +15,7 @@ public class InicioController extends MultiActionController {
         ModelAndView mav = new ModelAndView("site/inicio/index");
         try {
 
-            DadosIniciais obj = UsuarioService.inicioPerfil("magno");
+            DadosIniciais obj = UsuarioService.inicioPerfil();
             List<Tags> objTags = TagsService.listarTags(obj.getId_usuario());
             List<Jogo> objJogo = JogoService.listar(obj.getId_usuario());
 

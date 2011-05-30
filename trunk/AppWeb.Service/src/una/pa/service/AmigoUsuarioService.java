@@ -16,5 +16,7 @@ public class AmigoUsuarioService {
     public static List<AmigoUsuario> listarAmigo(int _id){
         return  AmigoUsuarioDao.listarAmigo(_id);
     }
-
+    public static List<AmigoUsuario> detalheAmigo(int _id){
+        return AmigoUsuarioDao.detalheAmigos(_id);
+    }
 }

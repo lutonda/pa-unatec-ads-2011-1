@@ -31,7 +31,7 @@
                                     <c:set var="estiloLinha" value=""/>
                                 </c:if>
                                 <li style="float: left; height: 130px; ${estiloLinha}"><c:if test="${Jogo.imagem == null}">${count2.index}<img width="80px" src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" alt=""/></c:if>
-                                    <c:if test="${Jogo.imagem != null}"><img width="80px" src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" alt=""/></c:if></li>
+                                    <c:if test="${Jogo.imagem != null}"><a title="${Jogo.titulo_jogo}" href="/AppWebFrontEnd/site/jogo/detalhesjogo.html?id=${Jogo.id_jogo}"><img width="80px" src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" alt=""/></a></c:if></li>
                                 </c:forEach>
                             <div class="cb"></div>
 

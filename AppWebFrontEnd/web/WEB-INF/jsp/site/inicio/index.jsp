@@ -25,12 +25,12 @@
                     <div id="usuarios"class="box-df">
                         <ul style="margin-left: 15px;">
                             <li style="margin-bottom: 20px; margin-left: -2px;"><input type="text" name="txtMsgNotifica"></input><input type="submit" value="Buscar" name="btnSendNotica"></input></li>
-                            <c:forEach items="${jogos}" var="Jogo" varStatus="count2" >
+                            <c:forEach items="${jogos}" var="Jogo" varStatus="count" >
                                 <c:set var="estiloLinha" value="margin-right: 25px;"/>
-                                <c:if test="${((count2.index+1)%5==0)}">
+                                <c:if test="${((count.index+1)%5==0)}">
                                     <c:set var="estiloLinha" value=""/>
                                 </c:if>
-                                <li style="float: left; height: 130px; ${estiloLinha}"><c:if test="${Jogo.imagem == null}">${count2.index}<img width="80px" src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" alt=""/></c:if>
+                                <li style="float: left; height: 130px; ${estiloLinha}"><c:if test="${Jogo.imagem == null}"><img width="80px" src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" alt=""/></c:if>
                                     <c:if test="${Jogo.imagem != null}"><a title="${Jogo.titulo_jogo}" href="/AppWebFrontEnd/site/jogo/detalhesjogo.html?id=${Jogo.id_jogo}"><img width="80px" src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" alt=""/></a></c:if></li>
                                 </c:forEach>
                             <div class="cb"></div>
@@ -41,10 +41,9 @@
                     <div class="box-df">
                         <ul id="notificacao">
                             <li><input type="text" name="txtMsgNotifica"></input><input type="submit" name="btnSendNotica"></input>  </li>
-                            <li>Fulano de Tal troca jogo (Grand Theft Auto? IV) com Fulanito</li>
-                            <li>Fulano de Tal troca jogo (Grand Theft Auto? IV) com Fulanito</li>
-                            <li>Fulano de Tal troca jogo (Grand Theft Auto? IV) com Fulanito</li>
-                            <li>Fulano de Tal troca jogo (Grand Theft Auto? IV) com Fulanito</li>
+                            <c:forEach items="${notificacoes}" var="Notificacoes" varStatus="count" >
+                                <li><a href="#">${Notificacoes.nm_nome}</a> <i>${Notificacoes.descricao}</i> ${Notificacoes.dt_notificacoes}</li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>

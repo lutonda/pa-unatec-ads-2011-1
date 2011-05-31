@@ -23,9 +23,9 @@
                 <prop key="site/*.html">ajudaController</prop>
                 <prop key="site/jogo/*.html">jogoController</prop>
                 <prop key="site/amigo/*.html">amigoController</prop>
-                <prop key="site/inicio/*.do">inicioController</prop>
-                <prop key="site/ajuda/*.html">ajudaController</prop>
-
+                <prop key="inicio/cadastro/*.do">inicioController</prop>
+                <prop key="inicio/cadastro/*.html">inicioController</prop>
+                <prop key="inicio/ajuda/*.html">ajudaController</prop>
 
             </props>
         </property>
@@ -43,7 +43,6 @@
     <bean name="ajudaController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"/>
 
-    <bean name="includeController" class="una.pa.controller.IncludeController"/>
     <bean name="inicioController" class="una.pa.controller.InicioController"/>
     <bean name="jogoController" class="una.pa.controller.JogoController"/>
     <bean name="amigoController" class="una.pa.controller.AmigoController"/>

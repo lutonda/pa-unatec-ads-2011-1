@@ -12,57 +12,60 @@
         <%@ include file="/inc/taghead.jsp" %>
     </head>
     <body>
-        <div>
-            <div id="container">
-                <div id="header">
-                    <%@ include file="../inc_topo_padrao.jsp" %>
-                </div>
-                <div id="content">
-                    <div id="sidebarleft">
-                        <%@ include file="../inc_navegacao.jsp" %>
-                    </div>
-                    <div id="main">
-                        <span>Início > Amigos<br/><br/></span>
-                            <c:if test="${amigosPendentes != null}">
-                            <b>Solicitações de Amizade</b>
-                            <div class="box-df">
-                                <c:forEach items="${amigosPendentes}" var="AmigoUsuario" varStatus="count" >
-                                    <div style="float: right;">
-                                        Aceitar<br/>Não agora
-                                    </div>
-                                    <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>
-                                    <ul style="float: left; width: 392px;">
-                                        <li style="font-weight: bold; margin-bottom: 5px;">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</li>
-                                        <li>${AmigoUsuario.qtd_jogo} Jogos</li>
-                                        <li>${AmigoUsuario.qtd_desejo} Desejados</li><br/>
-                                    </ul>
-                                    <div style="border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px" class="cb"></div>
-                                </c:forEach>
-                            </div>
-                        </c:if>
-                        <b>Amigos</b>
-                        <div id="usuarios"class="box-df">
-                            <ul>
-                                <c:forEach items="${amigos}" var="AmigoUsuario" varStatus="count" >
-                                    <li style="float: left; height: 110px; width: 255px;">
-                                        <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>
-                                        <ul>
-                                            <li style="margin-bottom: 5px;"><b>${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</b></li>
-                                            <li>${AmigoUsuario.qtd_jogo} Jogos</li>
-                                            <li>${AmigoUsuario.qtd_desejo} Desejados</li>
-                                        </ul>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                            <div class="cb"></div>
-                            <span style="float: right;"><< anterior | próxima >></span>
-                        </div>
-                    </div>
-                </div>
+        <div id="container">
+            <div id="header">
+                <%@ include file="/inc/inc_topo_padrao.jsp" %>
             </div>
-            <%@ include file="/inc/scripts.jsp" %>
-            <!-- scripts de escopo local -->
-            <%@ include file="/inc/metrics.jsp" %>
+            <div id="content">
+                <div id="sidebarleft">
+                    <%@ include file="/inc/inc_navegacao.jsp" %>
+                </div>
+                <div id="main">
+                    <span>Início > Amigos<br/><br/></span>
+                        <c:if test="${amigosPendentes != null}">
+                        <b>Solicitações de Amizade</b>
+                        <div class="box-df">
+                            <c:forEach items="${amigosPendentes}" var="AmigoUsuario" varStatus="count" >
+                                <div style="float: right;">
+                                    Aceitar<br/>Não agora
+                                </div>
+                                <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>
+                                <ul style="float: left; width: 392px;">
+                                    <li style="font-weight: bold; margin-bottom: 5px;">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</li>
+                                    <li>${AmigoUsuario.qtd_jogo} Jogos</li>
+                                    <li>${AmigoUsuario.qtd_desejo} Desejados</li><br/>
+                                </ul>
+                                <div style="border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px" class="cb"></div>
+                            </c:forEach>
+                        </div>
+                    </c:if>
+                    <b>Amigos</b>
+                    <div id="usuarios"class="box-df">
+                        <ul>
+                            <c:forEach items="${amigos}" var="AmigoUsuario" varStatus="count" >
+                                <li style="float: left; height: 110px; width: 255px;">
+                                    <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>
+                                    <ul>
+                                        <li style="margin-bottom: 5px;"><b>${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</b></li>
+                                        <li>${AmigoUsuario.qtd_jogo} Jogos</li>
+                                        <li>${AmigoUsuario.qtd_desejo} Desejados</li>
+                                    </ul>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                        <div class="cb"></div>
+                        <span style="float: right;"><< anterior | próxima >></span>
+                    </div>
+                </div>
+                <br class="cb"/>
+            </div>
+            <div id="footer">
+                <%@ include file="/inc/inc_rdp.jsp" %>
+            </div>
+        </div>
+        <%@ include file="/inc/scripts.jsp" %>
+        <!-- scripts de escopo local -->
+        <%@ include file="/inc/metrics.jsp" %>
     </body>
 
 </html>

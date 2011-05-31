@@ -15,11 +15,11 @@
     <body>
         <div id="container">
             <div id="header">
-                <%@ include file="../inc_topo_padrao.jsp" %>
+                <%@ include file="/inc/inc_topo_padrao.jsp" %>
             </div>
             <div id="content">
                 <div id="sidebarleft">
-                    <%@ include file="../inc_navegacao.jsp" %>
+                    <%@ include file="/inc/inc_navegacao.jsp" %>
                 </div>
                 <div id="main">
                     <div id="usuarios"class="box-df">
@@ -50,7 +50,7 @@
                 <br class="cb"/>
             </div>
             <div id="footer">
-                <%@ include file="../inc_rdp.jsp" %>
+                <%@ include file="/inc/inc_rdp.jsp" %>
             </div>
         </div>
         <%@ include file="/inc/scripts.jsp" %>

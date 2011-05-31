@@ -1,6 +1,6 @@
 <%-- 
-    Document   : cadastro_passo2
-    Created on : 30/05/2011, 20:36:52
+    Document   : cadastro_passo1
+    Created on : 30/05/2011, 20:36:40
     Author     : Tiago
 --%>
 
@@ -15,14 +15,14 @@
     <body>
         <div id="container">
             <div id="header">
-                <%@ include file="../inc_topo_padrao.jsp" %>
+                <%@ include file="/inc/inc_topo_padrao.jsp" %>
             </div>
             <div id="content">
                 <h2>Cadastro Passo 1</h2>
                 <div>
 
                 </div>
-                <form action="cadastroPasso2Form.do" method="POST">
+                <form action="cadastroPasso1Form.do" method="POST">
 
                     <div class="frm_content">
 
@@ -63,7 +63,7 @@
 
             </div>
             <div id="footer">
-                <%@ include file="../inc_rdp.jsp" %>
+                <%@ include file="/inc/inc_rdp.jsp" %>
             </div>
         </div>
         <%@ include file="/inc/scripts.jsp" %>

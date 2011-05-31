@@ -7,6 +7,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import una.pa.model.*;
 import una.pa.service.*;
 import java.util.*;
+import una.pa.util.Validacao;
 
 public class InicioController extends MultiActionController {
 
@@ -24,6 +25,41 @@ public class InicioController extends MultiActionController {
             mav.addObject("tags", objTags);
             mav.addObject("jogos", objJogo);
             mav.addObject("notificacoes", objNot);
+
+        } catch (Exception e) {
+            return null;
+        }
+        return mav;
+    }
+    public ModelAndView processoCadastro (HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+
+        try {
+            String email = request.getParameter("email");
+               if(email != null){
+                  if(Validacao.validaEmail(email)){
+                        if(UsuarioService.verificaEmail(email)){
+                            response.sendRedirect("cadastroPasso1.html?email=" + email);
+                        }else{
+                             response.sendRedirect("../ajuda/orientacao.html");
+                        }
+                  }else{
+                      response.sendRedirect("../ajuda/orientacao.html");
+                  }
+            }
+            response.sendRedirect("../ajuda/orientacao.html");
+        } catch (Exception e) {
+            return null;
+        }
+        return null;
+    }
+
+    public ModelAndView cadastroPasso1 (HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mav = new ModelAndView("site/inicio/cadastroPasso1");
+        try {
+
+
 
         } catch (Exception e) {
             return null;

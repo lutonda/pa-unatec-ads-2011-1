@@ -23,6 +23,9 @@
                 <prop key="site/*.html">index3Controller</prop>
                 <prop key="site/jogo/*.html">jogoController</prop>
                 <prop key="site/amigo/*.html">amigoController</prop>
+                <prop key="site/inicio/processoCadastro.do">inicioController</prop>
+                <prop key="site/ajuda/*.html">ajudaController</prop>
+
 
             </props>
         </property>
@@ -37,8 +40,8 @@
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
 
-    <bean name="index3Controller"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController" />
+    <bean name="ajudaController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"/>
 
     <bean name="includeController" class="una.pa.controller.IncludeController"/>
     <bean name="inicioController" class="una.pa.controller.InicioController"/>

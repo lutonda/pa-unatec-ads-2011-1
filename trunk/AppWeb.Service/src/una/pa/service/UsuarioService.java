@@ -4,9 +4,11 @@
  */
 
 package una.pa.service;
+import com.sun.org.apache.regexp.internal.RE;
 import una.pa.model.*;
 import una.pa.repository.*;
 import java.util.*;
+
 
 /**
  *
@@ -25,4 +27,8 @@ public class UsuarioService {
     public static DadosIniciais inicioPerfil(){
         return UsuarioDao.inicioPerfil("magno");
     }
+    public static boolean verificaEmail(String _email){
+        return UsuarioDao.validaEmail(_email);
+    }
+    
 }

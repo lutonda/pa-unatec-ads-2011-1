@@ -44,7 +44,7 @@ public class InicioController extends MultiActionController {
                         StringEncryptor ec = new StringEncryptor();
                         String id = ec.encrypt("4");
 
-                        response.sendRedirect("cadastroPasso1.html?id=" + id);
+                        response.sendRedirect("passo1.html?id=" + id);
                     } else {
                         response.sendRedirect("../ajuda/orientacao.html");
                     }
@@ -59,9 +59,9 @@ public class InicioController extends MultiActionController {
         return null;
     }
 
-    public ModelAndView cadastroPasso1(HttpServletRequest request,
+    public ModelAndView passo1(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mav = new ModelAndView("site/inicio/cadastroPasso1");
+        ModelAndView mav = new ModelAndView("inicio/cadastro/passo1");
         try {
             StringEncryptor ec = new StringEncryptor();
             mav.addObject("msg", ec.decrypt(request.getParameter("id")));
@@ -69,14 +69,15 @@ public class InicioController extends MultiActionController {
 
 
         } catch (Exception e) {
+            response.sendRedirect("../ajuda/orientacao.html");
             return null;
         }
         return mav;
     }
 
-    public ModelAndView cadastroPasso2(HttpServletRequest request,
+    public ModelAndView passo2(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mav = new ModelAndView("site/inicio/cadastroPasso2");
+        ModelAndView mav = new ModelAndView("inicio/cadastro/passo2");
         try {
         } catch (Exception e) {
             return null;
@@ -86,10 +87,10 @@ public class InicioController extends MultiActionController {
 
     public ModelAndView cadastroPasso1Form(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mav = new ModelAndView("site/inicio/cadastroPasso1");
+        ModelAndView mav = new ModelAndView("inicio/cadastro/passo1");
         try {
 
-            response.sendRedirect("cadastroPasso2.html");
+            response.sendRedirect("passo2.html");
 
         } catch (Exception e) {
             return null;
@@ -99,10 +100,10 @@ public class InicioController extends MultiActionController {
 
     public ModelAndView cadastroPasso2Form(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mav = new ModelAndView("site/inicio/cadastroPasso1");
+        ModelAndView mav = new ModelAndView("inicio/cadastro/passo2");
         try {
 
-            response.sendRedirect("index.html");
+            response.sendRedirect("/AppWebFrontEnd/site/inicio/index.html");
 
         } catch (Exception e) {
             return null;

@@ -227,5 +227,24 @@ public class UsuarioDao {
             return null;
         }
     }
+
+    public static boolean validaEmail(String _email){
+        String sql = "select email from usuario where email like ?";
+        Object[] vetor = {_email};
+
+        try{
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql,vetor);
+
+            if(rs.next()){
+                return true;
+            }else{
+                return false;
+            }
+
+        }catch(Exception e){
+            return false;
+        }
+    }
     
 }

@@ -10,7 +10,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt">
     <head>
         <title>Joga Troca</title>
-        <%@ include file="/inc/taghead.jsp" %>
+
+           <%@ include file="/inc/taghead.jsp" %>
     </head>
     <body>
         <div id="container">
@@ -18,42 +19,68 @@
                 <%@ include file="/inc/inc_topo_padrao.jsp" %>
             </div>
             <div id="content">
-                <h2>Cadastro Passo 1</h2>
-                <div>
-
-                </div>
+                <h2>Cadastro Passo 2</h2>
+                
                 <form action="cadastroPasso2Form.do" method="POST">
 
                     <div class="frm_content">
 
                         <ul class="frm clearfix">
                             <li>
-                                ${msg}
+                                <label><strong>Data de Nascimento</strong></label>
+                                <input type="text" name="dt_nascimento" value=""
+                                       maxlength="10" onkeypress="formatar_mascara(this, '##/##/####')"/>
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>Sexo</strong></label>
+                                <input type="radio" name="sexo" value="M"/>Masculino
+                                <input type="radio" name="sexo" value="F"/>Feminino
+                            </li>
+                            
+                            <label><strong>Dados da localidade</strong></label>
+
+                            <li>
+                                <label><strong>CEP</strong></label>
+                                <input type="text" name="cpf" maxlength="10"
+                                       onkeypress="formatar_mascara(this, '##.###-###')" />
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>Tipo Logradouro</strong></label>
+                                <input type="text" name="tp_logradouro" />
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>Logradouro</strong></label>
+                                <input type="text" name="logradouro" />
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>Numero</strong></label>
+                                <input type="text" name="numero" />
+                            </li>
+
+                            <li>
+                                <label><strong>Complemento</strong></label>
+                                <input type="text" name="complemento" />
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>Bairro</strong></label>
+                                <input type="text" name="bairro" />
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>Cidade</strong></label>
+                                <input type="text" name="cidade" />
                             </li>
+                            <li>
+                                <label><strong>Estado</strong></label>
+                                <input type="text" name="estado" />
+                            </li>
+
+                            <li>
+                                <label><strong>Preferências de envio: </strong></label><br/>
+                                <input type="checkbox" name="pref_maos" />Em mãos <br/>
+                                <input type="checkbox" name="pref_correio" />Pelo correios <br/>
+                                <input type="checkbox" name="pref_tansportadora" />Pela transportadora <br/>
+                            </li>
+
                             <li>
                                 <input type="submit" value="Salvar" class="bt" />
                             </li>

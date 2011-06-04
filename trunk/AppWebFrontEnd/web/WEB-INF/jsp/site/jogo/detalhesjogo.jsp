@@ -37,10 +37,10 @@
                             </c:if>
                         </div>
                         <c:if test="${Jogo.imagem == null}">
-                            <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 128px; height: 147px; margin-right: 10px;" alt="teste"/>
+                            <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 128px; margin-right: 10px;" alt="teste"/>
                         </c:if>
                         <c:if test="${Jogo.imagem != null}">
-                            <img src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" style="float: left; width: 128px; height: 147px; margin-right: 10px;" alt="teste"/>
+                            <img src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" style="float: left; width: 128px; margin-right: 10px;" alt="teste"/>
                         </c:if>
                         <ul style="float: left; width: 392px;">             
                             <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${Jogo.titulo_jogo}</li>

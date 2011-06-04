@@ -23,36 +23,44 @@
 
                 </div>
                 <form action="cadastroPasso1Form.do" method="POST">
-
+                    <input type="hidden" name="id_usuario" value="${Usuario.id_usuario}"/>
                     <div class="frm_content">
 
                         <ul class="frm clearfix">
                             <li>
-                                ${msg}
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>Nome</strong></label>
+                                <input type="text" name="nm_usuario" value=""/>
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>Sobrenome</strong></label>
+                                <input type="text" name="nm_sobrenome" value=""/>
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>E-mail</strong></label>
+                                <input type="text" disabled name="email" value="${Usuario.email}"/>
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>Nome do Usuário</strong></label>
+                                <input type="text" name="usuario" value=""/>
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>Senha</strong></label>
+                                <input type="password" name="senha" value=""/>
                             </li>
                             <li>
-                                <label><strong>Descrição</strong></label>
-                                <input type="text" name="ds_console" value="${console.ds_console}"/>
+                                <label><strong>Confirmação da senha</strong></label>
+                                <input type="password" name="conf_senha" value=""/>
+                            </li>
+                            <li>
+                                <input type="radio" name="aceiteTermos" checked />Sim, aceito os termos de contrato do trocajoga.
+                            </li>
+                            <li>
+                                <input type="radio" name="aceiteNotificacoes" checked />Sim, desejo receber as notificações de novas trocas por e-mail.
+                            </li>
+                            <li>
+                                <input type="radio" name="aceiteParceiros" checked />Sim, aceito receber os e-mails de parceiros do trocajoga.
                             </li>
                             <li>
                                 <input type="submit" value="Salvar" class="bt" />

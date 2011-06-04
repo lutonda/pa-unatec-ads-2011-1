@@ -1,5 +1,6 @@
 package una.pa.controller;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
@@ -8,6 +9,8 @@ import una.pa.model.*;
 import una.pa.service.*;
 import java.util.*;
 import una.pa.util.*;
+import una.pa.repository.ConvData;
+
 
 public class InicioController extends MultiActionController {
 
@@ -39,20 +42,21 @@ public class InicioController extends MultiActionController {
             String email = request.getParameter("email");
             if (email != null) {
                 if (Validacao.validaEmail(email)) {
-                    if (UsuarioService.verificaEmail(email)) {
+                    int _id = UsuarioService.verificaEmail(email);
+                    if (_id != -1) {
+                        //StringEncryptor ec = new StringEncryptor();
+                       // ec.encrypt((String)_id);
+                        response.sendRedirect("passo1.html?id=" + _id);
+                        
 
-                        StringEncryptor ec = new StringEncryptor();
-                        String id = ec.encrypt("4");
-
-                        response.sendRedirect("passo1.html?id=" + id);
                     } else {
                         response.sendRedirect("../ajuda/orientacao.html");
                     }
                 } else {
                     response.sendRedirect("../ajuda/orientacao.html");
                 }
-            }
-            response.sendRedirect("../ajuda/orientacao.html");
+            }else
+                response.sendRedirect("../ajuda/orientacao.html");
         } catch (Exception e) {
             return null;
         }
@@ -64,9 +68,11 @@ public class InicioController extends MultiActionController {
         ModelAndView mav = new ModelAndView("inicio/cadastro/passo1");
         try {
             StringEncryptor ec = new StringEncryptor();
-            mav.addObject("msg", ec.decrypt(request.getParameter("id")));
+            Usuario obj = new Usuario();
 
+            obj = UsuarioService.listarUnico(Integer.parseInt(request.getParameter("id")));
 
+            mav.addObject("Usuario", obj);
 
         } catch (Exception e) {
             response.sendRedirect("../ajuda/orientacao.html");
@@ -79,6 +85,31 @@ public class InicioController extends MultiActionController {
             HttpServletResponse response) throws Exception {
         ModelAndView mav = new ModelAndView("inicio/cadastro/passo2");
         try {
+
+            Usuario objU = new Usuario();
+            Endereco objE = new Endereco();
+
+            //objU.setDt_nascimento(Date.(request.getParameter("dt_nascimento")));
+            if (request.getParameterValues("sexo").equals("M")){
+                objU.setSexo('M');
+            }else{
+                objU.setSexo('F');
+            }
+            objE.setCep(Integer.parseInt(request.getParameter("cep")));
+            objE.setTp_logradouro(request.getParameter("tp_logradouro"));
+            objE.setLogradouro(request.getParameter("logradouro"));
+            objE.setComplemento(request.getParameter("complemento"));
+            objE.setNumero(Integer.parseInt(request.getParameter("numero")));
+            objE.setDs_bairro(request.getParameter("ds_bairro"));
+            objE.setDs_cidade(request.getParameter("ds_cidade"));
+            objE.setDs_estado(request.getParameter("ds_estado"));
+            objU.setPref_em_maos(request.getParameter("pref_maos").equals("checked"));
+            objU.setPref_correios(request.getParameter("pref_correio").equals("checked"));
+            objU.setPref_transp(request.getParameter("pref_transportadora").equals("checked"));
+
+            UsuarioService.updatePasso2(objU, objE);
+            
+
         } catch (Exception e) {
             return null;
         }
@@ -90,12 +121,36 @@ public class InicioController extends MultiActionController {
         ModelAndView mav = new ModelAndView("inicio/cadastro/passo1");
         try {
 
-            response.sendRedirect("passo2.html");
+            Usuario obj = new Usuario();
+            obj.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
+            obj.setNm_usuario(request.getParameter("nm_usuario"));
+            obj.setNm_sobrenome(request.getParameter("nm_sobrenome"));
+            obj.setEmail(request.getParameter("email"));
+            obj.setNm_usuario(request.getParameter("nm_usuario"));
+            obj.setUsuario(request.getParameter("usuario"));
+            obj.setSenha(request.getParameter("senha"));
+            obj.setAceite_acordo(request.getParameter("aceiteTermos").equals("0"));
+            obj.setEmail_notificacoes(request.getParameter("aceiteNotificacoes").equals("0"));
+            obj.setEmail_parceiro(request.getParameter("aceiteParceiros").equals("0"));
+            
+
+
+            if (UsuarioService.updatePasso1(obj)){
+                response.sendRedirect("passo2.html?id="+obj.getId_usuario());
+                return null;
+            }else{
+                obj.setSenha("");
+                mav.addObject("Usuario", obj);
+                return mav;
+            }
+
+
+            
 
         } catch (Exception e) {
             return null;
         }
-        return mav;
+        
     }
 
     public ModelAndView cadastroPasso2Form(HttpServletRequest request,

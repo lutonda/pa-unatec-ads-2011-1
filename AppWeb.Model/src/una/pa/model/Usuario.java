@@ -18,6 +18,7 @@ public class Usuario {
     private boolean sn_ativo;
     private String tel_usuario;
     private String usuario;
+    private String senha;
     private boolean email_notificacoes;
     private boolean email_parceiro;
     private boolean aceite_acordo;
@@ -30,6 +31,15 @@ public class Usuario {
     private String ds_Estado;
     private String status;
     private String imagem;
+    
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     public String getImagem() {
         return imagem;

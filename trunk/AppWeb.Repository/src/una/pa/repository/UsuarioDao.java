@@ -57,7 +57,7 @@ public class UsuarioDao {
                     o.setSn_ativo(false);
                 }
                 o.setDescricao_usuario(rs.getString("descricao_usuario"));
-                o.setSexo(rs.getString("sexo").charAt(0));
+                o.setSexo((rs.getString("sexo") != null)? rs.getString("sexo").charAt(0): ' ');
                 if (rs.getString("pref_em_maos").equals("1")) {
                     o.setSn_ativo(true);
                 } else {
@@ -228,8 +228,8 @@ public class UsuarioDao {
         }
     }
 
-    public static boolean validaEmail(String _email){
-        String sql = "select email from usuario where email like ?";
+    public static int validaEmail(String _email){
+        String sql = "select id_usuario from usuario where email like ?";
         Object[] vetor = {_email};
 
         try{
@@ -237,14 +237,70 @@ public class UsuarioDao {
             ResultSet rs = Data.executeQuery(c, sql,vetor);
 
             if(rs.next()){
-                return true;
+                return Integer.parseInt(rs.getString("id_usuario"));
             }else{
-                return false;
+                return -1;
             }
+
+        }catch(Exception e){
+            return -1;
+        }
+    }
+
+    public static boolean updatePasso1(Usuario obj){
+        String sql = "UPDATE USUARIO SET "
+                + "NM_USUARIO = ?, "
+                + "NM_SOBRENOME = ?, "
+                + "USUARIO = ?, "
+                + "DT_CADASTRO = GETDATE(), "
+                + "SEHHA = ?,"
+                + "EMAIL_NOTIFICACOES = ?,"
+                + "EMAIL_PARCEIRO = ?, "
+                + "ACEITE_ACORDO = ? "
+                + " WHERE ID_USUARIO = ?";
+        Object[] vetor = {obj.getNm_usuario(), obj.getNm_sobrenome(), obj.getUsuario(), obj.getSenha(), 
+                            obj.isEmail_notificacoes(), obj.isEmail_parceiro(), obj.isAceite_acordo(), obj.getId_usuario()};
+
+        try{
+            Connection c = Data.openConnection();
+            Data.executeUpdate(c, sql,vetor);
+            return true;
 
         }catch(Exception e){
             return false;
         }
     }
+    
+        public static boolean updatePasso2(Usuario objU, Endereco objE){
+        String sql = "update from usuario"
+                + "set DT_NASCIMENTO = getdate(),"
+                + "	SEXO = ?,"
+                + "	ACEITE_ACORDO = ?,"
+                + "	EMAIL_PARCEIRO = ?,"
+                + "	EMAIL_NOTIFICACOES = ?"
+                + "     WHERE ID_USUARIO = ? ";
+        
+        Object[] vetor = {objU.getSexo(), objU.isAceite_acordo(), objU.isEmail_parceiro(),
+                            objU.isPref_correios(), objU.isEmail_notificacoes(), objU.getId_usuario()};
+
+        String sql2 = "insert into endereco (id_usuario,tp_logradouro, cep, "
+                + "logradouro, numero, complemento, "
+                + "ds_bairro, ds_cidade, ds_estado)"
+                + "values (?,?,?,?,?,?,?,?,?)";
+        
+        Object[] vetor2 = {objU.getId_usuario(), objE.getTp_logradouro(), objE.getCep(), objE.getLogradouro(), objE.getNumero(),
+                            objE.getComplemento(), objE.getDs_bairro(), objE.getDs_cidade(), objE.getDs_estado()};
+        try{
+            Connection c = Data.openConnection();
+            Data.executeUpdate(c, sql,vetor);
+            Data.executeUpdate(c, sql2,vetor2);
+            return true;
+
+        }catch(Exception e){
+            return false;
+        }
+    }
+
+
     
 }

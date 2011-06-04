@@ -27,8 +27,13 @@ public class UsuarioService {
     public static DadosIniciais inicioPerfil(){
         return UsuarioDao.inicioPerfil("magno");
     }
-    public static boolean verificaEmail(String _email){
+    public static int verificaEmail(String _email){
         return UsuarioDao.validaEmail(_email);
     }
-    
+    public static boolean updatePasso1 (Usuario _obj){
+        return UsuarioDao.updatePasso1(_obj);
+    }
+    public static boolean updatePasso2 (Usuario _objU, Endereco _objE){
+        return UsuarioDao.updatePasso2(_objU, _objE);
+    }
 }

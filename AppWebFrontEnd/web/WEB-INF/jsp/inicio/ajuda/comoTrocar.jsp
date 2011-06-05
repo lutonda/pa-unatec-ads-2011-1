@@ -19,10 +19,15 @@
             <div id="header">
                 <%@ include file="/inc/inc_topo_padrao.jsp" %>
             </div>
-            <h3>Como Trocar</h3>
+            <h3><b>Como Trocar</b></h3>
 
             <br/><br/>
-            
+            > Va em buscas e procure o jogo desejado<br/>
+            > Va ao perfil do usuario que o possua e verifique os jogos desejados;<br/>
+            > Se você tiver o jogo desejado, click no jogo e em solicitar troca;<br/>
+            > Se não tiver, click apenas em solictar troca;<br/>
+            > Aguarde a resposta do usuário;<br/><br/>
+            <h2><b>Boa Troca!!!</b></h2>
 
 
         </div>

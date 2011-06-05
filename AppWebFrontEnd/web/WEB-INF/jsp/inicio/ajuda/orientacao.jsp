@@ -24,11 +24,28 @@
 
 
 
-            Como se Cadastrar
+            <b>Como se Cadastrar</b><br/><br/>
 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan molestie turpis. Maecenas lectus dolor, commodo ac vestibulum ut, eleifend et arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et porta tellus. Duis luctus vestibulum ante. Nullam ultricies risus vitae nunc vehicula eu ornare libero placerat. Cras nec mauris dolor. Proin ut est imperdiet magna ultricies sollicitudin. Morbi sagittis nunc sed odio ornare at blandit odio tincidunt. Fusce porta, risus rhoncus elementum fringilla, tellus urna convallis mauris, sit amet posuere purus risus dignissim diam. Integer rutrum accumsan libero a congue. Sed hendrerit massa id sem fermentum ac consequat lacus ultrices. Pellentesque id arcu sed nisi laoreet mollis id nec tellus. Nam eget justo enim, vitae ullamcorper ligula. Curabitur porta nibh at odio commodo nec malesuada sapien tempus. Nulla commodo nisi non ligula iaculis quis placerat sem luctus.
+            > Vosê deverá receber um convite de um usuário já cadastrado;<br/>
+            > O convite chegara via e-mail contendo um link;<br/>
+            > Acesse o link e faça o cadastro que contem as seguintes questões;<br/><br/>
 
-            Nulla mollis nisl non neque faucibus sed aliquam velit accumsan. Aliquam suscipit congue neque, at malesuada erat lobortis sit amet. Nullam justo mauris, porta sed commodo ac, adipiscing vel ante. Morbi lobortis luctus lorem, nec ullamcorper mauris ullamcorper cursus. Nulla facilisi. Nullam et tincidunt orci. Sed vestibulum ultricies dictum. Sed sed interdum sem. Vestibulum aliquam vehicula feugiat. In hac habitasse platea dictumst. Praesent bibendum nunc eget ligula pellentesque id luctus metus congue. Curabitur ac enim id neque sollicitudin sollicitudin. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas non quam leo, quis tincidunt ligula. Nunc lorem lacus, tempor sed consequat id, accumsan sed risus.
+            > Nome;<br/>
+            > Nickname;<br/>
+            > Senha;<br/>
+            > Endereço residencial;<br/>
+            > Endereço de e-mail.<br/><br/>
+
+            <b>OBS:</b> <br/><br/>Os dados fornecidos são de inteira responsabilidade do usuário.<br/>
+            Só é possível fazer cadastro no JogaTroca via convite e esse convite só pode ser enviado por algum usuário já cadastrado.<br/>
+            O JogaTroca não se responsabiliza por eventuais transtornos, podendo ser banido o usuário por fornecimento de informações falsas.<br/>
+
+            O JogaTroca não fornece dados pessoais de seus usuários. Os mesmos ficam ocultos e confidenciais ao site.<br/><br/>
+
+            Dúvidas leia nossos <a href="mailto:termosdeuso">Termos de Uso</a>.
+
+
+
         </div>
 
     </body>

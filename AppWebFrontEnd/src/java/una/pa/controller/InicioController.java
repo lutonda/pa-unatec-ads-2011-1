@@ -9,7 +9,6 @@ import una.pa.model.*;
 import una.pa.service.*;
 import java.util.*;
 import una.pa.util.*;
-import una.pa.repository.ConvData;
 
 
 public class InicioController extends MultiActionController {
@@ -21,12 +20,10 @@ public class InicioController extends MultiActionController {
 
             DadosIniciais obj = UsuarioService.inicioPerfil();
             List<Tags> objTags = TagsService.listarTags(obj.getId_usuario());
-            List<Jogo> objJogo = JogoService.listar(obj.getId_usuario());
             List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(obj.getId_usuario());
 
             mav.addObject("DadosIniciais", obj);
             mav.addObject("tags", objTags);
-            mav.addObject("jogos", objJogo);
             mav.addObject("notificacoes", objNot);
 
         } catch (Exception e) {

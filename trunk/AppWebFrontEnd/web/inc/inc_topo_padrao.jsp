@@ -8,5 +8,5 @@
             <li style="float: left; width: 134px; border: #ececed solid 1px;">Ajuda</li>
         </ul>
     </div>
-            <div>Meus Jogos | Meus Desejos<span style="float:right;">PS3 - WII - XBOX</span></div>
+    <div><a id="btnMeusJogos" href="javascript:void(0);">Meus Jogos</a> | <a id="btnMeusDesejos" href="javascript:void(0);">Meus Desejos</a><span style="float:right;"><a id="btnPs3" href="javascript:void(0);">PS3</a> - <a id="btnWii" href="javascript:void(0);">WII</a> - <a id="btnXbox" href="javascript:void(0);">XBOX</a></span></div>
 </div>

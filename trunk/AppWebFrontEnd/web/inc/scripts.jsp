@@ -1,8 +1,10 @@
 <c:url value="/resources" var="url" />
 <!-- scripts -->
-<script type="text/javascript" src="${url}/js/libs/jquery-1.3.2.js?v=1_0"></script>
+<script type="text/javascript" src="${url}/js/libs/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="${url}/js/libs/jquery-ui.min.js"></script>
 <script type="text/javascript" src="${url}/js/libs/swfobject-2.1.js?v=1_0"></script>
 <script type="text/javascript" src="${url}/js/libs/sifr-2.0.7.js?v=1_0"></script>
+<script type="text/javascript" src="${url}/js/libs/util.js"></script>
 <!--[if IE 6]>
 <script type="text/javascript" src="/js/libs/dd-belatedpng-0.0.7a.js?v=1_0"></script>
 <script type="text/javascript">

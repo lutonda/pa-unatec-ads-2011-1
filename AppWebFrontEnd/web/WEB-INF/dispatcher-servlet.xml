@@ -26,7 +26,8 @@
                 <prop key="inicio/cadastro/*.do">inicioController</prop>
                 <prop key="inicio/cadastro/*.html">inicioController</prop>
                 <prop key="inicio/ajuda/*.html">ajudaController</prop>
-
+                <prop key="site/inicio/listaJogos.do">ajaxController</prop>
+                <prop key="site/inicio/listaTituloJogo.do">ajaxTituloJogoController</prop>
             </props>
         </property>
     </bean>
@@ -46,5 +47,7 @@
     <bean name="inicioController" class="una.pa.controller.InicioController"/>
     <bean name="jogoController" class="una.pa.controller.JogoController"/>
     <bean name="amigoController" class="una.pa.controller.AmigoController"/>
+    <bean name="ajaxController" class="una.pa.ajax.controller.AjaxController"/>
+    <bean name="ajaxTituloJogoController" class="una.pa.ajax.controller.AjaxTituloJogoController"/>
     
 </beans>

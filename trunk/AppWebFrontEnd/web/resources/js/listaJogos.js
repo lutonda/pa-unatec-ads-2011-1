@@ -6,6 +6,7 @@ var _busca = false;
 function inputText(id, texto){
 
     $('#' + id).val(texto);
+    $('#' + id).attr("style", "color: #cccccc");
 
     $('#' + id).keypress(function() {
         $(this).attr("style", "color: #333333");
@@ -78,12 +79,27 @@ Jogo.prototype = {
 
     _btnFiltroOnClick: function(value){
         _pagina = 1;
-        this.dataBindMvc('listaJogos.do', {
-            id : 0,
-            qtd : 10,
-            pagina: _pagina,
-            busca: ""
-        }, this._listaJogoOnSuccess);
+        _busca = false;
+        var id = null;
+        var busca = "";
+
+        switch (value.data) {
+            case 'meusJogos':
+                id = $('#idUser').text();
+                break;
+            default:
+                break;
+        }
+
+        if(id != null){
+            this.dataBindMvc('listaJogos.do', {
+                id : id,
+                qtd : 10,
+                pagina: _pagina,
+                busca: busca
+            }, this._listaJogoOnSuccess);
+            inputText('txtBuscarJogo','Digite o nome do Jogo');
+        }
     },
 
     _listaTituloJogoOnSuccess: function(value){

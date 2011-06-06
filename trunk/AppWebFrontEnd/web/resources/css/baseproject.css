@@ -137,3 +137,15 @@ ul#notificacao li {
 #nav-itens{
     
 }
+
+/* box jogos - inicio*/
+
+ul#listaJogos li#campoBusca {
+    margin-bottom: 20px;
+    margin-left: -2px;
+}
+
+ul#listaJogos input#txtBuscarJogo {
+    width: 450px;
+    color: #cccccc;
+}

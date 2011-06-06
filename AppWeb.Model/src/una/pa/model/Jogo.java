@@ -9,7 +9,8 @@ package una.pa.model;
  * @author Felipe
  */
 public class Jogo extends TituloJogo{
-        
+
+    protected int total;
     protected int id_jogo;
     protected int id_console;
     protected String imagem;
@@ -18,6 +19,14 @@ public class Jogo extends TituloJogo{
     private int proprietario;
     private int interessado;
     private int oferta;
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
 
     public int getInteressado() {
         return interessado;

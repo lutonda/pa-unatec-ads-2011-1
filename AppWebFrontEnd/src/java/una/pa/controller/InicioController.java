@@ -162,4 +162,14 @@ public class InicioController extends MultiActionController {
         }
         return mav;
     }
+     public ModelAndView perfil(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mav = new ModelAndView("site/inicio/perfil");
+        try {
+
+        } catch (Exception e) {
+            return null;
+        }
+        return mav;
+    }
 }

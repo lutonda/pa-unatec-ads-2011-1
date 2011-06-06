@@ -22,21 +22,11 @@
                     <%@ include file="/inc/inc_navegacao.jsp" %>
                 </div>
                 <div id="main">
-                    <div id="usuarios"class="box-df">
-                        <ul style="margin-left: 15px;">
-                            <li style="margin-bottom: 20px; margin-left: -2px;"><input type="text" name="txtMsgNotifica"></input><input type="submit" value="Buscar" name="btnSendNotica"></input></li>
-                            <c:forEach items="${jogos}" var="Jogo" varStatus="count" >
-                                <c:set var="estiloLinha" value="margin-right: 25px;"/>
-                                <c:if test="${((count.index+1)%5==0)}">
-                                    <c:set var="estiloLinha" value=""/>
-                                </c:if>
-                                <li style="float: left; height: 130px; ${estiloLinha}"><c:if test="${Jogo.imagem == null}"><img width="80px" src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" alt=""/></c:if>
-                                    <c:if test="${Jogo.imagem != null}"><a title="${Jogo.titulo_jogo}" href="/AppWebFrontEnd/site/jogo/detalhesjogo.html?id=${Jogo.id_jogo}"><img width="80px" src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" alt=""/></a></c:if></li>
-                                </c:forEach>
-                            <div class="cb"></div>
-
+                    <div class="box-df">
+                        <ul id="listaJogos" style="margin-left: 15px; height: 310px;">
+                            <li id="campoBusca"><input type="text" id="txtBuscarJogo" ></input><input type="submit" value="Buscar" id="btnBuscar"></input></li>
                         </ul>
-                        <span style="float: right; margin-top: 0"><< anterior | próxima >></span>
+                        <span style="float: right; margin-top: 0"><< <a id="ant" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="prox">próxima</a> >></span>
                     </div>
                     <div class="box-df">
                         <ul id="notificacao">
@@ -55,6 +45,9 @@
         </div>
         <%@ include file="/inc/scripts.jsp" %>
         <!-- scripts de escopo local -->
+
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaJogos.js"></script>
+
         <%@ include file="/inc/metrics.jsp" %>
     </body>
 </html>

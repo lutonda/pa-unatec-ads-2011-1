@@ -9,7 +9,7 @@
         ${DadosIniciais.pontos}<br/><a href="#" title="Replicas Pendentes">Avaliações (${DadosIniciais.replica_pendente})</a>
     </div>
     <ul id="nav-user">
-        <li><b>${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</b></li>
+        <li><b>${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</b><span style="display: none;" id="idUser">${DadosIniciais.id_usuario}</span> </li>
         <li><a href="#">Editar Meus Dados</a></li>
     </ul>
     <div class="cb"></div>

@@ -18,8 +18,12 @@ public class JogoService {
     public static List<Jogo> listar() {
         return JogoDal.listaDal();
     }
-    public static List<Jogo> listar(int pId_usuario) {
-        return JogoDal.listaDal(pId_usuario);
+    public static List<Jogo> listar(int pId_usuario, int quantidePorPagina, int pagina) {
+        return JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina);
+    }
+
+    public static List<Jogo> listar(int pId_usuario, int quantidePorPagina, int pagina, String buscar) {
+        return JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina, buscar);
     }
 
     public static Jogo unico(int id) {

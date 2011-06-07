@@ -20,21 +20,15 @@ public class EnderecoDao {
     public static Endereco listarEndereco(int _id){
         String sql = "select endereco.logradouro, " +
                      " endereco.cep, " +
-                     " endereco.numero, " +
-                     " endereco.complemento, " +
-                     " bairro.ds_bairro, " +
-                     " cidade.ds_cidade, " +
-                     " estado.ds_estado " +
+                     "  endereco.numero," +
+                     "  endereco.complemento, " +
+                     " ds_bairro,  " +
+                     " ds_cidade, " +
+                     " ds_estado  " +
                      " from usuario, " +
-                     " endereco, " +
-                     " bairro, " +
-                     " cidade, " +
-                     " estado " +
-                     " where usuario.id_endereco = endereco.id_endereco " +
-                     " and endereco.id_bairro	= bairro.id_bairro " +
-                     " and bairro.id_cidade	= cidade.id_cidade " +
-                     " and cidade.id_estado	= estado.id_estado " +
-                     " and usuario.id_usuario = ?";
+                     " endereco " +
+                     " where usuario.id_usuario = endereco.id_usuario" +
+                     " and usuario.id_usuario = ?;" ;
         Object[] vetor = {_id};
         Endereco o = new Endereco();
 

@@ -27,6 +27,9 @@ public class UsuarioService {
     public static DadosIniciais inicioPerfil(){
         return UsuarioDao.inicioPerfil("magno");
     }
+    public static DadosIniciais inicioPerfil(int _id){
+        return UsuarioDao.inicioPerfil(_id);
+    }
     public static int verificaEmail(String _email){
         return UsuarioDao.validaEmail(_email);
     }

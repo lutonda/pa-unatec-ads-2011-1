@@ -30,7 +30,7 @@
                     </div>
                     <div class="box-df">
                         <ul id="notificacao">
-                            <li><input type="text" name="txtMsgNotifica"></input><input type="submit" name="btnSendNotica"></input>  </li>
+                            <li><input type="text" name="txtMsgNotifica" size="90"></input><input type="submit" name="btnSendNotica"></input>  </li>
                             <c:forEach items="${notificacoes}" var="Notificacoes" varStatus="count" >
                                 <li><a href="#">${Notificacoes.nm_nome}</a> <i>${Notificacoes.descricao}</i> ${Notificacoes.dt_notificacoes}</li>
                             </c:forEach>

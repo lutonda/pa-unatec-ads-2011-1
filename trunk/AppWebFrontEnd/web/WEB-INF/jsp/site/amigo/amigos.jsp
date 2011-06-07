@@ -29,9 +29,8 @@
                                 <div style="float: right;">
                                     Aceitar<br/>Não agora
                                 </div>
-                                <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>
-                                <ul style="float: left; width: 392px;">
-                                    <li style="font-weight: bold; margin-bottom: 5px;">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</li>
+                                <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>                                <ul style="float: left; width: 392px;">
+                                    <li style="font-weight: bold; margin-bottom: 5px;"><a href="perfil.html?id=${AmigoUsuario.id_usuario}" title="Perfil"></a> ${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome}(${AmigoUsuario.pontos})</li>
                                     <li>${AmigoUsuario.qtd_jogo} Jogos</li>
                                     <li>${AmigoUsuario.qtd_desejo} Desejados</li><br/>
                                 </ul>

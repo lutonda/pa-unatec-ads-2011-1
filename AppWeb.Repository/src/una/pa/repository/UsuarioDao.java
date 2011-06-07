@@ -57,7 +57,7 @@ public class UsuarioDao {
                     o.setSn_ativo(false);
                 }
                 o.setDescricao_usuario(rs.getString("descricao_usuario"));
-                o.setSexo((rs.getString("sexo") != null)? rs.getString("sexo").charAt(0): ' ');
+                o.setSexo((rs.getString("sexo") != null) ? rs.getString("sexo").charAt(0) : ' ');
                 if (rs.getString("pref_em_maos").equals("1")) {
                     o.setSn_ativo(true);
                 } else {
@@ -116,51 +116,50 @@ public class UsuarioDao {
             return null;
         }
     }
-    public static List<Usuario> jogoUsuario (int _id, int _cod){
-        
+
+    public static List<Usuario> jogoUsuario(int _id, int _cod) {
+
         List<Usuario> objct = new ArrayList<Usuario>();
 
-        String sql = " SELECT	ID_USUARIO, NM_USUARIO, " +
-                     " NM_SOBRENOME, " +
-                     " STATUS, " +
-                     " ID " +
-                     " FROM( " +
-                     "      SELECT USUARIO.ID_USUARIO,	" +
-                     "        USUARIO.NM_USUARIO, " +
-		     "		USUARIO.NM_SOBRENOME, " +
-		     "  	'Proprietario' status, " +
-                     "          1 ID " +
-                     " FROM JOGO_USUARIO, USUARIO " +
-                     " where id_jogo = ? " +
-                     " AND JOGO_USUARIO.ID_USUARIO = USUARIO.ID_USUARIO " +
+        String sql = " SELECT	ID_USUARIO, NM_USUARIO, "
+                + " NM_SOBRENOME, "
+                + " STATUS, "
+                + " ID "
+                + " FROM( "
+                + "      SELECT USUARIO.ID_USUARIO,	"
+                + "        USUARIO.NM_USUARIO, "
+                + "		USUARIO.NM_SOBRENOME, "
+                + "  	'Proprietario' status, "
+                + "          1 ID "
+                + " FROM JOGO_USUARIO, USUARIO "
+                + " where id_jogo = ? "
+                + " AND JOGO_USUARIO.ID_USUARIO = USUARIO.ID_USUARIO "
+                + " UNION ALL "
+                + " SELECT USUARIO.ID_USUARIO, "
+                + " USUARIO.NM_USUARIO, "
+                + "	USUARIO.NM_SOBRENOME, "
+                + "		'Interessado' status, "
+                + "   	2 ID "
+                + " FROM	JOGO_DESEJADO, USUARIO "
+                + " WHERE ID_JOGO = ? "
+                + "	AND JOGO_DESEJADO.ID_USUARIO = USUARIO.ID_USUARIO "
+                + " UNION ALL "
+                + " SELECT	USUARIO.ID_USUARIO, USUARIO.NM_USUARIO, "
+                + "		USUARIO.NM_SOBRENOME, "
+                + "   	'Oferta' STATUS, "
+                + "		3 ID "
+                + " FROM JOGO_USUARIO, USUARIO "
+                + " WHERE JOGO_USUARIO.ID_USUARIO = USUARIO.ID_USUARIO"
+                + " AND NIVEL_INTERESSE = 0 "
+                + " AND ID_JOGO = ? "
+                + " )A "
+                + " WHERE ID  = case when ? = 0 then ID else ? end ";
 
-                    " UNION ALL " +
-
-                    " SELECT USUARIO.ID_USUARIO, " +
-                    " USUARIO.NM_USUARIO, " +
-                    "	USUARIO.NM_SOBRENOME, " +
-                    "		'Interessado' status, " +
-		    "   	2 ID " +
-                    " FROM	JOGO_DESEJADO, USUARIO " +
-                    " WHERE ID_JOGO = ? " +
-                    "	AND JOGO_DESEJADO.ID_USUARIO = USUARIO.ID_USUARIO " +
-                    " UNION ALL " +
-                    " SELECT	USUARIO.ID_USUARIO, USUARIO.NM_USUARIO, " +
-                    "		USUARIO.NM_SOBRENOME, " +
-                    "   	'Oferta' STATUS, " +
-                    "		3 ID " +
-                    " FROM JOGO_USUARIO, USUARIO " +
-                    " WHERE JOGO_USUARIO.ID_USUARIO = USUARIO.ID_USUARIO" +
-                    " AND NIVEL_INTERESSE = 0 " +
-                    " AND ID_JOGO = ? " +
-                    " )A " +
-                    " WHERE ID  = case when ? = 0 then ID else ? end " ;
-
-        Object[] vetor = {_id, _id,_id, _cod, _cod};
-        try{
+        Object[] vetor = {_id, _id, _id, _cod, _cod};
+        try {
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql, vetor);
-            while(rs.next()){
+            while (rs.next()) {
                 Usuario o = new Usuario();
                 o.setId_usuario(Integer.parseInt(rs.getString("id_usuario")));
                 o.setNm_usuario(rs.getString("nm_usuario"));
@@ -170,11 +169,20 @@ public class UsuarioDao {
             }
             return objct;
 
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
+
     public static DadosIniciais inicioPerfil(String username) {
+        return inicioPerfil(username, 0);
+    }
+
+    public static DadosIniciais inicioPerfil(int _idUsuario) {
+        return inicioPerfil(null, _idUsuario);
+    }
+
+    public static DadosIniciais inicioPerfil(String username, int _idUsuario) {
 
         String sql = "select u.id_usuario "
                 + ", u.nm_usuario "
@@ -195,10 +203,14 @@ public class UsuarioDao {
                 + ", isnull((select count(*) from jogo_desejado jd where jd.id_usuario = u.id_usuario),0) as desejo "
                 + ", isnull((select count(*) from avaliacao_usuario au left join replica_avaliacao ra on au.id_avaliacao_usuario = ra.id_avaliacao_usuario where au.id_usuario = u.id_usuario and ra.id_replica is null),0) as replica_pendente "
                 + ", isnull((select count(id_usuario) from amigo_usuario where id_usuario_amigo = u.id_usuario and sn_aceite = 0 and ignorado = 0),0) as amigos_pendentes "
-                + " from usuario u "
-                + "where u.usuario = ?";
+                + " from usuario u ";
 
-        Object[] vetor = {username};
+        sql += (username != null) ? "where u.usuario = ?" : "";
+        sql += (_idUsuario != 0) ? "where u.id_usuario = ?" : "";
+
+        // + "where u.usuario = ?";
+
+        Object[] vetor = {((username != null) ? username : _idUsuario)};
 
         try {
             Connection c = Data.openConnection();
@@ -228,26 +240,26 @@ public class UsuarioDao {
         }
     }
 
-    public static int validaEmail(String _email){
+    public static int validaEmail(String _email) {
         String sql = "select id_usuario from usuario where email like ?";
         Object[] vetor = {_email};
 
-        try{
+        try {
             Connection c = Data.openConnection();
-            ResultSet rs = Data.executeQuery(c, sql,vetor);
+            ResultSet rs = Data.executeQuery(c, sql, vetor);
 
-            if(rs.next()){
+            if (rs.next()) {
                 return Integer.parseInt(rs.getString("id_usuario"));
-            }else{
+            } else {
                 return -1;
             }
 
-        }catch(Exception e){
+        } catch (Exception e) {
             return -1;
         }
     }
 
-    public static boolean updatePasso1(Usuario obj){
+    public static boolean updatePasso1(Usuario obj) {
         String sql = "UPDATE USUARIO SET "
                 + "NM_USUARIO = ?, "
                 + "NM_SOBRENOME = ?, "
@@ -258,20 +270,20 @@ public class UsuarioDao {
                 + "EMAIL_PARCEIRO = ?, "
                 + "ACEITE_ACORDO = ? "
                 + " WHERE ID_USUARIO = ?";
-        Object[] vetor = {obj.getNm_usuario(), obj.getNm_sobrenome(), obj.getUsuario(), obj.getSenha(), 
-                            obj.isEmail_notificacoes(), obj.isEmail_parceiro(), obj.isAceite_acordo(), obj.getId_usuario()};
+        Object[] vetor = {obj.getNm_usuario(), obj.getNm_sobrenome(), obj.getUsuario(), obj.getSenha(),
+            obj.isEmail_notificacoes(), obj.isEmail_parceiro(), obj.isAceite_acordo(), obj.getId_usuario()};
 
-        try{
+        try {
             Connection c = Data.openConnection();
-            Data.executeUpdate(c, sql,vetor);
+            Data.executeUpdate(c, sql, vetor);
             return true;
 
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-    
-        public static boolean updatePasso2(Usuario objU, Endereco objE){
+
+    public static boolean updatePasso2(Usuario objU, Endereco objE) {
         String sql = "update from usuario"
                 + "set DT_NASCIMENTO = getdate(),"
                 + "	SEXO = ?,"
@@ -279,28 +291,25 @@ public class UsuarioDao {
                 + "	EMAIL_PARCEIRO = ?,"
                 + "	EMAIL_NOTIFICACOES = ?"
                 + "     WHERE ID_USUARIO = ? ";
-        
+
         Object[] vetor = {objU.getSexo(), objU.isAceite_acordo(), objU.isEmail_parceiro(),
-                            objU.isPref_correios(), objU.isEmail_notificacoes(), objU.getId_usuario()};
+            objU.isPref_correios(), objU.isEmail_notificacoes(), objU.getId_usuario()};
 
         String sql2 = "insert into endereco (id_usuario,tp_logradouro, cep, "
                 + "logradouro, numero, complemento, "
                 + "ds_bairro, ds_cidade, ds_estado)"
                 + "values (?,?,?,?,?,?,?,?,?)";
-        
+
         Object[] vetor2 = {objU.getId_usuario(), objE.getTp_logradouro(), objE.getCep(), objE.getLogradouro(), objE.getNumero(),
-                            objE.getComplemento(), objE.getDs_bairro(), objE.getDs_cidade(), objE.getDs_estado()};
-        try{
+            objE.getComplemento(), objE.getDs_bairro(), objE.getDs_cidade(), objE.getDs_estado()};
+        try {
             Connection c = Data.openConnection();
-            Data.executeUpdate(c, sql,vetor);
-            Data.executeUpdate(c, sql2,vetor2);
+            Data.executeUpdate(c, sql, vetor);
+            Data.executeUpdate(c, sql2, vetor2);
             return true;
 
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-
-
-    
 }

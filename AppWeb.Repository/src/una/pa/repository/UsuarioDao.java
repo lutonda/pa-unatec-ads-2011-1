@@ -187,6 +187,7 @@ public class UsuarioDao {
         String sql = "select u.id_usuario "
                 + ", u.nm_usuario "
                 + ", u.nm_sobrenome "
+                + ", u.descricao_usuario"
                 + ", u.imagem "
                 + ", isnull((select avg(pontos) from avaliacao_usuario where id_usuario = u.id_usuario),0) as pontos "
                 + ", isnull((select count(*) from (select * from troca t inner join jogo_usuario juo on t.id_jogo_origem = juo.id_jogo_usuario union "
@@ -221,6 +222,8 @@ public class UsuarioDao {
                 o.setId_usuario(Integer.parseInt(rs.getString("id_usuario")));
                 o.setNm_usuario(rs.getString("nm_usuario"));
                 o.setNm_sobrenome(rs.getString("nm_sobrenome"));
+                o.setDescricao_usuario(rs.getString("descricao_usuario"));
+                o.setImagem(rs.getString("imagem"));
                 o.setPontos(Integer.parseInt(rs.getString("pontos")));
                 o.setTrocas(Integer.parseInt(rs.getString("trocas")));
                 o.setTrocas_pendentes(Integer.parseInt(rs.getString("trocas_pendentes")));

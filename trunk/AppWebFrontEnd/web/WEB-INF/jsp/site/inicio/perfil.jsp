@@ -22,35 +22,41 @@
                 <div id="sidebarleft">
                     <div class="box-nav">
                         <c:if test="${DadosIniciais.imagem == null}">
-                            <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 140px; height: 195px;" alt=""/>
+                            <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 140px; height: 185px;" alt=""/>
                         </c:if>
                         <c:if test="${DadosIniciais.imagem != null}">
                             <img src="/AppWebFrontEnd/resources/perfil/${DadosIniciais.imagem}" alt=""/>
                         </c:if>
                         <ul id="nav-user">
-                            <li><div style="float: left; width: 40px; margin-bottom: 5px;"><div class="box-itemcount">${DadosIniciais.trocas}</div></div><div style="padding-top: 10px;"><a href="#">Trocas Realizadas</a></div><div class="cb"></div></li>
-                            <li><div style="float: left; width: 40px; margin-bottom: 5px;"><div class="box-itemcount">${DadosIniciais.oferta}</div></div><div style="padding-top: 10px;">Ofertas</div></li><div class="cb"></div>
-                            <li><div style="float: left; width: 40px; margin-bottom: 5px;"><div class="box-itemcount">${DadosIniciais.desejo}</div></div><div style="padding-top: 10px;">Desejos</div></li><div class="cb"></div>
-                            <li><div style="float: left; width: 40px; margin-bottom: 5px;"><div class="box-itemcount">${DadosIniciais.pontos}</div></div><div style="padding-top: 10px;">Avaliações</div></li><div class="cb"></div>
+                            <li><div style="float: left; width: 40px; margin-bottom: 6px;"><div class="box-itemcount">${DadosIniciais.trocas}</div></div><div style="padding-top: 10px; width: 150px;"><a href="#">Trocas Realizadas</a></div><div class="cb"></div></li>
+                            <li><div style="float: left; width: 40px; margin-bottom: 5px;"><div class="box-itemcount">${DadosIniciais.oferta}</div></div><div style="padding-top: 10px;"><a href="#">Ofertas</a></div></li><div class="cb"></div>
+                            <li><div style="float: left; width: 40px; margin-bottom: 5px;"><div class="box-itemcount">${DadosIniciais.desejo}</div></div><div style="padding-top: 10px;"><a href="#">Desejos</a></div></li><div class="cb"></div>
+                            <li><div style="float: left; width: 40px; margin-bottom: 5px;"><div class="box-itemcount">${DadosIniciais.pontos}</div></div><div style="padding-top: 10px;"><a href="#">Avaliações</a></div></li><div class="cb"></div>
                         </ul>
                         <div class="cb"></div>
                     </div>
-                    <div class="box-nav">descriçao usuario
-                    </div>
+                    <ul>
+                        <li>Descrição Usuario</li>
+
+                        <div class="box-nav">${DadosIniciais.descricao_usuario}</div>
+                    </ul>
                     <div class="box-nav box-nav-final">
+                        <ul>
+                        <li>TAGS's</li><br/>
                         <c:forEach items="${tags}" var="Tags" varStatus="count" >
-                            <c:out value="${Tags.ds_tag}${count.index}"/><br/>
+                            <a href="#"> <c:out value="${Tags.ds_tag}"/> </a> &nbsp;&nbsp;
                         </c:forEach>
+                        </ul>
                     </div>
                 </div>
                 <div id="main">
                     <div id="usuarios"class="box-df">
                         <b><h1>${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</h1 ></b><br/>
-                           ${Endereco.ds_cidade} / ${Endereco.ds_estado}
+                        ${Endereco.ds_cidade} / ${Endereco.ds_estado}
                     </div>
                     <div class="box-df">
                         <ul id="notificacao">
-                            <li><input type="text" name="txtMsgNotifica"></input><input type="submit" name="btnSendNotica"></input>  </li>
+                            <li><input type="text" name="txtMsgNotifica" size="80" value="Faça um Comentário"></input><input type="submit" name="btnSendNotica"></input>  </li>
                             <c:forEach items="${notificacoes}" var="Notificacoes" varStatus="count" >
                                 <li><a href="#">${Notificacoes.nm_nome}</a> <i>${Notificacoes.descricao}</i> ${Notificacoes.dt_notificacoes}</li>
                             </c:forEach>
@@ -65,7 +71,7 @@
                                 </c:if>
                                 <li style="float: left; height: 130px; ${estiloLinha}"><c:if test="${Jogo.imagem == null}"><img width="80px" src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" alt=""/></c:if>
                                     <c:if test="${Jogo.imagem != null}"><a title="${Jogo.titulo_jogo}" href="/AppWebFrontEnd/site/jogo/detalhesjogo.html?id=${Jogo.id_jogo}"><img width="80px" src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" alt=""/></a></c:if></li>
-                             </c:forEach>
+                                </c:forEach>
                             <div class="cb"></div>
 
                         </ul>

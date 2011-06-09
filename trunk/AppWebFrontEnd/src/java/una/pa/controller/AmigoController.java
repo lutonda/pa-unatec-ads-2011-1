@@ -24,7 +24,7 @@ public class AmigoController extends MultiActionController {
         ModelAndView mav = new ModelAndView("site/amigo/amigos");
         
         try{
-
+            
             DadosIniciais obj = UsuarioService.inicioPerfil();
             List<Tags> objTags = TagsService.listarTags(obj.getId_usuario());
             List<AmigoUsuario> objListAmigos = AmigoUsuarioService.listarAmigos(obj.getId_usuario());

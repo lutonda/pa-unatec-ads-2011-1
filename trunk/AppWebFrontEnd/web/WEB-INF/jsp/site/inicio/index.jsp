@@ -44,7 +44,7 @@
             </div>
         </div>
         <%@ include file="/inc/scripts.jsp" %>
-        <!-- scripts de escopo local -->
+        <!-- scripts de escopo local -->nm,./
 
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaJogos.js"></script>
 

@@ -17,7 +17,7 @@ public class InicioController extends MultiActionController {
             HttpServletResponse response) throws Exception {
         ModelAndView mav = new ModelAndView("site/inicio/index");
         try {
-
+            
             DadosIniciais obj = UsuarioService.inicioPerfil();
             List<Tags> objTags = TagsService.listarTags(obj.getId_usuario());
             List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(obj.getId_usuario());

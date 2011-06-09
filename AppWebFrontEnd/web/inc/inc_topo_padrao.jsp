@@ -1,4 +1,4 @@
-<div id="sidebarleft">logo</div>
+<div id="sidebarleft"><span style="font-size: 18px; font-weight: bold;"><br/><br/>TROCA DE JOGOS</span><br/>Rede de troca de Jogo</div>
 <% //if ((String) request.getSession().getAttribute("usuario") != null) {%>
 <div id="main">
     <div style="height: 95px;">

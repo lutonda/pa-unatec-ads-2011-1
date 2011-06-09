@@ -143,19 +143,10 @@ public class UsuarioDao {
                 + " FROM	JOGO_DESEJADO, USUARIO "
                 + " WHERE ID_JOGO = ? "
                 + "	AND JOGO_DESEJADO.ID_USUARIO = USUARIO.ID_USUARIO "
-                + " UNION ALL "
-                + " SELECT	USUARIO.ID_USUARIO, USUARIO.NM_USUARIO, "
-                + "		USUARIO.NM_SOBRENOME, "
-                + "   	'Oferta' STATUS, "
-                + "		3 ID "
-                + " FROM JOGO_USUARIO, USUARIO "
-                + " WHERE JOGO_USUARIO.ID_USUARIO = USUARIO.ID_USUARIO"
-                + " AND NIVEL_INTERESSE = 0 "
-                + " AND ID_JOGO = ? "
                 + " )A "
                 + " WHERE ID  = case when ? = 0 then ID else ? end ";
 
-        Object[] vetor = {_id, _id, _id, _cod, _cod};
+        Object[] vetor = {_id, _id, _cod, _cod};
         try {
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql, vetor);

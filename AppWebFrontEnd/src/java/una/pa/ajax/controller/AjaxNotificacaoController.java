@@ -20,6 +20,7 @@ public class AjaxNotificacaoController {
             @RequestParam int idUsuario, @RequestParam int qtd, @RequestParam int pagina) {
 
         String Itens = "";
+        int vTotal = 0;
 
         List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(idUsuario);
 
@@ -27,9 +28,10 @@ public class AjaxNotificacaoController {
             Notificacoes notificacoes = it.next();
 
             Itens += "<li><a href=\"#\">"+ notificacoes.getNm_nome() + "</a> <i>" + notificacoes.getDescricao() + "</i> " + notificacoes.getDt_notificacoes() + "</li>";
+            vTotal = notificacoes.getTotal();
         }
 
-        Itens += "|0";
+        Itens += "|"+ vTotal;
  
         return Itens;
     }

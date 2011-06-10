@@ -102,12 +102,37 @@ public class NotificacoesDao {
 
         List<Notificacoes> objct = new ArrayList<Notificacoes>();
 
-        String sql = "select * from notificacoes n inner join usuario u on u.id_usuario = n.id_usuario where n.id_usuario in (select * from ( "
-                + "select id_usuario_amigo from amigo_usuario where id_usuario = ? and sn_aceite = 1 and ignorado = 0 union "
-                + "select id_usuario as id_usuario_amigo from amigo_usuario where id_usuario_amigo = ? and sn_aceite = 1 and ignorado = 0 "
-                + ") tabela) or n.id_usuario = ? order by dt_notificacao desc";
+        String sql = "select	n.ID_USUARIO,ID_NOTIFICACAO, DESCRICAO,BROADCAST, DT_NOTIFICACAO,u.ID_USUARIO,NM_USUARIO ,NM_SOBRENOME,EMAIL,"
+                + " DT_NASCIMENTO,DT_CADASTRO,SEHHA, SN_ATIVO, TEL_USUARIO,USUARIO,EMAIL_NOTIFICACOES,EMAIL_PARCEIRO,ACEITE_ACORDO,"
+                + " DESCRICAO_USUARIO,SEXO, PREF_EM_MAOS, PREF_CORREIOS, PREF_TRANSP, IMAGEM,"
+                + " (select count(*) "
+                + " from notificacoes "
+                + " where notificacoes.id_usuario in(select id_usuario_amigo "
+                + " from amigo_usuario "
+                + " where id_usuario = ? and sn_aceite = 1 and ignorado = 0 "
+                + " union "
+                + " select id_usuario as id_usuario_amigo "
+                + " from amigo_usuario"
+                + " where id_usuario_amigo = ?"
+                + " and sn_aceite = 1"
+                + " and ignorado = 0 )"
+                + " or id_usuario = ? )TOTAL"
+                + " from notificacoes n inner join usuario u on u.id_usuario = n.id_usuario"
+                + " where n.id_usuario in (select *"
+                + " from(select id_usuario_amigo"
+                + " from amigo_usuario"
+                + " where id_usuario = ? and sn_aceite = 1 and ignorado = 0"
+                + " union"
+                + " select id_usuario as id_usuario_amigo"
+                + " from amigo_usuario"
+                + " where id_usuario_amigo = ?"
+                + " and sn_aceite = 1"
+                + "  and ignorado = 0"
+                + " ) tabela"
+                + " )or n.id_usuario = ?"
+                + " order by dt_notificacao desc";
 
-        Object[] vetor = {pId_usuario, pId_usuario, pId_usuario};
+        Object[] vetor = {pId_usuario, pId_usuario, pId_usuario,pId_usuario, pId_usuario, pId_usuario};
 
         try {
             Connection c = Data.openConnection();
@@ -122,6 +147,7 @@ public class NotificacoesDao {
                 o.setBroadcast(rs.getString("broadcast"));
                 String data = ConvData.parseDataBra(rs.getString("dt_notificacao"));
                 o.setDt_notificacoes(data);
+                o.setTotal(Integer.parseInt(rs.getString("total")));
                 objct.add(o);
             }
             rs.close();

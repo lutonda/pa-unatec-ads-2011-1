@@ -15,3 +15,27 @@ function getParameter(name)
     else
         return results[1];
 }
+function inputText(id, texto){
+
+    $('#' + id).val(texto);
+    $('#' + id).attr("style", "color: #cccccc");
+
+    $('#' + id).keypress(function() {
+        $(this).attr("style", "color: #333333");
+    });
+
+    $('#' + id).focus(function() {
+        if($(this).val() == texto)
+            $(this).val("");
+    });
+
+    $('#' + id).blur(function() {
+        if($(this).val() == '')
+            $(this).val(texto);
+
+        $(this).attr("style", "color: #cccccc");
+
+        if($(this).val() != texto)
+            $(this).attr("style", "color: #333333");
+    });
+}

@@ -31,9 +31,6 @@
                     <div class="box-df">
                         <ul id="notificacao">
                             <li><input type="text" name="txtMsgNotifica" size="90"></input><input type="submit" name="btnSendNotica"></input>  </li>
-                            <c:forEach items="${notificacoes}" var="Notificacoes" varStatus="count" >
-                                <li><a href="#">${Notificacoes.nm_nome}</a> <i>${Notificacoes.descricao}</i> ${Notificacoes.dt_notificacoes}</li>
-                            </c:forEach>
                         </ul>
                     </div>
                 </div>
@@ -44,9 +41,10 @@
             </div>
         </div>
         <%@ include file="/inc/scripts.jsp" %>
-        <!-- scripts de escopo local -->nm,./
+        <!-- scripts de escopo local -->
 
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaJogos.js"></script>
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/notificacoes.js"></script>
 
         <%@ include file="/inc/metrics.jsp" %>
     </body>

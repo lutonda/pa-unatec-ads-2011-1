@@ -24,7 +24,7 @@ Notificacoes.prototype = {
 
     this.dataBindMvc('listaNotificacao.do', {
             idUsuario : $('#idUser').text(),
-            qtd : 10,
+            qtd : 5,
             pagina: _pagina
         }, this._listaNotificacaoOnSuccess);
 
@@ -33,17 +33,14 @@ Notificacoes.prototype = {
     _listaNotificacaoOnSuccess: function(value){
 
         
-        //$('#notificacao_usuario li:not(:first)').remove();
+        $('#notificacao li:not(:first)').remove();
 
         var dados = value.split("|");
         _totalItens = dados[1];
-
-
        $('#notificacao').append(dados[0]);
-
         console.log(dados);
 
-        /*
+        
         var menos = _pagina - 1;
         var mais = _pagina + 1;
 
@@ -58,7 +55,7 @@ Notificacoes.prototype = {
             $('#ant').bind('click', menos, $.createDelegate(this,  this._paginacaoOnClick));
         else
             $('#ant').unbind('click');
-            */
+            
     },
 
     _paginacaoOnClick: function(value){
@@ -67,8 +64,8 @@ Notificacoes.prototype = {
         this.dataBindMvc('listaJogos.do', {
             id : (_busca)? 0:$('#idUser').text(), // ($('#txtBuscarJogo').val() != "")? 0:$('#idUser').text(),
             qtd : 10,
-            pagina: _pagina,
-            busca: (_busca)? $('#txtBuscarJogo').val():""
+            pagina: _pagina
+           // busca: (_busca)? $('#txtBuscarJogo').val():""
         }, this._listaJogoOnSuccess);
     },
 

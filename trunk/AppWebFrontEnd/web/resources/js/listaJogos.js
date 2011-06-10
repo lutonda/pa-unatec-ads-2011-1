@@ -3,30 +3,7 @@ var _totalItens = 0;
 var _totalPg = 0;
 var _busca = false;
 
-function inputText(id, texto){
 
-    $('#' + id).val(texto);
-    $('#' + id).attr("style", "color: #cccccc");
-
-    $('#' + id).keypress(function() {
-        $(this).attr("style", "color: #333333");
-    });
-
-    $('#' + id).focus(function() {
-        if($(this).val() == texto)
-            $(this).val("");
-    });
-
-    $('#' + id).blur(function() {
-        if($(this).val() == '')
-            $(this).val(texto);
-
-        $(this).attr("style", "color: #cccccc");
-
-        if($(this).val() != texto)
-            $(this).attr("style", "color: #333333");
-    });
-}
 
 Jogo = function(){
     this._data = null;
@@ -115,6 +92,7 @@ Jogo.prototype = {
         var dados = value.split("|");
         _totalItens = dados[1];
         $('#listaJogos').append(dados[0]);
+        console.log(dados);
         
         var menos = _pagina - 1;
         var mais = _pagina + 1;

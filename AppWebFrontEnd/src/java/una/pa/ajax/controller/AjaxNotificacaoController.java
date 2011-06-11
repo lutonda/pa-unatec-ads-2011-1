@@ -22,17 +22,19 @@ public class AjaxNotificacaoController {
         String Itens = "";
         int vTotal = 0;
 
-        List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(idUsuario);
+        List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(idUsuario,qtd,pagina);
 
-        for (Iterator<Notificacoes> it = objNot.iterator(); it.hasNext();) {
-            Notificacoes notificacoes = it.next();
-
-            Itens += "<li><a href=\"#\">"+ notificacoes.getNm_nome() + "</a> <i>" + notificacoes.getDescricao() + "</i> " + notificacoes.getDt_notificacoes() + "</li>";
-            vTotal = notificacoes.getTotal();
+        if (!objNot.isEmpty()) {
+            for (Iterator<Notificacoes> it = objNot.iterator(); it.hasNext();) {
+                Notificacoes notificacoes = it.next();
+                
+                Itens += "<li><a href=\"#\">" + notificacoes.getNm_nome() + "</a> <i>" + notificacoes.getDescricao() + "</i> " + notificacoes.getDt_notificacoes() + "</li>";
+                vTotal = notificacoes.getTotal();
+            }
+            Itens += "<div class=\"cb\"></div>|"+vTotal;
         }
+        //Itens += "|" + vTotal;
 
-        Itens += "|"+ vTotal;
- 
         return Itens;
     }
 }

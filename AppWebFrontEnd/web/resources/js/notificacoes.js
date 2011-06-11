@@ -24,20 +24,21 @@ Notificacoes.prototype = {
 
     this.dataBindMvc('listaNotificacao.do', {
             idUsuario : $('#idUser').text(),
-            qtd : 5,
+            qtd : 10,
             pagina: _pagina
         }, this._listaNotificacaoOnSuccess);
 
+       // this.dataBindMvc('listaNotificacao.do', '', this._listaNotificacaoOnSuccess);
     },
 
     _listaNotificacaoOnSuccess: function(value){
 
         
-        $('#notificacao li:not(:first)').remove();
+       // $('#notificacao li:not(:first)').remove();
 
         var dados = value.split("|");
         _totalItens = dados[1];
-       $('#notificacao').append(dados[0]);
+        $('#notificacao').append(dados[0]);
         console.log(dados);
 
         
@@ -47,20 +48,19 @@ Notificacoes.prototype = {
         _totalPg = Math.ceil(_totalItens / 10);
 
         if (mais <= _totalPg)
-            $('#prox').bind('click', mais, $.createDelegate(this,  this._paginacaoOnClick));
+            $('#proxi').bind('click', mais, $.createDelegate(this,  this._paginacaoOnClick));
         else
-            $('#prox').unbind('click');
+            $('#proxi').unbind('click');
 
         if(menos > 0)
-            $('#ant').bind('click', menos, $.createDelegate(this,  this._paginacaoOnClick));
+            $('#ante').bind('click', menos, $.createDelegate(this,  this._paginacaoOnClick));
         else
-            $('#ant').unbind('click');
+            $('#ante').unbind('click');
             
     },
 
     _paginacaoOnClick: function(value){
         _pagina = value.data;
-
         this.dataBindMvc('listaJogos.do', {
             id : (_busca)? 0:$('#idUser').text(), // ($('#txtBuscarJogo').val() != "")? 0:$('#idUser').text(),
             qtd : 10,

@@ -20,7 +20,7 @@ public class NotificacoesService {
     public static List<Notificacoes> listarUnico(int _id){
         return NotificacoesDao.listarUnico(_id);
     }
-    public static List<Notificacoes> listarNotPerfil(int pId_usuario){
-        return NotificacoesDao.listarNotPerfil(pId_usuario);
+    public static List<Notificacoes> listarNotPerfil(int pId_usuario, int quantidePorPagina, int pagina){
+        return NotificacoesDao.listarNotPerfil(pId_usuario, quantidePorPagina, pagina);
     }
 }

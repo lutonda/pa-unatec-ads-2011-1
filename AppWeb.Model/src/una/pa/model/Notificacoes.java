@@ -17,6 +17,15 @@ public class Notificacoes {
         private String descricao;
         private String broadcast;
         private String dt_notificacoes;
+        private int total;
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
 
     public String getBroadcast() {
         return broadcast;

@@ -96,13 +96,23 @@ public class NotificacoesDao {
         }
 
     }
-
-    public static List<Notificacoes> listarNotPerfil(int pId_usuario) {
+    public static List<Notificacoes> listarNotPerfil(){
+        return listarNotPerfil(0, 0, 0);
+    }
+    public static List<Notificacoes> listarNotPerfil(int pId_usuario,int quantidePorPagina, int pagina) {
 
 
         List<Notificacoes> objct = new ArrayList<Notificacoes>();
+         int inicio = 0;
+         int fim = quantidePorPagina;
 
-        String sql = "select	n.ID_USUARIO,ID_NOTIFICACAO, DESCRICAO,BROADCAST, DT_NOTIFICACAO,u.ID_USUARIO,NM_USUARIO ,NM_SOBRENOME,EMAIL,"
+         if (pagina > 1) {
+                fim = (quantidePorPagina * pagina);
+                inicio = fim - quantidePorPagina;
+            }
+
+        String sql = "select top " + quantidePorPagina + " * from (" 
+                + "select row_number() over (order by n.ID_USUARIO) as linha, n.ID_USUARIO ID_USUARIO_NOT,ID_NOTIFICACAO, DESCRICAO,BROADCAST, DT_NOTIFICACAO,u.ID_USUARIO,NM_USUARIO ,NM_SOBRENOME,EMAIL,"
                 + " DT_NASCIMENTO,DT_CADASTRO,SEHHA, SN_ATIVO, TEL_USUARIO,USUARIO,EMAIL_NOTIFICACOES,EMAIL_PARCEIRO,ACEITE_ACORDO,"
                 + " DESCRICAO_USUARIO,SEXO, PREF_EM_MAOS, PREF_CORREIOS, PREF_TRANSP, IMAGEM,"
                 + " (select count(*) "
@@ -130,7 +140,9 @@ public class NotificacoesDao {
                 + "  and ignorado = 0"
                 + " ) tabela"
                 + " )or n.id_usuario = ?"
-                + " order by dt_notificacao desc";
+                + ") AS TABELA"
+                + " where linha > " + inicio + " and linha <= " + fim;
+
 
         Object[] vetor = {pId_usuario, pId_usuario, pId_usuario,pId_usuario, pId_usuario, pId_usuario};
 

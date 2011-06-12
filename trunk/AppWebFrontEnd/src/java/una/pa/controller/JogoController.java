@@ -34,7 +34,7 @@ public class JogoController extends MultiActionController {
 
             Jogo objct = JogoService.detalheJogo(id);
             List <Usuario> usu = UsuarioService.usuarioJogos(id, cod);
-           DadosIniciais obj = UsuarioService.inicioPerfil();
+            DadosIniciais obj = UsuarioService.inicioPerfil();
             List<Tags> objTags = TagsService.listarTags(obj.getId_usuario());
             mav.addObject("Jogo", objct);
             mav.addObject("usuarios", usu);

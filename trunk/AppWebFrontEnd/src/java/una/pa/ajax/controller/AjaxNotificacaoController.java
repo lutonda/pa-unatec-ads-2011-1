@@ -31,9 +31,8 @@ public class AjaxNotificacaoController {
                 Itens += "<li><a href=\"#\">" + notificacoes.getNm_nome() + "</a> <i>" + notificacoes.getDescricao() + "</i> " + notificacoes.getDt_notificacoes() + "</li>";
                 vTotal = notificacoes.getTotal();
             }
-            Itens += "<div class=\"cb\"></div>|"+vTotal;
+            Itens += "<div class=\"cb\"></div>|"+ vTotal;
         }
-        //Itens += "|" + vTotal;
 
         return Itens;
     }

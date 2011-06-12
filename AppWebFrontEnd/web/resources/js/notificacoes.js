@@ -29,6 +29,7 @@ Notificacoes.prototype = {
         }, this._listaNotificacaoOnSuccess);
 
        // this.dataBindMvc('listaNotificacao.do', '', this._listaNotificacaoOnSuccess);
+       inputText('txtMsgNotifica','Envie uma Notificacao para o Usuario');
     },
 
     _listaNotificacaoOnSuccess: function(value){
@@ -37,6 +38,7 @@ Notificacoes.prototype = {
        // $('#notificacao li:not(:first)').remove();
 
         var dados = value.split("|");
+       
         _totalItens = dados[1];
         $('#notificacao').append(dados[0]);
         console.log(dados);
@@ -48,25 +50,25 @@ Notificacoes.prototype = {
         _totalPg = Math.ceil(_totalItens / 10);
 
         if (mais <= _totalPg)
-            $('#proxi').bind('click', mais, $.createDelegate(this,  this._paginacaoOnClick));
+            $('#proximo').bind('click', mais, $.createDelegate(this,  this._paginacaoNotOnClick));
         else
-            $('#proxi').unbind('click');
-
+            $('#proximo').unbind('click');
+            
         if(menos > 0)
-            $('#ante').bind('click', menos, $.createDelegate(this,  this._paginacaoOnClick));
+            $('#anterior').bind('click', menos, $.createDelegate(this,  this._paginacaoNotOnClick));
+        
         else
-            $('#ante').unbind('click');
+            $('#anterior').unbind('click');
             
     },
 
-    _paginacaoOnClick: function(value){
+    _paginacaoNotOnClick: function(value){
         _pagina = value.data;
         this.dataBindMvc('listaJogos.do', {
-            id : (_busca)? 0:$('#idUser').text(), // ($('#txtBuscarJogo').val() != "")? 0:$('#idUser').text(),
+            id :$('#idUser').text(),
             qtd : 10,
             pagina: _pagina
-           // busca: (_busca)? $('#txtBuscarJogo').val():""
-        }, this._listaJogoOnSuccess);
+        }, this._listaNotificacaoOnSuccess);
     },
 
     dataBindMvc: function(dataUrl, data, handlerSuccess){

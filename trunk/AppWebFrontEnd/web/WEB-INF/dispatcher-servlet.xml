@@ -29,6 +29,7 @@
                 <prop key="site/inicio/listaJogos.do">ajaxController</prop>
                 <prop key="site/inicio/listaTituloJogo.do">ajaxTituloJogoController</prop>
                 <prop key="site/inicio/listaNotificacao.do">ajaxNotificacaoController</prop>
+                <prop key="site/jogo/listaUsuarioJogo.do">ajaxUsuarioController</prop>
             </props>
         </property>
     </bean>
@@ -51,5 +52,6 @@
     <bean name="ajaxController" class="una.pa.ajax.controller.AjaxController"/>
     <bean name="ajaxTituloJogoController" class="una.pa.ajax.controller.AjaxTituloJogoController"/>
     <bean name="ajaxNotificacaoController" class="una.pa.ajax.controller.AjaxNotificacaoController"/>
+    <bean name="ajaxUsuarioController" class="una.pa.ajax.controller.AjaxUsuarioController"/>
     
 </beans>

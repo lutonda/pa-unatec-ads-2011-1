@@ -43,7 +43,7 @@
                             <img src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" style="float: left; width: 128px; margin-right: 10px;" alt="teste"/>
                         </c:if>
                         <ul style="float: left; width: 392px;">             
-                            <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${Jogo.titulo_jogo}</li>
+                            <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${Jogo.titulo_jogo}<span id="idJogo">${Jogo.id_jogo}</span></li>
                             <li style="margin-bottom: 5px;">${Jogo.genero}</li>
                             <li style="margin-bottom: 15px;">${Jogo.tipo}</li>
                             <li>${Jogo.descricao}</li>
@@ -55,15 +55,8 @@
                     </div>
 
                     <div id="usuarios"class="box-df">
-                        <ul>
-                            <c:forEach items="${usuarios}" var="Usuario" varStatus="count" >
-                                <li style="float: left; height: 110px; width: 255px;"><img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt="teste"/>
-                                    <div>${Usuario.nm_usuario} ${Usuario.nm_sobrenome}<br/>${Usuario.status}<br/><br/>Oferta de Troca</div></li>
-                                    </c:forEach>
-                             <div class="cb"></div>
-
-                        </ul>
-                        <span style="float: right; margin-top: 0"><< anterior | próxima >></span>
+                        <ul id="listaUsuarios"></ul>
+                        <span style="float: right; margin-top: 0"><< <a id="anterior" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="proximo">próxima</a> >></span>
                     </div>    
                 </div>
                 <br class="cb"/>
@@ -74,6 +67,7 @@
         </div>
         <%@ include file="/inc/scripts.jsp" %>
         <!-- scripts de escopo local -->
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaUsuarios.js"></script>
         <%@ include file="/inc/metrics.jsp" %>
     </body>
 </html>

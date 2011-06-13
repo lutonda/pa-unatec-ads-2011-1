@@ -35,18 +35,11 @@
                         </ul>
                         <div class="cb"></div>
                     </div>
-                    <ul>
-                        <li>Descrição Usuario</li>
-
-                        <div class="box-nav">${DadosIniciais.descricao_usuario}</div>
-                    </ul>
+                    <div class="box-nav">${DadosIniciais.descricao_usuario}</div>
                     <div class="box-nav box-nav-final">
-                        <ul>
-                        <li>TAGS's</li><br/>
                         <c:forEach items="${tags}" var="Tags" varStatus="count" >
                             <a href="#"> <c:out value="${Tags.ds_tag}"/> </a> &nbsp;&nbsp;
                         </c:forEach>
-                        </ul>
                     </div>
                 </div>
                 <div id="main">

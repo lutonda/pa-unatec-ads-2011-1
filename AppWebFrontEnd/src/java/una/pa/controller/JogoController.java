@@ -33,11 +33,11 @@ public class JogoController extends MultiActionController {
             
 
             Jogo objct = JogoService.detalheJogo(id);
-            List <Usuario> usu = UsuarioService.usuarioJogos(id, cod);
+            //List <Usuario> usu = UsuarioService.usuarioJogos(id, false, 10, 1, 0);
             DadosIniciais obj = UsuarioService.inicioPerfil();
             List<Tags> objTags = TagsService.listarTags(obj.getId_usuario());
             mav.addObject("Jogo", objct);
-            mav.addObject("usuarios", usu);
+            //mav.addObject("usuarios", usu);
             mav.addObject("DadosIniciais", obj);
             mav.addObject("tags", objTags);
 

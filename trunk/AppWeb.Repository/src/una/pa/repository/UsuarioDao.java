@@ -117,36 +117,28 @@ public class UsuarioDao {
         }
     }
 
-    public static List<Usuario> jogoUsuario(int _id, int _cod) {
+    public static List<Usuario> jogoUsuario(int _id, boolean _oferta, int quantidePorPagina, int pagina, int tipo) {
 
         List<Usuario> objct = new ArrayList<Usuario>();
 
-        String sql = " SELECT	ID_USUARIO, NM_USUARIO, "
-                + " NM_SOBRENOME, "
-                + " STATUS, "
-                + " ID "
-                + " FROM( "
-                + "      SELECT USUARIO.ID_USUARIO,	"
-                + "        USUARIO.NM_USUARIO, "
-                + "		USUARIO.NM_SOBRENOME, "
-                + "  	'Proprietario' status, "
-                + "          1 ID "
-                + " FROM JOGO_USUARIO, USUARIO "
-                + " where id_jogo = ? "
-                + " AND JOGO_USUARIO.ID_USUARIO = USUARIO.ID_USUARIO "
-                + " UNION ALL "
-                + " SELECT USUARIO.ID_USUARIO, "
-                + " USUARIO.NM_USUARIO, "
-                + "	USUARIO.NM_SOBRENOME, "
-                + "		'Interessado' status, "
-                + "   	2 ID "
-                + " FROM	JOGO_DESEJADO, USUARIO "
-                + " WHERE ID_JOGO = ? "
-                + "	AND JOGO_DESEJADO.ID_USUARIO = USUARIO.ID_USUARIO "
-                + " )A "
-                + " WHERE ID  = case when ? = 0 then ID else ? end ";
 
-        Object[] vetor = {_id, _id, _cod, _cod};
+        int inicio = 0;
+        int fim = quantidePorPagina;
+
+        if (pagina > 1) {
+            fim = (quantidePorPagina * pagina);
+            inicio = fim - quantidePorPagina;
+        }
+
+        String sql = "select top " + quantidePorPagina + " *"
+                + "from (select row_number() over (order by id_usuario) as linha "
+                + ", (select count(*) from " + ((!_oferta)? "usuarios_jogo":"usuarios_jogos_ofertados") + " where id_jogo = ?) as totalregistros"
+                + ", id_usuario, nm_usuario, nm_sobrenome, status, id "
+                + "from " + ((!_oferta)? "usuarios_jogo":"usuarios_jogos_ofertados") + " where id_jogo = ?) as buscapaginada "
+                + "where linha > " + inicio + " and linha <= " + fim;
+
+
+        Object[] vetor = {_id, _id};
         try {
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql, vetor);
@@ -156,6 +148,7 @@ public class UsuarioDao {
                 o.setNm_usuario(rs.getString("nm_usuario"));
                 o.setNm_sobrenome(rs.getString("nm_sobrenome"));
                 o.setStatus(rs.getString("status"));
+                o.setTotalderegistros(Integer.parseInt(rs.getString("totalregistros")));
                 objct.add(o);
             }
             return objct;

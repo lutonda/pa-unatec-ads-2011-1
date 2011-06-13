@@ -37,8 +37,7 @@ Notificacoes.prototype = {
         
         $('#notificacao li:not(:first)').remove();
 
-        var dados = value.split("|");
-       
+        var dados = value.split("|");    
         _totalItens = dados[1];
         $('#notificacao').append(dados[0]);
         console.log(dados);
@@ -64,11 +63,12 @@ Notificacoes.prototype = {
 
     _paginacaoNotOnClick: function(value){
         _pagina = value.data;
-        this.dataBindMvc('listaNotificacao.do', {
-            id :$('#idUser').text(),
+       this.dataBindMvc('listaNotificacao.do', {
+            idUsuario : $('#idUser').text(),
             qtd : 10,
             pagina: _pagina
         }, this._listaNotificacaoOnSuccess);
+
     },
 
     dataBindMvc: function(dataUrl, data, handlerSuccess){

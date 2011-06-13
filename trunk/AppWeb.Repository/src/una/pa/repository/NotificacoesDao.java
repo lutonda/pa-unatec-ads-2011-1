@@ -141,7 +141,8 @@ public class NotificacoesDao {
                 + " ) tabela"
                 + " )or n.id_usuario = ?"
                 + ") AS TABELA"
-                + " where linha > " + inicio + " and linha <= " + fim;
+                + " where linha > " + inicio + " and linha <= " + fim
+                + " order by DT_NOTIFICACAO DESC";
 
 
         Object[] vetor = {pId_usuario, pId_usuario, pId_usuario,pId_usuario, pId_usuario, pId_usuario};

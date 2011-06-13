@@ -44,33 +44,21 @@
                 </div>
                 <div id="main">
                     <div id="usuarios"class="box-df">
-                        <b><h1>${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</h1 ></b><br/>
-                        ${Endereco.ds_cidade} / ${Endereco.ds_estado}
+                        <span style="font-size: 18px; font-weight: bold;">${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</span> <span style="display: none;" id="idUser">${DadosIniciais.id_usuario}</span><br/>
+                        ${Endereco.ds_cidade} / ${Endereco.ds_estado} <span style="float: right"><a href="#">Adicionar</a></span>
                     </div>
                     <div class="box-df">
                         <ul id="notificacao">
-                            <li><input type="text" name="txtMsgNotifica" size="80" value="Faça um Comentário"></input><input type="submit" name="btnSendNotica"></input>  </li>
-                            <c:forEach items="${notificacoes}" var="Notificacoes" varStatus="count" >
-                                <li><a href="#">${Notificacoes.nm_nome}</a> <i>${Notificacoes.descricao}</i> ${Notificacoes.dt_notificacoes}</li>
-                            </c:forEach>
+                            <li><input type="text" id="txtMsgNotifica" size="90"></input><input type="submit" name="btnSendNotica"></input>  </li>
                         </ul>
+                        <span style="float: right; margin-top: 0"><< <a id="anterior" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="proximo">próxima</a> >></span>
                     </div>
-                    <div id="usuarios "class="box-df">
-                        <ul style="margin-left: 15px;">
-                            <c:forEach items="${jogos}" var="Jogo" varStatus="count" >
-                                <c:set var="estiloLinha" value="margin-right: 25px;"/>
-                                <c:if test="${((count.index+1)%5==0)}">
-                                    <c:set var="estiloLinha" value=""/>
-                                </c:if>
-                                <li style="float: left; height: 130px; ${estiloLinha}"><c:if test="${Jogo.imagem == null}"><img width="80px" src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" alt=""/></c:if>
-                                    <c:if test="${Jogo.imagem != null}"><a title="${Jogo.titulo_jogo}" href="/AppWebFrontEnd/site/jogo/detalhesjogo.html?id=${Jogo.id_jogo}"><img width="80px" src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" alt=""/></a></c:if></li>
-                                </c:forEach>
-                            <div class="cb"></div>
-
+                    <div class="box-df">
+                        <ul id="listaJogos" style="margin-left: 15px; height: 260px;">
+                            <li></li>
                         </ul>
-                        <span style="float: right; margin-top: 0"><< anterior | próxima >></span>
+                        <span style="float: right; margin-top: 0"><< <a id="ant" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="prox">próxima</a> >></span>
                     </div>
-
                 </div>
                 <br class="cb"/>
             </div>
@@ -80,6 +68,8 @@
         </div>
         <%@ include file="/inc/scripts.jsp" %>
         <!-- scripts de escopo local -->
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaJogos.js"></script>
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/notificacoes.js"></script>
         <%@ include file="/inc/metrics.jsp" %>
     </body>
 </html>

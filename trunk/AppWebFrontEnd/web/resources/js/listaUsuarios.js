@@ -2,8 +2,6 @@ var _pagina = 1;
 var _totalItens = 0;
 var _totalPg = 0;
 
-
-
 Usuario = function(){
     this._data = null;
     this._dataUrl = null;
@@ -27,32 +25,14 @@ Usuario.prototype = {
             pagina: _pagina,
             ofertados: false
         }, this._listaUsuarioOnSuccess);
-
-        //this.dataBindMvc('listaTituloJogo.do', '', this._listaTituloJogoOnSuccess);
-
-        //clicks btn
-        /*
-        $('#btnBuscar').bind('click', '', $.createDelegate(this, this._btnBuscarOnClick));
-        $('#btnMeusJogos').bind('click', 'meusJogos', $.createDelegate(this, this._btnFiltroOnClick));
-        $('#btnMeusDesejos').bind('click', 'meusDesejos', $.createDelegate(this, this._btnFiltroOnClick));
-        $('#btnPs3').bind('click', 'ps3', $.createDelegate(this, this._btnFiltroOnClick));
-        $('#btnWii').bind('click', 'wii', $.createDelegate(this, this._btnFiltroOnClick));
-        $('#btnXbox').bind('click', 'xbox', $.createDelegate(this, this._btnFiltroOnClick));
-        */
-
-        //inputText('txtBuscarJogo','Digite o nome do Jogo');
-
     },
 
     _listaUsuarioOnSuccess: function(value){
         $('#listaUsuarios li').remove();
-        console.log(value);
 
         var dados = value.split("|");
         _totalItens = dados[1];
         $('#listaUsuarios').append(dados[0]);
-
-        console.log(dados);
 
         var menos = _pagina - 1;
         var mais = _pagina + 1;

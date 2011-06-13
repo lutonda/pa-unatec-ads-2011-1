@@ -172,13 +172,13 @@ public class InicioController extends MultiActionController {
             List<Tags> objTags = TagsService.listarTags(id);
             //List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(id);
             Endereco objEnd = EnderecoService.listarEndereco(id);
-            List<Jogo> objJog = JogoService.listar(id, 10, 1);
+            //List<Jogo> objJog = JogoService.listar(id, 10, 1);
 
             mav.addObject("DadosIniciais", obj);
             mav.addObject("tags", objTags);
             //mav.addObject("notificacoes", objNot);
             mav.addObject("Endereco", objEnd);
-            mav.addObject("jogos", objJog);
+            //mav.addObject("jogos", objJog);
 
 
         } catch (Exception e) {

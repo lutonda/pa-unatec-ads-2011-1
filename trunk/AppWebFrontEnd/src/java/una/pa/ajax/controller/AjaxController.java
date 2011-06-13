@@ -52,7 +52,7 @@ public class AjaxController {
             Itens += "<div class=\"cb\"></div>|" + objJogo.get(0).getTotal();
         }
         else
-            Itens += "<li>Nenhum registro encontrado para <i>" + busca + "</i></li>|0";
+            Itens += "<li>Nenhum registro encontrado <i>" + busca + "</i></li>|0";
 
 
         return Itens;

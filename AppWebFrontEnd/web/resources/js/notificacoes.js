@@ -29,7 +29,7 @@ Notificacoes.prototype = {
         }, this._listaNotificacaoOnSuccess);
 
 
-       inputText('txtMsgNotifica','Envie uma Notificacao para o Usuario');
+       inputText('txtMsgNotifica','Chame Alguem pra Trocar Jogos');
     },
 
     _listaNotificacaoOnSuccess: function(value){

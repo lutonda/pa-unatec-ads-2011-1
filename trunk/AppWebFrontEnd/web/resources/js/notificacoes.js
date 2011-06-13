@@ -28,14 +28,14 @@ Notificacoes.prototype = {
             pagina: _pagina
         }, this._listaNotificacaoOnSuccess);
 
-       // this.dataBindMvc('listaNotificacao.do', '', this._listaNotificacaoOnSuccess);
+
        inputText('txtMsgNotifica','Envie uma Notificacao para o Usuario');
     },
 
     _listaNotificacaoOnSuccess: function(value){
 
         
-       // $('#notificacao li:not(:first)').remove();
+        $('#notificacao li:not(:first)').remove();
 
         var dados = value.split("|");
        
@@ -64,7 +64,7 @@ Notificacoes.prototype = {
 
     _paginacaoNotOnClick: function(value){
         _pagina = value.data;
-        this.dataBindMvc('listaJogos.do', {
+        this.dataBindMvc('listaNotificacao.do', {
             id :$('#idUser').text(),
             qtd : 10,
             pagina: _pagina

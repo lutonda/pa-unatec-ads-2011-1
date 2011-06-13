@@ -28,7 +28,7 @@ public class AjaxUsuarioController {
 
             Itens +=  "<li style=\"float: left; height: 110px; width: 255px;\">"
                     + "<img src=\"/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg\" style=\"float: left; width: 50px; height: 50px; margin-right: 10px;\" alt=\"\"/>"
-                    + "<div><a href=\"/AppWebFrontEnd/inicio/perfil.html?id=" + usuario.getId_usuario() + "\">" + usuario.getNm_usuario() + " " + usuario.getNm_sobrenome() + "</a><br/>" + usuario.getStatus() + "<br/><br/>Oferta de Troca</div></li>";
+                    + "<div><a href=\"/AppWebFrontEnd/site/inicio/perfil.html?id=" + usuario.getId_usuario() + "\">" + usuario.getNm_usuario() + " " + usuario.getNm_sobrenome() + "</a><br/>" + usuario.getStatus() + "<br/><br/>Oferta de Troca</div></li>";
 
         }
         Itens += "<div class=\"cb\"></div>|" + objUs.get(0).getTotalderegistros();

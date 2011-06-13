@@ -31,6 +31,15 @@ public class Usuario {
     private String ds_Estado;
     private String status;
     private String imagem;
+    protected int totalderegistros;
+
+    public int getTotalderegistros() {
+        return totalderegistros;
+    }
+
+    public void setTotalderegistros(int totalderegistros) {
+        this.totalderegistros = totalderegistros;
+    }
     
 
     public String getSenha() {

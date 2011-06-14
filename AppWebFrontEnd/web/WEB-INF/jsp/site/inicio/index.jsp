@@ -30,9 +30,9 @@
                     </div>
                     <div class="box-df">
                         <ul id="notificacao">
-                            <li><input type="text" id="txtMsgNotifica" size="90"></input><input type="submit" name="btnSendNotica"></input>  </li>
+                            <li><input type="text" id="txtNotificacao" size="90"></input><input type="submit" id="btnEnviarNotificacao"></input>  </li>
                         </ul>
-                        <span style="float: right; margin-top: 0"><< <a id="anterior" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="proximo">próxima</a> >></span>
+                        <span style="float: right; margin-top: 0"><a href="javascript:void(0);" id="proximo">Mais(+)</a></span>
                     </div>
                 </div>
                 <br class="cb"/>

@@ -22,34 +22,53 @@ Notificacoes.prototype = {
 
     initialize: function() {
 
-    this.dataBindMvc('listaNotificacao.do', {
+        this.dataBindMvc('listaNotificacao.do', {
             idUsuario : $('#idUser').text(),
             qtd : 10,
             pagina: _pagina
         }, this._listaNotificacaoOnSuccess);
 
 
-       inputText('txtMsgNotifica','Chame Alguem pra Trocar Jogos');
+        //clicks btn
+        $('#btnEnviarNotificacao').bind('click', '', $.createDelegate(this, this._btnEnviarNotOnClick));
+
+
+        inputText('txtNotificacao','Chame Alguem pra Trocar Jogos');
+    },
+
+    _btnEnviarNotOnClick: function(value){
+        this.dataBindMvc('enviarNotificacao.do', {
+            idUsuario : $('#idUser').text(),
+            dsNotificacao: $('#txtNotificacao').val()
+        }, this._enviarNotificacaoOnSuccess);
+        inputText('txtNotificacao','Chame Alguem pra Trocar Jogos');
+    },
+
+    _enviarNotificacaoOnSuccess: function(value){
+
+        this.dataBindMvc('listaNotificacao.do', {
+            idUsuario : $('#idUser').text(),
+            qtd : 10,
+            pagina: _pagina
+        }, this._listaNotificacaoOnSuccess);
     },
 
     _listaNotificacaoOnSuccess: function(value){
 
         
-        $('#notificacao li:not(:first)').remove();
+        //$('#notificacao li:not(:first)').remove();
 
-        var dados = value.split("|");    
+        var dados = value.split("|");
         _totalItens = dados[1];
         $('#notificacao').append(dados[0]);
-        console.log(dados);
-
         
         var menos = _pagina - 1;
         var mais = _pagina + 1;
 
         _totalPg = Math.ceil(_totalItens / 10);
 
-        if (mais <= _totalPg)
-            $('#proximo').bind('click', mais, $.createDelegate(this,  this._paginacaoNotOnClick));
+        if (mais <= _totalPg){
+        }
         else
             $('#proximo').unbind('click');
             
@@ -57,18 +76,17 @@ Notificacoes.prototype = {
             $('#anterior').bind('click', menos, $.createDelegate(this,  this._paginacaoNotOnClick));
         
         else
-            $('#anterior').unbind('click');
+           $('#anterior').unbind('click');
             
     },
 
     _paginacaoNotOnClick: function(value){
         _pagina = value.data;
-       this.dataBindMvc('listaNotificacao.do', {
+        this.dataBindMvc('listaNotificacao.do', {
             idUsuario : $('#idUser').text(),
             qtd : 10,
             pagina: _pagina
         }, this._listaNotificacaoOnSuccess);
-
     },
 
     dataBindMvc: function(dataUrl, data, handlerSuccess){

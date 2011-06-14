@@ -15,6 +15,7 @@ import java.util.List;
 public class NotificacoesService {
     public static List<Notificacoes> listar (){
         return NotificacoesDao.listarDao();
+        //
     }
 
     public static List<Notificacoes> listarUnico(int _id){

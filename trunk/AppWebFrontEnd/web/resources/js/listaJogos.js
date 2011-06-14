@@ -92,7 +92,6 @@ Jogo.prototype = {
         var dados = value.split("|");
         _totalItens = dados[1];
         $('#listaJogos').append(dados[0]);
-        console.log(dados);
         
         var menos = _pagina - 1;
         var mais = _pagina + 1;

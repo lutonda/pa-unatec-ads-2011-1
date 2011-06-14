@@ -23,4 +23,7 @@ public class NotificacoesService {
     public static List<Notificacoes> listarNotPerfil(int pId_usuario, int quantidePorPagina, int pagina){
         return NotificacoesDao.listarNotPerfil(pId_usuario, quantidePorPagina, pagina);
     }
+    public static boolean enviaNotificacao(Notificacoes objct){
+        return NotificacoesDao.enviaNotificacao(objct);
+    }
 }

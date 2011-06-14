@@ -96,23 +96,25 @@ public class NotificacoesDao {
         }
 
     }
-    public static List<Notificacoes> listarNotPerfil(){
+
+    public static List<Notificacoes> listarNotPerfil() {
         return listarNotPerfil(0, 0, 0);
     }
-    public static List<Notificacoes> listarNotPerfil(int pId_usuario,int quantidePorPagina, int pagina) {
+
+    public static List<Notificacoes> listarNotPerfil(int pId_usuario, int quantidePorPagina, int pagina) {
 
 
         List<Notificacoes> objct = new ArrayList<Notificacoes>();
-         int inicio = 0;
-         int fim = quantidePorPagina;
+        int inicio = 0;
+        int fim = quantidePorPagina;
 
-         if (pagina > 1) {
-                fim = (quantidePorPagina * pagina);
-                inicio = fim - quantidePorPagina;
-            }
+        if (pagina > 1) {
+            fim = (quantidePorPagina * pagina);
+            inicio = fim - quantidePorPagina;
+        }
 
-        String sql = "select top " + quantidePorPagina + " * from (" 
-                + "select row_number() over (order by n.ID_USUARIO) as linha, n.ID_USUARIO ID_USUARIO_NOT,ID_NOTIFICACAO, DESCRICAO,BROADCAST, DT_NOTIFICACAO,u.ID_USUARIO,NM_USUARIO ,NM_SOBRENOME,EMAIL,"
+        String sql = "select top " + quantidePorPagina + " * from ("
+                + "select row_number() over (order by n.dt_notificacao desc) as linha, n.ID_USUARIO ID_USUARIO_NOT,ID_NOTIFICACAO, DESCRICAO,BROADCAST, DT_NOTIFICACAO,u.ID_USUARIO,NM_USUARIO ,NM_SOBRENOME,EMAIL,"
                 + " DT_NASCIMENTO,DT_CADASTRO,SEHHA, SN_ATIVO, TEL_USUARIO,USUARIO,EMAIL_NOTIFICACOES,EMAIL_PARCEIRO,ACEITE_ACORDO,"
                 + " DESCRICAO_USUARIO,SEXO, PREF_EM_MAOS, PREF_CORREIOS, PREF_TRANSP, IMAGEM,"
                 + " (select count(*) "
@@ -139,13 +141,13 @@ public class NotificacoesDao {
                 + " and sn_aceite = 1"
                 + "  and ignorado = 0"
                 + " ) tabela"
-                + " )or n.id_usuario = ?"
+                + " )or n.id_usuario = ? "
                 + ") AS TABELA"
-                + " where linha > " + inicio + " and linha <= " + fim
-                + " order by DT_NOTIFICACAO DESC";
+                + " where linha > " + inicio + " and linha <= " + fim;
+                //+ " order by DT_NOTIFICACAO";
 
 
-        Object[] vetor = {pId_usuario, pId_usuario, pId_usuario,pId_usuario, pId_usuario, pId_usuario};
+        Object[] vetor = {pId_usuario, pId_usuario, pId_usuario, pId_usuario, pId_usuario, pId_usuario};
 
         try {
             Connection c = Data.openConnection();
@@ -171,5 +173,20 @@ public class NotificacoesDao {
             return null;
         }
 
+    }
+
+    public static boolean enviaNotificacao(Notificacoes objct) {
+        try {
+            Connection c = Data.openConnection();
+            String sql = "INSERT INTO NOTIFICACOES(ID_USUARIO, DESCRICAO, BROADCAST,DT_NOTIFICACAO)VALUES(?,?,0,getdate())";
+            Object[] vetor = {objct.getId_usuario(), objct.getDescricao()};
+
+            Data.executeUpdate(c, sql, vetor);
+            c.close();
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

@@ -18,7 +18,7 @@ public class UsuarioDao {
                 + " dt_nascimento,dt_cadastro,sn_ativo,tel_usuario, "
                 + " usuario,email_notificacoes,email_parceiro, "
                 + " aceite_acordo,descricao_usuario,sexo, "
-                + " pref_em_maos,pref_correios,pref_transp "
+                + " pref_em_maos,pref_correios,pref_transp, imagem "
                 + " from usuario where id_usuario = ? ";
         Object[] vetor = {_id};
 
@@ -42,37 +42,38 @@ public class UsuarioDao {
                 o.setTel_usuario(rs.getString("tel_usuario"));
                 o.setUsuario(rs.getString("usuario"));
                 if (rs.getString("email_notificacoes").equals("1")) {
-                    o.setSn_ativo(true);
+                    o.setEmail_notificacoes(true);
                 } else {
-                    o.setSn_ativo(false);
+                    o.setEmail_notificacoes(false);
                 }
                 if (rs.getString("email_parceiro").equals("1")) {
-                    o.setSn_ativo(true);
+                    o.setEmail_parceiro(true);
                 } else {
-                    o.setSn_ativo(false);
+                    o.setEmail_parceiro(false);
                 }
                 if (rs.getString("aceite_acordo").equals("1")) {
-                    o.setSn_ativo(true);
+                    o.setAceite_acordo(true);
                 } else {
-                    o.setSn_ativo(false);
+                    o.setAceite_acordo(false);
                 }
                 o.setDescricao_usuario(rs.getString("descricao_usuario"));
                 o.setSexo((rs.getString("sexo") != null) ? rs.getString("sexo").charAt(0) : ' ');
                 if (rs.getString("pref_em_maos").equals("1")) {
-                    o.setSn_ativo(true);
+                    o.setPref_em_maos(true);
                 } else {
-                    o.setSn_ativo(false);
+                    o.setPref_em_maos(false);
                 }
                 if (rs.getString("pref_correios").equals("1")) {
-                    o.setSn_ativo(true);
+                    o.setPref_correios(true);
                 } else {
-                    o.setSn_ativo(false);
+                    o.setPref_correios(false);
                 }
                 if (rs.getString("pref_transp").equals("1")) {
-                    o.setSn_ativo(true);
+                    o.setPref_transp(true);
                 } else {
-                    o.setSn_ativo(false);
+                    o.setPref_transp(false);
                 }
+                o.setImagem(rs.getString("imagem"));
             }
             rs.close();
             c.close();
@@ -271,21 +272,23 @@ public class UsuarioDao {
     }
 
     public static boolean updatePasso2(Usuario objU, Endereco objE) {
-        String sql = "update from usuario"
-                + "set DT_NASCIMENTO = getdate(),"
-                + "	SEXO = ?,"
-                + "	ACEITE_ACORDO = ?,"
-                + "	EMAIL_PARCEIRO = ?,"
-                + "	EMAIL_NOTIFICACOES = ?"
-                + "     WHERE ID_USUARIO = ? ";
+        String sql = "update usuario "
+                + "set DT_NASCIMENTO = getdate(), "
+                //+ "	SEXO = ?,"
+                + "ACEITE_ACORDO = ?, "
+                + "EMAIL_PARCEIRO = ?, "
+                + "PREF_CORREIOS = ?, "
+                + "PREF_EM_MAOS = ?, "
+                + "PREF_TRANSP = ?, "
+                + "EMAIL_NOTIFICACOES = ? "
+                + "WHERE ID_USUARIO = ? ";
 
-        Object[] vetor = {objU.getSexo(), objU.isAceite_acordo(), objU.isEmail_parceiro(),
-            objU.isPref_correios(), objU.isEmail_notificacoes(), objU.getId_usuario()};
+        Object[] vetor = {objU.isAceite_acordo(), objU.isEmail_parceiro(), objU.isPref_correios(),
+                            objU.isPref_em_maos(), objU.isPref_transp(), objU.isEmail_notificacoes(), objU.getId_usuario()};
 
-        String sql2 = "insert into endereco (id_usuario,tp_logradouro, cep, "
-                + "logradouro, numero, complemento, "
-                + "ds_bairro, ds_cidade, ds_estado)"
-                + "values (?,?,?,?,?,?,?,?,?)";
+        String sql2 = "insert into endereco "
+                + "(id_usuario, tp_logradouro, cep, logradouro, numero, complemento, ds_bairro, ds_cidade, ds_estado) "
+                + "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Object[] vetor2 = {objU.getId_usuario(), objE.getTp_logradouro(), objE.getCep(), objE.getLogradouro(), objE.getNumero(),
             objE.getComplemento(), objE.getDs_bairro(), objE.getDs_cidade(), objE.getDs_estado()};

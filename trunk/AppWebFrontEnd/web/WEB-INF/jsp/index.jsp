@@ -1,19 +1,44 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<%@ include file="/inc/taglibs.jsp" %>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to Spring Web MVC project</title>
+        <title>Joga Troca</title>
+        <%@ include file="/inc/taghead.jsp" %>
     </head>
-    
     <body>
-        <p>Hello! This is the default welcome page for a Spring Web MVC project.</p>
-        <p><i>To display a different welcome page for this project, modify</i>
-          <tt>index.jsp</tt> <i>, or create your own welcome page then change
-          the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
-          welcome page and also update the welcome-file setting in</i>
-          <tt>web.xml</tt>.</p>
+        <div id="container">
+            <div id="header">
+                <span style="font-size: 18px; font-weight: bold;"><br/><br/>TROCA DE JOGOS</span><br/>Rede de troca de Jogo
+            </div>
+            <div id="content" class="clearfix">
+                <fieldset class="fieldset_login">
+                    <ul>
+                        <form action="inicio/cadastro/autForm.do" method="post">
+                            <li>
+                                <label><strong>Login :</strong></label>
+                                <input type="text" maxlength="10" name="txtUser" value="${txtUser}" size="30"/>
+                            </li>
+                            <li>
+                                <label><strong>Senha :</strong></label>
+                                <input type="password" maxlength="8" name="txtPassword" size="20"/>
+                            </li>
+                            <li>
+                                <a href="#" title="esqueci minha senha" >esqueci minha senha</a>
+                            </li>
+                            <li class="bts">
+                                <input type="submit" value="Acessar"/>
+                            </li>
+                        </form>
+                        <li>${msgErro}</li>
+                    </ul>
+
+                </fieldset>
+            </div>
+        </div>
+
+        <%@ include file="/inc/scripts.jsp" %>
+        <!-- scripts de escopo local -->
+        <%@ include file="/inc/metrics.jsp" %>
     </body>
 </html>

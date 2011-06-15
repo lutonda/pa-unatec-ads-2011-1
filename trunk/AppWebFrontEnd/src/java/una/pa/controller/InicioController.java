@@ -12,6 +12,34 @@ import una.pa.util.*;
 
 public class InicioController extends MultiActionController {
 
+
+    public ModelAndView logout(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+
+
+        HttpSession session = request.getSession();
+        session.setAttribute("usuario", null);
+        response.sendRedirect("../../index.html");
+
+        return null;
+    }
+
+    public ModelAndView autForm(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+
+
+        String UserName = request.getParameter("txtUser");
+
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("usuario") == null) {
+            session.setAttribute("usuario", UserName);
+            response.sendRedirect("/AppWebFrontEnd/site/inicio/index.html");
+        }
+
+        return null;
+    }
+
     public ModelAndView index(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mav = new ModelAndView("site/inicio/index");
@@ -117,7 +145,7 @@ public class InicioController extends MultiActionController {
 
 
             if (UsuarioService.updatePasso1(obj)) {
-                response.sendRedirect("passo2.html?id="+ obj.getId_usuario()+"&usuario="+obj.getUsuario());
+                response.sendRedirect("passo2.html?id=" + obj.getId_usuario() + "&usuario=" + obj.getUsuario());
                 return null;
             } else {
                 obj.setSenha("");
@@ -210,7 +238,7 @@ public class InicioController extends MultiActionController {
         return mav;
     }
 
-     public ModelAndView editar(HttpServletRequest request,
+    public ModelAndView editar(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mav = new ModelAndView("site/inicio/editar");
         try {

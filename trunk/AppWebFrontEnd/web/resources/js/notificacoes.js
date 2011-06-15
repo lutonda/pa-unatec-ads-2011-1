@@ -1,7 +1,7 @@
 var _pagina = 1;
 var _totalItens = 0;
 var _totalPg = 0;
-var _busca = false;
+var _novaNot = false;
 
 
 Notificacoes = function(){
@@ -45,7 +45,7 @@ Notificacoes.prototype = {
     },
 
     _enviarNotificacaoOnSuccess: function(value){
-
+        _novaNot = true;
         this.dataBindMvc('listaNotificacao.do', {
             idUsuario : $('#idUser').text(),
             qtd : 10,
@@ -55,9 +55,10 @@ Notificacoes.prototype = {
 
     _listaNotificacaoOnSuccess: function(value){
 
+        if (_novaNot){
+            $('#notificacao li:not(:first)').remove();
+        }
         
-        //$('#notificacao li:not(:first)').remove();
-
         var dados = value.split("|");
         _totalItens = dados[1];
         $('#notificacao').append(dados[0]);
@@ -68,20 +69,20 @@ Notificacoes.prototype = {
         _totalPg = Math.ceil(_totalItens / 10);
 
         if (mais <= _totalPg){
+            $('#btnMais').bind('click', mais, $.createDelegate(this,  this._paginacaoNotOnClick));
+            $('#btnMais').show();
         }
         else
-            $('#proximo').unbind('click');
-            
-        if(menos > 0)
-            $('#anterior').bind('click', menos, $.createDelegate(this,  this._paginacaoNotOnClick));
-        
-        else
-           $('#anterior').unbind('click');
+        {
+            $('#btnMais').unbind('click');
+            $('#btnMais').hide();
+        }
             
     },
 
     _paginacaoNotOnClick: function(value){
         _pagina = value.data;
+        _novaNot = false;
         this.dataBindMvc('listaNotificacao.do', {
             idUsuario : $('#idUser').text(),
             qtd : 10,

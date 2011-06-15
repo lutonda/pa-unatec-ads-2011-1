@@ -21,56 +21,66 @@
             <div id="content">
                 <h2>Cadastro Passo 2</h2>
                 
-                <form action="cadastroPasso2Form.do" method="POST">
+                <form action="cadastroPasso2Form.do?id=<%= request.getParameter("id") %>
+                      &usuario=<%= request.getParameter("usuario") %>" method="POST">
 
                     <div class="frm_content">
 
                         <ul class="frm clearfix">
                             <li>
-                                <label><strong>Data de Nascimento</strong></label>
+                                <label><strong>Data de Nascimento: </strong></label>
                                 <input type="text" name="dt_nascimento" value=""
                                        maxlength="10" onkeypress="formatar_mascara(this, '##/##/####')"/>
                             </li>
                             <li>
-                                <label><strong>Sexo</strong></label>
-                                <input type="radio" name="sexo" value="M"/>Masculino
-                                <input type="radio" name="sexo" value="F"/>Feminino
+                                <label><strong>Sexo: </strong></label>
+                                <input type="radio" name="sexo" value="0"/>Masculino
+                                <input type="radio" name="sexo" value="1"/>Feminino
                             </li>
-                            
+                             <li>
+                                <label><strong>Telefone: </strong></label>
+                                <input type="text" name="telefone" maxlength="9"
+                                       onkeypress="formatar_mascara(this, '####-####')"/>
+                            </li>
+                            <ul>
+                                <label><strong>Descrição do perfil: </strong></label>
+                                <textarea style="position: static "name="descricao" rows="10" cols="180"> </textarea>
+                            </ul>
+                                                        
                             <label><strong>Dados da localidade</strong></label>
 
                             <li>
-                                <label><strong>CEP</strong></label>
-                                <input type="text" name="cpf" maxlength="10"
+                                <label><strong>CEP: </strong></label>
+                                <input type="text" name="cep" maxlength="11"
                                        onkeypress="formatar_mascara(this, '##.###-###')" />
                             </li>
                             <li>
-                                <label><strong>Tipo Logradouro</strong></label>
+                                <label><strong>Tipo Logradouro: </strong></label>
                                 <input type="text" name="tp_logradouro" />
                             </li>
                             <li>
-                                <label><strong>Logradouro</strong></label>
+                                <label><strong>Logradouro: </strong></label>
                                 <input type="text" name="logradouro" />
                             </li>
                             <li>
-                                <label><strong>Numero</strong></label>
+                                <label><strong>Numero: </strong></label>
                                 <input type="text" name="numero" />
                             </li>
 
                             <li>
-                                <label><strong>Complemento</strong></label>
+                                <label><strong>Complemento: </strong></label>
                                 <input type="text" name="complemento" />
                             </li>
                             <li>
-                                <label><strong>Bairro</strong></label>
+                                <label><strong>Bairro: </strong></label>
                                 <input type="text" name="bairro" />
                             </li>
                             <li>
-                                <label><strong>Cidade</strong></label>
+                                <label><strong>Cidade: </strong></label>
                                 <input type="text" name="cidade" />
                             </li>
                             <li>
-                                <label><strong>Estado</strong></label>
+                                <label><strong>Estado: </strong></label>
                                 <input type="text" name="estado" />
                             </li>
 

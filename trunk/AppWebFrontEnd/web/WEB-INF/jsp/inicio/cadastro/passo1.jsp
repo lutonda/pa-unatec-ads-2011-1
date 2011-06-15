@@ -54,13 +54,13 @@
                                 <input type="password" name="conf_senha" value=""/>
                             </li>
                             <li>
-                                <input type="radio" name="aceiteTermos" checked />Sim, aceito os termos de contrato do trocajoga.
+                                <input type="checkbox" name="aceiteTermos" checked />Sim, aceito os termos de contrato do trocajoga.
                             </li>
                             <li>
-                                <input type="radio" name="aceiteNotificacoes" checked />Sim, desejo receber as notificações de novas trocas por e-mail.
+                                <input type="checkbox" name="aceiteNotificacoes" checked />Sim, desejo receber as notificações de novas trocas por e-mail.
                             </li>
                             <li>
-                                <input type="radio" name="aceiteParceiros" checked />Sim, aceito receber os e-mails de parceiros do trocajoga.
+                                <input type="checkbox" name="aceiteParceiros" />Sim, aceito receber os e-mails de parceiros do trocajoga.
                             </li>
                             <li>
                                 <input type="submit" value="Salvar" class="bt" />

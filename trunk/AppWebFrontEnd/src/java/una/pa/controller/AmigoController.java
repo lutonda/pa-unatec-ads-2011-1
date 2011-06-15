@@ -25,7 +25,7 @@ public class AmigoController extends MultiActionController {
         
         try{
             
-            DadosIniciais obj = UsuarioService.inicioPerfil();
+            DadosIniciais obj = UsuarioService.inicioPerfil(request);
             List<Tags> objTags = TagsService.listarTags(obj.getId_usuario());
             List<AmigoUsuario> objListAmigos = AmigoUsuarioService.listarAmigos(obj.getId_usuario());
             List<AmigoUsuario> objListAmigosPendetes = AmigoUsuarioService.listarAmigosPendentes(obj.getId_usuario());

@@ -4,10 +4,11 @@
  */
 package una.pa.service;
 
-import com.sun.org.apache.regexp.internal.RE;
 import una.pa.model.*;
 import una.pa.repository.*;
 import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,8 +28,9 @@ public class UsuarioService {
         return UsuarioDao.jogoUsuario(_id, _cod, quantidePorPagina, pagina, tipo);
     }
 
-    public static DadosIniciais inicioPerfil() {
-        return UsuarioDao.inicioPerfil("magno");
+    public static DadosIniciais inicioPerfil(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return UsuarioDao.inicioPerfil(session.getAttribute("usuario").toString());
     }
 
     public static DadosIniciais inicioPerfil(int _id) {

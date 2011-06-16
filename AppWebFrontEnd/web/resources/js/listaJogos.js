@@ -77,11 +77,11 @@ Jogo.prototype = {
                 break;
             default:
                 id = 0;
+                _desejo = false;
                 _console = value.data;
                 break;
         }
-
-        
+      
 
         if(id != null){
             this.dataBindMvc('listaJogos.do', {

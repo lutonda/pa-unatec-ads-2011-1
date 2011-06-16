@@ -78,11 +78,11 @@ public class AmigoUsuarioDao {
         if (pPendente) {
             sql += "select aua.id_usuario_amigo, nm_usuario, nm_sobrenome, sn_aceite "
                     + "from amigo_usuario aua inner join usuario ua on aua.id_usuario_amigo = ua.id_usuario "
-                    + "where aua.id_usuario = ? and aua.ignorado = 0 union ";
+                    + "where aua.id_usuario = ? union ";
         }
         sql += "select aua.id_usuario as id_usuario_amigo, nm_usuario, nm_sobrenome, sn_aceite "
                 + "from amigo_usuario aua inner join usuario ua on aua.id_usuario = ua.id_usuario "
-                + "where aua.id_usuario_amigo = ? and aua.ignorado = 0 "
+                + "where aua.id_usuario_amigo = ? "
                 + ") tabela";
 
 

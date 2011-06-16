@@ -16,18 +16,22 @@ public class AjaxController {
     @RequestMapping(value = "site/inicio/listaJogos.do", method = {RequestMethod.GET,
         RequestMethod.POST})
     @ResponseBody
-    public String getAutoComplete(HttpServletRequest request,
-            @RequestParam int id, @RequestParam int qtd, @RequestParam int pagina, @RequestParam String busca) {
+    public String getListaJogos(HttpServletRequest request,
+            @RequestParam int id, @RequestParam int qtd, @RequestParam int pagina, @RequestParam String busca, @RequestParam boolean desejo, @RequestParam int console) {
 
         String Itens = "";
         List<Jogo> objJogo;
 
-        switch (0){
-            case 0 :
-                break;
-        }
 
-        objJogo = (busca.equals("")) ? JogoService.listar(id, qtd, pagina) : JogoService.listar(id, qtd, pagina, busca);
+        if (desejo) {
+            objJogo = DesejoUsuarioService.listaJogosDesejados(id, qtd, pagina);
+        } else {
+            if (console == 0) {
+                objJogo = (busca.equals("")) ? JogoService.listar(id, qtd, pagina) : JogoService.listar(id, qtd, pagina, busca);
+            } else {
+                objJogo = JogoService.listar(id, qtd, pagina, null, console);
+            }
+        }
 
         if (!objJogo.isEmpty()) {
             int count = 0;
@@ -43,16 +47,16 @@ public class AjaxController {
                 if (jogo.getImagem() == null) {
                     Itens += "<li style=\"float: left; height: 130px; " + stiloLinha + "\"><img width=\"80px\" src=\"/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg\" alt=\"\"/></li>";
                 } else {
-                    Itens += "<li style=\"float: left; height: 130px; " + stiloLinha + "\"><a title=\"" + jogo.getTitulo_jogo() + " (" + jogo.getConsole() + ")\" href=\"/AppWebFrontEnd/site/jogo/detalhesjogo.html?id=" + jogo.getId_jogo() + "\"><img width=\"80px\" src=\"/AppWebBackEnd/resources/capa/" + jogo.getImagem() + "\" alt=\"\"/></a></li>";
+                    Itens += "<li style=\"float: left; height: 130px; " + stiloLinha + "\"><a title=\"" + jogo.getTitulo_jogo() + " (" + jogo.getConsole() + ") " + jogo.getNivelInteresse() + "-" + jogo.getNivelDesejo() + "\" href=\"/AppWebFrontEnd/site/jogo/detalhesjogo.html?id=" + jogo.getId_jogo() + "\"><img width=\"80px\" src=\"/AppWebBackEnd/resources/capa/" + jogo.getImagem() + "\" alt=\"\"/></a></li>";
                 }
 
                 count++;
             }
 
             Itens += "<div class=\"cb\"></div>|" + objJogo.get(0).getTotal();
+        } else {
+            Itens += "<li>Nenhum Jogo Encontrado" + ((busca != "") ? " para " : "!") + "<i>" + busca + "</i></li>|0";
         }
-        else
-            Itens += "<li>Nenhum registro encontrado <i>" + busca + "</i></li>|0";
 
 
         return Itens;

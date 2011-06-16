@@ -2,6 +2,8 @@ var _pagina = 1;
 var _totalItens = 0;
 var _totalPg = 0;
 var _busca = false;
+var _desejo = false;
+var _console = 0;
 
 
 
@@ -26,7 +28,9 @@ Jogo.prototype = {
             id : $('#idUser').text(),
             qtd : 10,
             pagina: _pagina,
-            busca: ""
+            busca: "",
+            desejo: _desejo,
+            console: _console
         }, this._listaJogoOnSuccess);
 
         this.dataBindMvc('listaTituloJogo.do', '', this._listaTituloJogoOnSuccess);
@@ -35,9 +39,9 @@ Jogo.prototype = {
         $('#btnBuscar').bind('click', '', $.createDelegate(this, this._btnBuscarOnClick));
         $('#btnMeusJogos').bind('click', 'meusJogos', $.createDelegate(this, this._btnFiltroOnClick));
         $('#btnMeusDesejos').bind('click', 'meusDesejos', $.createDelegate(this, this._btnFiltroOnClick));
-        $('#btnPs3').bind('click', 'ps3', $.createDelegate(this, this._btnFiltroOnClick));
-        $('#btnWii').bind('click', 'wii', $.createDelegate(this, this._btnFiltroOnClick));
-        $('#btnXbox').bind('click', 'xbox', $.createDelegate(this, this._btnFiltroOnClick));
+        $('#btnPs3').bind('click', '1', $.createDelegate(this, this._btnFiltroOnClick));
+        $('#btnWii').bind('click', '2', $.createDelegate(this, this._btnFiltroOnClick));
+        $('#btnXbox').bind('click', '3', $.createDelegate(this, this._btnFiltroOnClick));
 
         inputText('txtBuscarJogo','Digite o nome do Jogo');
         
@@ -46,34 +50,47 @@ Jogo.prototype = {
     _btnBuscarOnClick: function(value){
         _pagina = 1;
         _busca = true;
+        _desejo = false;
+        _console = 0;
         this.dataBindMvc('listaJogos.do', {
             id : 0,
             qtd : 10,
             pagina: _pagina,
-            busca: $('#txtBuscarJogo').val()
+            busca: $('#txtBuscarJogo').val(),
+            desejo: _desejo,
+            console: _console
         }, this._listaJogoOnSuccess);
     },
 
     _btnFiltroOnClick: function(value){
         _pagina = 1;
         _busca = false;
-        var id = null;
+        var id = $('#idUser').text();
         var busca = "";
 
         switch (value.data) {
+            case 'meusDesejos':
+                _desejo = true;
+                break;
             case 'meusJogos':
-                id = $('#idUser').text();
+                _desejo = false;
                 break;
             default:
+                id = 0;
+                _console = value.data;
                 break;
         }
+
+        
 
         if(id != null){
             this.dataBindMvc('listaJogos.do', {
                 id : id,
                 qtd : 10,
                 pagina: _pagina,
-                busca: busca
+                busca: busca,
+                desejo: _desejo,
+                console: _console
             }, this._listaJogoOnSuccess);
             inputText('txtBuscarJogo','Digite o nome do Jogo');
         }
@@ -97,6 +114,10 @@ Jogo.prototype = {
         var mais = _pagina + 1;
 
         _totalPg = Math.ceil(_totalItens / 10);
+        if(_totalPg != 0 && _totalItens >= 10)
+            $('#paginacao').show();
+        else
+            $('#paginacao').hide();
         
         if (mais <= _totalPg)
             $('#prox').bind('click', mais, $.createDelegate(this,  this._paginacaoOnClick));
@@ -116,7 +137,9 @@ Jogo.prototype = {
             id : (_busca)? 0:$('#idUser').text(), // ($('#txtBuscarJogo').val() != "")? 0:$('#idUser').text(),
             qtd : 10,
             pagina: _pagina,
-            busca: (_busca)? $('#txtBuscarJogo').val():""
+            busca: (_busca)? $('#txtBuscarJogo').val():"",
+            desejo: _desejo,
+            console: _console
         }, this._listaJogoOnSuccess);
     },
 

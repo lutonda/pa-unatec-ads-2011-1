@@ -27,12 +27,13 @@ public class AjaxEnviaNotificacaoController {
         RequestMethod.POST})
     @ResponseBody
     public String  postEnviarNotificacao(HttpServletRequest request,
-            int idUsuario,  String dsNotificacao) {
+            int idUsuario,  String dsNotificacao, boolean broadcast) {
 
         Notificacoes objct = new Notificacoes();
         try{
             objct.setId_usuario(idUsuario);
             objct.setDescricao(dsNotificacao);
+            objct.setBroadcast((broadcast)? 1:0);
             return String.valueOf(NotificacoesService.enviaNotificacao(objct));
         }catch(Exception e){
             return String.valueOf(false);

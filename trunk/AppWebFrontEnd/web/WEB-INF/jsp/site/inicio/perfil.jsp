@@ -44,20 +44,20 @@
                 </div>
                 <div id="main">
                     <div id="usuarios"class="box-df">
-                        <span style="font-size: 18px; font-weight: bold;">${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</span> <span style="display: none;" id="idUser">${DadosIniciais.id_usuario}</span><br/>
-                        ${Endereco.ds_cidade} / ${Endereco.ds_estado} <span style="float: right"><a href="#">Adicionar</a></span>
+                        <span style="font-size: 18px; font-weight: bold;">${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</span> <span style="display: none;" id="idUser">${DadosIniciais.id_usuario}</span><span style="display: none;" id="idUserVisitante">${AmigoUsuario.id_usuario}<c:set value="<%=(String)request.getSession().getAttribute("id") %>" var="id"/></span><br/>
+                        ${Endereco.ds_cidade} / ${Endereco.ds_estado} <span style="float: right"><c:if test="${AmigoUsuario.sn_aceite == 0 && AmigoUsuario.solitante == 'N' }"><a href="#">Cancelar Solicitação</a></c:if><c:if test="${AmigoUsuario.sn_aceite == 0 && AmigoUsuario.solitante == 'S' }"><a href="#">Responder a Solicitação</a></c:if><c:if test="${AmigoUsuario.sn_aceite == 1 }"><a href="#">Remover</a></c:if><c:if test="${AmigoUsuario.id_usuario == 0 && DadosIniciais.id_usuario != id }"><a href="#">Adicionar</a></c:if></span>
                     </div>
                     <div class="box-df">
                         <ul id="notificacao">
-                            <li><input type="text" id="txtMsgNotifica" size="90"></input><input type="submit" name="btnSendNotica"></input>  </li>
+                            <li><c:if test="${AmigoUsuario.ignorado == 0}"><input type="text" id="txtNotificacao" size="90"></input><input type="submit" id="btnEnviarNotificacao"></input></c:if></li>
                         </ul>
-                        <span style="float: right; margin-top: 0"><< <a id="anterior" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="proximo">próxima</a> >></span>
+                        <span style="float: right; margin-top: 0"><a href="javascript:void(0);" id="btnMais">Mais(+)</a></span>
                     </div>
                     <div class="box-df">
                         <ul id="listaJogos" style="margin-left: 15px; height: 260px;">
                             <li></li>
                         </ul>
-                        <span style="float: right; margin-top: 0"><< <a id="ant" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="prox">próxima</a> >></span>
+                        <span id="paginacao" style="float: right; margin-top: 0; display: none;"><< <a id="ant" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="prox">próxima</a> >></span>
                     </div>
                 </div>
                 <br class="cb"/>

@@ -30,11 +30,15 @@
                                     Aceitar<br/>Não agora
                                 </div>
                                 <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>                                <ul style="float: left; width: 392px;">
-                                    <li style="font-weight: bold; margin-bottom: 5px;"><a href="../inicio/perfil.html?id=${AmigoUsuario.id_usuario}">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome}(${AmigoUsuario.pontos})</a></li>
+                                    <li style="font-weight: bold; margin-bottom: 5px;"><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=${AmigoUsuario.id_usuario}">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</a></li>
                                     <li>${AmigoUsuario.qtd_jogo} Jogos</li>
                                     <li>${AmigoUsuario.qtd_desejo} Desejados</li><br/>
                                 </ul>
-                                <div style="border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px" class="cb"></div>
+                                <c:set value="border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px" var="stCss"/>
+                                <c:if test="${qtdSolic == (count.index + 1)}">
+                                    <c:set value="" var="stCss"/>
+                                </c:if>
+                                <div style="${stCss}" class="cb"></div>
                             </c:forEach>
                         </div>
                     </c:if>
@@ -42,18 +46,22 @@
                     <div id="usuarios"class="box-df">
                         <ul>
                             <c:forEach items="${amigos}" var="AmigoUsuario" varStatus="count" >
-                                <li style="float: left; height: 110px; width: 255px;">
-                                    <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>
-                                    <ul>
-                                        <li style="margin-bottom: 5px;"><b><a href="../inicio/perfil.html?id=${AmigoUsuario.id_usuario}">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</a></b></li>
-                                        <li>${AmigoUsuario.qtd_jogo} Jogos</li>
-                                        <li>${AmigoUsuario.qtd_desejo} Desejados</li>
-                                    </ul>
-                                </li>
+                                <div style="float: right;">
+                                    Remover
+                                </div>
+                                <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>                                <ul style="float: left; width: 392px;">
+                                    <li style="font-weight: bold; margin-bottom: 5px;"><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=${AmigoUsuario.id_usuario}">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</a></li>
+                                    <li>${AmigoUsuario.qtd_jogo} Jogos</li>
+                                    <li>${AmigoUsuario.qtd_desejo} Desejados</li><br/>
+                                </ul>
+                                <c:set value="border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px" var="stCss"/>
+                                <c:if test="${qtdAmigos == (count.index + 1)}">
+                                    <c:set value="" var="stCss"/>
+                                </c:if>
+                                <div style="${stCss}" class="cb"></div>
                             </c:forEach>
                         </ul>
                         <div class="cb"></div>
-                        <span style="float: right;"><< anterior | próxima >></span>
                     </div>
                 </div>
                 <br class="cb"/>

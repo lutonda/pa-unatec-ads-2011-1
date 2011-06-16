@@ -28,7 +28,7 @@ public class AjaxNotificacaoController {
             for (Iterator<Notificacoes> it = objNot.iterator(); it.hasNext();) {
                 Notificacoes notificacoes = it.next();
                 
-                Itens += "<li><a href=\"#\">" + notificacoes.getNm_nome() + "</a> <i>" + notificacoes.getDescricao() + "</i> " + notificacoes.getDt_notificacoes() + "</li>";
+                Itens += "<li><a href=\"/AppWebFrontEnd/site/inicio/perfil.html?id=" + notificacoes.getId_usuario() + "\">" + notificacoes.getNm_nome() + "</a> <i>" + notificacoes.getDescricao() + "</i> " + notificacoes.getDt_notificacoes() + "</li>";
                 vTotal = notificacoes.getTotal();
             }
             Itens += "<div class=\"cb\"></div>|"+ vTotal;

@@ -32,14 +32,14 @@ Notificacoes.prototype = {
         //clicks btn
         $('#btnEnviarNotificacao').bind('click', '', $.createDelegate(this, this._btnEnviarNotOnClick));
 
-
-        inputText('txtNotificacao','Chame Alguem pra Trocar Jogos');
+        inputText('txtNotificacao','Chame Alguem para Trocar Jogos');
     },
 
     _btnEnviarNotOnClick: function(value){
         this.dataBindMvc('enviarNotificacao.do', {
-            idUsuario : $('#idUser').text(),
-            dsNotificacao: $('#txtNotificacao').val()
+            idUsuario : ($('#idUserVisitante').text() == "")? $('#idUser').text():$('#idUserVisitante').text(),
+            dsNotificacao: $('#txtNotificacao').val(),
+            broadcast: ($('#idUserVisitante').text() == "")? 1:0
         }, this._enviarNotificacaoOnSuccess);
         inputText('txtNotificacao','Chame Alguem pra Trocar Jogos');
     },

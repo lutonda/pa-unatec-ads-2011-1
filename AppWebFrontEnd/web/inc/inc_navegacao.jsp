@@ -1,10 +1,11 @@
 <div class="box-nav">
     <c:if test="${DadosIniciais.imagem == null}">
-        <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" class="imgPerfil" alt=""/>
+        <c:set value="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" var="urlImg"/>
     </c:if>
     <c:if test="${DadosIniciais.imagem != null}">
-        <img src="/AppWebFrontEnd/resources/perfil/${DadosIniciais.imagem}" class="imgPerfil" alt=""/>
+        <c:set value="/AppWebFrontEnd/resources/perfil/${DadosIniciais.imagem}" var="urlImg"/>
     </c:if>
+        <a href="/AppWebFrontEnd/site/inicio/perfil.html?id=${DadosIniciais.id_usuario}" title="Visualizar meu Perfil"><img src="${urlImg}" border="0" class="imgPerfil" alt=""/></a>
     <div style="float: right;">
         ${DadosIniciais.pontos}<br/><a href="#" title="Replicas Pendentes">Avaliações (${DadosIniciais.replica_pendente})</a>
     </div>

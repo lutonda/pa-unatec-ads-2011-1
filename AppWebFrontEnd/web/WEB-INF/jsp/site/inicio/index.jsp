@@ -26,7 +26,7 @@
                         <ul id="listaJogos" style="margin-left: 15px; height: 310px;">
                             <li id="campoBusca"><input type="text" id="txtBuscarJogo" ></input><input type="submit" value="Buscar" id="btnBuscar"></input></li>
                         </ul>
-                        <span style="float: right; margin-top: 0"><< <a id="ant" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="prox">próxima</a> >></span>
+                        <span id="paginacao" style="float: right; margin-top: 0; display: none;"><< <a id="ant" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="prox">próxima</a> >></span>
                     </div>
                     <div class="box-df">
                         <ul id="notificacao">

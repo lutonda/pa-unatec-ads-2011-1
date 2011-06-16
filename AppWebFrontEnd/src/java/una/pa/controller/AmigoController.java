@@ -34,6 +34,8 @@ public class AmigoController extends MultiActionController {
             mav.addObject("tags", objTags);
             mav.addObject("amigos", objListAmigos);
             mav.addObject("amigosPendentes", (objListAmigosPendetes.size() == 0)? null: objListAmigosPendetes);
+            mav.addObject("qtdSolic", objListAmigosPendetes.size());
+            mav.addObject("qtdAmigos", objListAmigos.size());
 
 
             return mav;

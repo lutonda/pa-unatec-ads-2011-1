@@ -133,9 +133,9 @@ public class UsuarioDao {
 
         String sql = "select top " + quantidePorPagina + " *"
                 + "from (select row_number() over (order by id_usuario) as linha "
-                + ", (select count(*) from " + ((!_oferta)? "usuarios_jogo":"usuarios_jogos_ofertados") + " where id_jogo = ?) as totalregistros"
+                + ", (select count(*) from " + ((!_oferta) ? "usuarios_jogo" : "usuarios_jogos_ofertados") + " where id_jogo = ?) as totalregistros"
                 + ", id_usuario, nm_usuario, nm_sobrenome, status, id "
-                + "from " + ((!_oferta)? "usuarios_jogo":"usuarios_jogos_ofertados") + " where id_jogo = ?) as buscapaginada "
+                + "from " + ((!_oferta) ? "usuarios_jogo" : "usuarios_jogos_ofertados") + " where id_jogo = ?) as buscapaginada "
                 + "where linha > " + inicio + " and linha <= " + fim;
 
 
@@ -284,7 +284,7 @@ public class UsuarioDao {
                 + "WHERE ID_USUARIO = ? ";
 
         Object[] vetor = {objU.isAceite_acordo(), objU.isEmail_parceiro(), objU.isPref_correios(),
-                            objU.isPref_em_maos(), objU.isPref_transp(), objU.isEmail_notificacoes(), objU.getId_usuario()};
+            objU.isPref_em_maos(), objU.isPref_transp(), objU.isEmail_notificacoes(), objU.getId_usuario()};
 
         String sql2 = "insert into endereco "
                 + "(id_usuario, tp_logradouro, cep, logradouro, numero, complemento, ds_bairro, ds_cidade, ds_estado) "
@@ -301,5 +301,38 @@ public class UsuarioDao {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static AmigoUsuario inicioAmigo(int _id, int _idAmigo) {
+
+
+        String sql = "select aua.id_usuario, aua.id_usuario_amigo, sn_aceite, aua.ignorado, case when aua.id_usuario_amigo = ? then 'S' else 'N'  end as solitante "
+                + "from amigo_usuario aua inner join usuario ua on aua.id_usuario_amigo = ua.id_usuario "
+                + "where aua.id_usuario = ? and aua.id_usuario_amigo = ? union "
+                + "select aua.id_usuario_amigo as id_usuario, aua.id_usuario as id_usuario_amigo, sn_aceite, aua.ignorado, case when aua.id_usuario_amigo = ? then 'S' else 'N'  end as solitante "
+                + "from amigo_usuario aua inner join usuario ua on aua.id_usuario = ua.id_usuario "
+                + "where aua.id_usuario_amigo = ? and aua.id_usuario = ?";
+
+        Object[] vetor = {_id, _id, _idAmigo, _id, _id, _idAmigo};
+
+        try {
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql, vetor);
+            AmigoUsuario o = new AmigoUsuario();
+
+            if (rs.next()) {
+                o.setId_usuario(Integer.parseInt(rs.getString("id_usuario")));
+                o.setId_amigo_usuario(Integer.parseInt(rs.getString("id_usuario_amigo")));
+                o.setSn_aceite(Integer.parseInt(rs.getString("sn_aceite")));
+                o.setIgnorado(Integer.parseInt(rs.getString("ignorado")));
+                o.setSolitante(rs.getString("solitante"));
+            }
+            rs.close();
+            c.close();
+            return o;
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 }

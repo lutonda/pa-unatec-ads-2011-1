@@ -42,7 +42,7 @@ public class NotificacoesDao {
                 o.setId_usuario(Integer.parseInt(rs.getString("id_usuario")));
                 o.setNm_nome(rs.getString("nm_usuario"));
                 o.setDescricao(rs.getString("descricao"));
-                o.setBroadcast(rs.getString("broadcast"));
+                o.setBroadcast(Integer.parseInt(rs.getString("broadcast")));
                 String data = ConvData.parseDataBra(rs.getString("dt_notificacao"));
                 o.setDt_notificacoes(data);
                 objc.add(o);
@@ -82,7 +82,7 @@ public class NotificacoesDao {
                 o.setId_usuario(Integer.parseInt(rs.getString("id_usuario")));
                 o.setNm_nome(rs.getString("nm_usuario"));
                 o.setDescricao(rs.getString("descricao"));
-                o.setBroadcast(rs.getString("broadcast"));
+                o.setBroadcast(Integer.parseInt(rs.getString("broadcast")));
                 String data = ConvData.parseDataBra(rs.getString("dt_notificacao"));
                 o.setDt_notificacoes(data);
                 objct.add(o);
@@ -121,24 +121,24 @@ public class NotificacoesDao {
                 + " from notificacoes "
                 + " where notificacoes.id_usuario in(select id_usuario_amigo "
                 + " from amigo_usuario "
-                + " where id_usuario = ? and sn_aceite = 1 and ignorado = 0 "
+                + " where id_usuario = ? and ignorado = 0 "
                 + " union "
                 + " select id_usuario as id_usuario_amigo "
                 + " from amigo_usuario"
                 + " where id_usuario_amigo = ?"
-                + " and sn_aceite = 1"
+                //+ " and sn_aceite = 1"
                 + " and ignorado = 0 )"
                 + " or id_usuario = ? )TOTAL"
                 + " from notificacoes n inner join usuario u on u.id_usuario = n.id_usuario"
                 + " where n.id_usuario in (select *"
                 + " from(select id_usuario_amigo"
                 + " from amigo_usuario"
-                + " where id_usuario = ? and sn_aceite = 1 and ignorado = 0"
+                + " where id_usuario = ? and ignorado = 0"
                 + " union"
                 + " select id_usuario as id_usuario_amigo"
                 + " from amigo_usuario"
                 + " where id_usuario_amigo = ?"
-                + " and sn_aceite = 1"
+                //+ " and sn_aceite = 1"
                 + "  and ignorado = 0"
                 + " ) tabela"
                 + " )or n.id_usuario = ? "
@@ -159,7 +159,7 @@ public class NotificacoesDao {
                 o.setId_usuario(Integer.parseInt(rs.getString("id_usuario")));
                 o.setNm_nome(rs.getString("nm_usuario"));
                 o.setDescricao(rs.getString("descricao"));
-                o.setBroadcast(rs.getString("broadcast"));
+                o.setBroadcast(Integer.parseInt(rs.getString("broadcast")));
                 String data = ConvData.parseDataBra(rs.getString("dt_notificacao"));
                 o.setDt_notificacoes(data);
                 o.setTotal(Integer.parseInt(rs.getString("total")));
@@ -178,8 +178,8 @@ public class NotificacoesDao {
     public static boolean enviaNotificacao(Notificacoes objct) {
         try {
             Connection c = Data.openConnection();
-            String sql = "INSERT INTO NOTIFICACOES(ID_USUARIO, DESCRICAO, BROADCAST,DT_NOTIFICACAO)VALUES(?,?,0,getdate())";
-            Object[] vetor = {objct.getId_usuario(), objct.getDescricao()};
+            String sql = "INSERT INTO NOTIFICACOES(ID_USUARIO, DESCRICAO, BROADCAST,DT_NOTIFICACAO)VALUES(?,?,?,getdate())";
+            Object[] vetor = {objct.getId_usuario(), objct.getDescricao(), objct.getBroadcast()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();

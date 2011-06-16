@@ -8,7 +8,6 @@ import una.pa.model.*;
 import una.pa.repository.*;
 import java.util.*;
 
-
 /**
  *
  * @author Felipe
@@ -18,12 +17,17 @@ public class JogoService {
     public static List<Jogo> listar() {
         return JogoDal.listaDal();
     }
+
     public static List<Jogo> listar(int pId_usuario, int quantidePorPagina, int pagina) {
         return JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina);
     }
 
     public static List<Jogo> listar(int pId_usuario, int quantidePorPagina, int pagina, String buscar) {
-        return JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina, buscar);
+        return JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina, buscar, 0);
+    }
+
+    public static List<Jogo> listar(int pId_usuario, int quantidePorPagina, int pagina, String buscar, int console) {
+        return JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina, buscar, console);
     }
 
     public static Jogo unico(int id) {
@@ -52,7 +56,8 @@ public class JogoService {
     public static boolean excluir(int id) {
         return JogoDal.exclui(id);
     }
-    public static Jogo detalheJogo(int _id){
+
+    public static Jogo detalheJogo(int _id) {
         return JogoDal.detalesJogo(_id);
     }
 }

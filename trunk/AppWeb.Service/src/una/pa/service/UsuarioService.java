@@ -48,4 +48,8 @@ public class UsuarioService {
     public static boolean updatePasso2(Usuario _objU, Endereco _objE) {
         return UsuarioDao.updatePasso2(_objU, _objE);
     }
+    public static AmigoUsuario inicioAmigo(HttpServletRequest request, int _idAmigo){
+        HttpSession session = request.getSession();
+        return UsuarioDao.inicioAmigo(Integer.parseInt(session.getAttribute("id").toString()), _idAmigo);
+    }
 }

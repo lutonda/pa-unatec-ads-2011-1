@@ -21,6 +21,24 @@ public class AmigoUsuario  extends Usuario{
     private int qtd_jogo;
     private int qtd_desejo;
     private int pontos;
+    private int ignorado;
+    private String solitante;
+
+    public String getSolitante() {
+        return solitante;
+    }
+
+    public void setSolitante(String solitante) {
+        this.solitante = solitante;
+    }
+
+    public int getIgnorado() {
+        return ignorado;
+    }
+
+    public void setIgnorado(int ignorado) {
+        this.ignorado = ignorado;
+    }
 
     public int getPontos() {
         return pontos;

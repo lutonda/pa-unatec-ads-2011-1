@@ -19,6 +19,24 @@ public class Jogo extends TituloJogo{
     private int proprietario;
     private int interessado;
     private int oferta;
+    private String nivelInteresse;
+    private String nivelDesejo;
+
+    public String getNivelDesejo() {
+        return nivelDesejo;
+    }
+
+    public void setNivelDesejo(String nivelDesejo) {
+        this.nivelDesejo = nivelDesejo;
+    }
+
+    public String getNivelInteresse() {
+        return nivelInteresse;
+    }
+
+    public void setNivelInteresse(String nivelInteresse) {
+        this.nivelInteresse = nivelInteresse;
+    }
 
     public int getTotal() {
         return total;

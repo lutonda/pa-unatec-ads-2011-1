@@ -15,7 +15,7 @@ public class Notificacoes {
         private int id_usuario;
         private String nm_nome;
         private String descricao;
-        private String broadcast;
+        private int broadcast;
         private String dt_notificacoes;
         private int total;
 
@@ -27,11 +27,11 @@ public class Notificacoes {
         this.total = total;
     }
 
-    public String getBroadcast() {
+    public int getBroadcast() {
         return broadcast;
     }
 
-    public void setBroadcast(String broadcast) {
+    public void setBroadcast(int broadcast) {
         this.broadcast = broadcast;
     }
 

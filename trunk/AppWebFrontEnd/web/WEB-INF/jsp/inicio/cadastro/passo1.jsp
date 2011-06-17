@@ -18,10 +18,7 @@
                 <%@ include file="/inc/inc_topo_padrao.jsp" %>
             </div>
             <div id="content">
-                <h2>Cadastro Passo 1</h2>
-                <div>
-
-                </div>
+                <h2>Cadastro</h2>
                 <form action="cadastroPasso1Form.do" method="POST">
                     <input type="hidden" name="id_usuario" value="${Usuario.id_usuario}"/>
                     <div class="frm_content">

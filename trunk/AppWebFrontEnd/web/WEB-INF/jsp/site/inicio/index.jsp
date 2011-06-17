@@ -30,7 +30,7 @@
                     </div>
                     <div class="box-df">
                         <ul id="notificacao">
-                            <li><input type="text" id="txtNotificacao" size="90"></input><input type="submit" id="btnEnviarNotificacao"></input>  </li>
+                            <li><input type="text" id="txtNotificacao" size="90"></input><input type="submit" value="Enviar" id="btnEnviarNotificacao"></input>  </li>
                         </ul>
                         <span style="float: right; margin-top: 0"><a href="javascript:void(0);" id="btnMais">Mais(+)</a></span>
                     </div>

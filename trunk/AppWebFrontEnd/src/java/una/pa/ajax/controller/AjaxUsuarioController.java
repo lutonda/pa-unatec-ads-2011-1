@@ -17,21 +17,25 @@ public class AjaxUsuarioController {
         RequestMethod.POST})
     @ResponseBody
     public String getListaUsuarioJogo(HttpServletRequest request,
-            @RequestParam int id, @RequestParam int qtd, @RequestParam int pagina, @RequestParam boolean ofertados) {
+            @RequestParam int id, @RequestParam int qtd, @RequestParam int pagina, @RequestParam boolean ofertados, @RequestParam int tipo) {
 
         String Itens = "";
 
-        List<Usuario> objUs = UsuarioService.usuarioJogos(id, ofertados, qtd, pagina, 0);
+        List<Usuario> objUs = UsuarioService.usuarioJogos(id, ofertados, qtd, pagina, tipo);
 
+        if (!objUs.isEmpty()) {
         for (Iterator<Usuario> it = objUs.iterator(); it.hasNext();) {
             Usuario usuario = it.next();
 
-            Itens +=  "<li style=\"float: left; height: 110px; width: 255px;\">"
+            Itens +=  "<li style=\"float: left; height: 80px; width: 255px;\">"
                     + "<img src=\"/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg\" style=\"float: left; width: 50px; height: 50px; margin-right: 10px;\" alt=\"\"/>"
-                    + "<div><a href=\"/AppWebFrontEnd/site/inicio/perfil.html?id=" + usuario.getId_usuario() + "\">" + usuario.getNm_usuario() + " " + usuario.getNm_sobrenome() + "</a><br/>" + usuario.getStatus() + "<br/><br/>Oferta de Troca</div></li>";
+                    + "<div><a href=\"/AppWebFrontEnd/site/inicio/perfil.html?id=" + usuario.getId_usuario() + "\"><b>" + usuario.getNm_usuario() + " " + usuario.getNm_sobrenome() + "</b></a><br/>" + usuario.getStatus() + "<br/><br/>Oferta de Troca</div></li>";
 
         }
         Itens += "<div class=\"cb\"></div>|" + objUs.get(0).getTotalderegistros();
+        }else {
+            Itens += "<li>Nenhuma Pessoa Encontrada!|0";
+        }
 
         return Itens;
     }

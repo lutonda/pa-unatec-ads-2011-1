@@ -1,6 +1,8 @@
 var _pagina = 1;
 var _totalItens = 0;
 var _totalPg = 0;
+var _oferta = false;
+var _tipo = 0;
 
 Usuario = function(){
     this._data = null;
@@ -23,7 +25,40 @@ Usuario.prototype = {
             id : $('#idJogo').text(),
             qtd : 10,
             pagina: _pagina,
-            ofertados: false
+            ofertados: _oferta,
+            tipo: _tipo
+        }, this._listaUsuarioOnSuccess);
+
+        $('#btnUserOferta').bind('click', 'O', $.createDelegate(this, this._btnFiltroOnClick));
+        $('#btnUserPro').bind('click', 'P', $.createDelegate(this, this._btnFiltroOnClick));
+        $('#btnUserInt').bind('click', 'I', $.createDelegate(this, this._btnFiltroOnClick));
+    },
+
+    _btnFiltroOnClick: function(value){
+        _pagina = 1;
+
+        switch (value.data) {
+            case 'O':
+                _oferta = true;
+                break;
+            case 'P':
+                _oferta = false;
+                _tipo = 1;
+                break;
+            case 'I':
+                _oferta = false;
+                _tipo = 2;
+                break;
+            default:
+                break;
+        }
+
+        this.dataBindMvc('listaUsuarioJogo.do', {
+            id : $('#idJogo').text(),
+            qtd : 10,
+            pagina: _pagina,
+            ofertados: _oferta,
+            tipo: _tipo
         }, this._listaUsuarioOnSuccess);
     },
 
@@ -39,6 +74,11 @@ Usuario.prototype = {
 
         _totalPg = Math.ceil(_totalItens / 10);
 
+        if(_totalPg != 0 && _totalItens >= 10)
+            $('#paginacao').show();
+        else
+            $('#paginacao').hide();
+
         if (mais <= _totalPg)
             $('#proximo').bind('click', mais, $.createDelegate(this,  this._paginacaoOnClick));
         else
@@ -53,11 +93,12 @@ Usuario.prototype = {
     _paginacaoOnClick: function(value){
         _pagina = value.data;
 
-            this.dataBindMvc('listaUsuarioJogo.do', {
+        this.dataBindMvc('listaUsuarioJogo.do', {
             id : $('#idJogo').text(),
             qtd : 10,
             pagina: _pagina,
-            ofertados: false
+            ofertados: _oferta,
+            tipo: _tipo
         }, this._listaUsuarioOnSuccess);
     },
 

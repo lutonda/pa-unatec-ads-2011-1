@@ -122,6 +122,10 @@ public class UsuarioDao {
 
         List<Usuario> objct = new ArrayList<Usuario>();
 
+        String sqlWhere = "";
+
+        if(tipo != 0 && !_oferta)
+            sqlWhere = "and id = " + tipo;
 
         int inicio = 0;
         int fim = quantidePorPagina;
@@ -133,9 +137,9 @@ public class UsuarioDao {
 
         String sql = "select top " + quantidePorPagina + " *"
                 + "from (select row_number() over (order by id_usuario) as linha "
-                + ", (select count(*) from " + ((!_oferta) ? "usuarios_jogo" : "usuarios_jogos_ofertados") + " where id_jogo = ?) as totalregistros"
+                + ", (select count(*) from " + ((!_oferta) ? "usuarios_jogo" : "usuarios_jogos_ofertados") + " where id_jogo = ? " + sqlWhere + ") as totalregistros"
                 + ", id_usuario, nm_usuario, nm_sobrenome, status, id "
-                + "from " + ((!_oferta) ? "usuarios_jogo" : "usuarios_jogos_ofertados") + " where id_jogo = ?) as buscapaginada "
+                + "from " + ((!_oferta) ? "usuarios_jogo" : "usuarios_jogos_ofertados") + " where id_jogo = ? " + sqlWhere + ") as buscapaginada "
                 + "where linha > " + inicio + " and linha <= " + fim;
 
 
@@ -272,7 +276,7 @@ public class UsuarioDao {
     }
 
     public static boolean updatePasso2(Usuario objU, Endereco objE) {
-        String sql = "update usuario "
+        String sqlPasso2 = "update usuario "
                 + "set DT_NASCIMENTO = getdate(), "
                 //+ "	SEXO = ?,"
                 + "ACEITE_ACORDO = ?, "
@@ -283,19 +287,19 @@ public class UsuarioDao {
                 + "EMAIL_NOTIFICACOES = ? "
                 + "WHERE ID_USUARIO = ? ";
 
-        Object[] vetor = {objU.isAceite_acordo(), objU.isEmail_parceiro(), objU.isPref_correios(),
+        Object[] vetorDados2 = {objU.isAceite_acordo(), objU.isEmail_parceiro(), objU.isPref_correios(),
             objU.isPref_em_maos(), objU.isPref_transp(), objU.isEmail_notificacoes(), objU.getId_usuario()};
 
-        String sql2 = "insert into endereco "
+        String sqlEndereco = "insert into endereco "
                 + "(id_usuario, tp_logradouro, cep, logradouro, numero, complemento, ds_bairro, ds_cidade, ds_estado) "
                 + "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        Object[] vetor2 = {objU.getId_usuario(), objE.getTp_logradouro(), objE.getCep(), objE.getLogradouro(), objE.getNumero(),
+        Object[] vetorEndereco = {objU.getId_usuario(), objE.getTp_logradouro(), objE.getCep(), objE.getLogradouro(), objE.getNumero(),
             objE.getComplemento(), objE.getDs_bairro(), objE.getDs_cidade(), objE.getDs_estado()};
         try {
             Connection c = Data.openConnection();
-            Data.executeUpdate(c, sql, vetor);
-            Data.executeUpdate(c, sql2, vetor2);
+            Data.executeUpdate(c, sqlPasso2, vetorDados2);
+            Data.executeUpdate(c, sqlEndereco, vetorEndereco);
             return true;
 
         } catch (Exception e) {

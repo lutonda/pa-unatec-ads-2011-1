@@ -49,7 +49,7 @@
                     </div>
                     <div class="box-df">
                         <ul id="notificacao">
-                            <li><c:if test="${AmigoUsuario.ignorado == 0}"><input type="text" id="txtNotificacao" size="90"></input><input type="submit" id="btnEnviarNotificacao"></input></c:if></li>
+                            <li><c:if test="${AmigoUsuario.ignorado == 0}"><input type="text" id="txtNotificacao" size="90"></input><input type="submit" value="Enviar" id="btnEnviarNotificacao"></input></c:if></li>
                         </ul>
                         <span style="float: right; margin-top: 0"><a href="javascript:void(0);" id="btnMais">Mais(+)</a></span>
                     </div>

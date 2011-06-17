@@ -7,33 +7,27 @@
         <%@ include file="/inc/taghead.jsp" %>
     </head>
     <body>
-        <div id="container">
-            <div id="header">
-                <span style="font-size: 18px; font-weight: bold;"><br/><br/>TROCA DE JOGOS</span><br/>Rede de troca de Jogo
-            </div>
+        <div id="content-center">
             <div id="content" class="clearfix">
-                <fieldset class="fieldset_login">
-                    <ul>
-                        <form action="inicio/cadastro/autForm.do" method="post">
-                            <li>
-                                <label><strong>Login :</strong></label>
-                                <input type="text" maxlength="10" name="txtUser" value="${txtUser}" size="30"/>
-                            </li>
-                            <li>
-                                <label><strong>Senha :</strong></label>
-                                <input type="password" maxlength="8" name="txtPassword" size="20"/>
-                            </li>
-                            <li>
-                                <a href="#" title="esqueci minha senha" >esqueci minha senha</a>
-                            </li>
-                            <li class="bts">
-                                <input type="submit" value="Acessar"/>
-                            </li>
-                        </form>
-                        <li>${msgErro}</li>
-                    </ul>
+                <div style="float: right;">
+                    <fieldset class="fieldset_login">
+                        <ul>
+                            <form action="inicio/cadastro/autForm.do" method="post">
+                                <li>
+                                    <label><strong>Login :</strong></label>
+                                    <input type="text" maxlength="10" name="txtUser" value="${txtUser}" size="33"/>
+                                </li>
+                                <li>
+                                    <label><strong>Senha :</strong></label>
+                                    <input type="password" maxlength="8" name="txtPassword" size="21"/> <input type="submit" value="Acessar"/>
+                                </li>
+                            </form>
+                            <li>${msgErro}</li>
+                        </ul>
 
-                </fieldset>
+                    </fieldset>
+                </div>
+                <span style="font-size: 18px; font-weight: bold;"><br/><br/>TROCA DE JOGOS</span><br/>Rede de troca de Jogo
             </div>
         </div>
 

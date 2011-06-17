@@ -23,17 +23,17 @@
                     <%@ include file="/inc/inc_navegacao.jsp" %>
                 </div>
                 <div id="main">
-                    <span>Início > Detalhes Jogos<br/><br/></span>
+                    <span>Início > Detalhes Jogo<br/><br/></span>
                     <div class="box-df" style="position: relative">
                         <div style="position: absolute; top: 10px; right: 10px;">
                             <c:if test="${Jogo.console == 'Wii'}">
-                                <img src="/AppWebFrontEnd/resources/img/logo_wii.png" alt="teste"/>
+                                <img width="50px" src="/AppWebFrontEnd/resources/img/logo_wii.png" alt="teste"/>
                             </c:if>
                             <c:if test="${Jogo.console == 'Play Station III'}">
-                                <img src="/AppWebFrontEnd/resources/img/logo_ps3.png" alt="teste"/>
+                                <img width="50px" src="/AppWebFrontEnd/resources/img/logo_ps3.png" alt="teste"/>
                             </c:if>
                             <c:if test="${Jogo.console == 'Xbox 360'}">
-                                <img src="/AppWebFrontEnd/resources/img/logo_x360.png" alt="teste"/>
+                                <img width="50px" src="/AppWebFrontEnd/resources/img/logo_x360.png" alt="teste"/>
                             </c:if>
                         </div>
                         <c:if test="${Jogo.imagem == null}">
@@ -50,13 +50,13 @@
                         </ul>
                         <div class="cb"></div>
                     </div>
-                    <div class="box-df"><span>Avalie (${Jogo.pontos})</span>
-                        <span style="float: right"><a href="detalhesjogo.html?id=${Jogo.id_jogo}&cod=3" title="Oferta">Oferta (${Jogo.oferta})</a> - <a href="detalhesjogo.html?id=${Jogo.id_jogo}&cod=1" title="Proprietario">Proprietarios (${Jogo.proprietario})</a> - <a href="detalhesjogo.html?id=${Jogo.id_jogo}&cod=2" title="Interessados">Interesados (${Jogo.interessado})</a></span>
+                    <div class="box-df"><span><a href="#">Avalie (${Jogo.pontos})</a></span>
+                        <span style="float: right"><a id="btnUserOferta" href="javascript:void(0);" title="Listar apenas Ofertados">Oferta (${Jogo.oferta})</a> - <a id="btnUserPro" href="javascript:void(0);" title="Listar apenas Proprietario">Proprietarios (${Jogo.proprietario})</a> - <a id="btnUserInt" href="javascript:void(0);" title="Listar apenas Interessados">Interesados (${Jogo.interessado})</a></span>
                     </div>
 
                     <div id="usuarios"class="box-df">
                         <ul id="listaUsuarios"></ul>
-                        <span style="float: right; margin-top: 0"><< <a id="anterior" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="proximo">próxima</a> >></span>
+                        <span id="paginacao" style="float: right; margin-top: 0; display: none;"><< <a id="anterior" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="proximo">próxima</a> >></span>
                     </div>    
                 </div>
                 <br class="cb"/>

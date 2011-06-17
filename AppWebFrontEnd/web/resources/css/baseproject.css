@@ -75,6 +75,16 @@ estrutura
     display: block;
 }
 
+#content-center {
+        position:absolute;
+        left:50%;
+        top:50%;
+        margin-left:-400px;
+        margin-top:-57px;
+        height:114px;
+        width:800px;
+}
+
 #sidebarleft {
     display: block;
     float: left;
@@ -149,3 +159,61 @@ ul#listaJogos input#txtBuscarJogo {
     width: 450px;
     color: #cccccc;
 }
+
+/* Tela de Login */
+fieldset.fieldset_login{
+	width:250px;
+        margin-top: 30px;
+        margin-right: 20px;
+        margin-bottom: 40px;
+
+	}
+
+fieldset.fieldset_login ul li{
+	margin:0 0 5px 0;
+	}
+
+fieldset.fieldset_login ul li label{
+        font-weight: bold;
+	}
+
+fieldset.fieldset_login ul li label strong{
+	display:block;
+	float:left;
+	width:50px;
+	}
+fieldset.fieldset_login ul li a{
+	text-decoration:underline;
+	}
+
+/* Formatação para formulários */
+div.frm_content{
+	padding:20px;
+	margin:0 0 10px 0;
+	}
+ul.frm{width:902px;}
+ul.frm li{margin:0 0 10px 0; overflow:hidden;}
+/*ul.frm li label{color:#f00;}	*/
+ul.frm li label strong{
+	display:block;
+	float:left;
+	width:120px;
+	/*color:#f00;*/
+	}
+
+ul.frm li div{
+	float:left;
+	margin:0 15px 0 0;
+	}
+
+ul.frm li span.nota{
+	display:block;
+	margin:5px 0;
+	color:#999;
+	text-indent:120px;
+}
+
+textarea.content_area{
+	width:650px;
+	height:150px;
+	}

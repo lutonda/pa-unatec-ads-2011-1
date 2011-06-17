@@ -19,7 +19,7 @@
                 <%@ include file="/inc/inc_topo_padrao.jsp" %>
             </div>
             <div id="content">
-                <h2>Cadastro Passo 2</h2>
+                <h2>Cadastro</h2>
                 
                 <form action="cadastroPasso2Form.do?id=<%= request.getParameter("id") %>
                       &usuario=<%= request.getParameter("usuario") %>" method="POST">
@@ -39,15 +39,15 @@
                             </li>
                              <li>
                                 <label><strong>Telefone: </strong></label>
-                                <input type="text" name="telefone" maxlength="9"
-                                       onkeypress="formatar_mascara(this, '####-####')"/>
+                                <input type="text" name="telefone" maxlength="12"
+                                       onkeypress="formatar_mascara(this, '## ####-####')"/>
                             </li>
-                            <ul>
+                            <li>
                                 <label><strong>Descrição do perfil: </strong></label>
-                                <textarea style="position: static "name="descricao" rows="10" cols="180"> </textarea>
-                            </ul>
+                                <textarea cols="40" rows="6" name="descricao"> </textarea>
+                            </li>
                                                         
-                            <label><strong>Dados da localidade</strong></label>
+                            <li>Endereço</li>
 
                             <li>
                                 <label><strong>CEP: </strong></label>
@@ -85,14 +85,14 @@
                             </li>
 
                             <li>
-                                <label><strong>Preferências de envio: </strong></label><br/>
+                                <label><strong>Preferências de envio </strong></label><br/>
                                 <input type="checkbox" name="pref_maos" />Em mãos <br/>
                                 <input type="checkbox" name="pref_correio" />Pelo correios <br/>
                                 <input type="checkbox" name="pref_tansportadora" />Pela transportadora <br/>
                             </li>
 
                             <li>
-                                <input type="submit" value="Salvar" class="bt" />
+                                <input type="submit" value="Finalizar" class="bt" />
                             </li>
                         </ul>
                     </div>

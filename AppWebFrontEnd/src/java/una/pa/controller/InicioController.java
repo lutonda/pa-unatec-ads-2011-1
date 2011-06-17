@@ -12,7 +12,6 @@ import una.pa.util.*;
 
 public class InicioController extends MultiActionController {
 
-
     public ModelAndView logout(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
 
@@ -147,7 +146,7 @@ public class InicioController extends MultiActionController {
 
 
             if (UsuarioService.updatePasso1(obj)) {
-                response.sendRedirect("passo2.html?id=" + obj.getId_usuario() + "&usuario=" + obj.getUsuario());
+                response.sendRedirect("passo2.html?id=" + obj.getId_usuario());
                 return null;
             } else {
                 obj.setSenha("");
@@ -169,17 +168,12 @@ public class InicioController extends MultiActionController {
         ModelAndView mav = new ModelAndView("inicio/cadastro/passo2");
         try {
 
-            Usuario objU = new Usuario();
+            int id = Integer.parseInt(request.getParameter("id").trim());
+
+            Usuario objU = UsuarioService.listarUnico(id);
             Endereco objE = new Endereco();
 
-            //objU.setDt_nascimento(Date.(request.getParameter("dt_nascimento")));
-//            if (request.getParameterValues("sexo").equals("M")){
-//                objU.setSexo('M');
-//            }else{
-//                objU.setSexo('F');
-//            }
-            objU.setId_usuario(Integer.parseInt(request.getParameter("id").trim()));
-            objU.setUsuario(request.getParameter("usuario"));
+
             if (request.getParameter("cep") != null) {
                 objE.setCep(Integer.parseInt(request.getParameter("cep").replace(".", "").replace("-", "")));
             }
@@ -187,9 +181,9 @@ public class InicioController extends MultiActionController {
             objE.setLogradouro(request.getParameter("logradouro"));
             objE.setComplemento(request.getParameter("complemento"));
             objE.setNumero(Integer.parseInt(request.getParameter("numero")));
-            objE.setDs_bairro(request.getParameter("ds_bairro"));
-            objE.setDs_cidade(request.getParameter("ds_cidade"));
-            objE.setDs_estado(request.getParameter("ds_estado"));
+            objE.setDs_bairro(request.getParameter("bairro"));
+            objE.setDs_cidade(request.getParameter("cidade"));
+            objE.setDs_estado(request.getParameter("estado"));
             objU.setPref_em_maos(request.getParameter("pref_maos") == null ? false : true);
             objU.setPref_correios(request.getParameter("pref_correio") == null ? false : true);
             objU.setPref_transp(request.getParameter("pref_tansportadora") == null ? false : true);
@@ -197,14 +191,16 @@ public class InicioController extends MultiActionController {
             if (UsuarioService.updatePasso2(objU, objE)) {
                 HttpSession session = request.getSession();
 
-                if (session.getAttribute("usuario") == null) {
-                    session.setAttribute("usuario", objU.getUsuario());
+                session.removeAttribute("usuario");
+                session.removeAttribute("id");
 
-                    response.sendRedirect("/AppWebFrontEnd/site/inicio/index.html");
-                    return null;
-                }
-                response.sendRedirect("../ajuda/orientacao.html");
+                session.setAttribute("usuario", objU.getUsuario());
+                session.setAttribute("id", objU.getId_usuario());
 
+                response.sendRedirect("/AppWebFrontEnd/site/inicio/index.html");
+                return null;
+
+                //response.sendRedirect("../ajuda/orientacao.html");
             }
 
 

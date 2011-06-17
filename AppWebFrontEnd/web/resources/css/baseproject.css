@@ -155,11 +155,6 @@ ul#listaJogos li#campoBusca {
     margin-left: -2px;
 }
 
-ul#listaJogos input#txtBuscarJogo {
-    width: 450px;
-    color: #cccccc;
-}
-
 /* Tela de Login */
 fieldset.fieldset_login{
 	width:250px;

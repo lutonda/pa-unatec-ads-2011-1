@@ -6,7 +6,6 @@ var _desejo = false;
 var _console = 0;
 
 
-
 Jogo = function(){
     this._data = null;
     this._dataUrl = null;
@@ -39,9 +38,13 @@ Jogo.prototype = {
         $('#btnBuscar').bind('click', '', $.createDelegate(this, this._btnBuscarOnClick));
         $('#btnMeusJogos').bind('click', 'meusJogos', $.createDelegate(this, this._btnFiltroOnClick));
         $('#btnMeusDesejos').bind('click', 'meusDesejos', $.createDelegate(this, this._btnFiltroOnClick));
-        $('#btnPs3').bind('click', '1', $.createDelegate(this, this._btnFiltroOnClick));
-        $('#btnWii').bind('click', '2', $.createDelegate(this, this._btnFiltroOnClick));
-        $('#btnXbox').bind('click', '3', $.createDelegate(this, this._btnFiltroOnClick));
+
+        if(parseURL(window.location.pathname).file == "index.html"){
+
+            $('#btnPs3').bind('click', '1', $.createDelegate(this, this._btnFiltroOnClick));
+            $('#btnWii').bind('click', '2', $.createDelegate(this, this._btnFiltroOnClick));
+            $('#btnXbox').bind('click', '3', $.createDelegate(this, this._btnFiltroOnClick));
+        }
 
         inputText('txtBuscarJogo','Digite o nome do Jogo');
         

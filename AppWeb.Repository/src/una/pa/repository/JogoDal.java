@@ -31,20 +31,14 @@ public class JogoDal {
 
         if (console != 0) {
             sqlWhere = "where j.id_console = " + console;
-
-
         }
         if (busca != null) {
             sqlWhere = "where nm_titulo like '%" + busca + "%'";
-
-
         }
         if (pId_usuario != 0) {
             sqlWhere = "where ju.id_usuario = " + pId_usuario;
-
-
-            
         }
+        
         int inicio = 0;
         int fim = quantidePorPagina;
 

@@ -17,7 +17,7 @@ public class AjaxController {
         RequestMethod.POST})
     @ResponseBody
     public String getListaJogos(HttpServletRequest request,
-            @RequestParam int id, @RequestParam int qtd, @RequestParam int pagina, @RequestParam String busca, @RequestParam boolean desejo, @RequestParam int console) {
+            @RequestParam int id, @RequestParam int qtd, @RequestParam int pagina, @RequestParam String busca, @RequestParam boolean desejo, @RequestParam int console, @RequestParam int nivelOfetas) {
 
         String Itens = "";
         List<Jogo> objJogo;
@@ -27,10 +27,13 @@ public class AjaxController {
             objJogo = DesejoUsuarioService.listaJogosDesejados(id, qtd, pagina);
         } else {
             if (console == 0) {
-                objJogo = (busca.equals("")) ? JogoService.listar(id, qtd, pagina) : JogoService.listar(id, qtd, pagina, busca);
+                if (nivelOfetas == -1)
+                    objJogo = (busca.equals("")) ? JogoService.listar(id, qtd, pagina) : JogoService.listar(id, qtd, pagina, busca);
+                else
+                    objJogo = JogoService.listar(id, qtd, pagina, null, console, nivelOfetas);
             } else {
                 objJogo = JogoService.listar(id, qtd, pagina, null, console);
-            }
+            }          
         }
 
         if (!objJogo.isEmpty()) {
@@ -47,7 +50,9 @@ public class AjaxController {
                 if (jogo.getImagem() == null) {
                     Itens += "<li style=\"float: left; height: 130px; " + stiloLinha + "\"><img width=\"80px\" src=\"/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg\" alt=\"\"/></li>";
                 } else {
-                    Itens += "<li style=\"float: left; height: 130px; " + stiloLinha + "\"><a title=\"" + jogo.getTitulo_jogo() + " (" + jogo.getConsole() + ") " + jogo.getNivelInteresse() + "-" + jogo.getNivelDesejo() + "\" href=\"/AppWebFrontEnd/site/jogo/detalhesjogo.html?id=" + jogo.getId_jogo() + "\"><img width=\"80px\" src=\"/AppWebBackEnd/resources/capa/" + jogo.getImagem() + "\" alt=\"\"/></a></li>";
+                    Itens += "<li style=\"float: left; height: 130px; " + stiloLinha + "\">"
+                            + "<a title=\"" + jogo.getTitulo_jogo() + " (" + jogo.getConsole() + ") " + jogo.getNivelInteresse() + "-" + jogo.getNivelDesejo() + "\" href=\"/AppWebFrontEnd/site/jogo/detalhesjogo.html?id=" + jogo.getId_jogo() + "\">"
+                            + "<img width=\"80px\" src=\"/AppWebBackEnd/resources/capa/" + jogo.getImagem() + "\" alt=\"\"/></a></li>";
                 }
 
                 count++;

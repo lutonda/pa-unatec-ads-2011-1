@@ -4,6 +4,7 @@ var _totalPg = 0;
 var _busca = false;
 var _desejo = false;
 var _console = 0;
+var _nivelOfetas = -1;
 
 
 Jogo = function(){
@@ -29,7 +30,8 @@ Jogo.prototype = {
             pagina: _pagina,
             busca: "",
             desejo: _desejo,
-            console: _console
+            console: _console,
+            nivelOfetas: _nivelOfetas
         }, this._listaJogoOnSuccess);
 
         this.dataBindMvc('listaTituloJogo.do', '', this._listaTituloJogoOnSuccess);
@@ -38,6 +40,7 @@ Jogo.prototype = {
         $('#btnBuscar').bind('click', '', $.createDelegate(this, this._btnBuscarOnClick));
         $('#btnMeusJogos').bind('click', 'meusJogos', $.createDelegate(this, this._btnFiltroOnClick));
         $('#btnMeusDesejos').bind('click', 'meusDesejos', $.createDelegate(this, this._btnFiltroOnClick));
+        $('#btnOfertas').bind('click', 'minhasOfertas', $.createDelegate(this, this._btnFiltroOnClick));
 
         if(parseURL(window.location.pathname).file == "index.html"){
 
@@ -55,13 +58,15 @@ Jogo.prototype = {
         _busca = true;
         _desejo = false;
         _console = 0;
+        _nivelOfetas = -1;
         this.dataBindMvc('listaJogos.do', {
             id : 0,
             qtd : 10,
             pagina: _pagina,
             busca: $('#txtBuscarJogo').val(),
             desejo: _desejo,
-            console: _console
+            console: _console,
+            nivelOfetas: _nivelOfetas
         }, this._listaJogoOnSuccess);
     },
 
@@ -74,17 +79,23 @@ Jogo.prototype = {
         switch (value.data) {
             case 'meusDesejos':
                 _desejo = true;
+                _nivelOfetas = -1;
                 break;
             case 'meusJogos':
                 _desejo = false;
+                _nivelOfetas = -1;
+                break;
+            case 'minhasOfertas':
+                _desejo = false;
+                _nivelOfetas = 0;
                 break;
             default:
                 id = 0;
                 _desejo = false;
                 _console = value.data;
+                _nivelOfetas = -1;
                 break;
         }
-      
 
         if(id != null){
             this.dataBindMvc('listaJogos.do', {
@@ -93,7 +104,8 @@ Jogo.prototype = {
                 pagina: _pagina,
                 busca: busca,
                 desejo: _desejo,
-                console: _console
+                console: _console,
+                nivelOfetas: _nivelOfetas
             }, this._listaJogoOnSuccess);
             inputText('txtBuscarJogo','Digite o nome do Jogo');
         }
@@ -142,7 +154,8 @@ Jogo.prototype = {
             pagina: _pagina,
             busca: (_busca)? $('#txtBuscarJogo').val():"",
             desejo: _desejo,
-            console: _console
+            console: _console,
+            nivelOfetas: _nivelOfetas
         }, this._listaJogoOnSuccess);
     },
 

@@ -80,7 +80,7 @@ public class TrocaJogosDao {
                      " convert(char(10),DT_AVALIACAO_DESTINO,103)DT_AVALIACAO_DESTINO, " +
                      " PONTOS_DESTINO " +
                      " FROM dbo.JOGOS_TROCADOS " +
-                     " where id_usuario = ? ";
+                     " where id_usuario_origem = ? ";
          Object[] vetor = {_id};
 
          try{

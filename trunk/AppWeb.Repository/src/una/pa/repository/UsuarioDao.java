@@ -86,14 +86,11 @@ public class UsuarioDao {
     public static List<Usuario> listarPrincipal() {
         List<Usuario> objc = new ArrayList<Usuario>();
 
-        String sql = " select id_usuario,nm_usuario,nm_sobrenome,email, "
-                + " dt_nascimento ,"
-                + " cidade.ds_cidade,estado.ds_estado "
-                + " from usuario "
-                + " inner join endereco on usuario.id_endereco = endereco.id_endereco "
-                + " inner join bairro   on endereco.id_bairro  = bairro.id_bairro "
-                + " inner join cidade   on	bairro.id_cidade  = cidade.id_cidade "
-                + " inner join estado   on	estado.id_estado  = cidade.id_estado ";
+        String sql = "select USUARIO.ID_USUARIO,USUARIO.NM_USUARIO,USUARIO.NM_SOBRENOME,"
+  +"  USUARIO.email,USUARIO.dt_nascimento,"
+  +"  ENDERECO.DS_CIDADE,ENDERECO.DS_ESTADO"
+  +"  from USUARIO inner join ENDERECO on "
+  +"  USUARIO.ID_USUARIO = ENDERECO.ID_USUARIO;";
         try {
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql);

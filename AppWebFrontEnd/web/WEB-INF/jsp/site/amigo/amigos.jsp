@@ -27,7 +27,8 @@
                         <div class="box-df">
                             <c:forEach items="${amigosPendentes}" var="AmigoUsuario" varStatus="count" >
                                 <div style="float: right;">
-                                    Aceitar<br/>Não agora
+                                    <a href="javascript:void(0)">Aceitar</a><br/>
+                                    <a href="javascript:void(0)">Não agora</a>
                                 </div>
                                 <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>                                <ul style="float: left; width: 392px;">
                                     <li style="font-weight: bold; margin-bottom: 5px;"><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=${AmigoUsuario.id_usuario}">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</a></li>
@@ -47,7 +48,7 @@
                         <ul>
                             <c:forEach items="${amigos}" var="AmigoUsuario" varStatus="count" >
                                 <div style="float: right;">
-                                    Remover
+                                   <a href="javascript:void(0)">Remover</a>
                                 </div>
                                 <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>                                <ul style="float: left; width: 392px;">
                                     <li style="font-weight: bold; margin-bottom: 5px;"><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=${AmigoUsuario.id_usuario}">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</a></li>

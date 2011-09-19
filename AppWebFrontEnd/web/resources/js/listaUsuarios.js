@@ -65,7 +65,7 @@ Usuario.prototype = {
     _listaUsuarioOnSuccess: function(value){
         $('#listaUsuarios li').remove();
 
-        var dados = value.split("|");
+         var dados = value.split("|");
         _totalItens = dados[1];
         $('#listaUsuarios').append(dados[0]);
 

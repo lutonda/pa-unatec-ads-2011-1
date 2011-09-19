@@ -2,6 +2,7 @@ package una.pa.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import una.pa.model.*;
@@ -72,7 +73,7 @@ public class InicioController extends MultiActionController {
                     if (_id != -1) {
                         //StringEncryptor ec = new StringEncryptor();
                         // ec.encrypt((String)_id);
-                        response.sendRedirect("passo1.html?id=" + _id);
+                        response.sendRedirect("passo1.html?id=" + _id+"&email="+email);
 
 
                     } else {
@@ -143,8 +144,6 @@ public class InicioController extends MultiActionController {
             obj.setEmail_notificacoes(request.getParameter("aceiteNotificacoes") == null ? false : true);
             obj.setEmail_parceiro(request.getParameter("aceiteParceiros") == null ? false : true);
 
-
-
             if (UsuarioService.updatePasso1(obj)) {
                 response.sendRedirect("passo2.html?id=" + obj.getId_usuario());
                 return null;
@@ -153,9 +152,6 @@ public class InicioController extends MultiActionController {
                 mav.addObject("Usuario", obj);
                 return mav;
             }
-
-
-
 
         } catch (Exception e) {
             return null;
@@ -173,7 +169,6 @@ public class InicioController extends MultiActionController {
             Usuario objU = UsuarioService.listarUnico(id);
             Endereco objE = new Endereco();
 
-
             if (request.getParameter("cep") != null) {
                 objE.setCep(Integer.parseInt(request.getParameter("cep").replace(".", "").replace("-", "")));
             }
@@ -185,6 +180,13 @@ public class InicioController extends MultiActionController {
             objE.setDs_cidade(request.getParameter("cidade"));
             objE.setDs_estado(request.getParameter("estado"));
             objU.setPref_em_maos(request.getParameter("pref_maos") == null ? false : true);
+            objU.setTel_usuario(request.getParameter("telefone").replace(" ", "").replace("-", ""));
+            objU.setDescricao_usuario(request.getParameter("descricao"));
+            String dia = (request.getParameter("dt_nascimento").substring(0, 2));
+            String mes = (request.getParameter("dt_nascimento").substring(3, 5));
+            String ano = (request.getParameter("dt_nascimento").substring(6, 10));
+            objU.setDt_nascimento(mes+"/"+dia+"/"+ano);
+            objU.setSexo(request.getParameter("sexo"));
             objU.setPref_correios(request.getParameter("pref_correio") == null ? false : true);
             objU.setPref_transp(request.getParameter("pref_tansportadora") == null ? false : true);
 
@@ -199,11 +201,7 @@ public class InicioController extends MultiActionController {
 
                 response.sendRedirect("/AppWebFrontEnd/site/inicio/index.html");
                 return null;
-
-                //response.sendRedirect("../ajuda/orientacao.html");
             }
-
-
 
         } catch (Exception e) {
             return null;
@@ -237,13 +235,14 @@ public class InicioController extends MultiActionController {
         ModelAndView mav = new ModelAndView("site/inicio/editar");
         try {
             StringEncryptor ec = new StringEncryptor();
-            Usuario obj = new Usuario();
+            Usuario objU = new Usuario();
             Endereco objE = new Endereco();
+            HttpSession session = request.getSession();
 
-            obj = UsuarioService.listarUnico(Integer.parseInt(request.getParameter("id")));
-            objE = EnderecoService.listarEndereco(Integer.parseInt(request.getParameter("id")));
+            objU = UsuarioService.listarUnico(Integer.parseInt(session.getAttribute("id").toString()));
+            objE = EnderecoService.listarEndereco(Integer.parseInt(session.getAttribute("id").toString()));
 
-            mav.addObject("Usuario", obj);
+            mav.addObject("Usuario", objU);
             mav.addObject("Endereco", objE);
 
         } catch (Exception e) {

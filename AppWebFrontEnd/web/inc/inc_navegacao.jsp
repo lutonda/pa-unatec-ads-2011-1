@@ -11,7 +11,7 @@
     </div>
     <ul id="nav-user">
         <li><b>${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</b><span style="display: none;" id="idUser">${DadosIniciais.id_usuario}</span> </li>
-        <li><a href="#">Editar Meus Dados</a></li>
+        <li><a href="/AppWebFrontEnd/site/inicio/editar.html">Editar Meus Dados</a></li>
     </ul>
     <div class="cb"></div>
 </div>

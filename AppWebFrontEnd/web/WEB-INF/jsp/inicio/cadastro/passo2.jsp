@@ -34,8 +34,8 @@
                             </li>
                             <li>
                                 <label><strong>Sexo: </strong></label>
-                                <input type="radio" name="sexo" value="0"/>Masculino
-                                <input type="radio" name="sexo" value="1"/>Feminino
+                                <input type="radio" name="sexo" value="M"/>Masculino
+                                <input type="radio" name="sexo" value="F"/>Feminino
                             </li>
                              <li>
                                 <label><strong>Telefone: </strong></label>

@@ -14,72 +14,45 @@ public class UsuarioDao {
 
     public static Usuario listarTodos(int _id) {
         //List<Usuario> objC = new ArrayList<Usuario>();
-        String sql = " select id_usuario,nm_usuario,nm_sobrenome,email, "
-                + " dt_nascimento,dt_cadastro,sn_ativo,tel_usuario, "
-                + " usuario,email_notificacoes,email_parceiro, "
-                + " aceite_acordo,descricao_usuario,sexo, "
-                + " pref_em_maos,pref_correios,pref_transp, imagem "
-                + " from usuario where id_usuario = ? ";
+        String sql = "select id_usuario, nm_usuario, nm_sobrenome, "
+                + "email, dt_nascimento, dt_cadastro, sn_ativo, "
+                + "tel_usuario, usuario, senha, email_notificacoes, "
+                + "email_parceiro, aceite_acordo, descricao_usuario, "
+                + "sexo, pref_em_maos, pref_correios, pref_transp, imagem "
+                + "from usuario "
+                + "where id_usuario = ? ";
         Object[] vetor = {_id};
 
         try {
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql, vetor);
             Usuario o = new Usuario();
-            //rs.getObject("")
             if (rs.next()) {
                 o.setId_usuario(Integer.parseInt(rs.getString("id_usuario")));
                 o.setNm_usuario(rs.getString("nm_usuario"));
                 o.setNm_sobrenome(rs.getString("nm_sobrenome"));
                 o.setEmail(rs.getString("email"));
-                o.setDt_nascimento(rs.getDate("dt_nascimento"));
+                o.setDt_nascimento(""+rs.getDate("dt_nascimento"));
                 o.setDt_cadastro(rs.getDate("dt_cadastro"));
-                if (rs.getString("SN_ATIVO").equals("1")) {
-                    o.setSn_ativo(true);
-                } else {
-                    o.setSn_ativo(false);
-                }
+                o.setSn_ativo(rs.getString("SN_ATIVO").equals("1") ? true : false);
                 o.setTel_usuario(rs.getString("tel_usuario"));
                 o.setUsuario(rs.getString("usuario"));
-                if (rs.getString("email_notificacoes").equals("1")) {
-                    o.setEmail_notificacoes(true);
-                } else {
-                    o.setEmail_notificacoes(false);
-                }
-                if (rs.getString("email_parceiro").equals("1")) {
-                    o.setEmail_parceiro(true);
-                } else {
-                    o.setEmail_parceiro(false);
-                }
-                if (rs.getString("aceite_acordo").equals("1")) {
-                    o.setAceite_acordo(true);
-                } else {
-                    o.setAceite_acordo(false);
-                }
+                o.setSenha(rs.getString("senha"));
+                o.setEmail_notificacoes(rs.getString("email_notificacoes").equals("1")? true : false);
+                o.setEmail_parceiro(rs.getString("email_parceiro").equals("1")? true : false);
+                o.setAceite_acordo(rs.getString("aceite_acordo").equals("1")? true : false);
                 o.setDescricao_usuario(rs.getString("descricao_usuario"));
-                o.setSexo((rs.getString("sexo") != null) ? rs.getString("sexo").charAt(0) : ' ');
-                if (rs.getString("pref_em_maos").equals("1")) {
-                    o.setPref_em_maos(true);
-                } else {
-                    o.setPref_em_maos(false);
-                }
-                if (rs.getString("pref_correios").equals("1")) {
-                    o.setPref_correios(true);
-                } else {
-                    o.setPref_correios(false);
-                }
-                if (rs.getString("pref_transp").equals("1")) {
-                    o.setPref_transp(true);
-                } else {
-                    o.setPref_transp(false);
-                }
+                o.setSexo((rs.getString("sexo") != null) ? rs.getString("sexo") : "");
+                o.setPref_em_maos(rs.getString("pref_em_maos").equals("1") ? true : false);
+                o.setPref_correios(rs.getString("pref_correios").equals("1") ? true : false);
+                o.setPref_transp(rs.getString("pref_transp").equals("1") ? true : false);
                 o.setImagem(rs.getString("imagem"));
             }
             rs.close();
             c.close();
             return o;
         } catch (Exception e) {
-            return null;
+                return null;
         }
     }
 
@@ -101,7 +74,7 @@ public class UsuarioDao {
                 o.setNm_usuario(rs.getString("nm_usuario"));
                 o.setNm_sobrenome(rs.getString("nm_sobrenome"));
                 o.setEmail(rs.getString("email"));
-                o.setDt_nascimento(rs.getDate("dt_nascimento"));
+                o.setDt_nascimento(rs.getDate("dt_nascimento").toString());
                 o.setDs_cidade(rs.getString("ds_cidade"));
                 o.setDs_Estado(rs.getString("ds_estado"));
                 objc.add(o);
@@ -273,18 +246,13 @@ public class UsuarioDao {
     }
 
     public static boolean updatePasso2(Usuario objU, Endereco objE) {
-        String sqlPasso2 = "update usuario "
-                + "set DT_NASCIMENTO = getdate(), "
-                //+ "	SEXO = ?,"
-                + "ACEITE_ACORDO = ?, "
-                + "EMAIL_PARCEIRO = ?, "
-                + "PREF_CORREIOS = ?, "
-                + "PREF_EM_MAOS = ?, "
-                + "PREF_TRANSP = ?, "
-                + "EMAIL_NOTIFICACOES = ? "
+        String sqlPasso2 = "UPDATE usuario "
+                + "set DT_NASCIMENTO = ?, sexo = ?, sn_ativo = 1, "
+                + "tel_usuario = ?, descricao_usuario = ?, ACEITE_ACORDO = ?, EMAIL_PARCEIRO = ?, "
+                + "PREF_CORREIOS = ?, PREF_EM_MAOS = ?, PREF_TRANSP = ?, EMAIL_NOTIFICACOES = ? "
                 + "WHERE ID_USUARIO = ? ";
 
-        Object[] vetorDados2 = {objU.isAceite_acordo(), objU.isEmail_parceiro(), objU.isPref_correios(),
+        Object[] vetorDados2 = {objU.getDt_nascimento(), objU.getSexo(), objU.getTel_usuario(), objU.getDescricao_usuario(), objU.isAceite_acordo(), objU.isEmail_parceiro(), objU.isPref_correios(),
             objU.isPref_em_maos(), objU.isPref_transp(), objU.isEmail_notificacoes(), objU.getId_usuario()};
 
         String sqlEndereco = "insert into endereco "

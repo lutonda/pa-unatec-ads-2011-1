@@ -13,7 +13,7 @@ public class Usuario {
     private String nm_usuario;
     private String nm_sobrenome;
     private String email;
-    private Date dt_nascimento;
+    private String dt_nascimento;
     private Date dt_cadastro;
     private boolean sn_ativo;
     private String tel_usuario;
@@ -23,7 +23,7 @@ public class Usuario {
     private boolean email_parceiro;
     private boolean aceite_acordo;
     private String descricao_usuario;
-    private char sexo;
+    private String sexo;
     private boolean pref_em_maos;
     private boolean pref_correios;
     private boolean pref_transp;
@@ -106,11 +106,11 @@ public class Usuario {
         this.dt_cadastro = dt_cadastro;
     }
 
-    public Date getDt_nascimento() {
+    public String getDt_nascimento() {
         return dt_nascimento;
     }
 
-    public void setDt_nascimento(Date dt_nascimento) {
+    public void setDt_nascimento(String dt_nascimento) {
         this.dt_nascimento = dt_nascimento;
     }
 
@@ -186,11 +186,11 @@ public class Usuario {
         this.pref_transp = pref_transp;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 

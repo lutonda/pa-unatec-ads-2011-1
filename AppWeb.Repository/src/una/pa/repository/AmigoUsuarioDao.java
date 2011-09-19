@@ -69,18 +69,18 @@ public class AmigoUsuarioDao {
          */
 
 
-        String sql = "select id_usuario_amigo"
+        String sql = "select id_amigo_usuario, id_usuario_amigo"
                 + ", nm_usuario, nm_sobrenome, sn_aceite "
                 + ", (select isnull(count(*),0) from jogo_usuario where id_usuario = id_usuario_amigo) as qtd_jogo "
                 + ", (select isnull(count(*),0) from jogo_desejado where id_usuario = id_usuario_amigo)as qtd_desejo "
                 + ", (select isnull(avg(pontos),0) from avaliacao_usuario where id_usuario = id_usuario_amigo) as pontos "
                 + "from ( ";
         if (pPendente) {
-            sql += "select aua.id_usuario_amigo, nm_usuario, nm_sobrenome, sn_aceite "
+            sql += "select id_amigo_usuario, aua.id_usuario_amigo, nm_usuario, nm_sobrenome, sn_aceite "
                     + "from amigo_usuario aua inner join usuario ua on aua.id_usuario_amigo = ua.id_usuario "
                     + "where aua.id_usuario = ? union ";
         }
-        sql += "select aua.id_usuario as id_usuario_amigo, nm_usuario, nm_sobrenome, sn_aceite "
+        sql += "select id_amigo_usuario, aua.id_usuario as id_usuario_amigo, nm_usuario, nm_sobrenome, sn_aceite "
                 + "from amigo_usuario aua inner join usuario ua on aua.id_usuario = ua.id_usuario "
                 + "where aua.id_usuario_amigo = ? "
                 + ") tabela";
@@ -96,6 +96,7 @@ public class AmigoUsuarioDao {
 
                 while (rs.next()) {
                     AmigoUsuario o = new AmigoUsuario();
+                    o.setId_amigo_usuario(Integer.parseInt(rs.getString("id_amigo_usuario")));
                     o.setId_usuario(Integer.parseInt(rs.getString("id_usuario_amigo")));
                     o.setNm_usuario(rs.getString("nm_usuario"));
                     o.setNm_sobrenome(rs.getString("nm_sobrenome"));

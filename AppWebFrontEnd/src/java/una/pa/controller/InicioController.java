@@ -251,4 +251,47 @@ public class InicioController extends MultiActionController {
         }
         return mav;
     }
+
+    public ModelAndView updateEditarDados (HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        ModelAndView mav = new ModelAndView("site/inicio/editar");
+
+        try{
+
+            Usuario objU = new Usuario();
+            Endereco objE = new Endereco();
+
+            objU.setId_usuario(Integer.parseInt(request.getParameter("id_usuario").trim()));
+            objU.setNm_usuario(request.getParameter("nm_usuario"));
+            objU.setNm_sobrenome(request.getParameter("nm_sobrenome"));
+            objU.setUsuario(request.getParameter("usuario"));
+            objU.setSenha(request.getParameter("senha"));
+            objU.setSexo(request.getParameter("sexo"));
+            String dia = (request.getParameter("dt_nascimento").substring(0, 2));
+            String mes = (request.getParameter("dt_nascimento").substring(3, 5));
+            String ano = (request.getParameter("dt_nascimento").substring(6, 10));
+            objU.setDt_nascimento(mes+"/"+dia+"/"+ano);
+            objU.setTel_usuario(request.getParameter("telefone").replace(" ", "").replace("-", ""));
+            objU.setDescricao_usuario(request.getParameter("descricao"));
+            objE.setCep(Integer.parseInt(request.getParameter("cep").replace(".", "").replace("-", "")));
+            objE.setTp_logradouro(request.getParameter("tp_logradouro"));
+            objE.setLogradouro(request.getParameter("logradouro"));
+            objE.setNumero(Integer.parseInt(request.getParameter("numero")));
+            objE.setComplemento(request.getParameter("complemento"));
+            objE.setDs_bairro(request.getParameter("bairro"));
+            objE.setDs_cidade(request.getParameter("cidade"));
+            objE.setDs_estado(request.getParameter("estado"));
+
+
+            if (UsuarioService.updateEditarDados(objU, objE)){
+                response.sendRedirect("/AppWebFrontEnd/site/inicio/index.html");
+                return null;
+            }
+            return null;
+
+        } catch (Exception e){
+            response.sendRedirect("../ajuda/orientacao.html");
+            return null;
+        }
+    }
 }

@@ -23,7 +23,7 @@
                 <div>
 
                 </div>
-                <form action="cadastroPasso1Form.do" method="POST">
+                <form action="updateEditarDados.do" method="POST">
                     <input type="hidden" name="id_usuario" value="${Usuario.id_usuario}"/>
                     <div class="frm_content">
 
@@ -130,6 +130,10 @@
                             <li>
                                 <label><strong>Estado: </strong></label>
                                 <input type="text" name="estado" value="${Endereco.ds_estado}"/>
+                            </li>
+
+                            <li>
+                                <input type="submit" value="Salvar Alterações" name="btSalvar"/>
                             </li>
 
                         </ul>

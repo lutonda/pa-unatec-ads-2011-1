@@ -20,6 +20,7 @@
             <props>
                 <prop key="index.html">indexController</prop>
                 <prop key="site/inicio/*.html">inicioController</prop>
+                <prop key="site/inicio/*.do">inicioController</prop>
                 <prop key="site/*.html">ajudaController</prop>
                 <prop key="site/jogo/*.html">jogoController</prop>
                 <prop key="site/amigo/*.html">amigoController</prop>

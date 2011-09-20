@@ -52,4 +52,8 @@ public class UsuarioService {
         HttpSession session = request.getSession();
         return UsuarioDao.inicioAmigo(Integer.parseInt(session.getAttribute("id").toString()), _idAmigo);
     }
+
+    public static boolean updateEditarDados (Usuario objU, Endereco objE){
+        return UsuarioDao.updateEditarDados(objU, objE);
+    }
 }

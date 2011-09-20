@@ -1,7 +1,5 @@
-var _pagina = 1;
-var _totalItens = 0;
-var _totalPg = 0;
-var _novaNot = false;
+var _idUserAtual = 0;
+var _nmUser;
 
 
 CtrlUsuario = function(){
@@ -21,38 +19,68 @@ CtrlUsuario.Load = function(){
 CtrlUsuario.prototype = {
 
     initialize: function() {
-        //clicks btn
-        $('#btnUserAceite').bind('click', '', $.createDelegate(this, this._btnUserAceiteOnClick));
-        $('#btnUserNaoAgora').bind('click', '', $.createDelegate(this, this._btnUserNaoAgoraOnClick));
+        var ini = this;
 
+        $('ul#UsuarioPendente li').each(function() {
+            var id = $('#idUsuarioAmigo',this);
+            var launch = $('div a', this);
+            if (launch.size() > 0) {
+                $('div a:first-child', this).bind('click', id, $.createDelegate(ini, CtrlUsuario.prototype._btnUserAceiteOnClick));
+                $('div a:last-child', this).bind('click', id, $.createDelegate(ini, CtrlUsuario.prototype._btnUserNaoAgoraOnClick));
+            }
+        });
+
+        $('ul#usuariosList li').each(function() {
+            var id = $('#idUsuarioAmigo',this);
+            var launch = $('div a', this);
+            if (launch.size() > 0) {
+                $('div a', this).bind('click', id, $.createDelegate(ini, CtrlUsuario.prototype._btnUserNaoAgoraOnClick));
+            }
+        });
     },
 
     _btnUserAceiteOnClick: function(value){
-
-       this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
-            idAmigoUsuario : $('#idUsuarioAmigo').text(),
+        _idUserAtual = value.data.text();
+        this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
+            idAmigoUsuario : _idUserAtual,
             aceite: 1
         }, this._postUserAceiteOnSuccess);
     },
 
     _btnUserNaoAgoraOnClick: function(value){
-
-       this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
-            idAmigoUsuario : $('#idUsuarioAmigo').text(),
+        _idUserAtual = value.data.text();
+        this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
+            idAmigoUsuario : _idUserAtual,
             aceite: 0
         }, this._postUserRecusaOnSuccess);
     },
 
-    _postUserAceiteOnSuccess: function(value){
-        var nmusuario = $('#nmUsuarioAmigo').text();
-        $('ul#usuariosList li:last-child div.cb').attr('style', 'border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px');
-        $('#UsuarioPendente li#idUsuarioAmigo' + $('#idUsuarioAmigo').text()).appendTo('#usuariosList');
-        $('#UsuarioPendente').text( nmusuario + ' e seu novo amigo, visite seu perfil e boas trocas');
-
+    _btnUserRemoverOnClick: function(value){
+        _idUserAtual = value.data.text();
+        this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
+            idAmigoUsuario : _idUserAtual,
+            aceite: 0
+        }, this._postUserRemoverOnSuccess);
     },
+
+    _postUserAceiteOnSuccess: function(value){
+        var nmusuario = $('#idUsuarioAmigo'+_idUserAtual+' #nmUsuarioAmigo').text()
+
+        $('ul#usuariosList li:last-child div.cb').attr('style', 'border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px');
+        $('#idUsuarioAmigo'+_idUserAtual).appendTo('#usuariosList');
+        $('#idUsuarioAmigo'+_idUserAtual+ ' div#ctrlA').remove();
+        $('#idUsuarioAmigo'+_idUserAtual+ ' div#ctrlB').attr('style', 'float: right;');
+        $('#UsuarioPendente').append('<li><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=5">'+nmusuario+'</a> foi adicionado.</li>');
+    },
+
     _postUserRecusaOnSuccess: function(value){
 
-         $('#UsuarioPendente li#idUsuarioAmigo' + $('#idUsuarioAmigo').text()).remove();
+        $('#idUsuarioAmigo'+_idUserAtual).remove();
+    },
+
+    _postUserRemoverOnSuccess: function(value){
+
+        $('#idUsuarioAmigo'+_idUserAtual).remove();
     },
 
  

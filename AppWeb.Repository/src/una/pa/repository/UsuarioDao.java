@@ -227,7 +227,7 @@ public class UsuarioDao {
                 + "NM_SOBRENOME = ?, "
                 + "USUARIO = ?, "
                 + "DT_CADASTRO = GETDATE(), "
-                + "SEHHA = ?,"
+                + "SENHA = ?,"
                 + "EMAIL_NOTIFICACOES = ?,"
                 + "EMAIL_PARCEIRO = ?, "
                 + "ACEITE_ACORDO = ? "
@@ -274,7 +274,6 @@ public class UsuarioDao {
 
     public static AmigoUsuario inicioAmigo(int _id, int _idAmigo) {
 
-
         String sql = "select aua.id_usuario, aua.id_usuario_amigo, sn_aceite, aua.ignorado, case when aua.id_usuario_amigo = ? then 'S' else 'N'  end as solitante "
                 + "from amigo_usuario aua inner join usuario ua on aua.id_usuario_amigo = ua.id_usuario "
                 + "where aua.id_usuario = ? and aua.id_usuario_amigo = ? union "
@@ -301,6 +300,40 @@ public class UsuarioDao {
             return o;
         } catch (Exception e) {
             return null;
+        }
+
+    }
+
+    public static boolean updateEditarDados (Usuario objU, Endereco objE){
+
+        String sqlU = "update usuario "
+                + "set nm_usuario = ?, nm_sobrenome = ?, usuario = ?, senha = ?, "
+                + "sexo = ?, dt_nascimento = ?, tel_usuario = ?, "
+                + "descricao_usuario = ? "
+                + " where id_usuario = ?";
+
+        Object [] vetorUsu = {objU.getNm_usuario(), objU.getNm_sobrenome(), objU.getUsuario(), objU.getSenha(),
+                            objU.getSexo(), objU.getDt_nascimento(), objU.getTel_usuario(),
+                              objU.getDescricao_usuario(), objU.getId_usuario()};
+
+        String sqlE = "update endereco "
+                + "set cep = ?, tp_logradouro = ?, logradouro = ?, numero = ?, "
+                + "complemento = ?, ds_bairro = ?, ds_cidade = ?, "
+                + "ds_estado = ? "
+                + " where id_usuario = ?";
+
+        Object [] vetorE = {objE.getCep(), objE.getTp_logradouro(), objE.getLogradouro(), objE.getNumero(),
+                             objE.getComplemento(), objE.getDs_bairro(), objE.getDs_cidade(),
+                               objE.getDs_estado(), objU.getId_usuario()};
+        try{
+
+            Connection c = Data.openConnection();
+            Data.executeUpdate(c, sqlU, vetorUsu);
+            Data.executeUpdate(c, sqlE, vetorE);
+            return true;
+
+        } catch (Exception e){
+            return false;
         }
 
     }

@@ -59,7 +59,7 @@
                                 <li id="idUsuarioAmigo${AmigoUsuario.id_amigo_usuario}">
                                     <span style="display: none" id="idUsuarioAmigo">${AmigoUsuario.id_amigo_usuario}</span>
                                     <div style="float: right;">                                        
-                                        <a href="javascript:void(0)" id="btnUserRemover">Remover</a>
+                                        <a href="javascript:void(0)" id="btnUserRemover" >Remover</a>
                                     </div>
                                     <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>                                <ul style="float: left; width: 392px;">
                                         <li style="font-weight: bold; margin-bottom: 5px;"><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=${AmigoUsuario.id_usuario}">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome} (${AmigoUsuario.pontos})</a></li>

@@ -35,7 +35,7 @@ CtrlUsuario.prototype = {
             var launch = $('div a', this);
             if (launch.size() > 0) {
                 $('div a', this).bind('click', id, $.createDelegate(ini, CtrlUsuario.prototype._btnUserNaoAgoraOnClick));
-            }
+                }         
         });
     },
 
@@ -49,19 +49,22 @@ CtrlUsuario.prototype = {
 
     _btnUserNaoAgoraOnClick: function(value){
         _idUserAtual = value.data.text();
-        this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
-            idAmigoUsuario : _idUserAtual,
-            aceite: 0
-        }, this._postUserRecusaOnSuccess);
+        var msg = confirm('Confirma Exclusao');
+        if(msg){
+            this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
+                idAmigoUsuario : _idUserAtual,
+                aceite: 0
+            }, this._postUserRecusaOnSuccess);
+        }
     },
-
-    _btnUserRemoverOnClick: function(value){
-        _idUserAtual = value.data.text();
-        this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
-            idAmigoUsuario : _idUserAtual,
-            aceite: 0
-        }, this._postUserRemoverOnSuccess);
-    },
+//
+//    _btnUserRemoverOnClick: function(value){
+//        _idUserAtual = value.data.text();
+//            this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
+//                idAmigoUsuario : _idUserAtual,
+//                aceite: 0
+//            }, this._postUserRemoverOnSuccess);
+//    },
 
     _postUserAceiteOnSuccess: function(value){
         var nmusuario = $('#idUsuarioAmigo'+_idUserAtual+' #nmUsuarioAmigo').text()

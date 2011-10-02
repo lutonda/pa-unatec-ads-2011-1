@@ -9,9 +9,9 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="/inc/taglibs.jsp" %>
 <html>
-    <head>
+   <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ajuda</title>
+        <title>Orientações</title>
         <%@ include file="/inc/taghead.jsp" %>
     </head>
     <body>
@@ -27,23 +27,25 @@
 
                 <b>Como se Cadastrar</b><br/><br/>
 
-                > Vosê deverá receber um convite de um usuário já cadastrado;<br/>
-                > O convite chegara via e-mail contendo um link;<br/>
-                > Acesse o link e faça o cadastro que contem as seguintes questões;<br/><br/>
+                <li><a href="/AppWebFrontEnd/inicio/ajuda/auxilio.html"><p align=right><i><b><i> < Voltar </i></b></i></p></a><br/><br/>
 
-                > Nome;<br/>
-                > Nickname;<br/>
-                > Senha;<br/>
-                > Endereço residencial;<br/>
-                > Endereço de e-mail.<br/><br/>
+                <li>Você deverá receber um convite de um usuário já cadastrado;<br/>
+                <li>O convite chegara via e-mail contendo um link;<br/>
+                <li>Acesse o link e faça o cadastro que contem as seguintes questões;<br/><br/>
+                    <ol>
+                <li>Nome;<br/>
+                <li>Nickname;<br/>
+                <li>Senha;<br/>
+                <li>Endereço residencial;<br/>
+                <li>Endereço de e-mail.<br/><br/>
+                    </ol>
+                <b>OBS:</b> <br/><br/><li>Os dados fornecidos são de inteira responsabilidade do usuário.<br/>
+                <li>Só é possível fazer cadastro no JogaTroca via convite e esse convite só pode ser enviado por algum usuário já cadastrado.<br/>
+                <li>O JogaTroca não se responsabiliza por eventuais transtornos, podendo ser banido o usuário por fornecimento de informações falsas.<br/>
 
-                <b>OBS:</b> <br/><br/>Os dados fornecidos são de inteira responsabilidade do usuário.<br/>
-                Só é possível fazer cadastro no JogaTroca via convite e esse convite só pode ser enviado por algum usuário já cadastrado.<br/>
-                O JogaTroca não se responsabiliza por eventuais transtornos, podendo ser banido o usuário por fornecimento de informações falsas.<br/>
+                <li>O JogaTroca não fornece dados pessoais de seus usuários. Os mesmos ficam ocultos e confidenciais ao site.<br/><br/>
 
-                O JogaTroca não fornece dados pessoais de seus usuários. Os mesmos ficam ocultos e confidenciais ao site.<br/><br/>
-
-                Dúvidas leia nossos <a href="#">Termos de Uso</a>.
+                Dúvidas leia nossos <a href="/AppWebFrontEnd/inicio/ajuda/termosdeuso.html">Termos de Uso</a>.
                 <br/><br/>
             </div>
             <div id="footer">

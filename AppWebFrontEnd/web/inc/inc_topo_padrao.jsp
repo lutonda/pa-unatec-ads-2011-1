@@ -5,8 +5,7 @@
         <ul>
             <li style="float: left; width: 123px; margin-right: 10px; border: #ececed solid 1px;"><a href="/AppWebFrontEnd/site/inicio/index.html" title="Ir ao Início">Início</a></li>
             <li style="float: left; width: 123px; margin-right: 10px; border: #ececed solid 1px;"><a href="/AppWebFrontEnd/site/amigo/amigos.html" title="Ir aos Amigos">Amigos</a> <c:if test="${DadosIniciais.amigos_pendentes != 0}">(${DadosIniciais.amigos_pendentes})</c:if></li>
-            <li style="float: left; width: 123px; margin-right: 10px; border: #ececed solid 1px;"><a href="/AppWebFrontEnd/inicio/ajuda/comoTrocar.html" title="Aprenda Como Trocar">Como Trocar</a></li>
-            <li style="float: left; width: 123px; margin-right: 10px; border: #ececed solid 1px;"><a href="/AppWebFrontEnd/inicio/ajuda/perguntasFrequentes.html" title="Posso Ajuda?">Ajuda</a></li>
+            <li style="float: left; width: 123px; margin-right: 10px; border: #ececed solid 1px;"><a href="/AppWebFrontEnd/inicio/ajuda/auxilio.html" title="Posso Ajudar?">Ajuda</a></li>
             <li style="float: left; width: 25px; border: #ececed solid 1px;"><a href="/AppWebFrontEnd/inicio/cadastro/logout.do" title="Sair">Sair</a></li>
         </ul>
     </div>

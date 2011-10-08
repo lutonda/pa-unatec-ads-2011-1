@@ -54,7 +54,6 @@
                     </c:if>
                     <b>Amigos</b>
                     <div id="usuarios" class="box-df">
-                        <input type="checkbox" id="teste"><a href="javascript:void(0)" id="valida">val</a>
                         <ul id="usuariosList">
                             <c:forEach items="${amigos}" var="AmigoUsuario" varStatus="count" >
                                 <li id="idUsuarioAmigo${AmigoUsuario.id_amigo_usuario}">

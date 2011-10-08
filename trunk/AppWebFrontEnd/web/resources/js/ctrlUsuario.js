@@ -1,6 +1,7 @@
 var _idUserAtual = 0;
 var _nmUser;
-var inin;
+
+
 
 
 CtrlUsuario = function(){
@@ -20,8 +21,7 @@ CtrlUsuario.Load = function(){
 CtrlUsuario.prototype = {
 
     initialize: function() {
-        var ini = this;
-        inin = ini;
+       var ini = this;
 
         $('ul#UsuarioPendente li').each(function() {
             var id = $('#idUsuarioAmigo',this);
@@ -35,11 +35,13 @@ CtrlUsuario.prototype = {
         $('ul#usuariosList li').each(function() {
             var id = $('#idUsuarioAmigo',this);
             var launch = $('div a', this);
+           // console.log(launch);
             if (launch.size() > 0) {
                 $('div a', this).bind('click', id, $.createDelegate(ini, CtrlUsuario.prototype._btnUserRemoverOnClick));
                 }         
         });
-    },
+
+     },
 
     _btnUserAceiteOnClick: function(value){
         _idUserAtual = value.data.text();
@@ -49,7 +51,8 @@ CtrlUsuario.prototype = {
         }, this._postUserAceiteOnSuccess);
     },
 
-    _btnUserNaoAgoraOnClick: function(value){
+
+    _btnValidacheck: function(value){
         _idUserAtual = value.data.text();
         var msg = confirm('Confirma Exclusao ?');
         if(msg){
@@ -75,12 +78,13 @@ CtrlUsuario.prototype = {
         var nmusuario = $('#idUsuarioAmigo'+_idUserAtual+' #nmUsuarioAmigo').text()
 
         $('ul#usuariosList li:last-child div.cb').attr('style', 'border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px');
-        $('#idUsuarioAmigo'+_idUserAtual).appendTo('ul#usuariosList');
+        $('#idUsuarioAmigo'+_idUserAtual).appendTo('#usuariosList');
         $('#idUsuarioAmigo'+_idUserAtual+ ' div#ctrlA').remove();
-        //$('#idUsuarioAmigo'+_idUserAtual+ ' div#ctrlB').attr('style', 'float: right;');
-        $('#idUsuarioAmigo'+_idUserAtual+ ' div#ctrlB').replaceWith('<div id="r" style="float: right;"><a href="javascript:void(0)" id="btnUserRemover">Remover</a></div>');
+        $('#idUsuarioAmigo'+_idUserAtual+ ' div#ctrlB').attr('style', 'float: right;');
         $('#UsuarioPendente').append('<li><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=5">'+nmusuario+'</a> foi adicionado.</li>');
-
+        $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual +' div a').unbind('click');
+        $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual +' div a').bind('click', _idUserAtual, $.createDelegate(this, CtrlUsuario.prototype.initialize()._btnUserRemoverOnClick));
+        console.log(CtrlUsuario.prototype.initialize()._btnUserRemoverOnClick);
     },
 
     _postUserRecusaOnSuccess: function(value){

@@ -54,11 +54,12 @@
                     </c:if>
                     <b>Amigos</b>
                     <div id="usuarios" class="box-df">
+                        <input type="checkbox" id="teste"><a href="javascript:void(0)" id="valida">val</a>
                         <ul id="usuariosList">
                             <c:forEach items="${amigos}" var="AmigoUsuario" varStatus="count" >
                                 <li id="idUsuarioAmigo${AmigoUsuario.id_amigo_usuario}">
                                     <span style="display: none" id="idUsuarioAmigo">${AmigoUsuario.id_amigo_usuario}</span>
-                                    <div style="float: right;">                                        
+                                    <div id="r" style="float: right;">
                                         <a href="javascript:void(0)" id="btnUserRemover" >Remover</a>
                                     </div>
                                     <img src="/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg" style="float: left; width: 50px; height: 50px; margin-right: 10px;" alt=""/>                                <ul style="float: left; width: 392px;">

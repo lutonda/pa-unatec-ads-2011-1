@@ -17,14 +17,14 @@ import una.pa.model.Jogo;
 public class JogoDal {
 
     public static List<Jogo> listaDal() {
-        return listaDal(0, 0, 0, null, 0);
+        return listaDal(0, 0, 0, null, 0, -1);
     }
 
     public static List<Jogo> listaDal(int pId_usuario, int quantidePorPagina, int pagina) {
-        return listaDal(pId_usuario, quantidePorPagina, pagina, null, 0);
+        return listaDal(pId_usuario, quantidePorPagina, pagina, null, 0, -1);
     }
 
-    public static List<Jogo> listaDal(int pId_usuario, int quantidePorPagina, int pagina, String busca, int console) {
+    public static List<Jogo> listaDal(int pId_usuario, int quantidePorPagina, int pagina, String busca, int console, int nivelOferta) {
 
         String sql = "";
         String sqlWhere = "";
@@ -37,6 +37,9 @@ public class JogoDal {
         }
         if (pId_usuario != 0) {
             sqlWhere = "where ju.id_usuario = " + pId_usuario;
+        }
+        if (nivelOferta != -1){
+            sqlWhere = "where NIVEL_INTERESSE = " + nivelOferta;
         }
         
         int inicio = 0;

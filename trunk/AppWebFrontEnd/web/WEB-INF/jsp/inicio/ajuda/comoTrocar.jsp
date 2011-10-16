@@ -22,7 +22,7 @@
             <div id="content">
                 <div style="float:left; width: 200px">
              <ul>
-                
+                <font color="Gray" size="3" ><b>Como podemos ajudar?</b></font><br/><br/>
                 <li><a href="/AppWebFrontEnd/inicio/ajuda/comoTrocar.html">Como Trocar</a></li>
                 <li><a href="/AppWebFrontEnd/inicio/ajuda/orientacao.html">Como se Cadastrar</a></li>
                 <li><a href="/AppWebFrontEnd/inicio/ajuda/perguntasFrequentes.html">Perguntas Frequentes</a></li>
@@ -30,8 +30,9 @@
                 <li><a href="/AppWebFrontEnd/inicio/ajuda/sobreJogatroca.html">Sobre o JogaTroca</a></li>
                 <li><a href="/AppWebFrontEnd/inicio/ajuda/politicasPrivacidade.html">Políticas de Privacidade</a></li>
                 <li><a href="/AppWebFrontEnd/inicio/ajuda/index.html">Ajuda</a></li>
+                <li><a href="/AppWebFrontEnd/inicio/ajuda/dicas.html">Dicas</a></li>
                 <li><a href="/AppWebFrontEnd/inicio/ajuda/faleConosco.html">Fale Conosco</a></li>
-                
+
                 </ul>
                     </div>
 

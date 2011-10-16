@@ -80,14 +80,17 @@ Jogo.prototype = {
             case 'meusDesejos':
                 _desejo = true;
                 _nivelOfetas = -1;
+                _console = 0;
                 break;
             case 'meusJogos':
                 _desejo = false;
                 _nivelOfetas = -1;
+                _console = 0;
                 break;
             case 'minhasOfertas':
                 _desejo = false;
                 _nivelOfetas = 0;
+                _console = 0;
                 break;
             default:
                 id = 0;
@@ -126,6 +129,9 @@ Jogo.prototype = {
         $('#listaJogos').append(dados[0]);
         
         console.log(_totalItens);
+        console.log(_nivelOfetas);
+        console.log(_console);
+        console.log(_desejo);
         
         var menos = _pagina - 1;
         var mais = _pagina + 1;

@@ -20,16 +20,19 @@
                 <%@ include file="/inc/inc_topo_padrao.jsp" %>
             </div>
             <div id="content">
-                <h3><b>Como Trocar</b></h3>
-                <br/><br/>
-                <li><a href="/AppWebFrontEnd/inicio/ajuda/auxilio.html"><p align=right><i><b><i> < Voltar </i></b></i></p></a><br/><br/>
-                <li>Va em buscas e procure o jogo desejado<br/>
-                <li>Va ao perfil do usuario que o possua e verifique os jogos desejados;<br/>
-                <li>Se você tiver o jogo desejado, click no jogo e em solicitar troca;<br/>
-                <li>Se não tiver, click apenas em solictar troca;<br/>
-                <li>Aguarde a resposta do usuário;<br/><br/>
-                <b>Boa Troca!!!</b>
-                <br/><br/>
+                <div style="float:left; width: 200px">conteudo menu</div>
+                <div style="float:left;">
+                    <h3><b>Como Trocar</b></h3>
+                    <br/><br/>
+                    Va em buscas e procure o jogo desejado<br/>
+                    Va ao perfil do usuario que o possua e verifique os jogos desejados;<br/>
+                    Se você tiver o jogo desejado, click no jogo e em solicitar troca;<br/>
+                    Se não tiver, click apenas em solictar troca;<br/>
+                    Aguarde a resposta do usuário;<br/><br/>
+                    <b>Boa Troca!!!</b>
+                    <br/><br />
+                </div><br />
+                <div class="cb"></div>
             </div>
             <div id="footer">
                 <%@ include file="/inc/inc_rdp.jsp" %>

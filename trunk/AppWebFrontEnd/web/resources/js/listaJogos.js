@@ -125,6 +125,8 @@ Jogo.prototype = {
         _totalItens = dados[1];
         $('#listaJogos').append(dados[0]);
         
+        console.log(_totalItens);
+        
         var menos = _pagina - 1;
         var mais = _pagina + 1;
 

@@ -23,24 +23,15 @@ public class JogoService {
     }
 
     public static List<Jogo> listar(int pId_usuario, int quantidePorPagina, int pagina, String buscar) {
-        return JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina, buscar, 0);
+        return JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina, buscar, 0, -1);
     }
 
     public static List<Jogo> listar(int pId_usuario, int quantidePorPagina, int pagina, String buscar, int console) {
-        return JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina, buscar, console);
+        return JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina, buscar, console, -1);
     }
-    
+
     public static List<Jogo> listar(int pId_usuario, int quantidePorPagina, int pagina, String buscar, int console, int nivelOferta) {
-        List<Jogo> objJogos = JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina, buscar, console);
-        List<Jogo> objJogosLs = new ArrayList<Jogo>();
-        for (Iterator<Jogo> it = objJogos.iterator(); it.hasNext();) {
-            Jogo jogo = it.next();
-            if (Integer.parseInt(jogo.getNivelInteresse()) == nivelOferta)
-                objJogosLs.add(jogo);
-        }
-        
-        
-        return objJogosLs;
+        return JogoDal.listaDal(pId_usuario, quantidePorPagina, pagina, buscar, console, nivelOferta);
     }
 
     public static Jogo unico(int id) {

@@ -81,9 +81,10 @@ CtrlUsuario.prototype = {
         $('#idUsuarioAmigo'+_idUserAtual).appendTo('#usuariosList');
         $('#idUsuarioAmigo'+_idUserAtual+ ' div#ctrlA').remove();
         $('#idUsuarioAmigo'+_idUserAtual+ ' div#ctrlB').attr('style', 'float: right;');
-        $('#UsuarioPendente').append('<li><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=5">'+nmusuario+'</a> foi adicionado.</li>');
         $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual +' div a').unbind('click');
         $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual +' div a').bind('click', _idUserAtual, $.createDelegate(this, CtrlUsuario.prototype.initialize()._btnUserRemoverOnClick));
+        $('#UsuarioPendente').append('<li><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=5">'+nmusuario+'</a> foi adicionado.</li>');
+        
         console.log(CtrlUsuario.prototype.initialize()._btnUserRemoverOnClick);
     },
 

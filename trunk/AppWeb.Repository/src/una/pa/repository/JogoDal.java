@@ -39,7 +39,7 @@ public class JogoDal {
             sqlWhere = "where ju.id_usuario = " + pId_usuario;
         }
         if (nivelOferta != -1){
-            sqlWhere = "where NIVEL_INTERESSE = " + nivelOferta;
+            sqlWhere += " and NIVEL_INTERESSE = " + nivelOferta;
         }
         
         int inicio = 0;

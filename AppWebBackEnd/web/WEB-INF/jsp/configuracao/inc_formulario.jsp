@@ -25,9 +25,9 @@
             </li>
             <li>
                 <label><strong>Auto Ssl</strong></label>
-                true  <input name="auto_ssl" type="checkbox" value="true" <c:if test="${Configuracao.auto_ssl}">checked</c:if> /> 
-                False
-                <input name="auto_ssl" type="checkbox" value="null" <c:if test="${!Configuracao.auto_ssl}">checked</c:if> />
+                <input name="auto_ssl" type="checkbox" value="true" <c:if test="${Configuracao.auto_ssl}">checked</c:if> /> 
+                
+                             
             </li>
             <li>
                 <label><strong>Email de Resposta</strong></label>

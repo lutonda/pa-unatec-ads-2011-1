@@ -36,10 +36,11 @@ public class ConfiguracaoController extends MultiActionController {
         objC.setServ_email(request.getParameter("serv_email"));
         objC.setNm_conta(request.getParameter("nm_conta"));
         objC.setSenha(request.getParameter("senha"));
-         if (request.getParameter("auto_ssl").equals("true")){
-            objC.setAuto_ssl(true);
-        }else{
-            objC.setAuto_ssl(false);
+        try{       
+       if(request.getParameter("auto_ssl").equals("true"));
+            objC.setAuto_ssl(true);            
+        }catch(Exception e){
+             objC.setAuto_ssl(false);
         }
         objC.setEmail_resposta(request.getParameter("email_resposta"));
 

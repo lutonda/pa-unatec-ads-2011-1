@@ -245,23 +245,25 @@ public class JogoDal {
                 o.setProprietario(Integer.parseInt(rs.getString("proprietario")));
                 o.setOferta(Integer.parseInt(rs.getString("oferta")));
             }
+            rs.close();
+            c.close();
             return o;
 
         } catch (Exception c) {
             return null;
         }
     }
-    public static Jogo filtroJogosGenerico(int _id, String _tipo){
+    public static List<Jogo> filtroJogosGenerico(int _idGenero, String _tipo,  int quantidePorPagina, int pagina){
         String sql = "";
         String sqlWhere = "";
 
-        if(_tipo.equals("G")){
-            sqlWhere = "genero.id_genero = " + _id;
+        if(_tipo.equals("G")){ //para buscar por genero
+            sqlWhere = "genero.id_genero = " + _idGenero;
         }
-        if(_tipo.equals("L")){
+        if(_tipo.equals("L")){// para buscar por lancamentos
             sqlWhere = "dt_lancamento between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
         }
-        if(_tipo.equals("C")){
+        if(_tipo.equals("N")){ // para buscar por Novidades
             sqlWhere = "dt_cadastro between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
         }
 
@@ -277,6 +279,8 @@ public class JogoDal {
                 + "	  inner join console on jogo.id_console = console.id_console"
                 + "  where " + sqlWhere
                 + " order by dt_lancamento desc";
+
+        List<Jogo> objC = new ArrayList<Jogo>();
         try{
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql);
@@ -288,8 +292,11 @@ public class JogoDal {
                 o.setTipo(rs.getString("tipo"));
                 o.setConsole(rs.getString("ds_console"));
                 o.setImagem(rs.getString("imagem"));
+                objC.add(o);
             }
-            return o;
+            rs.close();
+            c.close();
+            return (objC);
 
         }catch(Exception e){
             return null;

@@ -281,7 +281,7 @@ public class JogoDal {
                 + " console.ds_console,"
                 + " jogo.imagem, "
                 + " dt_lancamento,"
-                + " row_number() over (order by id_jogo) as linha"
+                + " row_number() over (order by dt_lancamento desc) as linha"
                 + " from titulo_jogo"
                 + " inner join jogo on titulo_jogo.id_titulo_jogo = jogo.id_titulo_jogo "
                 + "	  inner join genero on titulo_jogo.id_genero = genero.id_genero"
@@ -313,15 +313,24 @@ public class JogoDal {
             return null;
         }
     }
-    public static Jogo FiltroJogoDesejado(){
+    public static List<Jogo> FiltroJogoDesejado(int quantidePorPagina, int pagina){
         String sql;
+        int inicio = 0;
+        int fim = quantidePorPagina;
 
-        sql = "select  jogo.id_jogo,"
-                + "nm_titulo,"
+        if (pagina > 1) {
+            fim = (quantidePorPagina * pagina);
+            inicio = fim - quantidePorPagina;
+        }
+        sql =   "select top " + quantidePorPagina + " * from ("
+                + "select jogo.id_jogo,"
+                + " nm_titulo,"
                 + " genero.ds_genero,"
                 + " titulo_jogo.tipo,"
                 + " console.ds_console,"
-                + " jogo.imagem"
+                + " jogo.imagem,"
+                + " desejado.qtd, "
+                + " row_number() over (order by desejado.qtd desc) as linha"
                 + "  from	titulo_jogo"
                 + " inner join jogo on titulo_jogo.id_titulo_jogo = jogo.id_titulo_jogo "
                 + " inner join genero on titulo_jogo.id_genero = genero.id_genero"
@@ -331,8 +340,11 @@ public class JogoDal {
                 + " where dt_solicitacao between DATEADD(DAY, -30 , GETDATE()) AND getdate()"
                 + " group by id_jogo "
                 + " having count(*) > 1 ) desejado on jogo.id_jogo = desejado.id_jogo"
-                + " order by desejado.qtd desc, nm_titulo asc, ds_genero asc";
-
+                + " ) a"
+                + " where linha > " + inicio + " and linha <= " + fim 
+                + " order by qtd desc, nm_titulo asc, ds_genero asc";
+            List<Jogo> objC = new ArrayList<Jogo>();
+            
         try{
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql);
@@ -345,22 +357,34 @@ public class JogoDal {
                 o.setTipo(rs.getString("tipo"));
                 o.setConsole(rs.getString("ds_console"));
                 o.setImagem(rs.getString("imagem"));
+                objC.add(o);
             }
-            return o;
+            rs.close();
+            c.close();
+            return objC;
 
         }catch(Exception e){
             return null;
         }
     }
-      public static Jogo FiltroJogosTrocados(){
+      public static List<Jogo> FiltroJogosTrocados(int quantidePorPagina, int pagina){
         String sql;
+        int inicio = 0;
+        int fim = quantidePorPagina;
 
-        sql = "select troca.id_jogo,"
+        if (pagina > 1) {
+            fim = (quantidePorPagina * pagina);
+            inicio = fim - quantidePorPagina;
+        }
+        sql =   "select top " + quantidePorPagina + " * from(" 
+                +" select troca.id_jogo,"
                 + " nm_titulo,"
                 + " genero.ds_genero,"
                 + " titulo_jogo.tipo,"
                 + " console.ds_console,"
-                + " jogo.imagem"
+                + " jogo.imagem,"
+                + " troca.qtd, "
+		+ " row_number() over (order by troca.qtd desc) as linha"
                 + " from (select id_jogo,"
                 + "		 count(*)qtd	"
                 + "        from (select	jogo_usuario.id_jogo"
@@ -381,8 +405,11 @@ public class JogoDal {
                 + "	inner join titulo_jogo	on	jogo.id_titulo_jogo = titulo_jogo.id_titulo_jogo"
                 + "	inner join genero on titulo_jogo.id_genero = genero.id_genero"
                 + "	inner join console on jogo.id_console = console.id_console"
-                + "  order by troca.qtd desc";
+                + ") a"
+                + " where linha > " + inicio + " and linha <= " + fim 
+                + "  order by qtd desc";
 
+                List<Jogo> objC = new ArrayList<Jogo>();
         try{
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql);
@@ -395,8 +422,11 @@ public class JogoDal {
                 o.setTipo(rs.getString("tipo"));
                 o.setConsole(rs.getString("ds_console"));
                 o.setImagem(rs.getString("imagem"));
+                objC.add(o);
             }
-            return o;
+            rs.close();
+            c.close();
+            return objC;
 
         }catch(Exception e){
             return null;

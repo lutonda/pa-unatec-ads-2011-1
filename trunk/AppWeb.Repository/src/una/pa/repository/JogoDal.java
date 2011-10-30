@@ -266,18 +266,29 @@ public class JogoDal {
         if(_tipo.equals("N")){ // para buscar por Novidades
             sqlWhere = "dt_cadastro between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
         }
+        int inicio = 0;
+        int fim = quantidePorPagina;
 
-        sql =  "select  id_jogo,"
+        if (pagina > 1) {
+            fim = (quantidePorPagina * pagina);
+            inicio = fim - quantidePorPagina;
+        }
+        sql = "select top " + quantidePorPagina + " * from ("
+                + "select  id_jogo,"
                 + " nm_titulo,"
                 + " genero.ds_genero,"
                 + " titulo_jogo.tipo,"
                 + " console.ds_console,"
-                + " jogo.imagem "
+                + " jogo.imagem, "
+                + " dt_lancamento,"
+                + " row_number() over (order by id_jogo) as linha"
                 + " from titulo_jogo"
                 + " inner join jogo on titulo_jogo.id_titulo_jogo = jogo.id_titulo_jogo "
                 + "	  inner join genero on titulo_jogo.id_genero = genero.id_genero"
                 + "	  inner join console on jogo.id_console = console.id_console"
                 + "  where " + sqlWhere
+                + " ) a"
+                + " where linha > " + inicio + " and linha <= " + fim
                 + " order by dt_lancamento desc";
 
         List<Jogo> objC = new ArrayList<Jogo>();

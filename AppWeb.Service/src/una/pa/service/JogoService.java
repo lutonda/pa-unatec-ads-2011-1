@@ -65,10 +65,10 @@ public class JogoService {
     public static List<Jogo> filtroJogosGenerico(int _idGenero, String _tipo,  int quantidePorPagina, int pagina){
         return JogoDal.filtroJogosGenerico(_idGenero, _tipo, quantidePorPagina,pagina);
     }
-    public static Jogo filtroMaisDesejados(){
-        return JogoDal.FiltroJogoDesejado();
-    }
-    public static Jogo filtroMaisTrocados(){
-        return JogoDal.FiltroJogosTrocados();
+   public static List<Jogo> filtroMaisDesejados(int quantidePorPagina, int pagina ){
+       return JogoDal.FiltroJogoDesejado(quantidePorPagina, pagina);
+   }
+    public static List<Jogo> filtroMaisTrocados(int quantidePorPagina, int pagina ){
+        return JogoDal.FiltroJogosTrocados(quantidePorPagina,pagina);
     }
 }

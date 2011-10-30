@@ -50,7 +50,6 @@ Jogo.prototype = {
         }
 
         inputText('txtBuscarJogo','Digite o nome do Jogo');
-        
     },
 
     _btnBuscarOnClick: function(value){

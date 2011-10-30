@@ -334,4 +334,54 @@ public class JogoDal {
             return null;
         }
     }
+      public static Jogo FiltroJogosTrocados(){
+        String sql;
+
+        sql = "select troca.id_jogo,"
+                + " nm_titulo,"
+                + " genero.ds_genero,"
+                + " titulo_jogo.tipo,"
+                + " console.ds_console,"
+                + " jogo.imagem"
+                + " from (select id_jogo,"
+                + "		 count(*)qtd	"
+                + "        from (select	jogo_usuario.id_jogo"
+                + "                from	troca"
+                + "			inner join jogo_usuario on troca.id_jogo_origem = jogo_usuario.id_jogo_usuario"
+                + " 		 where	status_troca = 'A'"
+                + "     	   and	dt_troca between DATEADD(DAY, -30 , GETDATE()) AND getdate()"
+                + "		 union	all "
+                + "		select	jogo_usuario.id_jogo	 "
+                + "		  from	troca"
+                + "			inner join jogo_usuario on troca.ID_JOGO_DESTINO = jogo_usuario.id_jogo_usuario"
+                + "		 where	status_troca = 'A'"
+                + "		   and	dt_troca between DATEADD(DAY, -30 , GETDATE()) AND getdate()"
+                + "		)troca"
+                + "		 group by id_jogo"
+                + "	) troca"
+                + "	inner join jogo			on	troca.id_jogo = jogo.id_jogo"
+                + "	inner join titulo_jogo	on	jogo.id_titulo_jogo = titulo_jogo.id_titulo_jogo"
+                + "	inner join genero on titulo_jogo.id_genero = genero.id_genero"
+                + "	inner join console on jogo.id_console = console.id_console"
+                + "  order by troca.qtd desc";
+
+        try{
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql);
+            Jogo o = new Jogo();
+
+            if(rs.next()){
+                o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
+                o.setTitulo_jogo(rs.getString("nm_titulo"));
+                o.setGenero(rs.getString("DS_GENERO"));
+                o.setTipo(rs.getString("tipo"));
+                o.setConsole(rs.getString("ds_console"));
+                o.setImagem(rs.getString("imagem"));
+            }
+            return o;
+
+        }catch(Exception e){
+            return null;
+        }
+    }
 }

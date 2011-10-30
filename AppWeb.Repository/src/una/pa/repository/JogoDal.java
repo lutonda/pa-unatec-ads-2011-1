@@ -4,6 +4,7 @@
  */
 package una.pa.repository;
 
+import com.sun.org.apache.xpath.internal.operations.Equals;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -247,6 +248,89 @@ public class JogoDal {
             return o;
 
         } catch (Exception c) {
+            return null;
+        }
+    }
+    public static Jogo filtroJogosGenerico(int _id, String _tipo){
+        String sql = "";
+        String sqlWhere = "";
+
+        if(_tipo.equals("G")){
+            sqlWhere = "genero.id_genero = " + _id;
+        }
+        if(_tipo.equals("L")){
+            sqlWhere = "dt_lancamento between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
+        }
+        if(_tipo.equals("C")){
+            sqlWhere = "dt_cadastro between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
+        }
+
+        sql =  "select  id_jogo,"
+                + " nm_titulo,"
+                + " genero.ds_genero,"
+                + " titulo_jogo.tipo,"
+                + " console.ds_console,"
+                + " jogo.imagem "
+                + " from titulo_jogo"
+                + " inner join jogo on titulo_jogo.id_titulo_jogo = jogo.id_titulo_jogo "
+                + "	  inner join genero on titulo_jogo.id_genero = genero.id_genero"
+                + "	  inner join console on jogo.id_console = console.id_console"
+                + "  where " + sqlWhere
+                + " order by dt_lancamento desc";
+        try{
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql);
+             Jogo o = new Jogo();
+            if (rs.next()) {
+                o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
+                o.setTitulo_jogo(rs.getString("nm_titulo"));
+                o.setGenero(rs.getString("DS_GENERO"));
+                o.setTipo(rs.getString("tipo"));
+                o.setConsole(rs.getString("ds_console"));
+                o.setImagem(rs.getString("imagem"));
+            }
+            return o;
+
+        }catch(Exception e){
+            return null;
+        }
+    }
+    public static Jogo FiltroJogoDesejado(){
+        String sql;
+
+        sql = "select  jogo.id_jogo,"
+                + "nm_titulo,"
+                + " genero.ds_genero,"
+                + " titulo_jogo.tipo,"
+                + " console.ds_console,"
+                + " jogo.imagem"
+                + "  from	titulo_jogo"
+                + " inner join jogo on titulo_jogo.id_titulo_jogo = jogo.id_titulo_jogo "
+                + " inner join genero on titulo_jogo.id_genero = genero.id_genero"
+                + " inner join console on jogo.id_console = console.id_console"
+                + " inner join (select count(*) qtd,  id_jogo"
+                + " from jogo_desejado"
+                + " where dt_solicitacao between DATEADD(DAY, -30 , GETDATE()) AND getdate()"
+                + " group by id_jogo "
+                + " having count(*) > 1 ) desejado on jogo.id_jogo = desejado.id_jogo"
+                + " order by desejado.qtd desc, nm_titulo asc, ds_genero asc";
+
+        try{
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql);
+            Jogo o = new Jogo();
+
+            if(rs.next()){
+                o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
+                o.setTitulo_jogo(rs.getString("nm_titulo"));
+                o.setGenero(rs.getString("DS_GENERO"));
+                o.setTipo(rs.getString("tipo"));
+                o.setConsole(rs.getString("ds_console"));
+                o.setImagem(rs.getString("imagem"));
+            }
+            return o;
+
+        }catch(Exception e){
             return null;
         }
     }

@@ -1,6 +1,6 @@
 <%--
-    Document   : perguntasFrequentes
-    Created on : 02/06/2011, 20:18:28
+    Document   : comoTrocar
+    Created on : 05/06/2011, 15:55:56
     Author     : ADS - FACULDADE
 --%>
 
@@ -21,44 +21,46 @@
             </div>
             <div id="content">
 
-                <h2>Termos de Uso</h2><br/><br/>
+               <div style="float:left; width: 200px">
+             <%@ include file="/inc/inc_menuAjuda.jsp" %>
+                    </div>
+                <div style="float:left;">
+                    <h3><b>Termos de Uso</b></h3>
+                    <br/><br/>
+                  Termos gerais de uso<br/><br/>
 
-                <li><a href="/AppWebFrontEnd/inicio/ajuda/auxilio.html"><p align=right><i><b><i> < Voltar </i></b></i></p></a><br/><br/>
+
+                    O JogaTroca não fabrica ou vende quealquer produto.<br/>
+                    A informações solictadas pelo JogaTroca não serão repassadas ou divulgadas, as mesmas são
+                        meramente informativas.<br/>
+                    O JogaTroca não se responsabiliza por mídias trocadas, uma vez que o mesmo apenas junta
+                        os usuários interessados e não se manifesta às comunicações.<br/>
+                    Só terão acesso ao cadastro no JogaTroca os usuários que receberem o convite.<br/>
+                    Perfis Fake não são aceitos, o não cumprimento dessa regra poderá acarretar a perda do
+                        perfil e das informações contidas no mesmo.<br/>
+                    O usuário não poderá acrescentar mídias ao site, no mesmos já estarão as mídias pré-cadastradas pelo administrativo JogaTroca.<br/>
+                    Dúvidas, opiniões e sugestões poderão ser tratadas através do <a href="#">Fale Conosco</a>.<br/>
+                    Os usuários aceitam que os perfis terão o e-mail como dado de validação e identificação, podendo ser punido o usuário por validação de informações falsas.<br/>
+                    Os usuários aceitam que o JogaTroca é apenas uma forma de juntar as partes para as trocas e não se responsabiliza por eventuais problemas entre os usuários.<br/>
+                    Os usuários aceitam a ficarem sujeitos à avaliações de outros usuários e pela a equipe responsável pelo JogaTroca.<br/><br/>
 
 
+                        Sobre os Jogos<br/><br/>
 
-                <b>Termos gerais de uso</b><br/><br/>
-                
-                    
-            <li>O JogaTroca não fabrica ou vende quealquer produto.<br/>
-            <li>A informações solictadas pelo JogaTroca não serão repassadas ou divulgadas, as mesmas são
-            meramente informativas.<br/>
-            <li>O JogaTroca não se responsabiliza por mídias trocadas, uma vez que o mesmo apenas junta
-            os usuários interessados e não se manifesta às comunicações.<br/>
-            <li>Só terão acesso ao cadastro no JogaTroca os usuários que receberem o convite.<br/>
-            <li>Perfis Fake não são aceitos, o não cumprimento dessa regra poderá acarretar a perda do
-            perfil e das informações contidas no mesmo.<br/>
-            <li>O usuário não poderá acrescentar mídias ao site, no mesmos já estarão as mídias pré-cadastradas pelo administrativo JogaTroca.<br/>
-            <li>Dúvidas, opiniões e sugestões poderão ser tratadas através do <a href="#">Fale Conosco</a>.<br/>
-            <li>Os usuários aceitam que os perfis terão o e-mail como dado de validação e identificação, podendo ser punido o usuário por validação de informações falsas.<br/>
-            <li>Os usuários aceitam que o JogaTroca é apenas uma forma de juntar as partes para as trocas e não se responsabiliza por eventuais problemas entre os usuários.<br/>
-            <li>Os usuários aceitam a ficarem sujeitos à avaliações de outros usuários e pela a equipe responsável pelo JogaTroca.<br/><br/>
-                    
-                
-            <b>Sobre os Jogos</b><br/><br/>
+                    Os usuários se comprometem a não utilizar mídias "Piratas" nas trocas, essas são PROIBIDAS no JogaTroca, podendo o usuário ter sua conta desativada sem aviso prévio.<br/>
+                    Os jogos serão cadastrados previamente pela equipe administrativa do JogaTroca, o usuários se comprometem à aceitação desse termo.<br/>
+                    Os usuários se comprometem a fazer uso apenas de mídias em boa qualidade.<br/><br/>
 
-            <li>Os usuários se comprometem a não utilizar mídias "Piratas" nas trocas, essas são PROIBIDAS no JogaTroca, podendo o usuário ter sua conta desativada sem aviso prévio.<br/>
-            <li>Os jogos serão cadastrados previamente pela equipe administrativa do JogaTroca, o usuários se comprometem à aceitação desse termo.<br/>
-            <li>Os usuários se comprometem a fazer uso apenas de mídias em boa qualidade.<br/><br/>
+                        Sobre as trocas<br/><br/>
 
-            <b>Sobre as trocas</b><br/><br/>
-
-            <li>Os usuários aceitam que o JogaTroca não se responsabiliza por trocas mal feitas.<br/>
-            <li>Os usuários aceitam que as informações passadas pelo usuário não são de responsabilidade do JogaTroca.
-            <li>Os usuários aceitam a fazer uso apenas de informações verdadeiras, podendo ser banido do WebSite o usuário pelo não cumprimento dessa regra sem aviso prévio e sem recuperação dos dados contidos em sua conta.<br/>
-            <li>Os usuários aceitam a fazer parte de um rankin de trocas e de qualidade do JogaTroca, feito pela equipe responsável do WebSite de acordo com as trocas e sem aviso prévio.<br/>
-
+                    Os usuários aceitam que o JogaTroca não se responsabiliza por trocas mal feitas.<br/>
+                    Os usuários aceitam que as informações passadas pelo usuário não são de responsabilidade do JogaTroca.
+                    Os usuários aceitam a fazer uso apenas de informações verdadeiras, podendo ser banido do WebSite o usuário pelo não cumprimento dessa regra sem aviso prévio e sem recuperação dos dados contidos em sua conta.<br/>
+                    Os usuários aceitam a fazer parte de um rankin de trocas e de qualidade do JogaTroca, feito pela equipe responsável do WebSite de acordo com as trocas e sem aviso prévio.<br/>
                 </div>
+                 <div class="cb"></div>
+            </div>
+     
             <div id="footer">
                 <%@ include file="/inc/inc_rdp.jsp" %>
             </div>

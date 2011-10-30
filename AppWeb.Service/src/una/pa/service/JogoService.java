@@ -56,12 +56,16 @@ public class JogoService {
     public static boolean incluir(Jogo _obj) {
         return JogoDal.incluir(_obj);
     }
-
     public static boolean excluir(int id) {
         return JogoDal.exclui(id);
     }
-
     public static Jogo detalheJogo(int _id) {
         return JogoDal.detalesJogo(_id);
+    }
+    public static Jogo filtroJogosGenerico(int _id, String _tipo){
+        return JogoDal.filtroJogosGenerico(_id, _tipo);
+    }
+    public static Jogo maisDesejados(){
+        return JogoDal.FiltroJogoDesejado();
     }
 }

@@ -65,7 +65,10 @@ public class JogoService {
     public static Jogo filtroJogosGenerico(int _id, String _tipo){
         return JogoDal.filtroJogosGenerico(_id, _tipo);
     }
-    public static Jogo maisDesejados(){
+    public static Jogo filtroMaisDesejados(){
         return JogoDal.FiltroJogoDesejado();
+    }
+    public static Jogo filtroMaisTrocados(){
+        return JogoDal.FiltroJogosTrocados();
     }
 }

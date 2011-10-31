@@ -49,7 +49,7 @@
                             <c:if test="${AmigoUsuario.sn_aceite == 0 && AmigoUsuario.solitante == 'N' }"><a id="btnRspCancelar" href="javascript:void(0)">Cancelar Solicitação</a></c:if>
                             <c:if test="${AmigoUsuario.sn_aceite == 0 && AmigoUsuario.solitante == 'S' }"><a id="btnRspSolitacao" href="javascript:void(0)">Responder a Solicitação</a></c:if>
                             <c:if test="${AmigoUsuario.sn_aceite == 1 }"><a id="btnRemoverSolitacao" href="javascript:void(0)">Remover</a></c:if>
-                            <c:if test="${AmigoUsuario.id_usuario == 0 && DadosIniciais.id_usuario != IdParam}"><a href="#">Adicionar</a></c:if></span>
+                            <c:if test="${AmigoUsuario.id_usuario == 0 && DadosIniciais.id_usuario != IdParam}"><a id="btnAdicionar" href="javascript:void(0)">Adicionar</a></c:if></span>
                     </div>
                     <div class="box-df">
                         <ul id="notificacao">

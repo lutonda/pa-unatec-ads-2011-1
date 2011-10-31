@@ -9,5 +9,8 @@ public class CtrlUsuarioService {
     public static boolean  recusaUsuario(int _id){
         return CtrlUsuarioDao.recusa(_id);
     }
+    public static boolean  adicionarUsuario(int _id, int _idUserVisit){
+        return CtrlUsuarioDao.adicionar(_id, _idUserVisit);
+    }
 
 }

@@ -23,7 +23,7 @@
             <div style="float:left; width: 200px">
                     <%@ include file="/inc/inc_menuAjuda.jsp" %>
                 </div>
-                <div style="float:left; display: block">
+                <div style="float:left; display: block; width: 772px">
                     <h3><b>Perguntas Frequentes</b></h3>
                     <br/><br/>
                     <b>Ofertas de jogos "pirata" são permitidas no jogatroca?</b><br/>
@@ -67,9 +67,6 @@
         </div>
         <%@ include file="/inc/scripts.jsp" %>
         <!-- scripts de escopo local -->
-
-        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaJogos.js"></script>
-
         <%@ include file="/inc/metrics.jsp" %>
     </body>
 </html>

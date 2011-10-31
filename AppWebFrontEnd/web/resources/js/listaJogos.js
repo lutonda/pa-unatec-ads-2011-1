@@ -131,7 +131,7 @@ Jogo.prototype = {
         var mais = _pagina + 1;
 
         _totalPg = Math.ceil(_totalItens / 10);
-        if(_totalPg != 0 && _totalItens >= 10)
+        if(_totalPg != 0 && _totalItens >= 11)
             $('#paginacao').show();
         else
             $('#paginacao').hide();

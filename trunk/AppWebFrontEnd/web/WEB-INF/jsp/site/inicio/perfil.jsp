@@ -52,11 +52,11 @@
                             <c:if test="${AmigoUsuario.sn_aceite == 1 }"><a id="btnRemoverSolitacao" href="javascript:void(0)">Remover</a></c:if>
                             <c:if test="${AmigoUsuario.id_usuario == 0 && DadosIniciais.id_usuario != IdParam}"><a id="btnAdicionar" href="javascript:void(0)">Adicionar</a></c:if>
                             <c:if test="${DadosIniciais.id_usuario == IdParam}"><a href="/AppWebFrontEnd/site/inicio/editar.html">Editar Perfil</a></c:if>
-                            </span>
-                        </div>
-                        <div class="box-df">
-                            <ul id="notificacao">
-                                <li><c:if test="${(AmigoUsuario.ignorado == 0 && AmigoUsuario.id_usuario != 0 && AmigoUsuario.sn_aceite != 0) || DadosIniciais.id_usuario == IdParam}"><input type="text" id="txtNotificacao" size="90"></input><input type="submit" value="Enviar" id="btnEnviarNotificacao"></input></c:if></li>
+                        </span>
+                    </div>
+                    <div class="box-df">
+                        <ul id="notificacao">
+                            <li><c:if test="${(AmigoUsuario.ignorado == 0 && AmigoUsuario.id_usuario != 0 && AmigoUsuario.sn_aceite != 0) || DadosIniciais.id_usuario == IdParam}"><input type="text" id="txtNotificacao" size="90"></input><input type="submit" value="Enviar" id="btnEnviarNotificacao"></input></c:if></li>
                         </ul>
                         <span style="float: right; margin-top: 0"><a href="javascript:void(0);" id="btnMais">Mais(+)</a></span>
                     </div>

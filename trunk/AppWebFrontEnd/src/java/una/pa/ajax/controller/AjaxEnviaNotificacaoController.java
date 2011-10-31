@@ -31,7 +31,8 @@ public class AjaxEnviaNotificacaoController {
 
         Notificacoes objct = new Notificacoes();
         try{
-            objct.setId_usuario(idUsuario);
+            int idUserCorrente = Integer.parseInt((String)request.getSession().getAttribute("id"));
+            objct.setId_usuario(idUserCorrente);
             objct.setDescricao(dsNotificacao);
             objct.setBroadcast((broadcast)? 1:0);
             return String.valueOf(NotificacoesService.enviaNotificacao(objct));

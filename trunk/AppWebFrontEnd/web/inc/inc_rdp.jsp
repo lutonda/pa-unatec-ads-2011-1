@@ -1,1 +1,1 @@
-<br/>Desenvolvido por Alunos ADS 3 UNATEC - Barro Preto<br/><br/>
+<br/>Desenvolvido por Alunos ADS UNATEC - Barro Preto<br/><br/>

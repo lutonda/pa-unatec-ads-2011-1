@@ -3,7 +3,7 @@
 <meta http-equiv="expires" content = "0" />
 <meta http-equiv="imagetoolbar" content="no" />
 <meta name="MSSmartTagsPreventParsing" content="TRUE" />
-<meta name="author" content="Alunos ADS 3 UNATEC - Barro Preto" />
+<meta name="author" content="Alunos ADS UNATEC - Barro Preto" />
 <meta name="reply-to" content="ciqueira@una.tec.br" />
 <meta name="copyright" content="Alunos ADS 3 UNATEC Barro Preto" />
 <meta name="description" content="Rede de troca de jogos" />

@@ -21,7 +21,7 @@ CtrlUsuario.Load = function(){
 CtrlUsuario.prototype = {
 
     initialize: function() {
-       var ini = this;
+        var ini = this;
 
         $('ul#UsuarioPendente li').each(function() {
             var id = $('#idUsuarioAmigo',this);
@@ -33,15 +33,15 @@ CtrlUsuario.prototype = {
         });
 
         $('ul#usuariosList li').each(function() {
-            var id = $('#idUsuarioAmigo',this);
+            var id = $('#idUsuarioAmigo',this).text();
             var launch = $('div a', this);
-           // console.log(launch);
+            // console.log(launch);
             if (launch.size() > 0) {
                 $('div a', this).bind('click', id, $.createDelegate(ini, CtrlUsuario.prototype._btnUserRemoverOnClick));
-                }         
+            }         
         });
 
-     },
+    },
 
     _btnUserAceiteOnClick: function(value){
         _idUserAtual = value.data.text();
@@ -50,22 +50,21 @@ CtrlUsuario.prototype = {
             aceite: 1
         }, this._postUserAceiteOnSuccess);
     },
-
-
-    _btnValidacheck: function(value){
+    
+    _btnUserNaoAgoraOnClick: function(value){
         _idUserAtual = value.data.text();
-        var msg = confirm('Confirma Exclusao ?');
-        if(msg){
-            this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
-                idAmigoUsuario : _idUserAtual,
-                aceite: 0
-            }, this._postUserRecusaOnSuccess);
-        }
+        console.log(_idUserAtual);
+        
+        this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
+            idAmigoUsuario : _idUserAtual,
+            aceite: 0
+        }, this._postUserRecusaOnSuccess);
     },
 
     _btnUserRemoverOnClick: function(value){
-        _idUserAtual = value.data.text();
-        var msg = confirm('Confirma Exclusao deste amigo?');
+        _idUserAtual = value.data;
+        
+        var msg = confirm('Deseja remover?');
         if(msg){
             this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
                 idAmigoUsuario : _idUserAtual,
@@ -77,25 +76,42 @@ CtrlUsuario.prototype = {
     _postUserAceiteOnSuccess: function(value){
         var nmusuario = $('#idUsuarioAmigo'+_idUserAtual+' #nmUsuarioAmigo').text()
 
-        $('ul#usuariosList li:last-child div.cb').attr('style', 'border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px');
-        $('#idUsuarioAmigo'+_idUserAtual).appendTo('#usuariosList');
-        $('#idUsuarioAmigo'+_idUserAtual+ ' div#ctrlA').remove();
-        $('#idUsuarioAmigo'+_idUserAtual+ ' div#ctrlB').attr('style', 'float: right;');
-        $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual +' div a').unbind('click');
-        $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual +' div a').bind('click', _idUserAtual, $.createDelegate(this, CtrlUsuario.prototype.initialize()._btnUserRemoverOnClick));
-        $('#UsuarioPendente').append('<li><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=5">'+nmusuario+'</a> foi adicionado.</li>');
+        //$('ul#usuariosList .conteudo li:last-child div.cb').attr('style', 'border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px');
+        $('ul#usuariosList').append('<li id="idUsuarioAmigo'+_idUserAtual+'"></li>')
+        $('ul#UsuarioPendente #idUsuarioAmigo'+_idUserAtual+' .conteudo').appendTo('#usuariosList li#idUsuarioAmigo'+_idUserAtual);
+        $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual+' .conteudo div#ctrlA').remove();
+        $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual+' .conteudo div#ctrlB').attr('style', 'float: right;');
+        $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual +' .conteudo div a').unbind('click');
+
+        $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual +' .conteudo div a').bind('click', _idUserAtual, $.createDelegate(this, CtrlUsuario.prototype._btnUserRemoverOnClick));
+        $('ul#UsuarioPendente li#idUsuarioAmigo'+_idUserAtual).append('<span class="conteudo"><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=5">'+nmusuario+'</a> foi adicionado.<br/><div class="cb"></div></span>');
         
-        console.log(CtrlUsuario.prototype.initialize()._btnUserRemoverOnClick);
+        $('ul#UsuarioPendente li.nivelA').each(function() {
+            $('div.cb' , this).attr('style', '');
+            $('div.cb' , this).attr('style', 'border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px');
+        });
+        
+        $('ul#usuariosList li').each(function() {
+            $('div.cb' , this).attr('style', '');
+            $('div.cb' , this).attr('style', 'border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px');
+        });
+        
+        $('ul#UsuarioPendente li.nivelA:last-child .conteudo div.cb').attr('style', '');
+        $('ul#usuariosList li:last-child .conteudo div.cb').attr('style', '');
+        
+    //console.log(CtrlUsuario.prototype.initialize()._btnUserRemoverOnClick);
     },
 
     _postUserRecusaOnSuccess: function(value){
 
-        $('#idUsuarioAmigo'+_idUserAtual).remove();
+        $('ul#UsuarioPendente li#idUsuarioAmigo'+_idUserAtual).remove();
+        $('ul#UsuarioPendente li.nivelA:last-child .conteudo div.cb').attr('style', '');
     },
 
     _postUserRemoverOnSuccess: function(value){
 
-        $('#idUsuarioAmigo'+_idUserAtual).remove();
+        $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual).remove();
+        $('ul#usuariosList li:last-child .conteudo div.cb').attr('style', '');
     },
 
  

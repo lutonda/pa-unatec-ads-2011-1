@@ -224,6 +224,7 @@ public class InicioController extends MultiActionController {
             mav.addObject("AmigoUsuario", objUser);
             mav.addObject("tags", objTags);
             mav.addObject("Endereco", objEnd);
+            mav.addObject("IdParam", request.getSession().getAttribute("id"));
         } catch (Exception e) {
             return null;
         }

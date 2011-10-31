@@ -9,33 +9,6 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ include file="/inc/taglibs.jsp" %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt">
-<script type="text/javascript">
-//<![CDATA[
-	$(document).ready(function() {
-		$('<div id="mascara"></div>')
-		.css({
-		opacity : 0.8,
-		width : $(document).width(),
-		height : $(document).height()
-		})
-		.appendTo('body').hide();
-		$('.foto').click(function(event) {
-			event.preventDefault();
-			$('#listaJogos').fadeIn(1000);
-			$('<img class="foto-ampliada" />')
-			.attr('src', $(this).attr('src'))
-			.css({
-			left: ($(document).width()/2 - 250),
-			top: ($(document).height()/2 - 186)
-			}).appendTo('body').click(function(){
-				$(this).fadeOut(1000);
-				$('#mascara').fadeOut(1500);
-				});
-		});
-	});
-   // ]]>
-</script>
-
     <head>
         <title>Joga Troca</title>
         <%@ include file="/inc/taghead.jsp" %>
@@ -71,9 +44,12 @@
                 </div>
                 <div id="main">
                     <div id="usuarios" class="box-df">
-                        <span style="font-size: 18px; font-weight: bold;">${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</span> <span style="display: none;" id="idUser">${DadosIniciais.id_usuario}</span><span style="display: none;" id="idUserVisitante">${AmigoUsuario.id_usuario}<c:set value="${DadosIniciais.id_usuario}" var="id"/></span><br/>
-                        ${Endereco.ds_cidade} / ${Endereco.ds_estado} <span style="float: right">
-                            <c:if test="${AmigoUsuario.sn_aceite == 0 && AmigoUsuario.solitante == 'N' }"><a href="#">Cancelar Solicitação</a></c:if><c:if test="${AmigoUsuario.sn_aceite == 0 && AmigoUsuario.solitante == 'S' }"><a href="#">Responder a Solicitação</a></c:if><c:if test="${AmigoUsuario.sn_aceite == 1 }"><a href="#">Remover</a></c:if><c:if test="${AmigoUsuario.id_usuario == 0 && DadosIniciais.id_usuario != id }"><a href="#">Adicionar</a></c:if></span>
+                        <span style="font-size: 18px; font-weight: bold;">${DadosIniciais.nm_usuario} ${DadosIniciais.nm_sobrenome}</span><span style="display: none;" id="idUser">${DadosIniciais.id_usuario}</span><span style="display: none;" id="idUserAmigo">${AmigoUsuario.id_amigo_usuario}</span> <br/>
+                        ${Endereco.ds_cidade} / ${Endereco.ds_estado} <span id="acaoRsp" style="float: right">
+                            <c:if test="${AmigoUsuario.sn_aceite == 0 && AmigoUsuario.solitante == 'N' }"><a id="btnRspCancelar" href="javascript:void(0)">Cancelar Solicitação</a></c:if>
+                            <c:if test="${AmigoUsuario.sn_aceite == 0 && AmigoUsuario.solitante == 'S' }"><a id="btnRspSolitacao" href="javascript:void(0)">Responder a Solicitação</a></c:if>
+                            <c:if test="${AmigoUsuario.sn_aceite == 1 }"><a id="btnRemoverSolitacao" href="javascript:void(0)">Remover</a></c:if>
+                            <c:if test="${AmigoUsuario.id_usuario == 0 && DadosIniciais.id_usuario != IdParam}"><a href="#">Adicionar</a></c:if></span>
                     </div>
                     <div class="box-df">
                         <ul id="notificacao">
@@ -98,6 +74,7 @@
         <!-- scripts de escopo local -->
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaJogos.js"></script>
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/notificacoes.js"></script>
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/ctrlUsuarioPerfil.js"></script>
         <%@ include file="/inc/metrics.jsp" %>
     </body>
 </html>

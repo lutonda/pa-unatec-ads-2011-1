@@ -116,7 +116,7 @@ public class NotificacoesDao {
 
         String sql = "select top " + quantidePorPagina + " * from ("
                 + "select row_number() over (order by n.dt_notificacao desc) as linha, n.ID_USUARIO ID_USUARIO_NOT,ID_NOTIFICACAO, DESCRICAO,BROADCAST, DT_NOTIFICACAO,u.ID_USUARIO,NM_USUARIO ,NM_SOBRENOME,EMAIL,"
-                + " DT_NASCIMENTO,DT_CADASTRO,SEHHA, SN_ATIVO, TEL_USUARIO,USUARIO,EMAIL_NOTIFICACOES,EMAIL_PARCEIRO,ACEITE_ACORDO,"
+                + " DT_NASCIMENTO,DT_CADASTRO,SENHA, SN_ATIVO, TEL_USUARIO,USUARIO,EMAIL_NOTIFICACOES,EMAIL_PARCEIRO,ACEITE_ACORDO,"
                 + " DESCRICAO_USUARIO,SEXO, PREF_EM_MAOS, PREF_CORREIOS, PREF_TRANSP, IMAGEM,"
                 + " (select count(*) "
                 + " from notificacoes "

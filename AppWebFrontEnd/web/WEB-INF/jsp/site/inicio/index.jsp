@@ -23,24 +23,19 @@
                 </div>
                 <div id="main">
                     <div class="box-df">
-                       <!-- <ul><li>links</li></ul> !-->
+                        <ul><li><a id="generos" href="javascript:void(0);">Gêneros</a> ,
+                                <a id="lancamentos" href="javascript:void(0);">Lançamentos</a> ,
+                                <a id="top10" href="javascript:void(0);">Top 10</a> ,
+                                <a id="novidades" href="javascript:void(0);">Novidades</a><br/>
+                                <a id="maisDesejados" href="javascript:void(0);">Mais Desejados</a>,
+                                <a id="maisTrocados" href="javascript:void(0);">Mais Trocados</a>,
+                                <a id="maisQualificados" href="javascript:void(0);">Mais Qualificados</a></li></ul>
                         <ul id="listaJogos" style="margin-left: 15px; height: 310px;">                            
                             <li id="campoBusca"><input type="text" id="txtBuscarJogo" size="84"></input><input type="submit" value="Buscar" id="btnBuscar"></input></li>
-                            <div id="filtros" style="padding-bottom: 0.5cm">
-                                <span style="float:left;">
-                                    <a id="generos" href="javascript:void(0);">Gêneros</a> ,
-                                    <a id="lancamentos" href="javascript:void(0);">Lançamentos</a> ,
-                                    <a id="top10" href="javascript:void(0);">Top 10</a> ,
-                                    <a id="novidades" href="javascript:void(0);">Novidades</a><br>
-                                    <a id="maisDesejados" href="javascript:void(0);">Mais Desejados</a>,
-                                    <a id="maisTrocados" href="javascript:void(0);">Mais Trocados</a>
-                                </span></div>
-
-                            <br class="cb"/>
                         </ul>
-                        <span id="paginacao" style="float: right; margin-top: 0; display: none;"><< <a id="ant" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="prox">próxima</a> >></span>
+                        <span id="paginacao" style="float: right; margin-top: 0; display: none;">&lt;&lt; <a id="ant" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="prox">próxima</a> >></span>
                     </div>
-                    
+
                     <div class="box-df">
                         <ul id="notificacao">
                             <li><input type="text" id="txtNotificacao" size="90"></input><input type="submit" value="Enviar" id="btnEnviarNotificacao"></input>  </li>

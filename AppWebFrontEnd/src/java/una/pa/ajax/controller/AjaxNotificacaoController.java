@@ -21,17 +21,23 @@ public class AjaxNotificacaoController {
 
         String Itens = "";
         int vTotal = 0;
+        try {
+            List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(idUsuario, qtd, pagina);
 
-        List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(idUsuario,qtd,pagina);
+            if (!objNot.isEmpty()) {
+                for (Iterator<Notificacoes> it = objNot.iterator(); it.hasNext();) {
+                    Notificacoes notificacoes = it.next();
 
-        if (!objNot.isEmpty()) {
-            for (Iterator<Notificacoes> it = objNot.iterator(); it.hasNext();) {
-                Notificacoes notificacoes = it.next();
-                
-                Itens += "<li><a href=\"/AppWebFrontEnd/site/inicio/perfil.html?id=" + notificacoes.getId_usuario() + "\">" + notificacoes.getNm_nome() + "</a> <i>" + notificacoes.getDescricao() + "</i> " + notificacoes.getDt_notificacoes() + "</li>";
-                vTotal = notificacoes.getTotal();
+                    Itens += "<li><a href=\"/AppWebFrontEnd/site/inicio/perfil.html?id=" + notificacoes.getId_usuario() + "\">" + notificacoes.getNm_nome() + "</a> <i>" + notificacoes.getDescricao() + "</i> " + notificacoes.getDt_notificacoes() + "</li>";
+                    vTotal = notificacoes.getTotal();
+                }
+                Itens += "<div class=\"cb\"></div>|" + vTotal;
+            } else {
+                Itens = "";
             }
-            Itens += "<div class=\"cb\"></div>|"+ vTotal;
+        } catch (Exception e) {
+            Itens += "<li>Erro: "+ e.getMessage()+ "</li>";
+            Itens += "<div class=\"cb\"></div>|0";
         }
 
         return Itens;

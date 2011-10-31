@@ -28,11 +28,13 @@ Notificacoes.prototype = {
             pagina: _pagina
         }, this._listaNotificacaoOnSuccess);
 
-
         //clicks btn
         $('#btnEnviarNotificacao').bind('click', '', $.createDelegate(this, this._btnEnviarNotOnClick));
-
-        inputText('txtNotificacao','Chame Alguem para Trocar Jogos');
+        
+        if(parseURL(window.location.pathname).file == "index.html")
+            inputText('txtNotificacao','Chame Alguem para Trocar Jogos');
+        else
+            inputText('txtNotificacao','Faça um Comentário');
     },
 
     _btnEnviarNotOnClick: function(value){
@@ -41,7 +43,11 @@ Notificacoes.prototype = {
             dsNotificacao: $('#txtNotificacao').val(),
             broadcast: ($('#idUserVisitante').text() == "")? 1:0
         }, this._enviarNotificacaoOnSuccess);
-        inputText('txtNotificacao','Chame Alguem pra Trocar Jogos');
+    
+        if(parseURL(window.location.pathname).file == "index.html")
+            inputText('txtNotificacao','Chame Alguem para Trocar Jogos');
+        else
+            inputText('txtNotificacao','Faça um Comentário');
     },
 
     _enviarNotificacaoOnSuccess: function(value){

@@ -274,10 +274,10 @@ public class UsuarioDao {
 
     public static AmigoUsuario inicioAmigo(int _id, int _idAmigo) {
 
-        String sql = "select aua.id_usuario, aua.id_usuario_amigo, sn_aceite, aua.ignorado, case when aua.id_usuario_amigo = ? then 'S' else 'N'  end as solitante "
+        String sql = "select aua.id_amigo_usuario, aua.id_usuario, aua.id_usuario_amigo, sn_aceite, aua.ignorado, case when aua.id_usuario_amigo = ? then 'S' else 'N'  end as solitante "
                 + "from amigo_usuario aua inner join usuario ua on aua.id_usuario_amigo = ua.id_usuario "
                 + "where aua.id_usuario = ? and aua.id_usuario_amigo = ? union "
-                + "select aua.id_usuario_amigo as id_usuario, aua.id_usuario as id_usuario_amigo, sn_aceite, aua.ignorado, case when aua.id_usuario_amigo = ? then 'S' else 'N'  end as solitante "
+                + "select aua.id_amigo_usuario, aua.id_usuario_amigo as id_usuario, aua.id_usuario as id_usuario_amigo, sn_aceite, aua.ignorado, case when aua.id_usuario_amigo = ? then 'S' else 'N'  end as solitante "
                 + "from amigo_usuario aua inner join usuario ua on aua.id_usuario = ua.id_usuario "
                 + "where aua.id_usuario_amigo = ? and aua.id_usuario = ?";
 
@@ -290,7 +290,8 @@ public class UsuarioDao {
 
             if (rs.next()) {
                 o.setId_usuario(Integer.parseInt(rs.getString("id_usuario")));
-                o.setId_amigo_usuario(Integer.parseInt(rs.getString("id_usuario_amigo")));
+                o.setId_usuario_amigo(Integer.parseInt(rs.getString("id_usuario_amigo")));
+                o.setId_amigo_usuario(Integer.parseInt(rs.getString("id_amigo_usuario")));
                 o.setSn_aceite(Integer.parseInt(rs.getString("sn_aceite")));
                 o.setIgnorado(Integer.parseInt(rs.getString("ignorado")));
                 o.setSolitante(rs.getString("solitante"));

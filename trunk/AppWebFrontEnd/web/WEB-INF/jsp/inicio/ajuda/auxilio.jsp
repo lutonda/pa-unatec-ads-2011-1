@@ -35,8 +35,6 @@
         <%@ include file="/inc/scripts.jsp" %>
         <!-- scripts de escopo local -->
 
-        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaJogos.js"></script>
-        </div>
 
         <%@ include file="/inc/metrics.jsp" %>
     </body>

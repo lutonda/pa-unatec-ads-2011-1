@@ -76,7 +76,6 @@ CtrlUsuario.prototype = {
     _postUserAceiteOnSuccess: function(value){
         var nmusuario = $('#idUsuarioAmigo'+_idUserAtual+' #nmUsuarioAmigo').text()
 
-        //$('ul#usuariosList .conteudo li:last-child div.cb').attr('style', 'border-bottom-color: #ececed; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 10px');
         $('ul#usuariosList').append('<li id="idUsuarioAmigo'+_idUserAtual+'"></li>')
         $('ul#UsuarioPendente #idUsuarioAmigo'+_idUserAtual+' .conteudo').appendTo('#usuariosList li#idUsuarioAmigo'+_idUserAtual);
         $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual+' .conteudo div#ctrlA').remove();
@@ -84,7 +83,7 @@ CtrlUsuario.prototype = {
         $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual +' .conteudo div a').unbind('click');
 
         $('ul#usuariosList li#idUsuarioAmigo'+_idUserAtual +' .conteudo div a').bind('click', _idUserAtual, $.createDelegate(this, CtrlUsuario.prototype._btnUserRemoverOnClick));
-        $('ul#UsuarioPendente li#idUsuarioAmigo'+_idUserAtual).append('<span class="conteudo"><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=5">'+nmusuario+'</a> foi adicionado.<br/><div class="cb"></div></span>');
+        $('ul#UsuarioPendente li#idUsuarioAmigo'+_idUserAtual).append('<span class="conteudo"><a href="/AppWebFrontEnd/site/inicio/perfil.html?id=5">'+nmusuario+'</a> foi adicionado.<br/><br/><div class="cb"></div></span>');
         
         $('ul#UsuarioPendente li.nivelA').each(function() {
             $('div.cb' , this).attr('style', '');
@@ -98,8 +97,6 @@ CtrlUsuario.prototype = {
         
         $('ul#UsuarioPendente li.nivelA:last-child .conteudo div.cb').attr('style', '');
         $('ul#usuariosList li:last-child .conteudo div.cb').attr('style', '');
-        
-    //console.log(CtrlUsuario.prototype.initialize()._btnUserRemoverOnClick);
     },
 
     _postUserRecusaOnSuccess: function(value){

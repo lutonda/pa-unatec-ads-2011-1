@@ -305,7 +305,7 @@ public class JogoDal {
              Jogo o = new Jogo();
             if (rs.next()) {
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
-                o.setId_console((Integer.parseInt("ID_CONSOLE")));                
+                o.setId_console((Integer.parseInt(rs.getString("ID_CONSOLE"))));                
                 o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));
                 o.setImagem(rs.getString("imagem"));
                 o.setTitulo_jogo(rs.getString("nm_titulo"));

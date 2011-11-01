@@ -56,7 +56,7 @@ public class JogoDal {
                 + "titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo "
                 + "left join console c on j.id_console = c.id_console "
                 + "left join jogo_usuario ju on j.id_jogo = ju.id_jogo "
-                + "" + sqlWhere + ") as totalregistros"
+                + " " + sqlWhere + ") as totalregistros"
                 + ", ju.nivel_interesse"
                 + ", j.id_jogo, j.id_console, j.id_titulo_jogo, imagem, nm_titulo, ds_console "
                 + "from jogo j "
@@ -258,13 +258,13 @@ public class JogoDal {
         String sqlWhere = "";
 
         if(_tipo.equals("G")){ //para buscar por genero
-            sqlWhere = "genero.id_genero = " + _idGenero;
+            sqlWhere = "g.id_genero = " + _idGenero;
         }
         if(_tipo.equals("L")){// para buscar por lancamentos
             sqlWhere = "dt_lancamento between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
         }
         if(_tipo.equals("N")){ // para buscar por Novidades
-            sqlWhere = "dt_cadastro between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
+            sqlWhere = "t.dt_cadastro between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
         }
         int inicio = 0;
         int fim = quantidePorPagina;
@@ -275,16 +275,23 @@ public class JogoDal {
         }
         sql = "select top " + quantidePorPagina + " * from ("
                 + "select  id_jogo,"
-                + " nm_titulo,"
-                + " genero.ds_genero,"
-                + " titulo_jogo.tipo,"
-                + " console.ds_console,"
+                + " console.id_console,"
+                + " t.id_titulo_jogo,"
                 + " jogo.imagem, "
+                + " nm_titulo,"
+                + " console.ds_console,"
                 + " dt_lancamento,"
-                + " row_number() over (order by dt_lancamento desc) as linha"
-                + " from titulo_jogo"
-                + " inner join jogo on titulo_jogo.id_titulo_jogo = jogo.id_titulo_jogo "
-                + "	  inner join genero on titulo_jogo.id_genero = genero.id_genero"
+                + " row_number() over (order by t.dt_lancamento desc) as linha,"
+                + "(select count(j.id_jogo)"
+                + "  from jogo j "
+                + " left join titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo "
+                + " left join console c on j.id_console = c.id_console "
+                + " left join jogo_usuario ju on j.id_jogo = ju.id_jogo "
+                + " left join genero g on g.id_genero = t.id_genero"
+                + " where " + sqlWhere + " ) as totalregistros "
+                + " from titulo_jogo t"
+                + " inner join jogo on t.id_titulo_jogo = jogo.id_titulo_jogo "
+                + "	  inner join genero g on t.id_genero = g.id_genero"
                 + "	  inner join console on jogo.id_console = console.id_console"
                 + "  where " + sqlWhere
                 + " ) a"
@@ -298,11 +305,12 @@ public class JogoDal {
              Jogo o = new Jogo();
             if (rs.next()) {
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
-                o.setTitulo_jogo(rs.getString("nm_titulo"));
-                o.setGenero(rs.getString("DS_GENERO"));
-                o.setTipo(rs.getString("tipo"));
-                o.setConsole(rs.getString("ds_console"));
+                o.setId_console((Integer.parseInt("ID_CONSOLE")));                
+                o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));
                 o.setImagem(rs.getString("imagem"));
+                o.setTitulo_jogo(rs.getString("nm_titulo"));
+                o.setConsole(rs.getString("ds_console"));
+                o.setTotal(Integer.parseInt(rs.getString("totalregistros")));
                 objC.add(o);
             }
             rs.close();
@@ -330,7 +338,10 @@ public class JogoDal {
                 + " console.ds_console,"
                 + " jogo.imagem,"
                 + " desejado.qtd, "
-                + " row_number() over (order by desejado.qtd desc) as linha"
+                + " row_number() over (order by desejado.qtd desc) as linha,"
+                +" (select count(distinct id_jogo) qtd "
+                + " from jogo_desejado"
+                + " where dt_solicitacao between DATEADD(DAY, -30 , GETDATE()) AND getdate() ) as totalregistros "
                 + "  from	titulo_jogo"
                 + " inner join jogo on titulo_jogo.id_titulo_jogo = jogo.id_titulo_jogo "
                 + " inner join genero on titulo_jogo.id_genero = genero.id_genero"
@@ -339,7 +350,7 @@ public class JogoDal {
                 + " from jogo_desejado"
                 + " where dt_solicitacao between DATEADD(DAY, -30 , GETDATE()) AND getdate()"
                 + " group by id_jogo "
-                + " having count(*) > 1 ) desejado on jogo.id_jogo = desejado.id_jogo"
+                + " ) desejado on jogo.id_jogo = desejado.id_jogo"
                 + " ) a"
                 + " where linha > " + inicio + " and linha <= " + fim 
                 + " order by qtd desc, nm_titulo asc, ds_genero asc";
@@ -352,11 +363,12 @@ public class JogoDal {
 
             if(rs.next()){
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
-                o.setTitulo_jogo(rs.getString("nm_titulo"));
-                o.setGenero(rs.getString("DS_GENERO"));
-                o.setTipo(rs.getString("tipo"));
-                o.setConsole(rs.getString("ds_console"));
+                o.setId_console((Integer.parseInt("ID_CONSOLE")));
+                o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));
                 o.setImagem(rs.getString("imagem"));
+                o.setTitulo_jogo(rs.getString("nm_titulo"));
+                o.setConsole(rs.getString("ds_console"));
+                o.setTotal(Integer.parseInt(rs.getString("totalregistros")));
                 objC.add(o);
             }
             rs.close();
@@ -384,7 +396,8 @@ public class JogoDal {
                 + " console.ds_console,"
                 + " jogo.imagem,"
                 + " troca.qtd, "
-		+ " row_number() over (order by troca.qtd desc) as linha"
+		+ " row_number() over (order by troca.qtd desc) as linha,"
+                + " dbo.fnc_retornaTotalRegistros() totalregistros "
                 + " from (select id_jogo,"
                 + "		 count(*)qtd	"
                 + "        from (select	jogo_usuario.id_jogo"

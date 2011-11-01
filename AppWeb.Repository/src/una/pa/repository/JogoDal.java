@@ -302,8 +302,9 @@ public class JogoDal {
         try{
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql);
-             Jogo o = new Jogo();
-            if (rs.next()) {
+            
+            while (rs.next()) {
+                Jogo o = new Jogo();
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
                 o.setId_console((Integer.parseInt(rs.getString("ID_CONSOLE"))));                
                 o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));
@@ -359,9 +360,9 @@ public class JogoDal {
         try{
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql);
-            Jogo o = new Jogo();
-
-            if(rs.next()){
+            
+            while (rs.next()) {
+                Jogo o = new Jogo();
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
                 o.setId_console((Integer.parseInt(rs.getString("ID_CONSOLE"))));
                 o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));
@@ -427,9 +428,9 @@ public class JogoDal {
         try{
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql);
-            Jogo o = new Jogo();
-
-            if(rs.next()){
+            
+            while (rs.next()) {
+                Jogo o = new Jogo();
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
                 o.setId_console((Integer.parseInt(rs.getString("ID_CONSOLE"))));
                 o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));

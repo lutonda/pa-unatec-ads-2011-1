@@ -24,10 +24,10 @@
                 <div id="main">
                     <div class="box-df">
                         <ul><li style="margin-bottom: 10px;">
-                                <a id="generos" href="javascript:void(0);">Gêneros</a> -
-                                <a id="lancamentos" href="javascript:void(0);">Lançamentos</a> - 
-                                <a id="top10" href="javascript:void(0);">Top 10</a> -
-                                <a id="novidades" href="javascript:void(0);">Novidades</a><br/>
+                                <a id="btnGeneros" href="javascript:void(0);">Gêneros</a> -
+                                <a id="btnLancamentos" href="javascript:void(0);">Lançamentos</a> - 
+                                <a id="btnTop10" href="javascript:void(0);">Top 10</a> -
+                                <a id="btnNovidades" href="javascript:void(0);">Novidades</a><br/>
                                 <a id="maisDesejados" href="javascript:void(0);">Mais Desejados</a> -
                                 <a id="maisTrocados" href="javascript:void(0);">Mais Trocados</a> -
                                 <a id="maisQualificados" href="javascript:void(0);">Mais Qualificados</a></li></ul>
@@ -54,6 +54,7 @@
         <!-- scripts de escopo local -->
 
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaJogos.js"></script>
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaFiltroJogos.js"></script>
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/notificacoes.js"></script>
 
         <%@ include file="/inc/metrics.jsp" %>

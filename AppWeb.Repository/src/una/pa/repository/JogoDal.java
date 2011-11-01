@@ -363,7 +363,7 @@ public class JogoDal {
 
             if(rs.next()){
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
-                o.setId_console((Integer.parseInt("ID_CONSOLE")));
+                o.setId_console((Integer.parseInt(rs.getString("ID_CONSOLE"))));
                 o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));
                 o.setImagem(rs.getString("imagem"));
                 o.setTitulo_jogo(rs.getString("nm_titulo"));
@@ -393,6 +393,7 @@ public class JogoDal {
                 + " nm_titulo,"
                 + " genero.ds_genero,"
                 + " titulo_jogo.tipo,"
+                + "console.id_console,"
                 + " console.ds_console,"
                 + " jogo.imagem,"
                 + " troca.qtd, "
@@ -430,11 +431,12 @@ public class JogoDal {
 
             if(rs.next()){
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
-                o.setTitulo_jogo(rs.getString("nm_titulo"));
-                o.setGenero(rs.getString("DS_GENERO"));
-                o.setTipo(rs.getString("tipo"));
-                o.setConsole(rs.getString("ds_console"));
+                o.setId_console((Integer.parseInt(rs.getString("ID_CONSOLE"))));
+                o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));
                 o.setImagem(rs.getString("imagem"));
+                o.setTitulo_jogo(rs.getString("nm_titulo"));
+                o.setConsole(rs.getString("ds_console"));
+                o.setTotal(Integer.parseInt(rs.getString("totalregistros")));
                 objC.add(o);
             }
             rs.close();

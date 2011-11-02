@@ -393,6 +393,7 @@ public class JogoDal {
         }
         sql =   "select top " + quantidePorPagina + " * from(" 
                 +" select troca.id_jogo,"
+                +" titulo_jogo.id_titulo_jogo,"
                 + " nm_titulo,"
                 + " genero.ds_genero,"
                 + " titulo_jogo.tipo,"
@@ -450,5 +451,61 @@ public class JogoDal {
             return null;
         }
     }
+   public static List<Jogo> FiltroTop10(int quantidePorPagina, int pagina){
+        String sql;
+        int inicio = 0;
+        int fim = quantidePorPagina;
 
+        if (pagina > 1) {
+            fim = (quantidePorPagina * pagina);
+            inicio = fim - quantidePorPagina;
+        }
+        sql ="select top "+ quantidePorPagina+ "  * from("
+                + " select	j.id_jogo,"
+                + " c.id_console,"
+                + " t.id_titulo_jogo,"
+                + " j.imagem,"
+                + " t.nm_titulo,"
+                + " c.ds_console,"
+                + " avg(aj.pontos) pts,"
+                + " row_number() over (order by avg(aj.pontos) desc) as linha,"
+                + " dbo.fnc_retornaTotalRegistros(2) totalregistros"
+                + " from	avaliacao_jogo aj"
+                + " inner join jogo j on j.id_jogo = aj.id_jogo"
+                + " inner join titulo_jogo t on t.id_titulo_jogo = j.id_titulo_jogo"
+                + " inner join console c on c.id_console = j.id_console"
+                + " where dt_avaliacao between DATEADD(DAY, -30 , GETDATE()) AND getdate()"
+                + " group by j.id_jogo,"
+                + " c.id_console,"
+                + " t.id_titulo_jogo,"
+                + " j.imagem,"
+                + " t.nm_titulo,"
+                + " c.ds_console"
+                + " ) top10"
+                + " where linha > " + inicio + " and linha <= " +fim ;
+        
+         List<Jogo> objC = new ArrayList<Jogo>();
+        try{
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql);
+
+            while (rs.next()) {
+                Jogo o = new Jogo();
+                o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
+                o.setId_console((Integer.parseInt(rs.getString("ID_CONSOLE"))));
+                o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));
+                o.setImagem(rs.getString("imagem"));
+                o.setTitulo_jogo(rs.getString("nm_titulo"));
+                o.setConsole(rs.getString("ds_console"));
+                o.setTotal(Integer.parseInt(rs.getString("totalregistros")));
+                objC.add(o);
+            }
+            rs.close();
+            c.close();
+            return objC;
+
+        }catch(Exception e){
+            return null;
+        }
+   }
 }

@@ -399,7 +399,7 @@ public class JogoDal {
                 + " jogo.imagem,"
                 + " troca.qtd, "
 		+ " row_number() over (order by troca.qtd desc) as linha,"
-                + " dbo.fnc_retornaTotalRegistros('JT') totalregistros "
+                + " dbo.fnc_retornaTotalRegistros(1) totalregistros "
                 + " from (select id_jogo,"
                 + "		 count(*)qtd	"
                 + "        from (select	jogo_usuario.id_jogo"

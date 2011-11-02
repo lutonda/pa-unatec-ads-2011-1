@@ -451,7 +451,7 @@ public class JogoDal {
             return null;
         }
     }
-   public static List<Jogo> FiltroTop10(int quantidePorPagina, int pagina){
+   public static List<Jogo> FiltroMaisQualificados(int quantidePorPagina, int pagina){
         String sql;
         int inicio = 0;
         int fim = quantidePorPagina;

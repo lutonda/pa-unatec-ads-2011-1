@@ -253,12 +253,12 @@ public class JogoDal {
             return null;
         }
     }
-    public static List<Jogo> filtroJogosGenerico(int _idGenero, String _tipo,  int quantidePorPagina, int pagina){
+    public static List<Jogo> filtroJogosGenerico(int _idGenerico, String _tipo, String busca,  int quantidePorPagina, int pagina){
         String sql = "";
         String sqlWhere = "";
 
         if(_tipo.equals("G")){ //para buscar por genero
-            sqlWhere = "g.id_genero = " + _idGenero;
+            sqlWhere = "g.id_genero = " + _idGenerico;
         }
         if(_tipo.equals("L")){// para buscar por lancamentos
             sqlWhere = "dt_lancamento between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
@@ -266,6 +266,16 @@ public class JogoDal {
         if(_tipo.equals("N")){ // para buscar por Novidades
             sqlWhere = "t.dt_cadastro between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
         }
+        if(_tipo.equals("D")){ // para buscar por Desenvolvedor
+            sqlWhere = " id_desenv = " + _idGenerico;
+        }
+        if(_tipo.equals("C")){ // para buscar por Categoria
+            sqlWhere = " tipo like '%" + busca + "%'";
+        }
+        if(_tipo.equals("E")){ // para buscar por Editora
+            sqlWhere = " id_editora = " + _idGenerico;
+        }
+         
         int inicio = 0;
         int fim = quantidePorPagina;
 
@@ -282,7 +292,7 @@ public class JogoDal {
                 + " console.ds_console,"
                 + " dt_lancamento,"
                 + " row_number() over (order by t.dt_lancamento desc) as linha,"
-                + "(select count(j.id_jogo)"
+                + "(select count(distinct j.id_jogo)"
                 + "  from jogo j "
                 + " left join titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo "
                 + " left join console c on j.id_console = c.id_console "

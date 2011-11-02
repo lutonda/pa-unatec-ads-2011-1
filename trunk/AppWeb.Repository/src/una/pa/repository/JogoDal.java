@@ -253,27 +253,27 @@ public class JogoDal {
             return null;
         }
     }
-    public static List<Jogo> filtroJogosGenerico(int _idGenerico, String _tipo, String busca,  int quantidePorPagina, int pagina){
+    public static List<Jogo> filtroJogosGenerico(int _idTipo, String _tipoFiltro, String tipoCategoria,  int quantidePorPagina, int pagina){
         String sql = "";
         String sqlWhere = "";
 
-        if(_tipo.equals("G")){ //para buscar por genero
-            sqlWhere = "g.id_genero = " + _idGenerico;
+        if(_tipoFiltro.equals("G")){ //para buscar por genero
+            sqlWhere = "g.id_genero = " + _idTipo;
         }
-        if(_tipo.equals("L")){// para buscar por lancamentos
+        if(_tipoFiltro.equals("L")){// para buscar por lancamentos
             sqlWhere = "dt_lancamento between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
         }
-        if(_tipo.equals("N")){ // para buscar por Novidades
+        if(_tipoFiltro.equals("N")){ // para buscar por Novidades
             sqlWhere = "t.dt_cadastro between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
         }
-        if(_tipo.equals("D")){ // para buscar por Desenvolvedor
-            sqlWhere = " id_desenv = " + _idGenerico;
+        if(_tipoFiltro.equals("D")){ // para buscar por Desenvolvedor
+            sqlWhere = " id_desenv = " + _idTipo;
         }
-        if(_tipo.equals("C")){ // para buscar por Categoria
-            sqlWhere = " tipo like '%" + busca + "%'";
+        if(_tipoFiltro.equals("C")){ // para buscar por Categoria
+            sqlWhere = " tipo like '%" + tipoCategoria + "%'";
         }
-        if(_tipo.equals("E")){ // para buscar por Editora
-            sqlWhere = " id_editora = " + _idGenerico;
+        if(_tipoFiltro.equals("E")){ // para buscar por Editora
+            sqlWhere = " id_editora = " + _idTipo;
         }
          
         int inicio = 0;

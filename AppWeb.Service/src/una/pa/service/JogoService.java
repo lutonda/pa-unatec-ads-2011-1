@@ -62,8 +62,8 @@ public class JogoService {
     public static Jogo detalheJogo(int _id) {
         return JogoDal.detalesJogo(_id);
     }
-    public static List<Jogo> filtroJogosGenerico(int _idGenero, String _tipo,String busca,  int quantidePorPagina, int pagina){
-        return JogoDal.filtroJogosGenerico(_idGenero, _tipo,busca, quantidePorPagina,pagina);
+    public static List<Jogo> filtroJogosGenerico(int _idTipo, String _tipoFiltro, String tipoCategoria,  int quantidePorPagina, int pagina){
+        return JogoDal.filtroJogosGenerico(_idTipo, _tipoFiltro, tipoCategoria,  quantidePorPagina, pagina);
     }
    public static List<Jogo> filtroMaisDesejados(int quantidePorPagina, int pagina ){
        return JogoDal.FiltroJogoDesejado(quantidePorPagina, pagina);

@@ -334,6 +334,7 @@ public class JogoDal {
         sql =   "select top " + quantidePorPagina + " * from ("
                 + "select jogo.id_jogo,"
                 + " nm_titulo,"
+                + " console.id_console,"
                 + " genero.ds_genero,"
                 + " titulo_jogo.tipo,"
                 + " console.ds_console,"

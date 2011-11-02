@@ -46,15 +46,17 @@ public class InicioController extends MultiActionController {
             HttpServletResponse response) throws Exception {
         ModelAndView mav = new ModelAndView("site/inicio/index");
         try {
-
-
             DadosIniciais obj = UsuarioService.inicioPerfil(request);
             List<Tags> objTags = TagsService.listarTags(obj.getId_usuario());
-            //List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(obj.getId_usuario());
-
+            List<Genero> objGenero = GeneroService.listar();
+            List<Desenvolvedor> objDeve = DesenvolvedorService.listar();
+            List<Editora> objEditora = EditoraService.listar();
+            
             mav.addObject("DadosIniciais", obj);
             mav.addObject("tags", objTags);
-            //mav.addObject("notificacoes", objNot);
+            mav.addObject("generos", objGenero);
+            mav.addObject("desenvolvedores", objDeve);
+            mav.addObject("editoras", objEditora);
 
         } catch (Exception e) {
             return null;

@@ -121,7 +121,8 @@ Jogo.prototype = {
     },
 
     _listaJogoOnSuccess: function(value){
-        $('#listaJogos li:not(:first)').remove();
+        //$('#listaJogos li:not(:first)').remove();
+        $('#listaJogos li').remove();
 
         var dados = value.split("|");
         _totalItens = dados[1];

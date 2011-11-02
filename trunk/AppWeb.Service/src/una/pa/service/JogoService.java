@@ -71,7 +71,7 @@ public class JogoService {
     public static List<Jogo> filtroMaisTrocados(int quantidePorPagina, int pagina ){
         return JogoDal.FiltroJogosTrocados(quantidePorPagina,pagina);
     }
-    public static List<Jogo> filtroTop10(int quantidePorPagina, int pagina ){
-        return JogoDal.FiltroTop10(quantidePorPagina,pagina);
+    public static List<Jogo> filtroMaisQualificados(int quantidePorPagina, int pagina ){
+        return JogoDal.FiltroMaisQualificados(quantidePorPagina,pagina);
     }
 }

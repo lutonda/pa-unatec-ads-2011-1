@@ -3,7 +3,9 @@ var _totalItens = 0;
 var _totalPg = 0;
 
 var _tipoFiltro = "";
-var _idGenero = -1;
+var _tipoMais = "";
+var _idTipo = 4;
+var _tipoCategoria = "";
 
 
 FiltroJogos = function(){
@@ -23,28 +25,104 @@ FiltroJogos.Load = function(){
 FiltroJogos.prototype = {
 
     initialize: function() {
+        
+        var ini = this;
+
+        $('ul#lsGeneros li').each(function() {
+            var launch = $('a', this);
+            var id = launch.attr('rel');
+            if (launch.size() > 0) {
+                $(launch).bind('click', launch, $.createDelegate(ini, FiltroJogos.prototype._btnFiltroOnClick));
+            }
+        });
+        
+        $('ul#lsEditoras li').each(function() {
+            var launch = $('a', this);
+            var id = launch.attr('rel');
+            if (launch.size() > 0) {
+                $(launch).bind('click', launch, $.createDelegate(ini, FiltroJogos.prototype._btnFiltroOnClick));
+            }
+        });
+        
+        $('ul#lsDesenv li').each(function() {
+            var launch = $('a', this);
+            var id = launch.attr('rel');
+            if (launch.size() > 0) {
+                $(launch).bind('click', launch, $.createDelegate(ini, FiltroJogos.prototype._btnFiltroOnClick));
+            }
+        });
 
         //clicks btn
-        $('#btnGeneros').bind('click', 'G', $.createDelegate(this, this._btnBuscarOnClick));
-        $('#btnLancamentos').bind('click', 'L', $.createDelegate(this, this._btnBuscarOnClick));
-        $('#btnNovidades').bind('click', 'N', $.createDelegate(this, this._btnBuscarOnClick));
-
+        $('#btnLancamentos').bind('click', 'L', $.createDelegate(this, this._btnFiltroSplOnClick));
+        $('#btnNovidades').bind('click', 'N', $.createDelegate(this, this._btnFiltroSplOnClick));
+        
+        $('#btnMaisDesejados').bind('click', 'D', $.createDelegate(this, this._btnMaisrOnClick));
+        $('#btnMaisTrocados').bind('click', 'T', $.createDelegate(this, this._btnMaisrOnClick));
+        $('#btnMaisQualificados').bind('click', 'Q', $.createDelegate(this, this._btnMaisrOnClick));
+        
+        $("ul.dropdown li").hover(function(){
+    
+            $(this).addClass("hover");
+            $('ul:first',this).css('visibility', 'visible');
+    
+        }, function(){
+    
+            $(this).removeClass("hover");
+            $('ul:first',this).css('visibility', 'hidden');
+    
+        });
+    
+        $("ul.dropdown li ul li:has(ul)").find("a:first").append(" &raquo; ");
     },
 
-    _btnBuscarOnClick: function(value){
-        //console.log(value);
+    _btnFiltroOnClick: function(value){
         _pagina = 1;
-        _tipoFiltro = value.data;
+        _idTipo = value.data.attr('rel');
+        _tipoFiltro = value.data.attr('rev');
         this.dataBindMvc('listaFiltroJogos.do', {
-            idGenero : _idGenero,
+            idTipo : _idTipo,
             tipoFiltro : _tipoFiltro,
+            tipoCategoria : _tipoCategoria,
             qtd : 10,
             pagina: _pagina
         }, this._listaJogoOnSuccess);
     },
+    
+    _btnFiltroSplOnClick: function(value){
+        _pagina = 1;
+        _idTipo = -1;
+        _tipoFiltro = value.data;
+        this.dataBindMvc('listaFiltroJogos.do', {
+            idTipo : _idTipo,
+            tipoFiltro : _tipoFiltro,
+            tipoCategoria : _tipoCategoria,
+            qtd : 10,
+            pagina: _pagina
+        }, this._listaJogoOnSuccess);
+    },
+    
+    _btnMaisrOnClick: function(value){
+        _pagina = 1;
+        _tipoMais = value.data;
+        this.dataBindMvc('listaMaisJogos.do', {
+            tipoMais : _tipoMais,
+            qtd : 10,
+            pagina: _pagina
+        }, this._listaJogoSemPaginacaoOnSuccess);
+    },
+    
+    _listaJogoSemPaginacaoOnSuccess: function(value){
+        //$('#listaJogos li:not(:first)').remove();
+        $('#listaJogos li').remove();
+
+        var dados = value.split("|");
+        $('#listaJogos').append(dados[0]);
+        $('#paginacao').hide();
+    },
 
     _listaJogoOnSuccess: function(value){
-        $('#listaJogos li:not(:first)').remove();
+        //$('#listaJogos li:not(:first)').remove();
+        $('#listaJogos li').remove();
 
         var dados = value.split("|");
         _totalItens = dados[1];
@@ -73,14 +151,12 @@ FiltroJogos.prototype = {
     _paginacaoOnClick: function(value){
         _pagina = value.data;
 
-        this.dataBindMvc('listaJogos.do', {
-            id : (_busca)? 0:$('#idUser').text(), // ($('#txtBuscarJogo').val() != "")? 0:$('#idUser').text(),
+        this.dataBindMvc('listaFiltroJogos.do', {
+            idTipo : _idTipo,
+            tipoFiltro : _tipoFiltro,
+            tipoCategoria : _tipoCategoria,
             qtd : 10,
-            pagina: _pagina,
-            busca: (_busca)? $('#txtBuscarJogo').val():"",
-            desejo: _desejo,
-            console: _console,
-            nivelOfetas: _nivelOfetas
+            pagina: _pagina
         }, this._listaJogoOnSuccess);
     },
 

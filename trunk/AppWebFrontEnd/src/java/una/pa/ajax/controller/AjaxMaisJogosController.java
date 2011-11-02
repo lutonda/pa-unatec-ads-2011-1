@@ -11,19 +11,27 @@ import una.pa.model.*;
 import una.pa.service.*;
 
 @Controller
-public class AjaxFiltroJogosController {
+public class AjaxMaisJogosController {
 
-    @RequestMapping(value = "site/inicio/listaFiltroJogos.do", method = {RequestMethod.GET,
+    @RequestMapping(value = "site/inicio/listaMaisJogos.do", method = {RequestMethod.GET,
         RequestMethod.POST})
     @ResponseBody
     public String getListaJogos(HttpServletRequest request,
-            @RequestParam int idTipo, @RequestParam String tipoFiltro, @RequestParam String tipoCategoria, @RequestParam int qtd, @RequestParam int pagina) {
+            @RequestParam String tipoMais, @RequestParam int qtd, @RequestParam int pagina) {
 
         String Itens = "";
         List<Jogo> objJogo = null;
 
-        objJogo = JogoService.filtroJogosGenerico(idTipo, tipoFiltro, tipoCategoria, qtd, pagina);
+       if (tipoMais.equals("D"))
+           objJogo = JogoService.filtroMaisDesejados(qtd, pagina);
+       
+       if (tipoMais.equals("T"))
+           objJogo = JogoService.filtroMaisTrocados(qtd, pagina);
+       
+       if (tipoMais.equals("Q"))
+           objJogo = JogoService.filtroMaisQualificados(qtd, pagina);
 
+       
         if (!objJogo.isEmpty()) {
             int count = 0;
             String stiloLinha = "";

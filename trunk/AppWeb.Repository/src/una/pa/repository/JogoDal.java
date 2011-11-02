@@ -333,6 +333,7 @@ public class JogoDal {
         }
         sql =   "select top " + quantidePorPagina + " * from ("
                 + "select jogo.id_jogo,"
+                + "titulo_jogo.id_titulo_jogo,"
                 + " nm_titulo,"
                 + " console.id_console,"
                 + " genero.ds_genero,"
@@ -395,7 +396,7 @@ public class JogoDal {
                 + " nm_titulo,"
                 + " genero.ds_genero,"
                 + " titulo_jogo.tipo,"
-                + "console.id_console,"
+                + " console.id_console,"
                 + " console.ds_console,"
                 + " jogo.imagem,"
                 + " troca.qtd, "
@@ -449,4 +450,5 @@ public class JogoDal {
             return null;
         }
     }
+
 }

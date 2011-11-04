@@ -68,6 +68,7 @@
         <%@ include file="/inc/scripts.jsp" %>
         <!-- scripts de escopo local -->
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaUsuarios.js"></script>
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaPropostas.js"></script>
         <%@ include file="/inc/metrics.jsp" %>
     </body>
 </html>

@@ -28,7 +28,7 @@
                             <img src="/AppWebFrontEnd/resources/perfil/${DadosIniciais.imagem}" alt=""/>
                         </c:if>
                         <ul id="nav-user">
-                            <li><div style="float: left; width: 40px; margin-bottom: 6px;"><div class="box-itemcount">${DadosIniciais.trocas}</div></div><div style="padding-top: 10px; width: 150px;"><a href="#">Trocas Realizadas</a></div><div class="cb"></div></li>
+                            <li><div style="float: left; width: 40px; margin-bottom: 6px;"><div class="box-itemcount">${DadosIniciais.trocas}</div></div><div style="padding-top: 10px; width: 150px;"><a id="btnPropFinalizadas" href="javascript:void(0);">Trocas Realizadas</a></div><div class="cb"></div></li>
                             <li><div style="float: left; width: 40px; margin-bottom: 5px;"><div class="box-itemcount">${DadosIniciais.jogos}/<b>${DadosIniciais.oferta}</b></div></div><div style="padding-top: 10px;"><a id="btnMeusJogos" href="javascript:void(0);">Jogos</a> / <a id="btnOfertas" href="javascript:void(0);">Ofertas</a></div></li><div class="cb"></div>
                             <li><div style="float: left; width: 40px; margin-bottom: 5px;"><div class="box-itemcount">${DadosIniciais.desejo}</div></div><div style="padding-top: 10px;"><a id="btnMeusDesejos" href="javascript:void(0);">Desejos</a></div></li><div class="cb"></div>
                             <li><div style="float: left; width: 40px; margin-bottom: 5px;"><div class="box-itemcount">${DadosIniciais.pontos}</div></div><div style="padding-top: 10px;">Reputação</div></li>
@@ -78,6 +78,7 @@
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaJogos.js"></script>
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/notificacoes.js"></script>
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/ctrlUsuarioPerfil.js"></script>
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaPropostas.js"></script>
         <%@ include file="/inc/metrics.jsp" %>
     </body>
 </html>

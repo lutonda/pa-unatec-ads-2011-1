@@ -11,6 +11,7 @@
     <head>
         <title>Joga Troca</title>
         <%@ include file="/inc/taghead.jsp" %>
+        
     </head>
     <body>
         <div id="container">
@@ -32,7 +33,7 @@
                                 Mais: <a id="btnMaisDesejados" href="javascript:void(0);">Desejados</a> -
                                 <a id="btnMaisTrocados" href="javascript:void(0);">Trocados</a> -
                                 <a id="btnMaisQualificados" href="javascript:void(0);">Qualificados</a><br/>
-                                
+
                                 <ul class="dropdown">
                                     <li>
                                         Categorias
@@ -69,6 +70,8 @@
                             </li>
                         </ul>
                         <div class="cb"></div>
+                    </div>
+                    <div class="box-df">
                         <ul id="listaJogos" style="height: 280px; margin-top: 10px">                            
                         </ul>
                         <span id="paginacao" style="float: right; margin-top: 0; display: none;">&lt;&lt; <a id="ant" href="javascript:void(0);" >anterior</a> | <a href="javascript:void(0);" id="prox">próxima</a> >></span>
@@ -92,6 +95,7 @@
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaJogos.js"></script>
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaFiltroJogos.js"></script>
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/notificacoes.js"></script>
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaPropostas.js"></script>
 
         <%@ include file="/inc/metrics.jsp" %>
     </body>

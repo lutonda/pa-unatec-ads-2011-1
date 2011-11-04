@@ -19,4 +19,5 @@
 <link rel="stylesheet" type="text/css" href="${url}/css/plugins/agc-modal.css?v=1_0" media="screen" />
 <link rel="stylesheet" type="text/css" href="${url}/css/plugins/dropdownPlain.css?v=1_0" media="screen" />
 <link rel="stylesheet" type="text/css" href="${url}/css/baseproject.css?v=1_0" media="screen" />
+<link rel="stylesheet" type="text/css" href="${url}/css/plugins/jqModal.css?v=1_0" media="screen" />
 <link rel="stylesheet" type="text/css" href="${url}/css/libs/jquery-ui.css" rel="stylesheet" />

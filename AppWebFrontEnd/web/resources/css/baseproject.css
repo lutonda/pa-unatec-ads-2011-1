@@ -151,7 +151,9 @@ ul#notificacao li {
 }
 
 /* box jogos - inicio*/
-
+ul#listaJogos{
+    position: relative;
+}
 ul#listaJogos li#campoBusca {
     margin-bottom: 20px;
     margin-left: -2px;
@@ -213,4 +215,14 @@ ul.frm li span.nota{
 textarea.content_area{
 	width:650px;
 	height:150px;
+	}
+        
+        
+#tooltip{
+	position:absolute;
+	border:1px solid #333;
+	background:#f7f5d1;
+	padding:2px 5px;
+	color:#333;
+	display:none;
 	}

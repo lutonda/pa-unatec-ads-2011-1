@@ -6,6 +6,35 @@ var _desejo = false;
 var _console = 0;
 var _nivelOfetas = -1;
 
+this.tooltip = function(){
+    /* CONFIG */		
+    xOffset = 10;
+    yOffset = 20;		
+    // these 2 variable determine popup's distance from the cursor
+    // you might want to adjust to get the right result		
+    /* END CONFIG */		
+    $("#listaJogos li > a.tooltip").hover(function(e){
+        $("#tooltip").remove();
+        this.t = this.title;
+        this.title = "";
+        $("body").append("<p id='tooltip'>"+ this.t +"<br/>Oferta de Troca<br/>Tenho - Desejo</p>");
+        $("#tooltip")
+        .css("top",(e.pageY - xOffset) + "px")
+        .css("left",(e.pageX + yOffset) + "px")
+        .show();
+        //.fadeIn("fast");
+    },
+    function(){
+        this.title = this.t;		
+        //$("#tooltip").remove();
+    });
+    
+    //$("#listaJogos li > a.tooltip").mousemove(function(e){
+//        $("#tooltip")
+//        .css("top",(e.pageY - xOffset) + "px")
+//        .css("left",(e.pageX + yOffset) + "px");
+    //});
+};
 
 Jogo = function(){
     this._data = null;
@@ -33,7 +62,7 @@ Jogo.prototype = {
             console: _console,
             nivelOfetas: _nivelOfetas
         }, this._listaJogoOnSuccess);
-
+        
         this.dataBindMvc('listaTituloJogo.do', '', this._listaTituloJogoOnSuccess);
 
         //clicks btn
@@ -127,6 +156,8 @@ Jogo.prototype = {
         var dados = value.split("|");
         _totalItens = dados[1];
         $('#listaJogos').append(dados[0]);
+        
+        tooltip();
         
         var menos = _pagina - 1;
         var mais = _pagina + 1;

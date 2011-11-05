@@ -7,6 +7,30 @@ var _tipoMais = "";
 var _idTipo = 4;
 var _tipoCategoria = "";
 
+this.tooltip = function(){
+    $('#listaJogos li').each(function()
+    {
+        $('a',this).qtip(
+        {
+            content: {
+                text: '<b>' + $('a',this).attr("tooltip") + '</b><br/>'+ $('a',this).attr("ttConsole") +''
+            },
+            position: {
+                corner: {
+                    target: 'topRight',
+                    tooltip: 'bottomLeft'
+                }
+            },
+            hide: {
+                fixed: true
+            },
+            style: {
+                width: 150,
+                padding: 5
+            }
+        });
+    });
+};
 
 FiltroJogos = function(){
     this._data = null;
@@ -117,6 +141,9 @@ FiltroJogos.prototype = {
 
         var dados = value.split("|");
         $('#listaJogos').append(dados[0]);
+        
+        tooltip();
+        
         $('#paginacao').hide();
     },
 
@@ -127,6 +154,8 @@ FiltroJogos.prototype = {
         var dados = value.split("|");
         _totalItens = dados[1];
         $('#listaJogos').append(dados[0]);
+        
+        tooltip();
         
         var menos = _pagina - 1;
         var mais = _pagina + 1;

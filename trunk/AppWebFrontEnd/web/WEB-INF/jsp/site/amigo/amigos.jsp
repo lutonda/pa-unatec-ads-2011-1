@@ -89,6 +89,7 @@
         <!-- scripts de escopo local -->
 
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/ctrlUsuario.js"></script>
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaPropostas.js"></script>
         <%@ include file="/inc/metrics.jsp" %>
     </body>
 

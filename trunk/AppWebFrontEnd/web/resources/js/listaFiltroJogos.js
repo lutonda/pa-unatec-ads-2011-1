@@ -25,8 +25,9 @@ this.tooltip = function(){
                 fixed: true
             },
             style: {
-                width: 150,
-                padding: 5
+                width: 150
+                //padding: '-15px -15px -15px -15px',
+                //margin: '0 0 -15px 0'
             }
         });
     });

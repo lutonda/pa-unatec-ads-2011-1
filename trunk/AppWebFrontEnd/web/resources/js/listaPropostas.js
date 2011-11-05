@@ -23,8 +23,8 @@ Proposta.prototype = {
 
     initialize: function() {
         $('#btnPropFinalizadas').bind('click', 'F', $.createDelegate(this, this._listaPropostasOnClick));
-        $('#btnPropAndamento').bind('click', 'F', $.createDelegate(this, this._listaPropostasOnClick));
-        $('#btnPropAberto').bind('click', 'F', $.createDelegate(this, this._listaPropostasOnClick));
+        $('#btnPropAndamento').bind('click', 'A', $.createDelegate(this, this._listaPropostasOnClick));
+        $('#btnPropAberto').bind('click', 'P', $.createDelegate(this, this._listaPropostasOnClick));
     },
     
     _listaPropostasOnClick: function(value){

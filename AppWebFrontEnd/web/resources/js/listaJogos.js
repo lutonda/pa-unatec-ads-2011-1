@@ -7,33 +7,28 @@ var _console = 0;
 var _nivelOfetas = -1;
 
 this.tooltip = function(){
-    /* CONFIG */		
-    xOffset = 10;
-    yOffset = 20;		
-    // these 2 variable determine popup's distance from the cursor
-    // you might want to adjust to get the right result		
-    /* END CONFIG */		
-    $("#listaJogos li > a.tooltip").hover(function(e){
-        $("#tooltip").remove();
-        this.t = this.title;
-        this.title = "";
-        $("body").append("<p id='tooltip'>"+ this.t +"<br/>Oferta de Troca<br/>Tenho - Desejo</p>");
-        $("#tooltip")
-        .css("top",(e.pageY - xOffset) + "px")
-        .css("left",(e.pageX + yOffset) + "px")
-        .show();
-        //.fadeIn("fast");
-    },
-    function(){
-        this.title = this.t;		
-        //$("#tooltip").remove();
+    $('#listaJogos li').each(function()
+    {
+        $('a',this).qtip(
+        {
+            content: {
+                text: '<b>' + $('a',this).attr("tooltip") + '</b><br/>'+ $('a',this).attr("ttConsole") +''
+            },
+            position: {
+                corner: {
+                    target: 'topRight',
+                    tooltip: 'bottomLeft'
+                }
+            },
+            hide: {
+                fixed: true
+            },
+            style: {
+                width: 150,
+                padding: 5
+            }
+        });
     });
-    
-    //$("#listaJogos li > a.tooltip").mousemove(function(e){
-//        $("#tooltip")
-//        .css("top",(e.pageY - xOffset) + "px")
-//        .css("left",(e.pageX + yOffset) + "px");
-    //});
 };
 
 Jogo = function(){

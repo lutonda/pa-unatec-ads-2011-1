@@ -47,7 +47,7 @@ public class AjaxMaisJogosController {
                     Itens += "<li style=\"float: left; height: 130px; " + stiloLinha + "\"><img width=\"80px\" src=\"/AppWebFrontEnd/resources/img/usuarioSemFoto.jpg\" alt=\"\"/></li>";
                 } else {
                     Itens += "<li style=\"float: left; height: 130px; " + stiloLinha + "\">"
-                            + "<a title=\"" + jogo.getTitulo_jogo() + " (" + jogo.getConsole() + ") " + jogo.getNivelInteresse() + "-" + jogo.getNivelDesejo() + "\" href=\"/AppWebFrontEnd/site/jogo/detalhesjogo.html?id=" + jogo.getId_jogo() + "\">"
+                            + "<a tooltip=\"" + jogo.getTitulo_jogo() + "\" ttConsole=\"" + jogo.getConsole() + "\" href=\"/AppWebFrontEnd/site/jogo/detalhesjogo.html?id=" + jogo.getId_jogo() + "\">"
                             + "<img width=\"80px\" src=\"/AppWebBackEnd/resources/capa/" + jogo.getImagem() + "\" alt=\"\"/></a></li>";
                 }
 

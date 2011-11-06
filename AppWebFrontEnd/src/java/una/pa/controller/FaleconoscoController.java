@@ -14,7 +14,7 @@ import una.pa.util.SendMail;
 public class FaleconoscoController extends AbstractController {
  
     private static final String titulo = "JogaTroca - Fale Conosco";
-    private static final String mailFrom = "SEUEMAIL";
+    private static final String mailFrom = "felipphe.3@gmail.com";
     private static final String password = "SUASENHA";
     
     
@@ -31,8 +31,17 @@ public class FaleconoscoController extends AbstractController {
         String[] sendTo = {email};
         String[] sendFrom = {mailFrom};
          
+        
+        
         String resposta = "Caro "+nome+",\n Seu e-mail foi recebido e em breve"
                 + " estaremos lhe respondendo.\n\n Atenciosamente, \n **JogaTroca**";
+        resposta +="\n\n--------------------------------------------\n";
+        resposta +=">\n>";
+        resposta +="De: "+email+"\n";
+        resposta +="Para: "+mailFrom+"\n";
+        resposta +="Assunto: "+titulo+"\n";
+        resposta +="\n "+msg;
+              
         
         ModelAndView mav = new ModelAndView("inicio/ajuda/faleConosco");
         

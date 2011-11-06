@@ -1,125 +1,80 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package una.pa.util;
-
+import java.security.Security;
 import java.util.Properties;
 import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.Authenticator;
-import javax.mail.PasswordAuthentication;
+ 
 
-public class SendMail {
-
-    private String mailSMTPServer = "smtp.gmail.com";
-    private String mailSMTPServerPort = "587";//"465";
-
-
-    /*
-     * quando instanciar um Objeto ja sera atribuido o servidor SMTP do GMAIL
-     * e a porta usada por ele
-     *
-    SendMail() { //Para o GMAIL
-        mailSMTPServer = "smtp.gmail.com";
-        mailSMTPServerPort = "465";
+ 
+public class SendMail{
+ 
+    private static final String SMTP_HOST_NAME = "smtp.gmail.com";
+    private static final String SMTP_PORT = "465";
+    private static final String emailSubjectTxt = null;
+    private static final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+    private static final String[] sendTo=null;
+    
+    private static  String emailFromAddress;
+    private static  String senha;
+     
+    public void setConfig(String mailFrom, String passwd){
+        this.emailFromAddress = mailFrom;
+        this.senha = passwd;
     }
-    *
-     * caso queira mudar o servidor e a porta, so enviar para o contrutor
-     * os valor como string
-     *
-    SendMail(String mailSMTPServer, String mailSMTPServerPort) { //Para outro Servidor
-        this.mailSMTPServer = mailSMTPServer;
-        this.mailSMTPServerPort = mailSMTPServerPort;
+    
+    public SendMail(String mailTO[], String titulo, String MSG, String mailFrom, String passwd) throws MessagingException{
+        setConfig(mailFrom, passwd);
+        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+        sendSSLMessage(mailTO, titulo,MSG, mailFrom);
+        System.out.println("Sucessfully Sent mail to All Users");
     }
-    */
-
-
-    public void sendMail(String from, String to, String subject, String message) {
-
+ 
+    public void sendSSLMessage(String recipients[], String subject,
+            String message, String from) throws MessagingException {
+        boolean debug = true;
+ 
         Properties props = new Properties();
-
-                // quem estiver utilizando um SERVIDOR PROXY descomente essa parte e atribua as propriedades do SERVIDOR PROXY utilizado
-                /*
-                props.setProperty("proxySet","true");
-                props.setProperty("socksProxyHost","192.168.155.1"); // IP do Servidor Proxy
-                props.setProperty("socksProxyPort","1080");  // Porta do servidor Proxy
-                */
-
-        props.put("mail.transport.protocol", "smtp"); //define protocolo de envio como SMTP
-        props.put("mail.smtp.starttls.enable","true");
-        props.put("mail.smtp.host", mailSMTPServer); //server SMTP do GMAIL
-        props.put("mail.smtp.auth", "true"); //ativa autenticacao
-        props.put("mail.smtp.user", from); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
+        props.put("mail.smtp.host", SMTP_HOST_NAME);
+        props.put("mail.smtp.auth", "true");
         props.put("mail.debug", "true");
-        props.put("mail.smtp.port", mailSMTPServerPort); //porta
-        props.put("mail.smtp.socketFactory.port", mailSMTPServerPort); //mesma porta para o socket
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.port", SMTP_PORT);
+        props.put("mail.smtp.socketFactory.port", SMTP_PORT);
+        props.put("mail.smtp.socketFactory.class", SSL_FACTORY);
         props.put("mail.smtp.socketFactory.fallback", "false");
-
-        //Cria um autenticador que sera usado a seguir
-        SimpleAuth auth = null;
-        auth = new SimpleAuth ("ciqueira@gmail.com","24315sol315");
-
-        //Session - objeto que ira realizar a conexão com o servidor
-        /*Como há necessidade de autenticação é criada uma autenticacao que
-         * é responsavel por solicitar e retornar o usuário e senha para
-         * autenticação */
-        Session session = Session.getDefaultInstance(props, auth);
-        session.setDebug(true); //Habilita o LOG das ações executadas durante o envio do email
-
-        //Objeto que contém a mensagem
+ 
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+ 
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(emailFromAddress, senha);
+                    }
+                });
+ 
+        session.setDebug(debug);
+ 
         Message msg = new MimeMessage(session);
-
-        try {
-            //Setando o destinatário
-            msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            //Setando a origem do email
-            msg.setFrom(new InternetAddress(from));
-            //Setando o assunto
-            msg.setSubject(subject);
-            //Setando o conteúdo/corpo do email
-            msg.setContent(message,"text/plain");
-
-        } catch (Exception e) {
-            System.out.println(">> Erro: Completar Mensagem");
-            e.printStackTrace();
+        InternetAddress addressFrom = new InternetAddress(from);
+        msg.setFrom(addressFrom);
+ 
+        InternetAddress[] addressTo = new InternetAddress[recipients.length];
+        for (int i = 0; i < recipients.length; i++) {
+            addressTo[i] = new InternetAddress(recipients[i]);
         }
-
-        //Objeto encarregado de enviar os dados para o email
-        Transport tr;
-        try {
-            tr = session.getTransport("smtp"); //define smtp para transporte
-            /*
-             *  1 - define o servidor smtp
-             *  2 - seu nome de usuario do gmail
-             *  3 - sua senha do gmail
-             */
-            tr.connect(mailSMTPServer, "ciqueira@gmail.com", "24315sol315");
-            msg.saveChanges(); // don't forget this
-            //envio da mensagem
-            tr.sendMessage(msg, msg.getAllRecipients());
-            tr.close();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            System.out.println(">> Erro: Envio Mensagem");
-            e.printStackTrace();
-        }
-
+        msg.setRecipients(Message.RecipientType.TO, addressTo);
+ 
+        // Setting the Subject and Content Type
+        msg.setSubject(subject);
+        msg.setContent(message, "text/plain");
+        Transport.send(msg);
     }
 }
 
-//clase que retorna uma autenticacao para ser enviada e verificada pelo servidor smtp
-class SimpleAuth extends Authenticator {
-    public String username = null;
-    public String password = null;
-
-
-    public SimpleAuth(String user, String pwd) {
-        username = user;
-        password = pwd;
-    }
-
-    protected PasswordAuthentication getPasswordAuthentication() {
-        return new PasswordAuthentication (username,password);
-    }
-}

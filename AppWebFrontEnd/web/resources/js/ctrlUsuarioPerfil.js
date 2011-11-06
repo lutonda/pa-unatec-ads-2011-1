@@ -1,9 +1,6 @@
 var _idUserAtual = 0;
 var _nmUser;
 
-
-
-
 CtrlUsuario = function(){
     this._data = null;
     this._dataUrl = null;
@@ -22,12 +19,16 @@ CtrlUsuario.prototype = {
 
     initialize: function() {
 
-        _idUserAtual = $('#idUserAmigo') //btnAdicionar
+        _idUserAtual = $('#idUserAmigo')
 
         if ($('#btnRspSolitacao').length == 1)
             $('#btnRspSolitacao').bind('click', _idUserAtual, $.createDelegate(this, this._btnRspSolitacaoOnClick));
         if ($('#btnRemoverSolitacao').length == 1)
             $('#btnRemoverSolitacao').bind('click', _idUserAtual, $.createDelegate(this, this._btnUserRemoverOnClick));
+//        if ($('#btnIgn').length == 1)
+//            $('#btnIgn').bind('click', _idUserAtual, $.createDelegate(this, this._btnUserIgnOnClick));
+//        if ($('#btnIgnDes').length == 1)
+//            $('#btnIgnDes').bind('click', _idUserAtual, $.createDelegate(this, this._btnUserIgnDesOnClick));
         if ($('#btnRspCancelar').length == 1)
             $('#btnRspCancelar').bind('click', _idUserAtual, $.createDelegate(this, this._btnRspCancelarOnClick));
         if ($('#btnAdicionar').length == 1)
@@ -42,7 +43,7 @@ CtrlUsuario.prototype = {
         _idUserAtual = value.data.text();
         this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
             idAmigoUsuario : _idUserAtual,
-            aceite: 2
+            controleTipo: 2
         }, this._postAdicionarOnSuccess);
     },
 
@@ -52,7 +53,7 @@ CtrlUsuario.prototype = {
         if(msg){
             this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
                 idAmigoUsuario : _idUserAtual,
-                aceite: 1
+                controleTipo: 1
             }, this._postRspSolitacaoOnSuccess);
         }
     },
@@ -61,9 +62,17 @@ CtrlUsuario.prototype = {
         _idUserAtual = value.data.text();
         this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
             idAmigoUsuario : _idUserAtual,
-            aceite: 0
+            controleTipo: 0
         }, this._postRspCancelarOnSuccess);
     },
+    
+//    _btnUserIgnDesOnClick: function(value){
+//        _idUserAtual = value.data.text();
+//        this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
+//            idAmigoUsuario : _idUserAtual,
+//            controleTipo: 4
+//        }, this._postIgnorarDesOnSuccess);
+//    },
 
     _btnUserRemoverOnClick: function(value){
         _idUserAtual = value.data.text();
@@ -71,10 +80,27 @@ CtrlUsuario.prototype = {
         if(msg){
             this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
                 idAmigoUsuario : _idUserAtual,
-                aceite: 0
+                controleTipo: 0
             }, this._postUserRemoverOnSuccess);
         }
     },
+    
+//    _btnUserIgnOnClick: function(value){
+//        _idUserAtual = value.data.text();
+//        this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
+//            idAmigoUsuario : _idUserAtual,
+//            controleTipo: 3
+//        }, this._postIgnorarOnSuccess);
+//    },
+    
+//    _postIgnorarOnSuccess: function(value){
+//        $('#acaoRsp').text('');
+//        $('#acaoRsp').append('Notificações Ignoradas!')
+//    },
+//    _postIgnorarDesOnSuccess: function(value){
+//        $('#acaoRsp').text('');
+//        $('#acaoRsp').append('Notificações Ignoradas Desfeita!')
+//    },
     
     _postAdicionarOnSuccess: function(value){
         $('#acaoRsp a').remove()
@@ -92,11 +118,9 @@ CtrlUsuario.prototype = {
     },
 
     _postUserRemoverOnSuccess: function(value){
-        $('#acaoRsp a').remove()
-        $('#acaoRsp').append('Usuário removido.')
+        $('#acaoRsp').text('');
+        $('#acaoRsp').append('Amigo Removido.')
     },
-
- 
 
     dataBindMvc: function(dataUrl, data, handlerSuccess){
         $.ajax( {

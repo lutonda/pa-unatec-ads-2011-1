@@ -27,7 +27,7 @@ public class SendMailSSL {
 		Session session = Session.getDefaultInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("ciqueira@gmail.com","24315sol315");
+					return new PasswordAuthentication("","");
 				}
 			});
 

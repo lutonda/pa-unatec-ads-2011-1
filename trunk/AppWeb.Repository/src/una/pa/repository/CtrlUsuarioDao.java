@@ -11,9 +11,26 @@ public class CtrlUsuarioDao {
             String sql = "update amigo_usuario "
                     + "set dt_aceite = getDate(), "
                     + "sn_aceite = 1 "
-                    + "where  id_amigo_usuario = ?";
+                    + "where id_amigo_usuario = ?";
 
             Object[] vetor = {_id};
+            Data.executeUpdate(c, sql, vetor);
+            c.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean ignorar(int _id, int _ign) {
+
+        try {
+            Connection c = Data.openConnection();
+            String sql = "update amigo_usuario "
+                    + "set ignorado = ? "
+                    + "where id_amigo_usuario = ?";
+
+            Object[] vetor = {_ign, _id};
             Data.executeUpdate(c, sql, vetor);
             c.close();
             return true;

@@ -14,8 +14,8 @@ import una.pa.util.SendMail;
 public class FaleconoscoController extends AbstractController {
  
     private static final String titulo = "JogaTroca - Fale Conosco";
-    private static final String mailFrom = "SEUEMAIL*AQUI*";
-    private static final String password = "SUASENHA*AQUI*";
+    private static final String mailFrom = "felipphe.3@gmail.com";
+    private static final String password = "ff567886";
     
     
     @Override
@@ -23,23 +23,28 @@ public class FaleconoscoController extends AbstractController {
         HttpServletRequest request,
         HttpServletResponse response) throws Exception {
 
-        String email = "none";
-        
+             
         String nome = request.getParameter("nome");
         String msg = request.getParameter("msg");
-        email = request.getParameter("email");
+        String email = request.getParameter("email");
         
         String[] sendTo = {email};
-        
-        try{
-    	 SendMail mail = new SendMail(sendTo,titulo, msg,mailFrom,password);
-        }catch(Exception e){
-            nome = "ERROR";
-        }
-        
+        String[] sendFrom = {mailFrom};
+         
+        String resposta = "Caro "+nome+",\n Seu e-mail foi recebido e em breve"
+                + " estaremos lhe respondendo.\n\n Atenciosamente, \n **JogaTroca**";
         
         ModelAndView mav = new ModelAndView("inicio/ajuda/faleConosco");
-        mav.addObject("mensagem", "Hello World! "+nome);
+        
+        try{
+    	 SendMail mail = new SendMail(sendFrom,titulo, msg,mailFrom,password);
+         SendMail mail2 = new SendMail(sendTo,titulo, resposta,mailFrom,password);
+         
+        mav.addObject("mensagem", "Sua mensagem foi enviada!");
+        }catch(Exception e){
+          mav.addObject("mensagem", "Erro ao enviar, tente novamente!");
+        }
+                        
         return mav;        
     }
 }

@@ -6,11 +6,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ include file="/inc/taglibs.jsp" %>
 <html>
-   <head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Fale Conosco</title>
         <%@ include file="/inc/taghead.jsp" %>
@@ -22,17 +22,28 @@
             </div>
             <div id="content">
 
-               <div style="float:left; width: 200px">
-             <%@ include file="/inc/inc_menuAjuda.jsp" %>
-                    </div>
+                <div style="float:left; width: 200px">
+                    <%@ include file="/inc/inc_menuAjuda.jsp" %>
+                </div>
                 <div style="float:left;">
                     <h3><b>Fale conosco</b></h3>
                     <br/><br/>
-                    Texto
+                    <h2>${mensagem}</h2>
+                    <form name="form1" action="faleConosco.do.html" method="POST" >
+                        <label>Nome: </label><br/>
+                        <input type="text" name="nome" value="" /><br/><br/>
+                        <label>Deixe aqui sua mensagem: </label><br/>
+                        <textarea cols="50" rows="10" name="msg" ></textarea><br/><br/>
+                        <label>E_mail: </label><br/>
+                        <input type="text" name="email" value="" /><br/>
+                        <input type="submit" name="btEnvia" value="Enviar" /><br/>
+
+                    </form>
+
                 </div>
-                 <div class="cb"></div>
+                <div class="cb"></div>
             </div>
-     
+
             <div id="footer">
                 <%@ include file="/inc/inc_rdp.jsp" %>
             </div>

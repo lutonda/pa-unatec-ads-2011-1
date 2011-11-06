@@ -25,32 +25,31 @@ public class AjaxCtrlUsuarioController {
         RequestMethod.POST})
     @ResponseBody
     public String postCtrlUsuario(HttpServletRequest request,
-            @RequestParam int idAmigoUsuario, @RequestParam int aceite) {
+            @RequestParam int idAmigoUsuario, @RequestParam int controleTipo) {
 
         boolean flag = false;
         // CtrlUsuarioService.aceitaUsuario(idAmigoUsuario);
-        if (aceite != -1) {
+        if (controleTipo != -1) {
             try {
-                switch (aceite) {
-                    case 0:
+                switch (controleTipo) {
+                    case 0: //Recusar Convite ou Remover Usuário
                         flag = CtrlUsuarioService.recusaUsuario(idAmigoUsuario);
                         break;
-                    case 1:
+                    case 1: //Aceitar solicitação
                         flag = CtrlUsuarioService.aceitaUsuario(idAmigoUsuario);
                         break;
-                    case 2:
-                        int idUserVisit = Integer.parseInt((String)request.getSession().getAttribute("id"));
+                    case 2: //Adiciona
+                        int idUserVisit = Integer.parseInt((String) request.getSession().getAttribute("id"));
                         flag = CtrlUsuarioService.adicionarUsuario(idAmigoUsuario, idUserVisit);
                         break;
+//                    case 3: //Ignorar
+//                        flag = CtrlUsuarioService.ignorarUsuario(idAmigoUsuario, 1);
+//                        break;
+//                    case 4: //Desfazer Ignorar
+//                        flag = CtrlUsuarioService.ignorarUsuario(idAmigoUsuario, 0);
+//                        break;
                 }
-                if (aceite == 1) {
-                    
 
-                } else if (aceite == 0) {
-                    
-                } else {
-                    
-                }
             } catch (Exception e) {
                 return String.valueOf(false);
             }

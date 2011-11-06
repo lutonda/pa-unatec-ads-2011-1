@@ -14,8 +14,8 @@ import una.pa.util.SendMail;
 public class FaleconoscoController extends AbstractController {
  
     private static final String titulo = "JogaTroca - Fale Conosco";
-    private static final String mailFrom = "felipphe.3@gmail.com";
-    private static final String password = "ff567886";
+    private static final String mailFrom = "SEUEMAIL";
+    private static final String password = "SUASENHA";
     
     
     @Override

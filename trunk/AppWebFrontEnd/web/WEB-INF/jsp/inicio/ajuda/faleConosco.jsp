@@ -29,7 +29,7 @@
                     <h3><b>Fale conosco</b></h3>
                     <br/><br/>
                     <h2>${mensagem}</h2>
-                    <form name="form1" action="faleConosco.do.html" method="POST" >
+                    <form name="form1" action="faleConosco.do" method="POST" >
                         <label>Nome: </label><br/>
                         <input type="text" name="nome" value="" /><br/><br/>
                         <label>Deixe aqui sua mensagem: </label><br/>

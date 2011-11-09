@@ -43,6 +43,19 @@ public class UsuarioService {
 
     public static boolean updatePasso1(Usuario _obj) {
         return UsuarioDao.updatePasso1(_obj);
+        
+    }
+
+    public static int incluirUsuario (Usuario _obj){
+            return UsuarioDao.incluirUsuario(_obj);
+    }
+
+    public static boolean existeEmail (String _email){
+        return UsuarioDao.existeEmail(_email);
+    }
+
+    public static int obterIdUsuario (String _email){
+        return UsuarioDao.obterIdUsuario(_email);
     }
 
     public static boolean updatePasso2(Usuario _objU, Endereco _objE) {

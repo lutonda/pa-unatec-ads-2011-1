@@ -12,6 +12,64 @@ import una.pa.model.*;
  */
 public class UsuarioDao {
 
+        public static int incluirUsuario (Usuario _usu){
+
+        String sql = "insert into usuario"
+                + "(nm_usuario, nm_sobrenome, email, dt_cadastro, senha, "
+                + "usuario, email_notificacoes, email_parceiro, aceite_acordo)"
+                + "values (?,?,?,getdate(),?,?,?,?,?)";
+        Object [] vetor = {_usu.getNm_usuario(), _usu.getNm_sobrenome(), _usu.getEmail(), _usu.getSenha(), _usu.getUsuario(),
+                            _usu.isEmail_notificacoes(), _usu.isEmail_parceiro(), _usu.isAceite_acordo()};
+        
+        try{
+            Connection c = Data.openConnection();
+            Data.executeUpdate(c, sql, vetor);
+            //Usuario u = new Usuario();
+            c.close();
+            return obterIdUsuario(_usu.getEmail());
+             
+
+          } catch (Exception e) {
+                return -1;
+        }
+    }
+
+    public static boolean existeEmail (String _email){
+
+        String sql = "select 1 from usuario where email like \'"+_email+"\'";
+        try{
+
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql);
+            if (rs.next()){
+                return false;
+            }else{
+                return true;
+            }
+        }catch(Exception e){
+            return true;
+        }
+    }
+
+    public static int obterIdUsuario (String _email){
+
+        String sql = "select id_usuario from usuario where email like \'"+_email+"\'";
+
+        try{
+
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql);
+            //Usuario usu = new Usuario();
+            //c.close();
+            if (rs.next()){
+                return Integer.parseInt(rs.getString("id_usuario"));
+            }
+            return -1;
+        }catch(Exception e){
+            return -1;
+        }
+    }
+
     public static Usuario listarTodos(int _id) {
         //List<Usuario> objC = new ArrayList<Usuario>();
         String sql = "select id_usuario, nm_usuario, nm_sobrenome, "
@@ -32,27 +90,27 @@ public class UsuarioDao {
                 o.setNm_usuario(rs.getString("nm_usuario"));
                 o.setNm_sobrenome(rs.getString("nm_sobrenome"));
                 o.setEmail(rs.getString("email"));
-                o.setDt_nascimento(""+rs.getDate("dt_nascimento"));
+                o.setDt_nascimento(""+rs.getString("dt_nascimento"));
                 o.setDt_cadastro(rs.getDate("dt_cadastro"));
-                o.setSn_ativo(rs.getString("SN_ATIVO").equals("1") ? true : false);
+                o.setSn_ativo(rs.getString("SN_ATIVO")!=null ? true : false);
                 o.setTel_usuario(rs.getString("tel_usuario"));
                 o.setUsuario(rs.getString("usuario"));
                 o.setSenha(rs.getString("senha"));
-                o.setEmail_notificacoes(rs.getString("email_notificacoes").equals("1")? true : false);
-                o.setEmail_parceiro(rs.getString("email_parceiro").equals("1")? true : false);
-                o.setAceite_acordo(rs.getString("aceite_acordo").equals("1")? true : false);
+                o.setEmail_notificacoes(rs.getString("email_notificacoes")!=null ? true : false);
+                o.setEmail_parceiro(rs.getString("email_parceiro")!=null ? true : false);
+                o.setAceite_acordo(rs.getString("aceite_acordo")!=null ? true : false);
                 o.setDescricao_usuario(rs.getString("descricao_usuario"));
                 o.setSexo((rs.getString("sexo") != null) ? rs.getString("sexo") : "");
-                o.setPref_em_maos(rs.getString("pref_em_maos").equals("1") ? true : false);
-                o.setPref_correios(rs.getString("pref_correios").equals("1") ? true : false);
-                o.setPref_transp(rs.getString("pref_transp").equals("1") ? true : false);
+                o.setPref_em_maos(rs.getString("pref_em_maos")!=null ? true : false);
+                o.setPref_correios(rs.getString("pref_correios")!=null ? true : false);
+                o.setPref_transp(rs.getString("pref_transp")!=null ? true : false);
                 o.setImagem(rs.getString("imagem"));
             }
             rs.close();
             c.close();
             return o;
         } catch (Exception e) {
-                return null;
+                    return null;
         }
     }
 

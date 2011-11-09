@@ -16,7 +16,6 @@ public class TrocaJogosDao {
         List<TrocaJogos> objc = new ArrayList<TrocaJogos>();
 
         String sql = "SELECT DISTINCT " +
-                     " convert(char(10),DT_TROCA,103) DT_TROCA, " +
                      " convert(char(10),DT_SOLICITACAO,103) DT_SOLICITACAO, " +
                      " STATUS_TROCA , " +
                      " NM_USUARIO_ORIGEM, " +
@@ -36,7 +35,6 @@ public class TrocaJogosDao {
 
             while(rs.next()){
                 TrocaJogos o = new TrocaJogos();
-                o.setDt_troca(rs.getString("dt_troca"));
                 o.setDt_solicitacao(rs.getString("dt_solicitacao"));
                 o.setStatus_troca(rs.getString("status_troca"));
                 o.setNm_usuario_origem(rs.getString("nm_usuario_origem"));
@@ -66,7 +64,6 @@ public class TrocaJogosDao {
         List<TrocaJogos> objct = new ArrayList<TrocaJogos>();
 
          String sql = "SELECT DISTINCT " +
-                     " convert(char(10),DT_TROCA,103) DT_TROCA, " +
                      " convert(char(10),DT_SOLICITACAO,103) DT_SOLICITACAO, " +
                      " STATUS_TROCA , " +
                      " NM_USUARIO_ORIGEM, " +
@@ -89,7 +86,6 @@ public class TrocaJogosDao {
 
              while(rs.next()){
                 TrocaJogos o = new TrocaJogos();
-                o.setDt_troca(rs.getString("dt_troca"));
                 o.setDt_solicitacao(rs.getString("dt_solicitacao"));
                 o.setStatus_troca(rs.getString("status_troca"));
                 o.setNm_usuario_origem(rs.getString("nm_usuario_origem"));

@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : cadastro_passo2
     Created on : 30/05/2011, 20:36:52
     Author     : Tiago
@@ -10,8 +10,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt">
     <head>
         <title>Joga Troca</title>
-
-           <%@ include file="/inc/taghead.jsp" %>
+        <script type="text/javascript">
+            jQuery(
+            function(){$('#tabs').tabs();}
+        );
+        </script>
+        <%@ include file="/inc/taghead.jsp" %>
     </head>
     <body>
         <div id="container">
@@ -20,75 +24,83 @@
             </div>
             <div id="content">
                 <h2>Cadastro</h2>
-                
-                <form action="cadastroPasso2Form.do?id=<%= request.getParameter("id") %>
-                      &usuario=<%= request.getParameter("usuario") %>" method="POST">
+
+                <form action="cadastroPasso2Form.do?id=<%= request.getParameter("id")%>
+                      &usuario=<%= request.getParameter("usuario")%>" method="POST" id="formCadastro2">
 
                     <div class="frm_content">
 
                         <ul class="frm clearfix">
                             <li>
                                 <label><strong>Data de Nascimento: </strong></label>
-                                <input type="text" name="dt_nascimento" value=""
-                                       maxlength="10" onkeypress="formatar_mascara(this, '##/##/####')"/>
+                                <input type="text" name="dt_nascimento" id="dt_nascimento" maxlength="10"
+                                       onkeypress="formatar_mascara(this, '##/##/####')"/>
                             </li>
                             <li>
                                 <label><strong>Sexo: </strong></label>
-                                <input type="radio" name="sexo" value="M"/>Masculino
-                                <input type="radio" name="sexo" value="F"/>Feminino
+                                Masculino<input type="radio" name="sexo" id="sexo" value="M"/>
+                                Feminino<input type="radio" name="sexo" id="sexo" value="F"/>
                             </li>
-                             <li>
+                            <li>
                                 <label><strong>Telefone: </strong></label>
-                                <input type="text" name="telefone" maxlength="12"
-                                       onkeypress="formatar_mascara(this, '## ####-####')"/>
+                                <input type="text" id="telefone" name="telefone" maxlength="10" tabindex="3"/>
                             </li>
                             <li>
                                 <label><strong>Descrição do perfil: </strong></label>
-                                <textarea cols="40" rows="6" name="descricao"> </textarea>
+                                <textarea cols="40" rows="6" id="descricao" name="descricao"> </textarea>
                             </li>
-                                                        
+
                             <li>Endereço</li>
 
                             <li>
                                 <label><strong>CEP: </strong></label>
-                                <input type="text" name="cep" maxlength="11"
+                                <input type="text" id="cep" name="cep" maxlength="10"
                                        onkeypress="formatar_mascara(this, '##.###-###')" />
                             </li>
                             <li>
                                 <label><strong>Tipo Logradouro: </strong></label>
-                                <input type="text" name="tp_logradouro" />
+                                <input type="text" id="tp_logradouro" name="tp_logradouro" />
                             </li>
                             <li>
                                 <label><strong>Logradouro: </strong></label>
-                                <input type="text" name="logradouro" />
+                                <input type="text" id="logradouro" name="logradouro" />
                             </li>
                             <li>
                                 <label><strong>Numero: </strong></label>
-                                <input type="text" name="numero" />
+                                <input type="text" id="numero" name="numero" />
                             </li>
 
                             <li>
                                 <label><strong>Complemento: </strong></label>
-                                <input type="text" name="complemento" />
+                                <input type="text" id="complemento" name="complemento" />
                             </li>
                             <li>
                                 <label><strong>Bairro: </strong></label>
-                                <input type="text" name="bairro" />
+                                <input type="text" id="bairro" name="bairro" />
                             </li>
                             <li>
                                 <label><strong>Cidade: </strong></label>
-                                <input type="text" name="cidade" />
+                                <input type="text" id="cidade" name="cidade" />
                             </li>
                             <li>
                                 <label><strong>Estado: </strong></label>
-                                <input type="text" name="estado" />
+                                <input type="text" id="estado" name="estado" />
                             </li>
 
                             <li>
-                                <label><strong>Preferências de envio </strong></label><br/>
-                                <input type="checkbox" name="pref_maos" />Em mãos <br/>
-                                <input type="checkbox" name="pref_correio" />Pelo correios <br/>
-                                <input type="checkbox" name="pref_tansportadora" />Pela transportadora <br/>
+                                <label><strong>Preferências de envio: </strong></label><br/>
+                            </li>
+                            <li>
+                                <label><strong>Em mãos.</strong></label>
+                                <input type="checkbox" id="pref_maos" name="pref_maos" />
+                            </li>
+                            <li>
+                                <label><strong>Pelos correios.</strong></label>
+                                <input type="checkbox" id="pref_correio" name="pref_correio" />
+                            </li>
+                            <li>
+                                <label><strong>Pela transportadora.</strong></label>
+                                <input type="checkbox" id="pref_tansportadora" name="pref_tansportadora" />
                             </li>
 
                             <li>
@@ -103,7 +115,14 @@
                 <%@ include file="/inc/inc_rdp.jsp" %>
             </div>
         </div>
+        <script type="text/javascript">
+            jQuery(function($) {
+                $('#telefone').mask('(999) 999-9999');}
+        );
+        </script>
         <%@ include file="/inc/scripts.jsp" %>
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/validacaoPasso2.js"/>
+
         <!-- scripts de escopo local -->
         <%@ include file="/inc/metrics.jsp" %>
     </body>

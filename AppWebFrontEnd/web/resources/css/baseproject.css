@@ -215,7 +215,11 @@ ul.frm li span.nota{
 textarea.content_area{
 	width:650px;
 	height:150px;
+<<<<<<< .mine
 	}
+
+label.error { float: none; color: red; margin: 0 .5em 0 0; vertical-align: top; font-size: 10px }
+	
         
         
 #tooltip{
@@ -225,4 +229,4 @@ textarea.content_area{
 	padding:2px 5px;
 	color:#333;
 	display:none;
-	}
+	}>>>>>>> .r465

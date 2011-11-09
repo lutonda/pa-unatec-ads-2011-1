@@ -88,7 +88,7 @@
                              <li>
                                 <label><strong>Telefone: </strong></label>
                                 <input type="text" name="telefone" maxlength="12" value='<%=tel%>'
-                                       onkeypress="formatar_mascara(this, '## ####-####')"/> DDD + Telefone - Somente números
+                                       onfocus=" " onkeypress="formatar_mascara(this, '## ####-####')"/> DDD + Telefone - Somente números
                             </li>
                             <ul>
                                 <label><strong>Descrição do perfil: </strong></label>
@@ -99,7 +99,7 @@
 
                             <li>
                                 <label><strong>CEP: </strong></label>
-                                <input type="text" name="cep" maxlength="11" value="${Endereco.cep}"
+                                <input type="text" name="cep" maxlength="10" value='${Endereco.cep}'
                                        onkeypress="formatar_mascara(this, '##.###-###')" />
                             </li>
                             <li>

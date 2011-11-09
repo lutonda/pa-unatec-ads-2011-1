@@ -21,6 +21,9 @@
                                     <label><strong>Senha :</strong></label>
                                     <input type="password" maxlength="8" name="txtPassword" size="21"/> <input type="submit" value="Acessar"/>
                                 </li>
+                                <li>
+                                    <label><a href="/AppWebFrontEnd/inicio/cadastro/passo1.html">Realizar cadastro</a></label>
+                                </li>
                             </form>
                             <li>${msgErro}</li>
                         </ul>

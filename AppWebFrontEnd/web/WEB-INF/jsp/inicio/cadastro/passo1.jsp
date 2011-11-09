@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : cadastro_passo1
     Created on : 30/05/2011, 20:36:40
     Author     : Tiago
@@ -19,8 +19,9 @@
             </div>
             <div id="content">
                 <h2>Cadastro</h2>
-                <form action="cadastroPasso1Form.do" method="POST">
-                    <input type="hidden" name="id_usuario" value="${Usuario.id_usuario}"/>
+                <form action="cadastroPasso1Form.do" method="POST" id="formCadastro1">
+                    <input type="hidden" id="id_usuario" name="id_usuario" value=""/>
+                    <!--input type="hidden" id="id_usuario" name="id_usuario" value="${Usuario.id_usuario}"/-->
                     <div class="frm_content">
 
                         <ul class="frm clearfix">
@@ -28,36 +29,40 @@
                             </li>
                             <li>
                                 <label><strong>Nome</strong></label>
-                                <input type="text" name="nm_usuario" value=""/>
+                                <input type="text" id="nm_usuario" name="nm_usuario" value=""/>
                             </li>
                             <li>
                                 <label><strong>Sobrenome</strong></label>
-                                <input type="text" name="nm_sobrenome" value=""/>
+                                <input type="text" id="nm_sobrenome" name="nm_sobrenome" value=""/>
                             </li>
                             <li>
                                 <label><strong>E-mail</strong></label>
-                                <input type="text" disabled name="email" value="${Usuario.email}"/>
+                                <input type="text" id="email" name="email" value=""/>
+                                <!--input type="text" disabled id="email" name="email" value="${Usuario.email}"/-->
                             </li>
                             <li>
                                 <label><strong>Nome do Usuário</strong></label>
-                                <input type="text" name="usuario" value=""/>
+                                <input type="text" id="usuario" name="usuario" value=""/>
                             </li>
                             <li>
                                 <label><strong>Senha</strong></label>
-                                <input type="password" name="senha" value=""/>
+                                <input type="password" id="senha" name="senha" value=""/>
                             </li>
                             <li>
                                 <label><strong>Confirmação da senha</strong></label>
-                                <input type="password" name="conf_senha" value=""/>
+                                <input type="password" id="conf_senha" name="conf_senha" value=""/>
                             </li>
                             <li>
-                                <input type="checkbox" name="aceiteTermos" checked />Sim, aceito os termos de contrato do trocajoga.
+                                <label><strong>Sim, aceito os termos de contrato do trocajoga.</strong></label>
+                                <input type="checkbox" id="aceiteTermos" name="aceiteTermos" checked />
                             </li>
                             <li>
-                                <input type="checkbox" name="aceiteNotificacoes" checked />Sim, desejo receber as notificações de novas trocas por e-mail.
+                                <label><strong>Sim, desejo receber as notificações de novas trocas por e-mail.</strong></label>
+                                <input type="checkbox" id="aceiteNotificacoes" name="aceiteNotificacoes" checked />
                             </li>
                             <li>
-                                <input type="checkbox" name="aceiteParceiros" />Sim, aceito receber os e-mails de parceiros do trocajoga.
+                                <label><strong>Sim, aceito receber os e-mails de parceiros do trocajoga.</strong></label>
+                                <input type="checkbox" id="aceiteParceiros" name="aceiteParceiros" />
                             </li>
                             <li>
                                 <input type="submit" value="Salvar" class="bt" />
@@ -72,7 +77,7 @@
             </div>
         </div>
         <%@ include file="/inc/scripts.jsp" %>
-        <!-- scripts de escopo local -->
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/validacaoPasso1.js"/>
         <%@ include file="/inc/metrics.jsp" %>
     </body>
 </html>

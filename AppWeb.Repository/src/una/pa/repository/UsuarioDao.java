@@ -154,7 +154,7 @@ public class UsuarioDao {
                 + "where id_usuario = u.id_usuario and data_final_usu_origem is not null and data_final_usu_destino is not null),0) as trocas "
                 + ", isnull((select count(*) from (select * from troca t inner join jogo_usuario juo on t.id_jogo_origem = juo.id_jogo_usuario union "
                 + "select * from troca t inner join jogo_usuario jud on t.id_jogo_destino = jud.id_jogo_usuario) tabela "
-                + "where id_usuario = u.id_usuario and data_final_usu_origem is null or data_final_usu_destino is null),0) as trocas_pendentes "
+                + "where id_usuario = u.id_usuario and (data_final_usu_origem is null or data_final_usu_destino is null)),0) as trocas_pendentes "
                 + ", isnull((select count(*) from (select * from troca t inner join jogo_usuario juo on t.id_jogo_origem = juo.id_jogo_usuario union "
                 + "select * from troca t inner join jogo_usuario jud on t.id_jogo_destino = jud.id_jogo_usuario) tabela "
                 + "where id_usuario = u.id_usuario and status_troca = 'P'),0) as propostas "

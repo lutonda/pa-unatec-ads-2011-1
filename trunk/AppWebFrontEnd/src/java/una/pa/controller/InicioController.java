@@ -141,11 +141,11 @@ public class InicioController extends MultiActionController {
         ModelAndView mav = new ModelAndView("inicio/cadastro/passo1");
         try {
             StringEncryptor ec = new StringEncryptor();
-            Usuario obj = new Usuario();
+            //Usuario obj = new Usuario();
 
-            obj = UsuarioService.listarUnico(Integer.parseInt(request.getParameter("id")));
+            //obj = UsuarioService.listarUnico(Integer.parseInt(request.getParameter("id")));
 
-            mav.addObject("Usuario", obj);
+            //mav.addObject("Usuario", obj);
 
         } catch (Exception e) {
             response.sendRedirect("../ajuda/orientacao.html");
@@ -178,10 +178,14 @@ public class InicioController extends MultiActionController {
         try {
 
             Usuario obj = new Usuario();
-            obj.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
+            //obj.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
             obj.setNm_usuario(request.getParameter("nm_usuario"));
             obj.setNm_sobrenome(request.getParameter("nm_sobrenome"));
             obj.setEmail(request.getParameter("email"));
+            if(UsuarioService.existeEmail(request.getParameter("email")) == false || Validacao.validaEmail(request.getParameter("email")) == false){
+                response.sendRedirect("/AppWebFrontEnd/inicio/ajuda/orientacao.html");
+                return null;
+            }
             obj.setNm_usuario(request.getParameter("nm_usuario"));
             obj.setUsuario(request.getParameter("usuario"));
             obj.setSenha(request.getParameter("senha"));
@@ -189,8 +193,9 @@ public class InicioController extends MultiActionController {
             obj.setEmail_notificacoes(request.getParameter("aceiteNotificacoes") == null ? false : true);
             obj.setEmail_parceiro(request.getParameter("aceiteParceiros") == null ? false : true);
 
-            if (UsuarioService.updatePasso1(obj)) {
-                response.sendRedirect("passo2.html?id=" + obj.getId_usuario());
+            if (UsuarioService.incluirUsuario(obj)!= -1) {
+            //if (UsuarioService.updatePasso1(obj)) {
+                response.sendRedirect("passo2.html?id=" + UsuarioService.obterIdUsuario(obj.getEmail()));
                 return null;
             } else {
                 obj.setSenha("");

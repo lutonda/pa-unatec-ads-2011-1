@@ -8,16 +8,20 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ include file="/inc/taglibs.jsp" %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt">
+
     <head>
         <title>Joga Troca</title>
-        <script type="text/javascript">
-            jQuery(
-            function(){$('#tabs').tabs();}
-        );
-        </script>
         <%@ include file="/inc/taghead.jsp" %>
+        <script type="text/javascript">
+            jQuery(function($){
+               $("#dt_nascimento").mask("99/99/9999");
+               $("#telefone").mask("(999) 999-9999");
+               //$("#tin").mask("99-9999999");
+               //$("#ssn").mask("999-99-9999");
+            });
+        </script>
     </head>
-    <body>
+    <body>       
         <div id="container">
             <div id="header">
                 <%@ include file="/inc/inc_topo_padrao.jsp" %>
@@ -33,8 +37,8 @@
                         <ul class="frm clearfix">
                             <li>
                                 <label><strong>Data de Nascimento: </strong></label>
-                                <input type="text" name="dt_nascimento" id="dt_nascimento" maxlength="10"
-                                       onkeypress="formatar_mascara(this, '##/##/####')"/>
+                                <input type="text" name="dt_nascimento" id="dt_nascimento" maxlength="10"/>
+                                      <!-- onkeypress="formatar_mascara(this, '##/##/####')"/>-->
                             </li>
                             <li>
                                 <label><strong>Sexo: </strong></label>
@@ -54,8 +58,8 @@
 
                             <li>
                                 <label><strong>CEP: </strong></label>
-                                <input type="text" id="cep" name="cep" maxlength="10"
-                                       onkeypress="formatar_mascara(this, '##.###-###')" />
+                                <input type="text" id="cep" name="cep" maxlength="10"/>
+                                       <!--onkeypress="formatar_mascara(this, '##.###-###')" />-->
                             </li>
                             <li>
                                 <label><strong>Tipo Logradouro: </strong></label>
@@ -115,14 +119,8 @@
                 <%@ include file="/inc/inc_rdp.jsp" %>
             </div>
         </div>
-        <script type="text/javascript">
-            jQuery(function($) {
-                $('#telefone').mask('(999) 999-9999');}
-        );
-        </script>
         <%@ include file="/inc/scripts.jsp" %>
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/validacaoPasso2.js"/>
-
         <!-- scripts de escopo local -->
         <%@ include file="/inc/metrics.jsp" %>
     </body>

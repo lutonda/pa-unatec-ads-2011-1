@@ -39,7 +39,7 @@
                             </li>
                             <li>
                                 <label><strong>Telefone: </strong></label>
-                                <input type="text" id="telefone" name="telefone" maxlength="10" tabindex="3"/>
+                                <input type="text" id="telefone" name="telefone" maxlength="10"/>
                             </li>
                             <li>
                                 <label><strong>Descrição do perfil: </strong></label>

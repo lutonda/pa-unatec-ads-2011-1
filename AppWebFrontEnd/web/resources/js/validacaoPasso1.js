@@ -1,4 +1,4 @@
-$(function(){
+
     $('#formCadastro1').validate({
         rules: {
             nm_usuario: {
@@ -43,8 +43,10 @@ $(function(){
             },
             aceiteTermos: "Aceite os termos para prosseguir com o cadastro."
         }
+    }),
+    $(document).ready(function($) {
+        $("#formCadastro1").ready(function(){
+            $('.password').pstrength();
+        });
+  });
 
-
-
-    });
-});

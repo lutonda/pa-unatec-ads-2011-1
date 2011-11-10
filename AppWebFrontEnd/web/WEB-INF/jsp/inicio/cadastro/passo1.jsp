@@ -46,8 +46,9 @@
                             </li>
                             <li>
                                 <label><strong>Senha</strong></label>
-                                <input type="password" id="senha" name="senha" value=""/>
-                            </li>
+                                <input class ="password" type="password" id="senha" name="senha"/>
+                                <div class="cb"></div>
+                            </li>                              
                             <li>
                                 <label><strong>Confirmação da senha</strong></label>
                                 <input type="password" id="conf_senha" name="conf_senha" value=""/>

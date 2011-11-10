@@ -81,7 +81,7 @@ $('#formCadastro2').validate({
     }),
     $(document).ready(function($) {
         $("#formCadastro2").ready(function(){
-            $("#telefone").mask("(99) 9999-9999");
+            $("#telefone").mask("(99)9999-9999");
             $("#cep").mask("99999-999");
             $("#dt_nascimento").mask("99/99/9999");
         })

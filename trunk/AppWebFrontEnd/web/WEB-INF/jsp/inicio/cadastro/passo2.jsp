@@ -112,7 +112,7 @@
             </div>
         </div>
         <%@ include file="/inc/scripts.jsp" %>
-        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/validacaoPasso2.js"/>
+        
         <!-- scripts de escopo local -->
         <%@ include file="/inc/metrics.jsp" %>
     </body>

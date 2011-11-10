@@ -19,4 +19,5 @@
 <script type="text/javascript" src="${url}/js/plugins/jquery.qtip-1.0.0-rc3.js"></script>
 <script type="text/javascript" src="${url}/js/plugins/jquery-validate-1.5.1.js?v=1_0"></script>
 <script type="text/javascript" src="${url}/js/baseproject.js?v=1_0"></script>
-    <script type="text/javascript" src="${url}/js/plugins/jquery.maskedinput-1.3.js"></script>
+<script type="text/javascript" src="${url}/js/plugins/jquery.maskedinput-1.3.js"></script>
+<script type="text/javascript" src="/AppWebFrontEnd/resources/js/validacaoPasso2.js"/>

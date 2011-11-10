@@ -47,7 +47,6 @@
                             <li>
                                 <label><strong>Senha</strong></label>
                                 <input class ="password" type="password" id="senha" name="senha"/>
-                                <div class="cb"></div>
                             </li>                              
                             <li>
                                 <label><strong>Confirmação da senha</strong></label>

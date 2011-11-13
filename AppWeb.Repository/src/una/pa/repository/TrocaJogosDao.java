@@ -35,7 +35,7 @@ public class TrocaJogosDao {
             }else if(_obj.getData_final_usu_origem()!= null && _obj.getData_final_usu_destino() == null){
                 sql = "update troca set data_final_usu_origem = " + _obj.getData_final_usu_origem() + " where id_troca = " + _obj.getId_troca();
 
-                Notificacoes n = new Notificacoes();
+                //Notificacoes n = new Notificacoes();
                 sqlIn = "insert into notificacoes (ID_USUARIO,DESCRICAO, BROADCAST, DT_NOTIFICACAO)"
                        +" values (" + _obj.getId_usuario() + ",'"+ _obj.getNm_usuario_origem()+" trocou o jogo " + _obj.getNm_titulo_origem()+" com "+ _obj.getNm_usuario_destino()+ " pelo "+ _obj.getNm_titulo_destino()+",0,getdate() ";
 
@@ -43,9 +43,9 @@ public class TrocaJogosDao {
             }else if(_obj.getData_final_usu_origem()== null && _obj.getData_final_usu_destino() != null){
                 sql = "update troca set data_final_usu_destino = " + _obj.getData_final_usu_destino() + " where id_troca = " + _obj.getId_troca();
 
-                Notificacoes n = new Notificacoes();
+                //Notificacoes n = new Notificacoes();
                 sqlIn = "insert into notificacoes (ID_USUARIO,DESCRICAO, BROADCAST, DT_NOTIFICACAO)"
-                       +" values (" + _obj.getId_usuario_destino() + ",'"+ _obj.getNm_usuario_destino()+" trocou o jogo " + _obj.getNm_titulo_destino()+" com "+ _obj.getNm_usuario_destino()+ " pelo "+ _obj.getNm_titulo_origem()+"',0, getdate()";
+                       +" values (" + _obj.getId_usuario_destino() + ",'"+ _obj.getNm_usuario_destino()+" trocou o jogo " + _obj.getNm_titulo_destino()+" com "+ _obj.getNm_usuario_origem()+ " pelo "+ _obj.getNm_titulo_origem()+"',0, getdate()";
 
                 Data.executeUpdate(c, sqlIn);
             }

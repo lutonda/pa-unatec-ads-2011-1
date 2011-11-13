@@ -17,5 +17,14 @@ public class TrocaJogosService {
     public static List<TrocaJogos> jogosTrocados(int quantidePorPagina, int pagina, int _id, String _retorno)   {
         return TrocaJogosDao.jogosTrocados(quantidePorPagina, pagina, _id, _retorno);
     }
+    public static boolean inserir(TrocaJogos _obj){
+        return TrocaJogosDao.incluir(_obj);
+    }
+    public static boolean excluir(int _id){
+        return TrocaJogosDao.excluir(_id);
+    }
+    public static boolean editar(TrocaJogos _obj){
+        return TrocaJogosDao.alterar(_obj);
+    }
 
 }

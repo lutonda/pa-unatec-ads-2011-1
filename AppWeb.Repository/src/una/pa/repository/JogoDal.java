@@ -142,7 +142,7 @@ public class JogoDal {
         }
     }
 
-    public static boolean exclui(int _id) {
+    public static boolean excluir(int _id) {
 
         try {
             Connection c = Data.openConnection();

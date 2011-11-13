@@ -4,21 +4,23 @@
  */
 
 package una.pa.model;
+import java.util.Date;
 
 /**
  *
  * @author Tiago
  */
 public class TrocaJogos {
+    private int id_troca;
     private int id_usuario;//id usuario origem;
-    private String dt_troca;
-    private String dt_solicitacao;
+    private Date dt_troca;
+    private Date dt_solicitacao;
     private String status_troca;
     private String nm_usuario_origem;
     private int    id_jogo_origem;
     private String nm_titulo_origem;
     private String ds_console_origem;
-    private String dt_avaliacao_origem;
+    private Date dt_avaliacao_origem;
     private int    pontos_origem;
     private String imagem_origem;
     private int    id_usuario_destino;
@@ -27,7 +29,7 @@ public class TrocaJogos {
     private int    id_jogo_destino;
     private String nm_titulo_destino;
     private String ds_console_destino;
-    private String dt_avaliacao_destino;
+    private Date dt_avaliacao_destino;
     private int pontos_destino;
     private String imagem_destino;
     private String tipo;
@@ -36,6 +38,8 @@ public class TrocaJogos {
     private String email;
     private String cidade;
     private String estado;
+    private Date data_final_usu_origem;
+    private Date data_final_usu_destino;
 
     public boolean isAvaliacao() {
         return avaliacao;
@@ -51,6 +55,22 @@ public class TrocaJogos {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    public Date getData_final_usu_destino() {
+        return data_final_usu_destino;
+    }
+
+    public void setData_final_usu_destino(Date data_final_usu_destino) {
+        this.data_final_usu_destino = data_final_usu_destino;
+    }
+
+    public Date getData_final_usu_origem() {
+        return data_final_usu_origem;
+    }
+
+    public void setData_final_usu_origem(Date data_final_usu_origem) {
+        this.data_final_usu_origem = data_final_usu_origem;
     }
 
     public String getDs_console_destino() {
@@ -69,35 +89,35 @@ public class TrocaJogos {
         this.ds_console_origem = ds_console_origem;
     }
 
-    public String getDt_avaliacao_destino() {
+    public Date getDt_avaliacao_destino() {
         return dt_avaliacao_destino;
     }
 
-    public void setDt_avaliacao_destino(String dt_avaliacao_destino) {
+    public void setDt_avaliacao_destino(Date dt_avaliacao_destino) {
         this.dt_avaliacao_destino = dt_avaliacao_destino;
     }
 
-    public String getDt_avaliacao_origem() {
+    public Date getDt_avaliacao_origem() {
         return dt_avaliacao_origem;
     }
 
-    public void setDt_avaliacao_origem(String dt_avaliacao_origem) {
+    public void setDt_avaliacao_origem(Date dt_avaliacao_origem) {
         this.dt_avaliacao_origem = dt_avaliacao_origem;
     }
 
-    public String getDt_solicitacao() {
+    public Date getDt_solicitacao() {
         return dt_solicitacao;
     }
 
-    public void setDt_solicitacao(String dt_solicitacao) {
+    public void setDt_solicitacao(Date dt_solicitacao) {
         this.dt_solicitacao = dt_solicitacao;
     }
 
-    public String getDt_troca() {
+    public Date getDt_troca() {
         return dt_troca;
     }
 
-    public void setDt_troca(String dt_troca) {
+    public void setDt_troca(Date dt_troca) {
         this.dt_troca = dt_troca;
     }
 
@@ -131,6 +151,14 @@ public class TrocaJogos {
 
     public void setId_jogo_origem(int id_jogo_origem) {
         this.id_jogo_origem = id_jogo_origem;
+    }
+
+    public int getId_troca() {
+        return id_troca;
+    }
+
+    public void setId_troca(int id_troca) {
+        this.id_troca = id_troca;
     }
 
     public int getId_usuario() {
@@ -245,6 +273,5 @@ public class TrocaJogos {
         this.tipo = tipo;
     }
 
-    
    
 }

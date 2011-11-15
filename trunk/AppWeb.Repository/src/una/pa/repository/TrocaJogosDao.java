@@ -14,8 +14,8 @@ public class TrocaJogosDao {
     public static boolean incluir(TrocaJogos _obj){
         try{
             Connection c = Data.openConnection();
-            String sql = "insert into troca (ID_JOGO_ORIGEM,ID_JOGO_DESTINO, DT_SOLICITACAO,STATUS_TROCA) "
-                        +" values (?, ?, getdate(), 'P')";
+            String sql = "insert into troca (ID_JOGO_ORIGEM,ID_JOGO_DESTINO, DT_SOLICITACAO) "
+                        +" values (?, ?, getdate())";
             Object[] vetor = {_obj.getId_jogo_origem(),_obj.getId_jogo_destino()};
             Data.executeUpdate(c, sql, vetor);
             c.close();
@@ -30,7 +30,7 @@ public class TrocaJogosDao {
             String sqlIn = "";
             Connection c = Data.openConnection();
 
-            if(_obj.getDt_troca()!= null){
+            if(_obj.getDt_troca()!= null && (_obj.getData_final_usu_origem()== null && _obj.getData_final_usu_destino() == null)){
                 sql = "update troca set data_aceito = " + _obj.getDt_troca() + " where id_troca = " + _obj.getId_troca();
             }else if(_obj.getData_final_usu_origem()!= null && _obj.getData_final_usu_destino() == null){
                 sql = "update troca set data_final_usu_origem = " + _obj.getData_final_usu_origem() + " where id_troca = " + _obj.getId_troca();

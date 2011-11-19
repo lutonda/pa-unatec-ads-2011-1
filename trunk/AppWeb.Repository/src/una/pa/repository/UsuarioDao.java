@@ -221,6 +221,7 @@ public class UsuarioDao {
                 + ", isnull((select count(*) from jogo_desejado jd where jd.id_usuario = u.id_usuario),0) as desejo "
                 + ", isnull((select count(*) from avaliacao_usuario au left join replica_avaliacao ra on au.id_avaliacao_usuario = ra.id_avaliacao_usuario where au.id_usuario = u.id_usuario and ra.id_replica is null),0) as replica_pendente "
                 + ", isnull((select count(id_usuario) from amigo_usuario where id_usuario_amigo = u.id_usuario and sn_aceite = 0 and ignorado = 0),0) as amigos_pendentes "
+                + ", isnull((select avg(pontos) from dbo.AVALIACAO_USUARIO where id_usuario = u.id_usuario),0) as media_qualificacao"
                 + " from usuario u ";
 
         sql += (username != null) ? "where u.usuario = ?" : "";
@@ -250,7 +251,7 @@ public class UsuarioDao {
                 o.setDesejo(Integer.parseInt(rs.getString("desejo")));
                 o.setReplica_pendente(Integer.parseInt(rs.getString("replica_pendente")));
                 o.setAmigos_pendentes(Integer.parseInt(rs.getString("amigos_pendentes")));
-
+                o.setTrocas_pendentes(Integer.parseInt(rs.getString("media_qualificacao")));
             }
             rs.close();
             c.close();

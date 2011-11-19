@@ -22,19 +22,31 @@
             </div>
             <div id="content">
                 <div style="float:left; width: 200px">
-                <%@ include file="/inc/inc_menuAjuda.jsp" %>
-            </div>
-             <div style="float:left;">
-                 <h3><b>Políticas de Privacidade</b></h3>
+                    <%@ include file="/inc/inc_menuAjuda.jsp" %>
+                </div>
+                <div style="float:left; display: block; width: 772px">
+                    <h3><b>Políticas de Privacidade</b></h3>
                     <br/><br/>
-                 Texto
-            </div>
-            <div class="cb"></div>
+                    Informações do Usuário<br/><br/>
+                    Suas informações são importantes, pois nos ajudam a tornar o site um lugar melhor e cada vez mais direcionado à você, na busca de sua total satisfação.
+                    Sua privacidade é nossa preocupação. Temos o compromisso de preservá-la.<br/>
+                    Nossa política de privacidade visa assegurar a garantia de que, quaisquer informações relativas aos usuários, não serão fornecidas, publicadas ou comercializadas em quaisquer circunstâncias.<br/><br/>
+
+                    Cadastro<br/><br/>
+                    Para usufruir dos benefícios do site, você precisa se cadastrar no TrocaJogo. Este cadastro é armazenado em um banco de dados protegido e sigiloso. Seus dados só serão em parte mostrados para o usuário que estiver em processo de troca com você e apenas após a sua aceitação.<br/>
+                    O JogaTroca faz validação apenas pelo e-mail, cabendo ao usuário fornecer uma informação autêntica.<br/><br/>
+                    Segurança das Informações<br/><br/>
+                    Todos os dados pessoais informados ao nosso site são armazenados em um banco de dados reservado e com acesso restrito a sessão administrativa do WebSite, que são obrigados, por contrato, a manter a confidencialidade das informações e não utilizá-las inadequadamente.<br/>
+                    Assegurar a sua privacidade é mais um compromisso do JogaTroca com você!<br/><br/>
+
+                    Antes de usufruir de nossos serviços leia atentamente os nossos <a href="termosdeuso.html">Termos de Uso</a>. Caso não esteja de acordo, por favor, não utilize o site. O JogaTroca não se responsabiliza pela inexatidão nas informações enviadas pelos usuários. Sempre negocie com os demais usuários as condições das trocas antes de efetuá-las.
+                </div>
+                <div class="cb"></div>
             </div>
 
-        <div id="footer">
-            <%@ include file="/inc/inc_rdp.jsp" %>
-        </div>
+            <div id="footer">
+                <%@ include file="/inc/inc_rdp.jsp" %>
+            </div>
         </div>
         <%@ include file="/inc/scripts.jsp" %>
         <!-- scripts de escopo local -->

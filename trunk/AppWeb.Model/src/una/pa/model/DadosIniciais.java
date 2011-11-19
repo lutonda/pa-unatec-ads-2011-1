@@ -10,7 +10,7 @@ package una.pa.model;
  * @author Magno
  */
 public class DadosIniciais extends Usuario {
-    protected int pontos, trocas, trocas_pendentes, propostas, oferta, jogos, desejo, replica_pendente, amigos_pendentes;
+    protected int pontos, trocas, trocas_pendentes, propostas, oferta, jogos, desejo, replica_pendente, amigos_pendentes,media_qualificacao;
 
     public int getAmigos_pendentes() {
         return amigos_pendentes;
@@ -34,6 +34,14 @@ public class DadosIniciais extends Usuario {
 
     public void setJogos(int jogos) {
         this.jogos = jogos;
+    }
+
+    public int getMedia_qualificacao() {
+        return media_qualificacao;
+    }
+
+    public void setMedia_qualificacao(int media_qualificacao) {
+        this.media_qualificacao = media_qualificacao;
     }
 
     public int getOferta() {
@@ -84,4 +92,5 @@ public class DadosIniciais extends Usuario {
         this.trocas_pendentes = trocas_pendentes;
     }
 
+    
 }

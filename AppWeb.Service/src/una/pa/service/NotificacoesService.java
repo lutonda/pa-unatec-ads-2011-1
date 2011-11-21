@@ -7,7 +7,6 @@ package una.pa.service;
 import una.pa.model.*;
 import una.pa.repository.*;
 import java.util.List;
-import una.pa.util.*;
 import javax.rmi.CORBA.Util;
 
 /**
@@ -18,16 +17,6 @@ public class NotificacoesService {
     public static List<Notificacoes> listar (){
         return NotificacoesDao.listarDao();
         //
-    }
-    public static enum numeraNotificacao{
-        TROCA,
-        FALA,
-        ADICIONA,
-        ENTRA,
-        DESEJA,
-        TEM,
-        OFERTA,
-        AVALIADO
     }
 
     public static List<Notificacoes> listarUnico(int _id){
@@ -40,7 +29,7 @@ public class NotificacoesService {
         return NotificacoesDao.enviaNotificacao(objct);
     }
     
-    public static boolean enviaNotificacao(numeraNotificacao hh,
+    public static boolean enviaNotificacao(Notificacoes.numeraNotificacao hh,
            String _msg,
            int _idUser,
            int _idUserDestino,

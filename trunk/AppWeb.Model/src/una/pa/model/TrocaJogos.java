@@ -11,6 +11,9 @@ import java.util.Date;
  * @author Tiago
  */
 public class TrocaJogos {
+    public static enum statusTroca {
+        aberto,andamento,finalizado
+    }
     private int id_troca;
     private int id_usuario;//id usuario origem;
     private Date dt_troca;

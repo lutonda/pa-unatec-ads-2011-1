@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package una.pa.model;
 
 /**
@@ -11,13 +10,24 @@ package una.pa.model;
  */
 public class Notificacoes {
 
-        private int id_notificacao;
-        private int id_usuario;
-        private String nm_nome;
-        private String descricao;
-        private int broadcast;
-        private String dt_notificacoes;
-        private int total;
+    public static enum numeraNotificacao {
+
+        TROCA,
+        FALA,
+        ADICIONA,
+        ENTRA,
+        DESEJA,
+        TEM,
+        OFERTA,
+        AVALIADO
+    }
+    private int id_notificacao;
+    private int id_usuario;
+    private String nm_nome;
+    private String descricao;
+    private int broadcast;
+    private String dt_notificacoes;
+    private int total;
 
     public int getTotal() {
         return total;
@@ -74,7 +84,4 @@ public class Notificacoes {
     public void setNm_nome(String nm_nome) {
         this.nm_nome = nm_nome;
     }
-
-
-
 }

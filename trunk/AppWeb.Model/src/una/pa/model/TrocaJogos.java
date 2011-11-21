@@ -34,12 +34,21 @@ public class TrocaJogos {
     private String imagem_destino;
     private String tipo;
     private boolean avaliacao;
-    private int tel_usuario;
+    private String tel_usuario;
     private String email;
     private String cidade;
     private String estado;
     private Date data_final_usu_origem;
     private Date data_final_usu_destino;
+    private int total;
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
 
     public boolean isAvaliacao() {
         return avaliacao;
@@ -257,11 +266,11 @@ public class TrocaJogos {
         this.status_troca = status_troca;
     }
 
-    public int getTel_usuario() {
+    public String getTel_usuario() {
         return tel_usuario;
     }
 
-    public void setTel_usuario(int tel_usuario) {
+    public void setTel_usuario(String tel_usuario) {
         this.tel_usuario = tel_usuario;
     }
 

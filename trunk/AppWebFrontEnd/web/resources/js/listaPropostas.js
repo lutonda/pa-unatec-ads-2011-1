@@ -28,14 +28,12 @@ Proposta.prototype = {
     },
     
     _listaPropostasOnClick: function(value){
-        
-        //        this.dataBindMvc('listaUsuarioJogo.do', {
-        //            id : $('#idJogo').text(),
-        //            qtd : 10,
-        //            pagina: _pagina,
-        //            ofertados: _oferta,
-        //            tipo: _tipo
-        //        }, this._listaUsuarioOnSuccess);
+        this.dataBindMvc('listaTrocasJogos.do', {
+            id : $('#idUser').text(),
+            tipo: value.data,
+            qtd : 10,
+            pagina: _pagina
+        }, this._listaPropostasOnSuccess);
         
         $('#cxTrocas').jqm({
             overlay:80,
@@ -45,11 +43,11 @@ Proposta.prototype = {
     },
 
     _listaPropostasOnSuccess: function(value){
-        $('#listaUsuarios li').remove();
-
+        //console.log(value);
+        $('#cxTrocas ul li').remove();
         var dados = value.split("|");
         _totalItens = dados[1];
-        $('#listaUsuarios').append(dados[0]);
+        $('#cxTrocas ul').append(dados[0]);
 
         var menos = _pagina - 1;
         var mais = _pagina + 1;

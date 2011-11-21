@@ -20,5 +20,5 @@
 <script type="text/javascript" src="${url}/js/plugins/jquery-validate-1.5.1.js?v=1_0"></script>
 <script type="text/javascript" src="${url}/js/baseproject.js?v=1_0"></script>
 <script type="text/javascript" src="${url}/js/plugins/jquery.maskedinput-1.3.js"></script>
-<script type="text/javascript" src="${url}/js/plugins/jquery.pstrength-min.1.2.js"></script>>
+<script type="text/javascript" src="${url}/js/plugins/jquery.pstrength-min.1.2.js"></script>
 

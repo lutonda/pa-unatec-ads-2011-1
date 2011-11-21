@@ -1,4 +1,5 @@
 package una.pa.repository;
+
 import com.sun.org.apache.xpath.internal.operations.Equals;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,73 +12,77 @@ import una.pa.model.*;
  * @author Tiago
  */
 public class TrocaJogosDao {
-    public static boolean incluir(TrocaJogos _obj){
-        try{
+
+    public static boolean incluir(TrocaJogos _obj) {
+        try {
             Connection c = Data.openConnection();
             String sql = "insert into troca (ID_JOGO_ORIGEM,ID_JOGO_DESTINO, DT_SOLICITACAO) "
-                        +" values (?, ?, getdate())";
-            Object[] vetor = {_obj.getId_jogo_origem(),_obj.getId_jogo_destino()};
+                    + " values (?, ?, getdate())";
+            Object[] vetor = {_obj.getId_jogo_origem(), _obj.getId_jogo_destino()};
             Data.executeUpdate(c, sql, vetor);
             c.close();
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-    public static boolean alterar(TrocaJogos _obj){
-        try{
+
+    public static boolean alterar(TrocaJogos _obj) {
+        try {
             String sql = "";
             Connection c = Data.openConnection();
 
-            if( _obj.getDt_troca()!= null && (_obj.getData_final_usu_origem()== null && _obj.getData_final_usu_destino() == null)){
+            if (_obj.getDt_troca() != null && (_obj.getData_final_usu_origem() == null && _obj.getData_final_usu_destino() == null)) {
                 sql = "update troca set data_aceito = " + _obj.getDt_troca() + " where id_troca = " + _obj.getId_troca();
-            }else if(_obj.getData_final_usu_origem()!= null && _obj.getData_final_usu_destino() == null){
+            } else if (_obj.getData_final_usu_origem() != null && _obj.getData_final_usu_destino() == null) {
                 sql = "update troca set data_final_usu_origem = " + _obj.getData_final_usu_origem() + " where id_troca = " + _obj.getId_troca();
-            }else if(_obj.getData_final_usu_origem()== null && _obj.getData_final_usu_destino() != null){
+            } else if (_obj.getData_final_usu_origem() == null && _obj.getData_final_usu_destino() != null) {
                 sql = "update troca set data_final_usu_destino = " + _obj.getData_final_usu_destino() + " where id_troca = " + _obj.getId_troca();
             }
             Data.executeUpdate(c, sql);
             c.close();
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-    public static boolean excluir (int _id){
-        try{
+
+    public static boolean excluir(int _id) {
+        try {
             Connection c = Data.openConnection();
             String sql = "delete troca where id_troca = ?";
             Object[] vetor = {_id};
             Data.executeQuery(c, sql, vetor);
             c.close();
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-    public static List<TrocaJogos> listarDao(){
+
+    public static List<TrocaJogos> listarDao() {
 
         List<TrocaJogos> objc = new ArrayList<TrocaJogos>();
 
-        String sql = "SELECT DISTINCT " +
-                     " convert(char(10),DT_SOLICITACAO,103) DT_SOLICITACAO, " +
-                     " STATUS_TROCA , " +
-                     " NM_USUARIO_ORIGEM, " +
-                     " NM_TITULO_ORIGEM, " +
-                     " DS_CONSOLE_ORIGEM, " +
-                     " convert(char(10),DT_AVALIACAO_ORIGEM,103) DT_AVALIACAO_ORIGEM, " +
-                     " PONTOS_ORIGEM , " +
-                     " NM_USUARIO_DESTINO, " +
-                     " NM_TITULO_DESTINO, " +
-                     " DS_CONSOLE_DESTINO, " +
-                     " convert(char(10),DT_AVALIACAO_DESTINO,103)DT_AVALIACAO_DESTINO, " +
-                     " PONTOS_DESTINO " +
-                     " FROM dbo.JOGOS_TROCADOS ";
-        try{
-            Connection c =  Data.openConnection();
+        String sql = "SELECT DISTINCT "
+                + " convert(char(10),DT_SOLICITACAO,103) DT_SOLICITACAO, "
+                + " STATUS_TROCA , "
+                + " NM_USUARIO_ORIGEM, "
+                + " NM_TITULO_ORIGEM, "
+                + " DS_CONSOLE_ORIGEM, "
+                + " convert(char(10),DT_AVALIACAO_ORIGEM,103) DT_AVALIACAO_ORIGEM, "
+                + " PONTOS_ORIGEM , "
+                + " NM_USUARIO_DESTINO, "
+                + " NM_TITULO_DESTINO, "
+                + " DS_CONSOLE_DESTINO, "
+                + " convert(char(10),DT_AVALIACAO_DESTINO,103)DT_AVALIACAO_DESTINO, "
+                + " PONTOS_DESTINO "
+                + " FROM dbo.JOGOS_TROCADOS ";
+        try {
+            Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql);
 
-            while(rs.next()){
+            while (rs.next()) {
                 TrocaJogos o = new TrocaJogos();
                 o.setDt_solicitacao(rs.getDate("dt_solicitacao"));
                 o.setStatus_troca(rs.getString("status_troca"));
@@ -85,50 +90,51 @@ public class TrocaJogosDao {
                 o.setNm_titulo_origem(rs.getString("nm_titulo_origem"));
                 o.setDs_console_origem(rs.getString("ds_console_origem"));
                 o.setDt_avaliacao_origem(rs.getDate("dt_avaliacao_origem"));
-                if(rs.getString("pontos_origem")!= null){
+                if (rs.getString("pontos_origem") != null) {
                     o.setPontos_origem(Integer.parseInt(rs.getString("pontos_origem")));
                 }
                 o.setNm_usuario_destino(rs.getString("nm_usuario_destino"));
                 o.setNm_titulo_destino(rs.getString("nm_titulo_destino"));
                 o.setDs_console_destino(rs.getString("ds_console_destino"));
                 o.setDt_avaliacao_destino(rs.getDate("dt_avaliacao_destino"));
-                if(rs.getString("pontos_destino")!= null){
-                     o.setPontos_destino(Integer.parseInt(rs.getString("pontos_destino")));
+                if (rs.getString("pontos_destino") != null) {
+                    o.setPontos_destino(Integer.parseInt(rs.getString("pontos_destino")));
                 }
                 objc.add(o);
             }
             rs.close();
             c.close();
             return objc;
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-    public static List<TrocaJogos> listarUnico(int _id){
+
+    public static List<TrocaJogos> listarUnico(int _id) {
         List<TrocaJogos> objct = new ArrayList<TrocaJogos>();
 
-         String sql = "SELECT DISTINCT " +
-                     " convert(char(10),DT_SOLICITACAO,103) DT_SOLICITACAO, " +
-                     " STATUS_TROCA , " +
-                     " NM_USUARIO_ORIGEM, " +
-                     " NM_TITULO_ORIGEM, " +
-                     " DS_CONSOLE_ORIGEM, " +
-                     " convert(char(10),DT_AVALIACAO_ORIGEM,103) DT_AVALIACAO_ORIGEM, " +
-                     " PONTOS_ORIGEM , " +
-                     " NM_USUARIO_DESTINO, " +
-                     " NM_TITULO_DESTINO, " +
-                     " DS_CONSOLE_DESTINO, " +
-                     " convert(char(10),DT_AVALIACAO_DESTINO,103)DT_AVALIACAO_DESTINO, " +
-                     " PONTOS_DESTINO " +
-                     " FROM dbo.JOGOS_TROCADOS " +
-                     " where id_usuario_origem = ? ";
-         Object[] vetor = {_id};
+        String sql = "SELECT DISTINCT "
+                + " convert(char(10),DT_SOLICITACAO,103) DT_SOLICITACAO, "
+                + " STATUS_TROCA , "
+                + " NM_USUARIO_ORIGEM, "
+                + " NM_TITULO_ORIGEM, "
+                + " DS_CONSOLE_ORIGEM, "
+                + " convert(char(10),DT_AVALIACAO_ORIGEM,103) DT_AVALIACAO_ORIGEM, "
+                + " PONTOS_ORIGEM , "
+                + " NM_USUARIO_DESTINO, "
+                + " NM_TITULO_DESTINO, "
+                + " DS_CONSOLE_DESTINO, "
+                + " convert(char(10),DT_AVALIACAO_DESTINO,103)DT_AVALIACAO_DESTINO, "
+                + " PONTOS_DESTINO "
+                + " FROM dbo.JOGOS_TROCADOS "
+                + " where id_usuario_origem = ? ";
+        Object[] vetor = {_id};
 
-         try{
-             Connection c = Data.openConnection();
-             ResultSet rs = Data.executeQuery(c, sql, vetor);
+        try {
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql, vetor);
 
-             while(rs.next()){
+            while (rs.next()) {
                 TrocaJogos o = new TrocaJogos();
                 o.setDt_solicitacao(rs.getDate("dt_solicitacao"));
                 o.setStatus_troca(rs.getString("status_troca"));
@@ -136,39 +142,40 @@ public class TrocaJogosDao {
                 o.setNm_titulo_origem(rs.getString("nm_titulo_origem"));
                 o.setDs_console_origem(rs.getString("ds_console_origem"));
                 o.setDt_avaliacao_origem(rs.getDate("dt_avaliacao_origem"));
-                if(rs.getString("pontos_origem")!= null){
+                if (rs.getString("pontos_origem") != null) {
                     o.setPontos_origem(Integer.parseInt(rs.getString("pontos_origem")));
                 }
                 o.setNm_usuario_destino(rs.getString("nm_usuario_destino"));
                 o.setNm_titulo_destino(rs.getString("nm_titulo_destino"));
                 o.setDs_console_destino(rs.getString("ds_console_destino"));
                 o.setDt_avaliacao_destino(rs.getDate("dt_avaliacao_destino"));
-                if(rs.getString("pontos_destino")!= null){
-                     o.setPontos_destino(Integer.parseInt(rs.getString("pontos_destino")));
+                if (rs.getString("pontos_destino") != null) {
+                    o.setPontos_destino(Integer.parseInt(rs.getString("pontos_destino")));
                 }
-                 objct.add(o);
-             }
-             rs.close();
-             c.close();
-             return objct;
+                objct.add(o);
+            }
+            rs.close();
+            c.close();
+            return objct;
 
-         }catch(Exception e){
-             return null;
-         }
+        } catch (Exception e) {
+            return null;
+        }
     }
-    public static List<TrocaJogos> jogosTrocados(int quantidePorPagina, int pagina, int _id, String _retorno ){
-         String sql;
-         int inicio = 0;
+
+    public static List<TrocaJogos> jogosTrocados(int quantidePorPagina, int pagina, int _id) {
+        String sql;
+        int inicio = 0;
         int fim = quantidePorPagina;
 
         if (pagina > 1) {
             fim = (quantidePorPagina * pagina);
             inicio = fim - quantidePorPagina;
         }
-         List<TrocaJogos> objc = new ArrayList<TrocaJogos>();
-         sql =  "select top " + quantidePorPagina + " * from ("
+        List<TrocaJogos> objc = new ArrayList<TrocaJogos>();
+        sql = "select top " + quantidePorPagina + " * from ("
                 + "select	troca.id_usuario_origem,"
-		+ "troca.id_jogo_origem,"
+                + "troca.id_jogo_origem,"
                 + " troca.id_jogo_destino,"
                 + " titulo_jogo.nm_titulo nm_titulo_destino,"
                 + " jo.imagem imagem_destino,"
@@ -189,7 +196,7 @@ public class TrocaJogosDao {
                 + " endereco.ds_cidade,"
                 + " endereco.ds_estado, "
                 + "row_number() over (order by troca.tipo asc) as linha,"
-                + " dbo.fnc_retornaTotalRegistros(3,?,'" + _retorno + "' " + " ) totalregistros"
+                + " dbo.fnc_retornaTotalRegistros(3,?) totalregistros"
                 + " from("
                 + "  select	case when ju.id_usuario = ? then ju.id_usuario else jud.id_usuario end as id_usuario_origem,"
                 + " case when jud.id_usuario = ? then ju.id_usuario else jud.id_usuario end as id_usuario_destino,"
@@ -209,7 +216,7 @@ public class TrocaJogosDao {
                 + " and data_final_usu_origem is not null "
                 + " and data_final_usu_destino is not null then 'finalizado'"
                 + " end as status_troca,"
-                + " --case when ju.id_usuario = au.id_usuario then 'true' else 'false' end as avaliacao  "
+                //+ " --case when ju.id_usuario = au.id_usuario then 'true' else 'false' end as avaliacao  "
                 + " case when au.id_avaliacao_usuario is not null then 'true' else 'false' end as avaliacao  "
                 + " from	troca t"
                 + " inner join jogo_usuario ju	on ju.id_jogo_usuario = t.id_jogo_origem"
@@ -217,56 +224,57 @@ public class TrocaJogosDao {
                 + " left join avaliacao_usuario au on t.id_troca = au.id_troca"
                 + " where  (ju.id_usuario = ? or jud.id_usuario = ?)"
                 + " ) troca"
-                + "	--- informacoes usuario destino"
+                //+ "	--- informacoes usuario destino"
                 + " inner join usuario u on troca.id_usuario_destino = u.id_usuario"
                 + " inner join jogo on jogo.id_jogo = troca.id_jogo_destino"
                 + " inner join titulo_jogo on jogo.id_titulo_jogo = titulo_jogo.id_titulo_jogo"
                 + " inner join console on console.id_console = jogo.id_console"
                 + "  left join endereco on endereco.id_usuario = u.id_usuario"
-                + "--- dados jogos origem"
+                //+ "--- dados jogos origem"
                 + " inner join jogo jo on jo.id_jogo = troca.id_jogo_origem"
                 + " inner join titulo_jogo tj on jo.id_titulo_jogo = tj.id_titulo_jogo"
                 + " inner join console c on c.id_console = jo.id_console "
                 + ") a"
                 + " where linha > " + inicio + " and linha <= " + fim;
 
-         Object[] vetor = {_id};
+        Object[] vetor = {_id, _id, _id, _id, _id};
 
-         try{
-             Connection c = Data.openConnection();
-             ResultSet rs = Data.executeQuery(c, sql, vetor);
+        try {
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql, vetor);
 
-             while(rs.next()){
+            while (rs.next()) {
                 TrocaJogos o = new TrocaJogos();
-                 /// Dados Origem
-                 o.setId_usuario(Integer.parseInt(rs.getString("id_usuario_origem")));
-                 o.setId_jogo_origem(Integer.parseInt(rs.getString("id_jogo_origem")));
-                 o.setNm_titulo_origem(rs.getString("nm_titulo_origem"));
-                 o.setImagem_origem(rs.getString("imagem_origem"));
-                 o.setDs_console_origem(rs.getString("ds_console_origem"));
-                 // Dados Destino
-                 o.setId_usuario(Integer.parseInt(rs.getString("id_usuario_destino")));
-                 o.setNm_usuario_destino(rs.getString("nm_usuario_destino"));
-                 o.setSobrenome_destino(rs.getString("sobrenome_destino"));
-                 o.setId_jogo_origem(Integer.parseInt(rs.getString("id_jogo_destino")));
-                 o.setNm_titulo_origem(rs.getString("nm_titulo_destino"));
-                 o.setImagem_origem(rs.getString("imagem_destino"));
-                 o.setDs_console_origem(rs.getString("ds_console"));
-                 o.setTipo(rs.getString("tipo"));
-                 o.setStatus_troca(rs.getString("status_troca"));
-                 o.setAvaliacao(rs.getString("avaliacao").equals("1")? true : false);
-                 o.setTel_usuario(Integer.parseInt(rs.getString("tel_usuario")));
-                 o.setEmail(rs.getString("email"));
-                 o.setCidade(rs.getString("ds_cidade"));
-                 o.setEstado(rs.getString("ds_estado"));
+                /// Dados Origem
+                o.setId_usuario(Integer.parseInt(rs.getString("id_usuario_origem")));
+                o.setId_jogo_origem(Integer.parseInt(rs.getString("id_jogo_origem")));
+                o.setNm_titulo_origem(rs.getString("nm_titulo_origem"));
+                o.setImagem_origem(rs.getString("imagem_origem"));
+                o.setDs_console_origem(rs.getString("ds_console_origem"));
+                // Dados Destino
+                o.setId_usuario(Integer.parseInt(rs.getString("id_usuario_destino")));
+                o.setNm_usuario_destino(rs.getString("nm_usuario_destino"));
+                o.setSobrenome_destino(rs.getString("sobrenome_destino"));
+                o.setId_jogo_destino(Integer.parseInt(rs.getString("id_jogo_destino")));
+                o.setNm_titulo_destino(rs.getString("nm_titulo_destino"));
+                o.setImagem_destino(rs.getString("imagem_destino"));
+                o.setDs_console_destino(rs.getString("ds_console"));
+                o.setTipo(rs.getString("tipo"));
+                o.setStatus_troca(rs.getString("status_troca"));
+                o.setAvaliacao(rs.getString("avaliacao").equals("1") ? true : false);
+                o.setTel_usuario(rs.getString("tel_usuario"));
+                o.setEmail(rs.getString("email"));
+                o.setCidade(rs.getString("ds_cidade"));
+                o.setEstado(rs.getString("ds_estado"));
+                o.setTotal(Integer.parseInt(rs.getString("totalregistros")));
 
-                 objc.add(o);
-             }
-             rs.close();
-             c.close();
-             return objc;
-         }catch(Exception e){
-             return null;
-         }
+                objc.add(o);
+            }
+            rs.close();
+            c.close();
+            return objc;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

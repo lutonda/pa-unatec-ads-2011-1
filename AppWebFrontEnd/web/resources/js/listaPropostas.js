@@ -43,7 +43,7 @@ Proposta.prototype = {
     },
 
     _listaPropostasOnSuccess: function(value){
-        //console.log(value);
+        console.log(value);
         $('#cxTrocas ul li').remove();
         var dados = value.split("|");
         _totalItens = dados[1];

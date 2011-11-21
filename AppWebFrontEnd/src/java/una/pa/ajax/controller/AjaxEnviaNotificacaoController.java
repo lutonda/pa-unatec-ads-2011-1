@@ -36,7 +36,7 @@ public class AjaxEnviaNotificacaoController {
             objct.setId_usuario(idUserCorrente);
             objct.setDescricao(dsNotificacao);
             objct.setBroadcast((broadcast)? 1:0);
-            return String.valueOf(NotificacoesService.enviaNotificacao(NotificacoesService.numeraNotificacao.FALA, dsNotificacao, idUsuario, 5, "Magno", 0, "", 0, "", 0));
+            return String.valueOf(NotificacoesService.enviaNotificacao(Notificacoes.numeraNotificacao.FALA, dsNotificacao, idUsuario, 5, "Magno", 0, "", 0, "", 0));
         }catch(Exception e){
             return String.valueOf(false);
         }  

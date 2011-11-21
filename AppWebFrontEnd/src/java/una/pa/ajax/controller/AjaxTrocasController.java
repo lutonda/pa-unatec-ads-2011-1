@@ -18,21 +18,37 @@ public class AjaxTrocasController {
     @ResponseBody
     public String getListaTrocasJogos(HttpServletRequest request,
             @RequestParam int id, @RequestParam String tipo, @RequestParam int qtd, @RequestParam int pagina) {
-
+        
+        TrocaJogos.statusTroca st = null;
+        
+        if (tipo.equals("F"))
+            st = TrocaJogos.statusTroca.finalizado;
+        else if (tipo.equals("P"))
+            st = TrocaJogos.statusTroca.aberto;
+        else if (tipo.equals("A"))
+            st = TrocaJogos.statusTroca.andamento;
+        
         String Itens = "";
+        int Count = 0;
         List<TrocaJogos> objTrocaJogos = TrocaJogosService.jogosTrocados(qtd, pagina, id);
 
         if (!objTrocaJogos.isEmpty()) {
             for (Iterator<TrocaJogos> it = objTrocaJogos.iterator(); it.hasNext();) {
                 TrocaJogos trocaJogos = it.next();
                 
-                Itens += "<li>" + trocaJogos.getTipo() + " - " + trocaJogos.getNm_usuario_destino() + " " + trocaJogos.getCidade()+"/"+ trocaJogos.getEstado()  + " - " + trocaJogos.getNm_titulo_origem()  + " POR " + trocaJogos.getNm_titulo_destino()  + " - "+ trocaJogos.getStatus_troca() +"</li>";
-
+                if (trocaJogos.getStatus_troca().equals(st.toString()))
+                    Itens = listItem(trocaJogos);
+                
+                Count++;
             }
 
-            Itens += "|" + objTrocaJogos.get(0).getTotal();
+            Itens += "|" + Count;
 
         }
         return Itens;
+    }
+    private String listItem(TrocaJogos trocaJogos){
+        String Itens = "";
+        return Itens += "<li>" + trocaJogos.getTipo() + " - " + trocaJogos.getNm_usuario_destino() + " " + trocaJogos.getCidade()+"/"+ trocaJogos.getEstado()  + " - " + trocaJogos.getNm_titulo_origem()  + " POR " + trocaJogos.getNm_titulo_destino()  + " - "+ trocaJogos.getStatus_troca() +"</li>";
     }
 }

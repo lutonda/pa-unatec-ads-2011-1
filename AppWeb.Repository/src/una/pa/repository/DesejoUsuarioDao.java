@@ -64,9 +64,9 @@ public class DesejoUsuarioDao {
         String sql = "select top " + quantidePorPagina + " * "
                 + "from (select row_number() over (order by id_jogo) as linha "
                 + ", (select count(*) from jogos_desejados where id_usuario = ?) as totalregistros "
-                + ", * from jogos_desejados where id_usuario = ?) as buscapaginada where linha > " + inicio + " and linha <= " + fim;
+                + ", * from jogos_desejados where id_usuario = ? and id_jogo not in(select id_jogo from jogo_usuario where id_jogo = ?)) as buscapaginada where linha > " + inicio + " and linha <= " + fim;
 
-        Object[] vetor = {pId_usuario, pId_usuario};
+        Object[] vetor = {pId_usuario, pId_usuario,pId_usuario};
 
         try {
             Connection c = Data.openConnection();

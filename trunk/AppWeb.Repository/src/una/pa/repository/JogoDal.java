@@ -222,10 +222,14 @@ public class JogoDal {
                 + "       (select isnull(count(*),0) as oferta "
                 + "          from jogo_usuario "
                 + "         where id_jogo = ? "
-                + "           and nivel_interesse = 0) o) OUTROS";
+                + "           and nivel_interesse = 0) o,"
+                + "        (select isnull(avg(pontos),0) as avalicacao"
+                + "	      from dbo.AVALIACAO_JOGO"
+                + "	     where id_jogo = ?)a"
+                + ") OUTROS";
 
 
-        Object[] vetor = {_id, _id, _id, _id};
+        Object[] vetor = {_id, _id, _id, _id,_id};
         try {
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql, vetor);

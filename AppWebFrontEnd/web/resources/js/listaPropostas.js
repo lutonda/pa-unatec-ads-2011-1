@@ -28,7 +28,7 @@ Proposta.prototype = {
     },
     
     _listaPropostasOnClick: function(value){
-        this.dataBindMvc('listaTrocasJogos.do', {
+        this.dataBindMvc('../inicio/listaTrocasJogos.do', {
             id : $('#idUser').text(),
             tipo: value.data,
             qtd : 10,

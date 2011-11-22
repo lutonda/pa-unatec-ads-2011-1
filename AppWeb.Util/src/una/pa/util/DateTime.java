@@ -169,6 +169,6 @@ public class DateTime implements Comparable{
 
     public void setLocale(Locale locale) {
         this.locale = locale;
-    }
+    }    
 
 }

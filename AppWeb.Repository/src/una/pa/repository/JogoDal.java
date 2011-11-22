@@ -289,11 +289,11 @@ public class JogoDal {
         }
         sql = "select top " + quantidePorPagina + " * from ("
                 + "select  id_jogo,"
-                + " console.id_console,"
+                + " c.id_console,"
                 + " t.id_titulo_jogo,"
                 + " jogo.imagem, "
                 + " nm_titulo,"
-                + " console.ds_console,"
+                + " c.ds_console,"
                 + " dt_lancamento,"
                 + " row_number() over (order by t.dt_lancamento desc) as linha,"
                 + "(select count(distinct j.id_jogo)"
@@ -306,7 +306,7 @@ public class JogoDal {
                 + " from titulo_jogo t"
                 + " inner join jogo on t.id_titulo_jogo = jogo.id_titulo_jogo "
                 + "	  inner join genero g on t.id_genero = g.id_genero"
-                + "	  inner join console on jogo.id_console = console.id_console"
+                + "	  inner join console c on jogo.id_console = c.id_console"
                 + "  where " + sqlWhere
                 + " ) a"
                 + " where linha > " + inicio + " and linha <= " + fim
@@ -321,6 +321,91 @@ public class JogoDal {
                 Jogo o = new Jogo();
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
                 o.setId_console((Integer.parseInt(rs.getString("ID_CONSOLE"))));                
+                o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));
+                o.setImagem(rs.getString("imagem"));
+                o.setTitulo_jogo(rs.getString("nm_titulo"));
+                o.setConsole(rs.getString("ds_console"));
+                o.setTotal(Integer.parseInt(rs.getString("totalregistros")));
+                objC.add(o);
+            }
+            rs.close();
+            c.close();
+            return (objC);
+
+        }catch(Exception e){
+            return null;
+        }
+    }
+    public static List<Jogo> filtroJogosGenerico(int _idTipo, String _tipoFiltro, String tipoCategoria,  int quantidePorPagina, int pagina,String nmTitulo,int _idConsole){
+        String sql = "";
+        String sqlWhere ="";
+
+        if(_tipoFiltro.equals("G")){ //para buscar por genero
+            sqlWhere += " and g.id_genero = " + _idTipo;
+        }
+        if(_tipoFiltro.equals("L")){// para buscar por lancamentos
+            sqlWhere += "and dt_lancamento between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
+        }
+        if(_tipoFiltro.equals("N")){ // para buscar por Novidades
+            sqlWhere += "and t.dt_cadastro between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
+        }
+        if(_tipoFiltro.equals("D")){ // para buscar por Desenvolvedor
+            sqlWhere += " and id_desenv = " + _idTipo;
+        }
+        if(_tipoFiltro.equals("C")){ // para buscar por Categoria
+            sqlWhere += " and tipo like '%" + tipoCategoria + "%'";
+        }
+        if(_tipoFiltro.equals("E")){ // para buscar por Editora
+            sqlWhere += " and id_editora = " + _idTipo;
+        }
+        if(_tipoFiltro.equals("T")) {// para buscar por Título
+            sqlWhere += " and t.nm_titulo like '%" + nmTitulo +"%'";
+        }
+        if(_tipoFiltro.equals("S")){// para buscar por Console
+            sqlWhere += " and c.id_console =" + _idConsole;
+        }
+
+        int inicio = 0;
+        int fim = quantidePorPagina;
+
+        if (pagina > 1) {
+            fim = (quantidePorPagina * pagina);
+            inicio = fim - quantidePorPagina;
+        }
+        sql = "select top " + quantidePorPagina + " * from ("
+                + "select  id_jogo,"
+                + " console.id_console,"
+                + " t.id_titulo_jogo,"
+                + " jogo.imagem, "
+                + " nm_titulo,"
+                + " console.ds_console,"
+                + " dt_lancamento,"
+                + " row_number() over (order by t.dt_lancamento desc) as linha,"
+                + "(select count(distinct j.id_jogo)"
+                + "  from jogo j "
+                + " left join titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo "
+                + " left join console c on j.id_console = c.id_console "
+                + " left join jogo_usuario ju on j.id_jogo = ju.id_jogo "
+                + " left join genero g on g.id_genero = t.id_genero"
+                + " where 1 = 1 and " + sqlWhere + " ) as totalregistros "
+                + " from titulo_jogo t"
+                + " inner join jogo on t.id_titulo_jogo = jogo.id_titulo_jogo "
+                + "	  inner join genero g on t.id_genero = g.id_genero"
+                + "	  inner join console on jogo.id_console = console.id_console"
+                + "  where 1 = 1 and " + sqlWhere
+                + " ) a"
+                + " where linha > " + inicio + " and linha <= " + fim
+                + " order by dt_lancamento desc";
+
+        List<Jogo> objC = new ArrayList<Jogo>();
+        try{
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql);
+
+            while (rs.next()) {
+                Jogo o = new Jogo();
+                o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
+                o.setId_console((Integer.parseInt(rs.getString("ID_CONSOLE"))));
                 o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));
                 o.setImagem(rs.getString("imagem"));
                 o.setTitulo_jogo(rs.getString("nm_titulo"));

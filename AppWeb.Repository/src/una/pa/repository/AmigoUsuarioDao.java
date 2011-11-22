@@ -114,4 +114,46 @@ public class AmigoUsuarioDao {
                 return null;
             }
         }
+    public static boolean incluir(AmigoUsuario _obj){
+        try{
+            Connection c = Data.openConnection();
+            String sql = "insert into dbo.AMIGO_USUARIO (id_usuario,id_usuario_amigo,dt_convite,sn_aceite,ignorado)"
+                         +"values ?,?,getdate(),?,?";
+            Object[] vetor = {_obj.getId_usuario(),_obj.getId_usuario_amigo(),_obj.getSn_aceite(),_obj.getIgnorado()};
+            Data.executeUpdate(c, sql, vetor);
+            c.close();
+            return true;
+
+        }catch(Exception e){
+            return false;
+        }
     }
+    public static boolean alterar(AmigoUsuario _obj){
+        try{
+            Connection c = Data.openConnection();
+            String sql = "update dbo.AMIGO_USUARIO set id_usuario = ?,id_usuario_amigo ?,sn_aceite ?,ignorado = ? where id_amigo_usuario = ?";
+            Object[] vetor = {_obj.getId_usuario(),_obj.getId_usuario_amigo(),_obj.getSn_aceite(),_obj.getIgnorado()};
+
+            Data.executeQuery(c, sql, vetor);
+            c.close();
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+     public static boolean excluir(int _id) {
+
+        try {
+            Connection c = Data.openConnection();
+            String sql = "delete dbo.AMIGO_USUARIO where id_amigo_usuario = ?";
+            Object[] vetor = {_id};
+
+            Data.executeUpdate(c, sql, vetor);
+            c.close();
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+}

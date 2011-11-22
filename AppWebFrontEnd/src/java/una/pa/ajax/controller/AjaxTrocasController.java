@@ -36,10 +36,12 @@ public class AjaxTrocasController {
             for (Iterator<TrocaJogos> it = objTrocaJogos.iterator(); it.hasNext();) {
                 TrocaJogos trocaJogos = it.next();
                 
-                if (trocaJogos.getStatus_troca().equals(st.toString()))
+                if (trocaJogos.getStatus_troca().equals(st.toString())){
                     Itens = listItem(trocaJogos);
+                    Count++;
+                }
                 
-                Count++;
+                
             }
 
             Itens += "|" + Count;

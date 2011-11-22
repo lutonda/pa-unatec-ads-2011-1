@@ -251,7 +251,7 @@ public class UsuarioDao {
                 o.setDesejo(Integer.parseInt(rs.getString("desejo")));
                 o.setReplica_pendente(Integer.parseInt(rs.getString("replica_pendente")));
                 o.setAmigos_pendentes(Integer.parseInt(rs.getString("amigos_pendentes")));
-                o.setTrocas_pendentes(Integer.parseInt(rs.getString("media_qualificacao")));
+                o.setMedia_qualificacao(Integer.parseInt(rs.getString("media_qualificacao")));
             }
             rs.close();
             c.close();

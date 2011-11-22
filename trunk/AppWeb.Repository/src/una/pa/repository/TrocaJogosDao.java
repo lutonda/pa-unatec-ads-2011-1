@@ -202,7 +202,7 @@ public class TrocaJogosDao {
                 + " case when jud.id_usuario = ? then ju.id_usuario else jud.id_usuario end as id_usuario_destino,"
                 + " ju.id_jogo id_jogo_origem,"
                 + " jud.id_jogo  as id_jogo_destino,"
-                + " case when ju.id_usuario = 5 then 'E'"
+                + " case when ju.id_usuario = ? then 'E'"
                 + " else 'R' end as tipo,"
                 + " case when t.data_aceito is null then 'aberto'  "
                 + " when t.data_aceito is not null "
@@ -237,7 +237,7 @@ public class TrocaJogosDao {
                 + ") a"
                 + " where linha > " + inicio + " and linha <= " + fim;
 
-        Object[] vetor = {_id, _id, _id, _id, _id};
+        Object[] vetor = {_id, _id, _id, _id, _id, _id};
 
         try {
             Connection c = Data.openConnection();

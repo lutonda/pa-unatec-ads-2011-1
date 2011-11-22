@@ -42,4 +42,13 @@ public class AmigoUsuarioService {
         }
         return retorno;
     }
+    public static boolean incluir(AmigoUsuario _obj){
+        return AmigoUsuarioDao.incluir(_obj);
+    }
+    public static boolean alterar(AmigoUsuario _obj){
+        return AmigoUsuarioDao.alterar(_obj);
+    }
+    public static boolean excluir(int _id){
+        return AmigoUsuarioDao.excluir(_id);
+    }
 }

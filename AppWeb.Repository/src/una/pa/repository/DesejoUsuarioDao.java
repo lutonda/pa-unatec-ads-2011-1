@@ -92,6 +92,46 @@ public class DesejoUsuarioDao {
         } catch (Exception e) {
             return null;
         }
+    }
+    public static boolean incluir(Desejousuario _obj){
+        try{
+            Connection c = Data.openConnection();
+            String sql = "insert into dbo.JOGO_DESEJADO (id_jogo,id_usuario,dt_solicitacao,nivel_desejo)"
+                        +" values (?,?,getdate(),?)";
+            Object[] vetor = {_obj.getId_jogo(),_obj.getId_usuario(),_obj.getNivelDesejo()};
+            Data.executeQuery(c, sql, vetor);
+            c.close();
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+    public static boolean alterar(Desejousuario _obj){
+        try{
+            Connection c = Data.openConnection();
+            String sql = "update dbo.JOGO_DESEJADO set id_jogo = ?,id_usuario = ?, dt_solicitacao = getdate(), nivel_desejo = ? where id_jogo_desejado = ?";
+            Object[] vetor = {_obj.getId_jogo(),_obj.getId_usuario(),_obj.getNivelDesejo()};
 
+            Data.executeQuery(c, sql, vetor);
+            c.close();
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+    public static boolean excluir(int _id) {
+
+        try {
+            Connection c = Data.openConnection();
+            String sql = "delete dbo.JOGO_DESEJADO where id_jogo_desejado = ?";
+            Object[] vetor = {_id};
+
+            Data.executeUpdate(c, sql, vetor);
+            c.close();
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

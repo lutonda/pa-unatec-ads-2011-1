@@ -43,5 +43,47 @@ public class TagsDao {
         }
 
     }
+ public static boolean incluir(Tags _obj){
+        try{
+            Connection c = Data.openConnection();
+            String sql = "insert into dbo.tags(id_usuario,ds_tag)"
+                         +"values ?,?";
+            Object[] vetor = {_obj.getId_usuario(),_obj.getDs_tag()};
+            Data.executeUpdate(c, sql, vetor);
+            c.close();
+            return true;
+
+        }catch(Exception e){
+            return false;
+        }
+    }
+    public static boolean alterar(Tags _obj){
+        try{
+            Connection c = Data.openConnection();
+            String sql = "update dbo.tags set id_usuario = ?, ds_tag = ? where id_tag = ?";
+            Object[] vetor = {_obj.getId_usuario(),_obj.getDs_tag()};
+
+            Data.executeQuery(c, sql, vetor);
+            c.close();
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+     public static boolean excluir(int _id) {
+
+        try {
+            Connection c = Data.openConnection();
+            String sql = "delete dbo.tags where id_tag = ?";
+            Object[] vetor = {_id};
+
+            Data.executeUpdate(c, sql, vetor);
+            c.close();
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }

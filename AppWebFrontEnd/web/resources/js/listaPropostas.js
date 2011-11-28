@@ -35,7 +35,10 @@ Proposta.prototype = {
             pagina: _pagina
         }, this._listaPropostasOnSuccess);
         
+        var myClose=function(hash) {hash.o.remove();  hash.w.hide(); $('#cxTrocas ul li').remove(); }; 
+        
         $('#cxTrocas').jqm({
+            onHide:myClose,
             overlay:80,
             overlayClass:'bgModal',
             closeClass:'btnFecharModal'
@@ -43,8 +46,6 @@ Proposta.prototype = {
     },
 
     _listaPropostasOnSuccess: function(value){
-        //console.log(value);
-        $('#cxTrocas ul li').remove();
         var dados = value.split("|");
         _totalItens = dados[1];
         $('#cxTrocas ul').append(dados[0]);

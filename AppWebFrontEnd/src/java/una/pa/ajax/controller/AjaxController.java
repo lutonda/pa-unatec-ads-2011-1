@@ -32,6 +32,7 @@ public class AjaxController {
                 else
                     objJogo = JogoService.listar(id, qtd, pagina, null, console, nivelOfetas);
             } else {
+                id = 0;
                 objJogo = JogoService.listar(id, qtd, pagina, null, console);
             }          
         }

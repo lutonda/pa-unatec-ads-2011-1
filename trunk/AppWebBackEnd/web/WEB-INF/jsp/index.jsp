@@ -12,7 +12,7 @@
 
             <!-- Content -->
             <div id="content" class="clearfix"><br/>
-                <br/>Bem vindo a área administrativa do troca de jogos.<br />Escolha as opções de administração do site usando o menu a cima.<br/>${message}<br/><br/><br/><br/><br/>
+                <br/>Bem vindo a área administrativa do Joga Troca.<br />Escolha as opções de administração do site usando o menu a cima.<br/>${message}<br/><br/><br/><br/><br/>
             </div>
 
             <!-- Footer -->

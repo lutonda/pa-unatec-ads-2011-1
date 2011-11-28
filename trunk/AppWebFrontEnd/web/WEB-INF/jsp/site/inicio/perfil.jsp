@@ -58,7 +58,7 @@
                         <ul id="notificacao">
                             <li><c:if test="${(AmigoUsuario.ignorado == 0 && AmigoUsuario.id_usuario != 0 && AmigoUsuario.sn_aceite != 0) || DadosIniciais.id_usuario == IdParam}"><input type="text" id="txtNotificacao" size="90"></input><input type="submit" value="Enviar" id="btnEnviarNotificacao"></input></c:if></li>
                         </ul>
-                        <span style="float: right; margin-top: 0; display: none;"><a href="javascript:void(0);" id="btnMais">Mais(+)</a></span>
+                        <span style="float: right; margin-top: 0;"><a href="javascript:void(0);" id="btnMais">Mais(+)</a></span>
                     </div>
                     <div class="box-df">
                         <ul id="listaJogos" style="margin-left: 15px; height: 260px;">

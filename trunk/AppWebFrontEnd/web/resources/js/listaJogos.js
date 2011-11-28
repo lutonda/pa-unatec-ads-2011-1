@@ -96,21 +96,24 @@ Jogo.prototype = {
     _btnFiltroOnClick: function(value){
         _pagina = 1;
         _busca = false;
-        var id = $('#idUser').text();
+        var id = 0;
         var busca = "";
 
         switch (value.data) {
             case 'meusDesejos':
+                id = $('#idUser').text();
                 _desejo = true;
                 _nivelOfetas = -1;
                 _console = 0;
                 break;
             case 'meusJogos':
+                id = $('#idUser').text();
                 _desejo = false;
                 _nivelOfetas = -1;
                 _console = 0;
                 break;
             case 'minhasOfertas':
+                id = $('#idUser').text();
                 _desejo = false;
                 _nivelOfetas = 0;
                 _console = 0;
@@ -122,7 +125,7 @@ Jogo.prototype = {
                 _nivelOfetas = -1;
                 break;
         }
-
+        
         if(id != null){
             this.dataBindMvc('listaJogos.do', {
                 id : id,
@@ -147,6 +150,7 @@ Jogo.prototype = {
     _listaJogoOnSuccess: function(value){
         //$('#listaJogos li:not(:first)').remove();
         $('#listaJogos li').remove();
+        $('#listaJogos div').remove();
 
         var dados = value.split("|");
         _totalItens = dados[1];
@@ -156,13 +160,15 @@ Jogo.prototype = {
         
         var menos = _pagina - 1;
         var mais = _pagina + 1;
-
+        
         _totalPg = Math.ceil(_totalItens / 10);
         if(_totalPg != 0 && _totalItens >= 11)
             $('#paginacao').show();
         else
             $('#paginacao').hide();
         
+        $('#prox').unbind('click');
+        $('#ant').unbind('click');
         if (mais <= _totalPg)
             $('#prox').bind('click', mais, $.createDelegate(this,  this._paginacaoOnClick));
         else
@@ -176,7 +182,6 @@ Jogo.prototype = {
 
     _paginacaoOnClick: function(value){
         _pagina = value.data;
-
         this.dataBindMvc('listaJogos.do', {
             id : (_busca)? 0:$('#idUser').text(), // ($('#txtBuscarJogo').val() != "")? 0:$('#idUser').text(),
             qtd : 10,

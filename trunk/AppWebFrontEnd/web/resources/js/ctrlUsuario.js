@@ -40,35 +40,31 @@ CtrlUsuario.prototype = {
                 $('div a', this).bind('click', id, $.createDelegate(ini, CtrlUsuario.prototype._btnUserRemoverOnClick));
             }         
         });
-
     },
 
     _btnUserAceiteOnClick: function(value){
         _idUserAtual = value.data.text();
-        this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
+        this.dataBindMvc('../inicio/ctrlUsuario.do', {
             idAmigoUsuario : _idUserAtual,
-            aceite: 1
+            controleTipo: 1
         }, this._postUserAceiteOnSuccess);
     },
     
     _btnUserNaoAgoraOnClick: function(value){
         _idUserAtual = value.data.text();
-        console.log(_idUserAtual);
-        
         this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
             idAmigoUsuario : _idUserAtual,
-            aceite: 0
+            controleTipo: 0
         }, this._postUserRecusaOnSuccess);
     },
 
     _btnUserRemoverOnClick: function(value){
         _idUserAtual = value.data;
-        
         var msg = confirm('Deseja remover?');
         if(msg){
             this.dataBindMvc('../../site/inicio/ctrlUsuario.do', {
                 idAmigoUsuario : _idUserAtual,
-                aceite: 0
+                controleTipo: 0
             }, this._postUserRemoverOnSuccess);
         }
     },

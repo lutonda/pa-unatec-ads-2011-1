@@ -151,6 +151,7 @@ FiltroJogos.prototype = {
     _listaJogoOnSuccess: function(value){
         //$('#listaJogos li:not(:first)').remove();
         $('#listaJogos li').remove();
+        $('#listaJogos div').remove();
 
         var dados = value.split("|");
         _totalItens = dados[1];
@@ -167,6 +168,8 @@ FiltroJogos.prototype = {
         else
             $('#paginacao').hide();
         
+        $('#prox').unbind('click');
+        $('#ant').unbind('click');
         if (mais <= _totalPg)
             $('#prox').bind('click', mais, $.createDelegate(this,  this._paginacaoOnClick));
         else

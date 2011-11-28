@@ -27,7 +27,7 @@
 </div>
 <div class="box-nav box-nav-final">
     <c:forEach items="${tags}" var="Tags" varStatus="count" >
-        <a href="#"> <c:out value="${Tags.ds_tag}"/> </a> &nbsp;&nbsp;
+        <c:out value="${Tags.ds_tag}"/>&nbsp;&nbsp;
     </c:forEach><br/><br/>
     <span style="float: right"><a href="#">Adicionar Tags</a></span>
 </div>

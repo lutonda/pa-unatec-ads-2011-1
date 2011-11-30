@@ -83,7 +83,8 @@ Notificacoes.prototype = {
             $('#btnMais').unbind('click');
             $('#btnMais').hide();
         }
-        $(window).scrollTop($(document).height());
+        if (_pagina != 1)
+            $(window).scrollTop($(document).height());
     },
 
     _paginacaoNotOnClick: function(value){

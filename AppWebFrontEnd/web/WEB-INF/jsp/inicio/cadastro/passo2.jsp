@@ -115,6 +115,6 @@
         
         <!-- scripts de escopo local -->
         <%@ include file="/inc/metrics.jsp" %>
-        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/validacaoPasso2.js"/>
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/validacaoPasso2.js"></script>
     </body>
 </html>

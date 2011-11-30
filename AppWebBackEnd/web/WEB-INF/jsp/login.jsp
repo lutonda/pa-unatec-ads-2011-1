@@ -7,7 +7,7 @@
         <div id="container">
             <div id="header">
                 <h1>
-                    <a href="#" title="Projeto Rede de Troca de Jogos" ><span style="font-size: 18px; font-weight: bold;"><br/><br/>TROCA DE JOGOS</span><br/>Rede de troca de Jogo - <b>Área Administrativa</b></a>
+                    <a href="#" title="Projeto Rede de Troca de Jogos" ><span style="font-size: 18px; font-weight: bold;"><br/><br/>JOGA TROCA</span><br/>Rede de troca de Jogos - <b>Área Administrativa</b></a>
                 </h1>
             </div>
             <div id="content" class="clearfix">

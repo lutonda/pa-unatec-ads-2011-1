@@ -30,7 +30,7 @@
 
                     </fieldset>
                 </div>
-                <span style="font-size: 18px; font-weight: bold;"><br/><br/>TROCA DE JOGOS</span><br/>Rede de troca de Jogo
+                <span style="font-size: 18px; font-weight: bold;"><br/><br/>JOGA TROCA</span><br/>Rede de troca de Jogos
             </div>
         </div>
 

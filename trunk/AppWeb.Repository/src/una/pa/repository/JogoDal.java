@@ -63,7 +63,7 @@ public class JogoDal {
                 + "left join titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo "
                 + "left join console c on j.id_console = c.id_console "
                 + "left join jogo_usuario ju on j.id_jogo = ju.id_jogo "
-                + "" + sqlWhere + ") as buscapaginada where linha > " + inicio + " and linha <= " + fim;
+                + "" + sqlWhere + " ) as buscapaginada where linha > " + inicio + " and linha <= " + fim;
 
         if ((busca == null) && (pId_usuario == 0) && (console == 0)) {
             sql = "select *, '0' as totalregistros "

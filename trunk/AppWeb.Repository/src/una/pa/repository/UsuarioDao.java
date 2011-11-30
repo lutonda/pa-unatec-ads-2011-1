@@ -120,7 +120,7 @@ public class UsuarioDao {
         String sql = "select USUARIO.ID_USUARIO,USUARIO.NM_USUARIO,USUARIO.NM_SOBRENOME,"
   +"  USUARIO.email,USUARIO.dt_nascimento,"
   +"  ENDERECO.DS_CIDADE,ENDERECO.DS_ESTADO"
-  +"  from USUARIO inner join ENDERECO on "
+  +"  from USUARIO left join ENDERECO on "
   +"  USUARIO.ID_USUARIO = ENDERECO.ID_USUARIO;";
         try {
             Connection c = Data.openConnection();

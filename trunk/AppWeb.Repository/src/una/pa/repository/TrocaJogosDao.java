@@ -65,17 +65,17 @@ public class TrocaJogosDao {
         List<TrocaJogos> objc = new ArrayList<TrocaJogos>();
 
         String sql = "SELECT DISTINCT "
-                + " convert(char(10),DT_SOLICITACAO,103) DT_SOLICITACAO, "
+                + " DT_SOLICITACAO as DT_SOLICITACAO, "
                 + " STATUS_TROCA , "
                 + " NM_USUARIO_ORIGEM, "
                 + " NM_TITULO_ORIGEM, "
                 + " DS_CONSOLE_ORIGEM, "
-                + " convert(char(10),DT_AVALIACAO_ORIGEM,103) DT_AVALIACAO_ORIGEM, "
+                + " DT_AVALIACAO_ORIGEM, "
                 + " PONTOS_ORIGEM , "
                 + " NM_USUARIO_DESTINO, "
                 + " NM_TITULO_DESTINO, "
                 + " DS_CONSOLE_DESTINO, "
-                + " convert(char(10),DT_AVALIACAO_DESTINO,103)DT_AVALIACAO_DESTINO, "
+                + " DT_AVALIACAO_DESTINO, "
                 + " PONTOS_DESTINO "
                 + " FROM dbo.JOGOS_TROCADOS ";
         try {

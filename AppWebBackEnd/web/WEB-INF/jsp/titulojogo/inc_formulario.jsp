@@ -19,21 +19,18 @@
                 <input type="text" size="80" name="nm_titulo" value="${titulojogo.nm_titulo}"/>
             </li>
             <li>
-                <label><strong>Tipo</strong></label>
-                <select name="tipo">
+                <label><strong>Categoria</strong></label>
+                <select name="id_categoria">
                     <option value="0">Selecione...</option>
-                    <c:if test="${(titulojogo.tipo == 'Single Player')&&(titulojogo.tipo != 'Multi Player')}">
-                        <option selected="selected">Single Player</option>
-                        <option>Multi Player</option>
-                    </c:if>
-                    <c:if test="${(titulojogo.tipo == 'Multi Player')&&(titulojogo.tipo != 'Single Player')}">
-                        <option>Single Player</option>
-                        <option selected="selected">Multi Player</option>
-                    </c:if>
-                    <c:if test="${(titulojogo.tipo != 'Multi Player')&&(titulojogo.tipo != 'Single Player')}">
-                        <option value="Single Player">Single Player</option>
-                        <option value="Multi Player">Multi Player</option>
-                    </c:if>
+                    <c:forEach items="${categorias}" var="Categoria" >
+                        <c:if test="${Categoria.id_categoria == titulojogo.id_categoria}">
+                            <c:set var="select" value="selected=\"selected\""/>
+                        </c:if>
+                        <c:if test="${Categoria.id_categoria != titulojogo.id_categoria}">
+                            <c:set var="select" value=""/>
+                        </c:if>
+                        <option ${select} value="${Categoria.id_categoria}">${Categoria.nm_categoria}</option>
+                    </c:forEach>
                 </select>
             </li>
             <li>
@@ -78,6 +75,21 @@
                             <c:set var="select" value=""/>
                         </c:if>
                         <option ${select} value="${Desenvolvedor.id_desenv}">${Desenvolvedor.ds_desenv}</option>
+                    </c:forEach>
+                </select>
+            </li>
+            <li>
+                <label><strong>Linguagem</strong></label>
+                <select name="id_linguagem">
+                    <option value="0">Selecione...</option>
+                    <c:forEach items="${linguagens}" var="Linguagem" >
+                        <c:if test="${Linguagem.id_linguagem == titulojogo.id_linguagem}">
+                            <c:set var="select" value="selected=\"selected\""/>
+                        </c:if>
+                        <c:if test="${Linguagem.id_linguagem != titulojogo.id_linguagem}">
+                            <c:set var="select" value=""/>
+                        </c:if>
+                        <option ${select} value="${Linguagem.id_linguagem}">${Linguagem.nm_linguagem}</option>
                     </c:forEach>
                 </select>
             </li>

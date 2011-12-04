@@ -20,12 +20,16 @@ public class TituloJogoController extends MultiActionController {
         List<Editora> objEditora = EditoraService.listar();
         List<Genero> objGnero = GeneroService.listar();
         List<Desenvolvedor> objDesenv = DesenvolvedorService.listar();
+        List<Categoria> objCategoria = CategoriaService.listar();
+        List<Linguagem> objLing = LinguagemService.listar();
 
         ModelAndView mav = new ModelAndView("titulojogo/editar");
         mav.addObject("titulojogo", objC);
         mav.addObject("editoras", objEditora);
         mav.addObject("generos", objGnero);
         mav.addObject("desenvolvedores", objDesenv);
+        mav.addObject("categorias", objCategoria);
+        mav.addObject("linguagens", objLing);
         return mav;
         //return new ModelAndView("console/editar", "console", objC);
     }
@@ -39,7 +43,7 @@ public class TituloJogoController extends MultiActionController {
         objC.setId_genero(Integer.parseInt(request.getParameter("id_genero")));
         objC.setId_desenv(Integer.parseInt(request.getParameter("id_desenv")));
         objC.setNm_titulo(request.getParameter("nm_titulo"));
-        objC.setTipo(request.getParameter("tipo"));
+        //objC.setTipo(request.getParameter("tipo"));
 
         ModelAndView mav = new ModelAndView("titulojogo/editar");
         try {
@@ -90,7 +94,7 @@ public class TituloJogoController extends MultiActionController {
         objC.setId_genero(Integer.parseInt(request.getParameter("id_genero")));
         objC.setId_desenv(Integer.parseInt(request.getParameter("id_desenv")));
         objC.setNm_titulo(request.getParameter("nm_titulo"));
-        objC.setTipo(request.getParameter("tipo"));
+        //objC.setTipo(request.getParameter("tipo"));
 
         try {
 

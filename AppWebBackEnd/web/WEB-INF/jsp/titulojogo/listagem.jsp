@@ -36,10 +36,11 @@
                         <tr>
                             <th>ID</th>
                             <th>Titulo</th>
-                            <th>Tipo</th>
+                            <th>Categoria</th>
                             <th>Editora</th>
                             <th>Genero</th>
                             <th>Desenvolvedor</th>
+                            <th>Linguagem</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -60,7 +61,7 @@
                                     <c:out value="${Titulo_jogo.nm_titulo}"/>
                                 </td>
                                 <td>
-                                    <c:out value="${Titulo_jogo.tipo}"/>
+                                    <c:out value="${Titulo_jogo.nm_categoria}"/>
                                 </td>
                                 <td>
                                     <c:out value="${Titulo_jogo.editora}"/>
@@ -70,6 +71,9 @@
                                 </td>
                                 <td>
                                     <c:out value="${Titulo_jogo.desenv}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${Titulo_jogo.nm_linguagem}"/>
                                 </td>
                                 <td>
                                     <a href="editar.htm?id=${Titulo_jogo.id_titulo_jogo}" title="Editar">Editar</a>

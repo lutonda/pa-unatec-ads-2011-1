@@ -89,7 +89,7 @@ public class AvaliacaoJogoDao {
                 o.setPontos(Integer.parseInt(rs.getString("pontos")));
                 o.setDt_Avaliacao(rs.getDate("dt_avaliacao"));
                 o.setNm_titulo(rs.getString("nm_titulo"));
-                o.setTipo(rs.getString("tipo"));
+               // o.setTipo(rs.getString("tipo"));
                 o.setImagem(rs.getString("imagem"));
                 o.setNm_usuario(rs.getString("nm_usuario"));
                 o.setNm_sobrenome(rs.getString("nm_sobrenome"));

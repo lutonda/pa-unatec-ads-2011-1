@@ -237,7 +237,7 @@ public class JogoDal {
             if (rs.next()) {
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
                 o.setTitulo_jogo(rs.getString("nm_titulo"));
-                o.setTipo(rs.getString("tipo"));
+               // o.setTipo(rs.getString("tipo"));
                 o.setEditora(rs.getString("nm_editora"));
                 o.setGenero(rs.getString("DS_GENERO"));
                 o.setConsole(rs.getString("ds_console"));

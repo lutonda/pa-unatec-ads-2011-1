@@ -6,7 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import una.pa.model.*;
-import java.util.Date;
+
 
 /**
  *
@@ -18,10 +18,18 @@ public class TituloJogoDao {
 
         List<TituloJogo> objC = new ArrayList<TituloJogo>();
 
-        String sql = "select * "
-                + "from titulo_jogo left join editora on titulo_jogo.id_editora = editora.id_editora "
-                + "left join genero on titulo_jogo.id_genero = genero.id_genero "
-                + "left join desenvolvedor on titulo_jogo.id_desenv = desenvolvedor.id_desenv";
+        String sql = "select *"
+                + " from titulo_jogo tj"
+                + " left join editora_titulo et on tj.id_titulo_jogo = et.id_titulo_jogo"
+                + " left join editora e on  e.id_editora = et.id_editora"
+                + " left join genero_titulo gt on gt.id_titulo_jogo = tj.id_titulo_jogo"
+                + " left join genero g on g.id_genero = gt.id_genero"
+                + " left join desenvolvedor_titulo dt on dt.id_titulo_jogo = tj.id_titulo_jogo"
+                + " left join desenvolvedor d on d.id_desenv = dt.id_desenv"
+                + " left join categoria_titulo ct on ct.id_titulo_jogo = tj.id_titulo_jogo"
+		+ " left join categoria c on c.id_categoria = ct.id_categoria"
+                + " left join linguagem_titulo lt on tj.id_titulo_jogo = lt.id_titulo_jogo"
+                + " left join linguagem l on l.id_linguagem = lt.id_linguagem";
 
 
         try {
@@ -33,11 +41,11 @@ public class TituloJogoDao {
 
                 o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO").toString()));
                 o.setNm_titulo(rs.getString("NM_TITULO"));
-                //o.setDt_cadastro(data); rs.getString("DT_CADASTRO")
-                o.setTipo(rs.getString("TIPO"));
+                o.setNm_categoria(rs.getString("nm_categoria"));
                 o.setEditora(rs.getString("NM_EDITORA"));
                 o.setGenero(rs.getString("DS_GENERO"));
                 o.setDesenv(rs.getString("DS_DESENV"));
+                o.setNm_linguagem(rs.getString("nm_linguagem"));
                 if (rs.getString("ID_EDITORA") != null) {
                     o.setId_editora(Integer.parseInt(rs.getString("ID_EDITORA")));
                 }
@@ -76,7 +84,7 @@ public class TituloJogoDao {
                 (_obj.getId_genero() != 0) ? _obj.getId_genero() : null,
                 (_obj.getId_desenv() != 0) ? _obj.getId_desenv() : null,
                 _obj.getNm_titulo(),
-                (!_obj.getTipo().equals("0")) ? _obj.getTipo() : null,
+                //(!_obj.getTipo().equals("0")) ? _obj.getTipo() : null,
                 _obj.getId_titulo_jogo()};
 
             Data.executeUpdate(c, sql, vetor);
@@ -103,7 +111,8 @@ public class TituloJogoDao {
                 (_obj.getId_genero() != 0) ? _obj.getId_genero() : null,
                 (_obj.getId_desenv() != 0) ? _obj.getId_desenv() : null,
                 _obj.getNm_titulo(),
-                (!_obj.getTipo().equals("0")) ? _obj.getTipo() : null};
+                //(!_obj.getTipo().equals("0")) ? _obj.getTipo() : null
+            };
 
             Data.executeUpdate(c, sql, vetor);
             c.close();

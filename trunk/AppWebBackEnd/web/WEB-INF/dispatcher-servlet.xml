@@ -26,6 +26,8 @@
                 <prop key="genero/*.htm">generoController</prop>
                 <prop key="desenvolvedor/*.htm">desenvolvedorController</prop>
                 <prop key="editora/*.htm">editoraController</prop>
+                <prop key="categoria/*.htm">categoriaController</prop>
+                <prop key="linguagem/*.htm">linguagemController</prop>
                 <prop key="titulojogo/*.htm">tituloJogoController</prop>
                 <prop key="usuariosistema/*.htm">usuarioSistemaController</prop>
                 <prop key="convite/*.htm">conviteController</prop>
@@ -123,7 +125,13 @@
     <bean name="configuracoesController"
             class="una.pa.controller.ConfiguracaoController">
     </bean>
-
+    <bean name="categoriaController"
+            class="una.pa.controller.CategoriaController">
+    </bean>
+    <bean name="linguagemController"
+            class="una.pa.controller.LinguagemController">
+    </bean>
 
    
+
 </beans>

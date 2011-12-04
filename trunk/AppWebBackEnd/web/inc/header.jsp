@@ -12,6 +12,8 @@
                 <li><a href="/AppWebBackEnd/genero/listar.htm" title="Generos">Gêneros</a></li>
                 <li><a href="/AppWebBackEnd/desenvolvedor/listar.htm" title="Desenvolvedor">Desenvolvedor</a></li>
                 <li><a href="/AppWebBackEnd/editora/listar.htm" title="Editora">Editora</a></li>
+                <li><a href="/AppWebBackEnd/categoria/listar.htm" title="Categoria">Categoria</a></li>
+                <li><a href="/AppWebBackEnd/linguagem/listar.htm" title="Linguagem">Linguagem</a></li>
                 <li><a href="/AppWebBackEnd/titulojogo/listar.htm" title="TituloJogo">Titulo Jogo</a></li>
                 <li><a href="/AppWebBackEnd/jogo/listar.htm" title="Jogos">Jogos</a></li>
             </ul>

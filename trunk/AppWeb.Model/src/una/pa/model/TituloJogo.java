@@ -15,7 +15,6 @@ public class TituloJogo {
     protected int id_titulo_jogo;
     protected String nm_titulo;
     protected Date dt_cadastro;
-    protected String tipo;
 
     protected String editora;
     protected int id_editora;
@@ -23,30 +22,10 @@ public class TituloJogo {
     protected int id_genero;
     protected String desenv;
     protected int id_desenv;
-
-    public int getId_desenv() {
-        return id_desenv;
-    }
-
-    public void setId_desenv(int id_desenv) {
-        this.id_desenv = id_desenv;
-    }
-
-    public int getId_genero() {
-        return id_genero;
-    }
-
-    public void setId_genero(int id_genero) {
-        this.id_genero = id_genero;
-    }
-
-    public int getId_editora() {
-        return id_editora;
-    }
-
-    public void setId_editora(int id_editora) {
-        this.id_editora = id_editora;
-    }
+    protected int id_categoria;
+    protected String nm_categoria;
+    protected int id_linguagem;
+    protected String nm_linguagem;
 
     public String getDesenv() {
         return desenv;
@@ -80,12 +59,68 @@ public class TituloJogo {
         this.genero = genero;
     }
 
+    public int getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+
+    public int getId_desenv() {
+        return id_desenv;
+    }
+
+    public void setId_desenv(int id_desenv) {
+        this.id_desenv = id_desenv;
+    }
+
+    public int getId_editora() {
+        return id_editora;
+    }
+
+    public void setId_editora(int id_editora) {
+        this.id_editora = id_editora;
+    }
+
+    public int getId_genero() {
+        return id_genero;
+    }
+
+    public void setId_genero(int id_genero) {
+        this.id_genero = id_genero;
+    }
+
+    public int getId_linguagem() {
+        return id_linguagem;
+    }
+
+    public void setId_linguagem(int id_linguagem) {
+        this.id_linguagem = id_linguagem;
+    }
+
     public int getId_titulo_jogo() {
         return id_titulo_jogo;
     }
 
-    public void setId_titulo_jogo(int id) {
-        this.id_titulo_jogo = id;
+    public void setId_titulo_jogo(int id_titulo_jogo) {
+        this.id_titulo_jogo = id_titulo_jogo;
+    }
+
+    public String getNm_categoria() {
+        return nm_categoria;
+    }
+
+    public void setNm_categoria(String nm_categoria) {
+        this.nm_categoria = nm_categoria;
+    }
+
+    public String getNm_linguagem() {
+        return nm_linguagem;
+    }
+
+    public void setNm_linguagem(String nm_linguagem) {
+        this.nm_linguagem = nm_linguagem;
     }
 
     public String getNm_titulo() {
@@ -96,13 +131,5 @@ public class TituloJogo {
         this.nm_titulo = nm_titulo;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-
+   
 }

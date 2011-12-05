@@ -1,8 +1,10 @@
 package una.pa.model;
 
 public class Desenvolvedor {
+
     protected int id_desenv;
-    protected String ds_desenv ;
+    protected String ds_desenv;
+    protected int id_titulo_jogo;
 
     public String getDs_desenv() {
         return ds_desenv;
@@ -20,4 +22,11 @@ public class Desenvolvedor {
         this.id_desenv = id_desenv;
     }
 
+    public int getId_titulo_jogo() {
+        return id_titulo_jogo;
+    }
+
+    public void setId_titulo_jogo(int id_titulo_jogo) {
+        this.id_titulo_jogo = id_titulo_jogo;
+    }
 }

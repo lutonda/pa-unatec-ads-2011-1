@@ -12,6 +12,7 @@ package una.pa.model;
 public class Genero {
     protected int id_genero;
     protected String ds_genero;
+    protected int id_titulo_jogo;
 
     public String getDs_genero() {
         return ds_genero;
@@ -29,5 +30,11 @@ public class Genero {
         this.id_genero = id_genero;
     }
 
+    public int getId_titulo_jogo() {
+        return id_titulo_jogo;
+    }
 
+    public void setId_titulo_jogo(int id_titulo_jogo) {
+        this.id_titulo_jogo = id_titulo_jogo;
+    }
 }

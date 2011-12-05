@@ -25,7 +25,8 @@ Notificacoes.prototype = {
         this.dataBindMvc('listaNotificacao.do', {
             idUsuario : $('#idUser').text(),
             qtd : 10,
-            pagina: _pagina
+            pagina: _pagina,
+            idUser: $('#idUser').text()
         }, this._listaNotificacaoOnSuccess);
 
         //clicks btn
@@ -56,7 +57,8 @@ Notificacoes.prototype = {
         this.dataBindMvc('listaNotificacao.do', {
             idUsuario : $('#idUser').text(),
             qtd : 10,
-            pagina: _pagina
+            pagina: _pagina,
+            idUser: $('#idUser').text()
         }, this._listaNotificacaoOnSuccess);
     },
 
@@ -94,7 +96,8 @@ Notificacoes.prototype = {
         this.dataBindMvc('listaNotificacao.do', {
             idUsuario : $('#idUser').text(),
             qtd : 10,
-            pagina: _pagina
+            pagina: _pagina,
+            idUser: $('#idUser').text()
         }, this._listaNotificacaoOnSuccess);
     },
 

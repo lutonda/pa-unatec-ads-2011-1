@@ -27,7 +27,7 @@ public class AjaxEnviaNotificacaoController {
         RequestMethod.POST})
     @ResponseBody
     public String  postEnviarNotificacao(HttpServletRequest request,
-            int idUsuario,  String dsNotificacao, boolean broadcast) {
+            int idUsuario, String dsNotificacao, boolean broadcast, String nmUser) {
 
         Notificacoes objct = new Notificacoes();
 
@@ -36,7 +36,11 @@ public class AjaxEnviaNotificacaoController {
             objct.setId_usuario(idUserCorrente);
             objct.setDescricao(dsNotificacao);
             objct.setBroadcast((broadcast)? 1:0);
-            return String.valueOf(NotificacoesService.enviaNotificacao(Notificacoes.numeraNotificacao.FALA, dsNotificacao, idUsuario, 5, "Magno", 0, "", 0, "", 0));
+            if(idUsuario != idUserCorrente)
+                return String.valueOf(NotificacoesService.enviaNotificacao(Notificacoes.numeraNotificacao.FALA, 
+                    dsNotificacao, idUserCorrente, idUsuario, nmUser, 0, "", 0, "", 0));
+            else
+                return String.valueOf(NotificacoesService.enviaNotificacao(objct));
         }catch(Exception e){
             return String.valueOf(false);
         }  

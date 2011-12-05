@@ -25,7 +25,7 @@ public class AjaxCtrlUsuarioController {
         RequestMethod.POST})
     @ResponseBody
     public String postCtrlUsuario(HttpServletRequest request,
-            @RequestParam int idAmigoUsuario, @RequestParam int controleTipo) {
+            @RequestParam int idAmigoUsuario, @RequestParam int controleTipo, String nmUser, Integer idUser) {
 
         boolean flag = false;
         // CtrlUsuarioService.aceitaUsuario(idAmigoUsuario);
@@ -37,6 +37,23 @@ public class AjaxCtrlUsuarioController {
                         break;
                     case 1: //Aceitar solicitação
                         flag = CtrlUsuarioService.aceitaUsuario(idAmigoUsuario);
+
+                        if (flag) {
+                            Notificacoes objct = new Notificacoes();
+
+                            try {
+                                int idUserCorrente = Integer.parseInt((String) request.getSession().getAttribute("id"));
+                                objct.setId_usuario(idUserCorrente);
+
+                                return String.valueOf(NotificacoesService.enviaNotificacao(
+                                        Notificacoes.numeraNotificacao.ADICIONA,
+                                        "", idUserCorrente, idUser, nmUser, 0, "", 0, "", 0));
+
+                            } catch (Exception e) {
+                                return String.valueOf(false);
+                            }
+                        }
+
                         break;
                     case 2: //Adiciona
                         int idUserVisit = Integer.parseInt((String) request.getSession().getAttribute("id"));

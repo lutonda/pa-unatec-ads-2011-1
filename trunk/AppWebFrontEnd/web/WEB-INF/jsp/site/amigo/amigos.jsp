@@ -29,6 +29,7 @@
                                 <c:forEach items="${amigosPendentes}" var="AmigoUsuario" varStatus="count" >
                                     <li id="idUsuarioAmigo${AmigoUsuario.id_amigo_usuario}" class="nivelA">
                                         <span class="conteudo">
+                                            <span style="display: none" id="idUser">${AmigoUsuario.id_usuario}</span>
                                             <span style="display: none" id="idUsuarioAmigo">${AmigoUsuario.id_amigo_usuario}</span>
                                             <span style="display: none" id="nmUsuarioAmigo">${AmigoUsuario.nm_usuario} ${AmigoUsuario.nm_sobrenome}</span>
                                             <div id="ctrlB" style="display: none;">

@@ -1,9 +1,6 @@
 var _idUserAtual = 0;
 var _nmUser;
 
-
-
-
 CtrlUsuario = function(){
     this._data = null;
     this._dataUrl = null;
@@ -35,7 +32,6 @@ CtrlUsuario.prototype = {
         $('ul#usuariosList li').each(function() {
             var id = $('#idUsuarioAmigo',this).text();
             var launch = $('div a', this);
-            // console.log(launch);
             if (launch.size() > 0) {
                 $('div a', this).bind('click', id, $.createDelegate(ini, CtrlUsuario.prototype._btnUserRemoverOnClick));
             }         
@@ -44,9 +40,13 @@ CtrlUsuario.prototype = {
 
     _btnUserAceiteOnClick: function(value){
         _idUserAtual = value.data.text();
+        _nmUser = $('ul#UsuarioPendente li#idUsuarioAmigo' + _idUserAtual +' span#nmUsuarioAmigo').text();
+        var _idUser = $('ul#UsuarioPendente li#idUsuarioAmigo' + _idUserAtual +' span#idUser').text();
         this.dataBindMvc('../inicio/ctrlUsuario.do', {
             idAmigoUsuario : _idUserAtual,
-            controleTipo: 1
+            controleTipo: 1,
+            nmUser: _nmUser,
+            idUser: _idUser
         }, this._postUserAceiteOnSuccess);
     },
     

@@ -63,12 +63,12 @@ public class NotificacoesDao {
                 + " notificacoes.id_notificacao, "
                 + " usuario.id_usuario, "
                 + " usuario.nm_usuario, "
-                + "	notificacoes.descricao, "
-                + "	notificacoes.broadcast, "
-                + "	notificacoes.dt_notificacao "
+                + " notificacoes.descricao, "
+                + " notificacoes.broadcast, "
+                + " notificacoes.dt_notificacao "
                 + " from  usuario "
-                + "	inner join amigo_usuario on usuario.id_usuario = amigo_usuario.id_usuario "
-                + "	inner join notificacoes	on amigo_usuario.id_amigo_usuario = notificacoes.id_amigo_usuario "
+               // + "	inner join amigo_usuario on usuario.id_usuario = amigo_usuario.id_usuario "
+                + "	inner join notificacoes	on usuario.id_usuario = notificacoes.id_usuario "
                 + " where usuario.id_usuario = ? ";
 
         Object[] vetor = {_id};

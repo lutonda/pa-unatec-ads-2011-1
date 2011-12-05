@@ -7,30 +7,17 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import una.pa.model.*;
 
-
 /**
  *
  * @author Magno
  */
 public class TituloJogoDao {
-
+    
     public static List<TituloJogo> listarDao() {
-
         List<TituloJogo> objC = new ArrayList<TituloJogo>();
 
         String sql = "select *"
-                + " from titulo_jogo tj"
-                + " left join editora_titulo et on tj.id_titulo_jogo = et.id_titulo_jogo"
-                + " left join editora e on  e.id_editora = et.id_editora"
-                + " left join genero_titulo gt on gt.id_titulo_jogo = tj.id_titulo_jogo"
-                + " left join genero g on g.id_genero = gt.id_genero"
-                + " left join desenvolvedor_titulo dt on dt.id_titulo_jogo = tj.id_titulo_jogo"
-                + " left join desenvolvedor d on d.id_desenv = dt.id_desenv"
-                + " left join categoria_titulo ct on ct.id_titulo_jogo = tj.id_titulo_jogo"
-		+ " left join categoria c on c.id_categoria = ct.id_categoria"
-                + " left join linguagem_titulo lt on tj.id_titulo_jogo = lt.id_titulo_jogo"
-                + " left join linguagem l on l.id_linguagem = lt.id_linguagem";
-
+                + " from titulo_jogo tj";
 
         try {
             Connection c = Data.openConnection();
@@ -38,32 +25,46 @@ public class TituloJogoDao {
 
             while (rs.next()) {
                 TituloJogo o = new TituloJogo();
-                List<Categoria> cat = new ArrayList<Categoria>();
+                o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO").toString()));
+                o.setNm_titulo(rs.getString("NM_TITULO"));
+                o.setDt_cadastro(rs.getString("DT_CADASTRO"));
+                o.setDt_lancamento(rs.getString("DT_LANCAMENTO"));
+                o.setDescricao(rs.getString("DESCRICAO"));
+                
+                o.setListaCategoria(CategoriaDao.listarDal(o.getId_titulo_jogo()));
+                o.setListaEditora(EditoraDal.listarEditora(o.getId_titulo_jogo()));
+                o.setListaGenero(GeneroDal.listarGeneroDal(o.getId_titulo_jogo()));
+                o.setListaDesenv(DesenvolvedorDal.listarDesenvolvedorDal(o.getId_titulo_jogo()));
+                o.setListaLinguagem(LinguagemDao.listarDal(o.getId_titulo_jogo()));
+                objC.add(o);
+            }
+            rs.close();
+            c.close();
+
+            return objC;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static List<TituloJogo> listarSimplesDao() {
+        List<TituloJogo> objC = new ArrayList<TituloJogo>();
+
+        String sql = "select *"
+                + " from titulo_jogo tj";
+
+        try {
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql);
+
+            while (rs.next()) {
+                TituloJogo o = new TituloJogo();
 
                 o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO").toString()));
                 o.setNm_titulo(rs.getString("NM_TITULO"));
-                
-                while (rs.next()){
-                    Categoria ca = new Categoria();
-                    ca.setNm_categoria(rs.getString("NM_CATEGORIA"));
-                    cat.add(ca);
-                    o.setListaCategoria(cat);
-                }
-                
-//                o.setNm_categoria(rs.getString("nm_categoria"));
-//                o.setEditora(rs.getString("NM_EDITORA"));
-//                o.setGenero(rs.getString("DS_GENERO"));
-//                o.setDesenv(rs.getString("DS_DESENV"));
-//                o.setNm_linguagem(rs.getString("nm_linguagem"));
-//                if (rs.getString("ID_EDITORA") != null) {
-//                    o.setId_editora(Integer.parseInt(rs.getString("ID_EDITORA")));
-//                }
-//                if (rs.getString("ID_GENERO") != null) {
-//                    o.setId_genero(Integer.parseInt(rs.getString("ID_GENERO")));
-//                }
-//                if (rs.getString("ID_DESENV") != null) {
-//                    o.setId_desenv(Integer.parseInt(rs.getString("ID_DESENV")));
-//                }
+                o.setDt_cadastro(rs.getString("DT_CADASTRO"));
+                o.setDt_lancamento(rs.getString("DT_LANCAMENTO"));
+                o.setDescricao(rs.getString("DESCRICAO"));
 
                 objC.add(o);
             }
@@ -82,19 +83,13 @@ public class TituloJogoDao {
         try {
             Connection c = Data.openConnection();
             String sql = "UPDATE TITULO_JOGO "
-                    + "SET ID_EDITORA = ? "
-                    + ",ID_GENERO = ? "
-                    + ",ID_DESENV = ? "
+                    + "SET DESCRICAO = ? "
+                    + ",DT_LANCAMENTO = ? "
+                    + ",DT_CADASTRO = ? "
                     + ",NM_TITULO = ? "
-                    + ",TIPO = ? "
                     + "WHERE ID_TITULO_JOGO = ?";
 
-            Object[] vetor = {(_obj.getId_editora() != 0) ? _obj.getId_editora() : null,
-                (_obj.getId_genero() != 0) ? _obj.getId_genero() : null,
-                (_obj.getId_desenv() != 0) ? _obj.getId_desenv() : null,
-                _obj.getNm_titulo(),
-                //(!_obj.getTipo().equals("0")) ? _obj.getTipo() : null,
-                _obj.getId_titulo_jogo()};
+            Object[] vetor = {_obj.getDescricao(), _obj.getDt_lancamento(), _obj.getDt_cadastro(), _obj.getNm_titulo(), _obj.getId_titulo_jogo()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();
@@ -110,18 +105,11 @@ public class TituloJogoDao {
         try {
             Connection c = Data.openConnection();
             String sql = "INSERT INTO TITULO_JOGO "
-                    + "(ID_EDITORA "
-                    + ",ID_GENERO "
-                    + ",ID_DESENV "
-                    + ",NM_TITULO "
+                    + "(DESCRICAO "
+                    + ",DT_LANCAMENTO "
                     + ",DT_CADASTRO "
-                    + ",TIPO) VALUES (?,?,?,?,getdate(),?)";
-            Object[] vetor = {(_obj.getId_editora() != 0) ? _obj.getId_editora() : null,
-                (_obj.getId_genero() != 0) ? _obj.getId_genero() : null,
-                (_obj.getId_desenv() != 0) ? _obj.getId_desenv() : null,
-                _obj.getNm_titulo(),
-                //(!_obj.getTipo().equals("0")) ? _obj.getTipo() : null
-            };
+                    + ",NM_TITULO ) VALUES (?,?,getdate(),?)";
+            Object[] vetor = {_obj.getDescricao(), _obj.getDt_lancamento(), _obj.getNm_titulo()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();

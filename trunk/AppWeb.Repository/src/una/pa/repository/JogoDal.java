@@ -158,7 +158,7 @@ public class JogoDal {
         }
     }
 
-    public static Jogo detalesJogo(int _id) {
+    public static Jogo detalhesJogo(int _id) {
         String sql = " SELECT	ID_JOGO, "
                 + " NM_TITULO, "
                 + " TIPO,"
@@ -238,10 +238,10 @@ public class JogoDal {
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
                 o.setTitulo_jogo(rs.getString("nm_titulo"));
                // o.setTipo(rs.getString("tipo"));
-                o.setEditora(rs.getString("nm_editora"));
-                o.setGenero(rs.getString("DS_GENERO"));
+                //o.setEditora(rs.getString("nm_editora"));
+                //o.setGenero(rs.getString("DS_GENERO"));
                 o.setConsole(rs.getString("ds_console"));
-                o.setDesenv(rs.getString("ds_desenv"));
+                //o.setDesenv(rs.getString("ds_desenv"));
                 o.setDescricao(rs.getString("descricao"));
                 o.setPontos(Integer.parseInt(rs.getString("pontos")));
                 o.setImagem(rs.getString("imagem"));

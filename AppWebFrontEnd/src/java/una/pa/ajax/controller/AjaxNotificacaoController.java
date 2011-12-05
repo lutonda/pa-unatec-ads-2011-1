@@ -22,7 +22,7 @@ public class AjaxNotificacaoController {
         String Itens = "";
         int vTotal = 0;
         try {
-            List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(idUsuario, qtd, pagina);
+            List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(idUsuario, qtd, pagina,0);// Acrescentar o Id do Visitante no Lugar do 0, se nao existir passa o 0
 
             if (!objNot.isEmpty()) {
                 for (Iterator<Notificacoes> it = objNot.iterator(); it.hasNext();) {

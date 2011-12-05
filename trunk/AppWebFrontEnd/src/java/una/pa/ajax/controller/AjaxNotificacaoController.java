@@ -17,12 +17,12 @@ public class AjaxNotificacaoController {
         RequestMethod.POST})
     @ResponseBody
     public String getListaNotificacao(HttpServletRequest request,
-            @RequestParam int idUsuario, @RequestParam int qtd, @RequestParam int pagina) {
+            @RequestParam int idUsuario, @RequestParam int qtd, @RequestParam int pagina, @RequestParam int idUser) {
 
         String Itens = "";
         int vTotal = 0;
         try {
-            List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(idUsuario, qtd, pagina,0);// Acrescentar o Id do Visitante no Lugar do 0, se nao existir passa o 0
+            List<Notificacoes> objNot = NotificacoesService.listarNotPerfil(idUsuario, qtd, pagina, idUser);// Acrescentar o Id do Visitante no Lugar do 0, se nao existir passa o 0
 
             if (!objNot.isEmpty()) {
                 for (Iterator<Notificacoes> it = objNot.iterator(); it.hasNext();) {
@@ -36,7 +36,7 @@ public class AjaxNotificacaoController {
                 Itens = "";
             }
         } catch (Exception e) {
-            Itens += "<li>Erro: "+ e.getMessage()+ "</li>";
+            Itens += "<li>Erro: " + e.getMessage() + "</li>";
             Itens += "<div class=\"cb\"></div>|0";
         }
 

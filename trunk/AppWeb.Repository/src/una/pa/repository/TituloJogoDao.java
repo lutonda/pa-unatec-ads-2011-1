@@ -38,23 +38,32 @@ public class TituloJogoDao {
 
             while (rs.next()) {
                 TituloJogo o = new TituloJogo();
+                List<Categoria> cat = new ArrayList<Categoria>();
 
                 o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO").toString()));
                 o.setNm_titulo(rs.getString("NM_TITULO"));
-                o.setNm_categoria(rs.getString("nm_categoria"));
-                o.setEditora(rs.getString("NM_EDITORA"));
-                o.setGenero(rs.getString("DS_GENERO"));
-                o.setDesenv(rs.getString("DS_DESENV"));
-                o.setNm_linguagem(rs.getString("nm_linguagem"));
-                if (rs.getString("ID_EDITORA") != null) {
-                    o.setId_editora(Integer.parseInt(rs.getString("ID_EDITORA")));
+                
+                while (rs.next()){
+                    Categoria ca = new Categoria();
+                    ca.setNm_categoria(rs.getString("NM_CATEGORIA"));
+                    cat.add(ca);
+                    o.setListaCategoria(cat);
                 }
-                if (rs.getString("ID_GENERO") != null) {
-                    o.setId_genero(Integer.parseInt(rs.getString("ID_GENERO")));
-                }
-                if (rs.getString("ID_DESENV") != null) {
-                    o.setId_desenv(Integer.parseInt(rs.getString("ID_DESENV")));
-                }
+                
+//                o.setNm_categoria(rs.getString("nm_categoria"));
+//                o.setEditora(rs.getString("NM_EDITORA"));
+//                o.setGenero(rs.getString("DS_GENERO"));
+//                o.setDesenv(rs.getString("DS_DESENV"));
+//                o.setNm_linguagem(rs.getString("nm_linguagem"));
+//                if (rs.getString("ID_EDITORA") != null) {
+//                    o.setId_editora(Integer.parseInt(rs.getString("ID_EDITORA")));
+//                }
+//                if (rs.getString("ID_GENERO") != null) {
+//                    o.setId_genero(Integer.parseInt(rs.getString("ID_GENERO")));
+//                }
+//                if (rs.getString("ID_DESENV") != null) {
+//                    o.setId_desenv(Integer.parseInt(rs.getString("ID_DESENV")));
+//                }
 
                 objC.add(o);
             }

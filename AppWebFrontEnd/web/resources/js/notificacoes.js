@@ -39,9 +39,10 @@ Notificacoes.prototype = {
 
     _btnEnviarNotOnClick: function(value){
         this.dataBindMvc('enviarNotificacao.do', {
-            idUsuario : ($('#idUserVisitante').text() == "")? $('#idUser').text():$('#idUserVisitante').text(),
+            idUsuario : $('#idUser').text(),
             dsNotificacao: $('#txtNotificacao').val(),
-            broadcast: ($('#idUserVisitante').text() == "")? 1:0
+            broadcast: ($('#idUserVisitante').text() == "")? 1:0,
+            nmUser : $('#nmUser').text()
         }, this._enviarNotificacaoOnSuccess);
     
         if(parseURL(window.location.pathname).file == "index.html")

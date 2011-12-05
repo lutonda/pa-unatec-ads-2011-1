@@ -60,7 +60,7 @@ public class JogoService {
         return JogoDal.excluir(id);
     }
     public static Jogo detalheJogo(int _id) {
-        return JogoDal.detalesJogo(_id);
+        return JogoDal.detalhesJogo(_id);
     }
     public static List<Jogo> filtroJogosGenerico(int _idTipo, String _tipoFiltro, String tipoCategoria,  int quantidePorPagina, int pagina){
         return JogoDal.filtroJogosGenerico(_idTipo, _tipoFiltro, tipoCategoria,  quantidePorPagina, pagina);

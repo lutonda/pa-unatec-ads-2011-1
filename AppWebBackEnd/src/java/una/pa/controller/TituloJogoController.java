@@ -17,21 +17,9 @@ public class TituloJogoController extends MultiActionController {
 
         TituloJogo objC = TituloJogoService.unico(Integer.parseInt(request.getParameter("id")));
 
-        List<Editora> objEditora = EditoraService.listar();
-        List<Genero> objGnero = GeneroService.listar();
-        List<Desenvolvedor> objDesenv = DesenvolvedorService.listar();
-        List<Categoria> objCategoria = CategoriaService.listar();
-        List<Linguagem> objLing = LinguagemService.listar();
-
         ModelAndView mav = new ModelAndView("titulojogo/editar");
         mav.addObject("titulojogo", objC);
-        mav.addObject("editoras", objEditora);
-        mav.addObject("generos", objGnero);
-        mav.addObject("desenvolvedores", objDesenv);
-        mav.addObject("categorias", objCategoria);
-        mav.addObject("linguagens", objLing);
         return mav;
-        //return new ModelAndView("console/editar", "console", objC);
     }
 
     public ModelAndView editarForm(HttpServletRequest request,
@@ -39,11 +27,9 @@ public class TituloJogoController extends MultiActionController {
         boolean flag = false;
         TituloJogo objC = new TituloJogo();
         objC.setId_titulo_jogo(Integer.parseInt(request.getParameter("id_titulo_jogo")));
-        objC.setId_editora(Integer.parseInt(request.getParameter("id_editora")));
-        objC.setId_genero(Integer.parseInt(request.getParameter("id_genero")));
-        objC.setId_desenv(Integer.parseInt(request.getParameter("id_desenv")));
         objC.setNm_titulo(request.getParameter("nm_titulo"));
-        //objC.setTipo(request.getParameter("tipo"));
+        objC.setDescricao(request.getParameter("descricao"));
+        objC.setDt_lancamento(request.getParameter("dt_lancamento"));
 
         ModelAndView mav = new ModelAndView("titulojogo/editar");
         try {
@@ -90,9 +76,9 @@ public class TituloJogoController extends MultiActionController {
             HttpServletResponse response) throws Exception {
         boolean flag;
         TituloJogo objC = new TituloJogo();
-        objC.setId_editora(Integer.parseInt(request.getParameter("id_editora")));
-        objC.setId_genero(Integer.parseInt(request.getParameter("id_genero")));
-        objC.setId_desenv(Integer.parseInt(request.getParameter("id_desenv")));
+        //objC.setId_editora(Integer.parseInt(request.getParameter("id_editora")));
+        //objC.setId_genero(Integer.parseInt(request.getParameter("id_genero")));
+        //objC.setId_desenv(Integer.parseInt(request.getParameter("id_desenv")));
         objC.setNm_titulo(request.getParameter("nm_titulo"));
         //objC.setTipo(request.getParameter("tipo"));
 

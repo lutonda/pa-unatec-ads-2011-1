@@ -2,8 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package una.pa.model;
+
 import java.util.Date;
 
 /**
@@ -11,17 +11,10 @@ import java.util.Date;
  * @author Tiago
  */
 public class Linguagem {
+
     protected int id_linguagem;
     protected String nm_linguagem;
-    protected Date dt_cadastro;
-
-    public Date getDt_cadastro() {
-        return dt_cadastro;
-    }
-
-    public void setDt_cadastro(Date dt_cadastro) {
-        this.dt_cadastro = dt_cadastro;
-    }
+    protected int id_titulo_jogo;
 
     public int getId_linguagem() {
         return id_linguagem;
@@ -31,6 +24,14 @@ public class Linguagem {
         this.id_linguagem = id_linguagem;
     }
 
+    public int getId_titulo_jogo() {
+        return id_titulo_jogo;
+    }
+
+    public void setId_titulo_jogo(int id_titulo_jogo) {
+        this.id_titulo_jogo = id_titulo_jogo;
+    }
+
     public String getNm_linguagem() {
         return nm_linguagem;
     }
@@ -38,5 +39,4 @@ public class Linguagem {
     public void setNm_linguagem(String nm_linguagem) {
         this.nm_linguagem = nm_linguagem;
     }
-    
 }

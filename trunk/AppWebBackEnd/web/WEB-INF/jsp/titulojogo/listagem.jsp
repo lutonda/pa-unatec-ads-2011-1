@@ -61,19 +61,29 @@
                                     <c:out value="${Titulo_jogo.nm_titulo}"/>
                                 </td>
                                 <td>
-                                    <c:out value="${Titulo_jogo.nm_categoria}"/>
+                                    <c:forEach items="${Titulo_jogo.listaCategoria}" var="Categoria" varStatus="count" >
+                                        <c:out value="${Categoria.nm_categoria}"/>
+                                    </c:forEach>
                                 </td>
                                 <td>
-                                    <c:out value="${Titulo_jogo.editora}"/>
+                                    <c:forEach items="${Titulo_jogo.listaEditora}" var="Editora" varStatus="count" >
+                                        <c:out value="${Editora.nm_editora}"/>
+                                    </c:forEach>
                                 </td>
                                 <td>
-                                    <c:out value="${Titulo_jogo.genero}"/>
+                                    <c:forEach items="${Titulo_jogo.listaGenero}" var="Genero" varStatus="count" >
+                                        <c:out value="${Genero.ds_genero}"/>
+                                    </c:forEach>
                                 </td>
                                 <td>
-                                    <c:out value="${Titulo_jogo.desenv}"/>
+                                    <c:forEach items="${Titulo_jogo.listaDesenv}" var="Desenvolvedor" varStatus="count" >
+                                        <c:out value="${Desenvolvedor.ds_desenv}"/>
+                                    </c:forEach>
                                 </td>
                                 <td>
-                                    <c:out value="${Titulo_jogo.nm_linguagem}"/>
+                                    <c:forEach items="${Titulo_jogo.listaLinguagem}" var="Linguagem" varStatus="count" >
+                                        <c:out value="${Linguagem.nm_linguagem}"/>
+                                    </c:forEach>
                                 </td>
                                 <td>
                                     <a href="editar.htm?id=${Titulo_jogo.id_titulo_jogo}" title="Editar">Editar</a>

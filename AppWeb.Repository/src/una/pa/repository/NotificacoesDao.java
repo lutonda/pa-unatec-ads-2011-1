@@ -68,7 +68,8 @@ public class NotificacoesDao {
                 + "      notificacoes.dt_notificacao"
                 + "      from  usuario "
                 + "     inner join notificacoes	on usuario.id_usuario = notificacoes.id_usuario "
-                + "      where usuario.id_usuario = ? ";
+                + "      where usuario.id_usuario = ? "
+                + "       and tipo_notificacao = 'SYS'";
 
         Object[] vetor = {_id};
 

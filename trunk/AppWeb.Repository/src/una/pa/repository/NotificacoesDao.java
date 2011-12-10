@@ -108,7 +108,7 @@ public class NotificacoesDao {
         }
 
         String sql = "select top " + quantidePorPagina + " * from ("
-                + "select row_number() over (order by dt_notificacao desc) as linha,"
+                + " select row_number() over (order by dt_notificacao desc) as linha,"
                 + "      notificacoes.id_notificacao, "
                 + "      usuario.id_usuario, "
                 + "      usuario.nm_usuario, "
@@ -119,7 +119,7 @@ public class NotificacoesDao {
                 + "      from  usuario "
                 + "     	inner join notificacoes	on usuario.id_usuario = notificacoes.id_usuario "
                 + "      where usuario.id_usuario = ? )AS TABELA"
-                + "where linha > " + inicio+ " and linha <= " + fim ;
+                + " where linha > " + inicio+ " and linha <= " + fim ;
 
         Object[] vetor = {_id,_id};
 

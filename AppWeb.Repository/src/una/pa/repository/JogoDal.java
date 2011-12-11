@@ -159,77 +159,29 @@ public class JogoDal {
     }
 
     public static Jogo detalhesJogo(int _id) {
-        String sql = " SELECT	ID_JOGO, "
-                + " NM_TITULO, "
-                + " TIPO,"
-                + " NM_EDITORA,"
-                + " DS_CONSOLE,"
-                + " DS_GENERO,"
-                + " DS_DESENV,"
-                + " DESCRICAO,"
-                + " pontos,"
-                + " IMAGEM,"
-                + " proprietario ,"
-                + " interessado ,"
-                + " oferta"
-                + " FROM"
-                + " (SELECT  ID_JOGO,"
-                + "   NM_TITULO,"
-                + "   TIPO,"
-                + "   NM_EDITORA, "
-                + "   DS_CONSOLE,"
-                + "   DS_GENERO,"
-                + "   DS_DESENV,"
-                + "   DESCRICAO,"
-                + "   avg(PONTOS) as pontos, IMAGEM "
-                + "   FROM ("
-                + "   	SELECT	JOGO.ID_JOGO,"
-                + "   		TITULO_JOGO.NM_TITULO,"
-                + "   		TITULO_JOGO.TIPO,"
-                + "   		EDITORA.NM_EDITORA,"
-                + "   		CONSOLE.DS_CONSOLE,"
-                + "   		GENERO.DS_GENERO,"
-                + "   		DESENVOLVEDOR.DS_DESENV,"
-                + "   		TITULO_JOGO.DESCRICAO,"
-                + "   		isnull( PONTOS, 0) as PONTOS, jOGO.IMAGEM"
-                + "   	FROM JOGO"
-                + "   		INNER JOIN TITULO_JOGO	 ON JOGO.ID_TITULO_JOGO    = TITULO_JOGO.ID_TITULO_JOGO"
-                + "  		INNER JOIN CONSOLE	 ON JOGO.ID_CONSOLE	   = CONSOLE.ID_CONSOLE"
-                + "  		INNER JOIN EDITORA	 ON TITULO_JOGO.ID_EDITORA = EDITORA.ID_EDITORA 	"
-                + "   		INNER JOIN GENERO	 ON TITULO_JOGO.ID_GENERO  = GENERO.ID_GENERO"
-                + "   		INNER JOIN DESENVOLVEDOR ON TITULO_JOGO.ID_DESENV  = DESENVOLVEDOR.ID_DESENV"
-                + "   		LEFT JOIN AVALIACAO_JOGO ON JOGO.ID_JOGO	   = AVALIACAO_JOGO.ID_JOGO"
-                + "   	)a	"
-                + "   WHERE ID_JOGO = ? "
-                + "    GROUP BY ID_JOGO,"
-                + "   NM_TITULO,"
-                + "   TIPO,"
-                + "   NM_EDITORA,"
-                + "   DS_CONSOLE,"
-                + "   DS_GENERO,"
-                + "   DS_DESENV,"
-                + "   DESCRICAO, IMAGEM)DETALHES, "
-                + "  (select p.proprietario,"
-                + "          i.interessado,"
-                + "          o.oferta "
-                + "    from 		"
-                + "       (SELECT isnull(count(*),0) as proprietario "
-                + "          FROM JOGO_USUARIO"
-                + "         where id_jogo = ?) p,"
-                + "       (SELECT isnull(count(*),0) as interessado "
-                + "          FROM JOGO_DESEJADO"
-                + "         WHERE ID_JOGO = ?)i, "
-                + "       (select isnull(count(*),0) as oferta "
-                + "          from jogo_usuario "
-                + "         where id_jogo = ? "
-                + "           and nivel_interesse = 0) o,"
-                + "        (select isnull(avg(pontos),0) as avalicacao"
-                + "	      from dbo.AVALIACAO_JOGO"
-                + "	     where id_jogo = ?)a"
-                + ") OUTROS";
+        String sql = "select j.id_jogo,"
+                    + "	tj.id_titulo_jogo,"
+                    + "	tj.nm_titulo,"
+                    + "	c.ds_console,"
+                    + "	j.imagem, "
+                    + " tj.descricao,"
+                    + "	avg(isnull(pontos, 0)) as pontos,"
+                    + "	(SELECT isnull(count(*),0) FROM JOGO_USUARIO where id_jogo = j.id_jogo)as proprietario,"
+                    + "	(SELECT isnull(count(*),0) FROM JOGO_DESEJADO WHERE ID_JOGO = j.id_jogo) interessado,"
+                    + "	(select isnull(count(*),0) from jogo_usuario where id_jogo = j.id_jogo and nivel_interesse = 0) as oferta ,"
+                    + "	(select isnull(avg(pontos),0) from dbo.AVALIACAO_JOGO where id_jogo = j.id_jogo) as avalicacao"
+                    + "	 from jogo j"
+                    + "	   inner join titulo_jogo tj on j.id_titulo_jogo = tj.id_titulo_jogo"
+                    + "	   inner join console c on c.id_console = j.id_console"
+                    + "	   left join avaliacao_jogo aj on j.id_jogo = aj.id_jogo"
+                    + "	 where j.id_jogo = ?"
+                    + "	group by j.id_jogo,"
+                    + "		tj.id_titulo_jogo,"
+                    + "		tj.nm_titulo,"
+                    + "		c.ds_console,"
+                    + "		j.imagem,tj.descricao";
 
-
-        Object[] vetor = {_id, _id, _id, _id,_id};
+        Object[] vetor = {_id};
         try {
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql, vetor);
@@ -237,17 +189,19 @@ public class JogoDal {
             if (rs.next()) {
                 o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
                 o.setTitulo_jogo(rs.getString("nm_titulo"));
-               // o.setTipo(rs.getString("tipo"));
-                //o.setEditora(rs.getString("nm_editora"));
-                //o.setGenero(rs.getString("DS_GENERO"));
-                o.setConsole(rs.getString("ds_console"));
-                //o.setDesenv(rs.getString("ds_desenv"));
+                o.setId_titulo_jogo(Integer.parseInt(rs.getString("id_titulo_jogo")));
                 o.setDescricao(rs.getString("descricao"));
                 o.setPontos(Integer.parseInt(rs.getString("pontos")));
                 o.setImagem(rs.getString("imagem"));
                 o.setInteressado(Integer.parseInt(rs.getString("interessado")));
                 o.setProprietario(Integer.parseInt(rs.getString("proprietario")));
                 o.setOferta(Integer.parseInt(rs.getString("oferta")));
+                o.setConsole(rs.getString("ds_console"));
+                o.setListaCategoria(CategoriaDao.listarDal(o.getId_titulo_jogo()));
+                o.setListaEditora(EditoraDal.listarEditora(o.getId_titulo_jogo()));
+                o.setListaGenero(GeneroDal.listarGeneroDal(o.getId_titulo_jogo()));
+                o.setListaDesenv(DesenvolvedorDal.listarDesenvolvedorDal(o.getId_titulo_jogo()));
+
             }
             rs.close();
             c.close();

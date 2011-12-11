@@ -43,9 +43,32 @@
                             <img src="/AppWebBackEnd/resources/capa/${Jogo.imagem}" style="float: left; width: 128px; margin-right: 10px;" alt="teste"/>
                         </c:if>
                         <ul style="float: left; width: 392px;">             
-                            <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${Jogo.titulo_jogo}<span id="idJogo" style="display: none;">${Jogo.id_jogo}</span></li>
-                            <li style="margin-bottom: 5px;">${Jogo.genero}</li>
-                            <li style="margin-bottom: 15px;">${Jogo.tipo}</li>
+                            <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${Jogo.titulo_jogo}<span id="idJogo" style="display: none;">${Jogo.id_jogo}</span></li>                            
+                            <td>
+                               <c:forEach items="${Jogo.listaCategoria}" var="Categoria" varStatus="count" >
+                                   <c:out value="${Categoria.nm_categoria}"/>
+                               </c:forEach>
+                            </td><br><br>
+                            <td>
+                               <c:forEach items="${Jogo.listaEditora}" var="Editora" varStatus="count" >
+                                   <c:out value="${Editora.nm_editora}"/>
+                               </c:forEach>
+                            </td><br><br>
+                            <td>
+                               <c:forEach items="${Jogo.listaGenero}" var="Genero" varStatus="count" >
+                                  <c:out value="${Genero.ds_genero}"/>
+                               </c:forEach>
+                            </td><br><br>
+                            <td>
+                               <c:forEach items="${Jogo.listaDesenv}" var="Desenvolvedor" varStatus="count" >
+                                   <c:out value="${Desenvolvedor.ds_desenv}"/>
+                               </c:forEach>
+                            </td><br><br>
+                            <td>
+                               <c:forEach items="${Jogo.listaLinguagem}" var="Linguagem" varStatus="count" >
+                                  <c:out value="${Linguagem.nm_linguagem}"/>
+                               </c:forEach>
+                            </td><br><br>
                             <li>${Jogo.descricao}</li>
                         </ul>
                         <div class="cb"></div>

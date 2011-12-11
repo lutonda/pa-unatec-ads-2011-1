@@ -157,19 +157,19 @@ public class AmigoUsuarioDao {
         }
     }
      public static boolean retornaAmigo(int _id, int _idVisitante){
-        String sql = "select 1 from( select ? id_usuario union all select id_usuario "
+         Object[] vetor = {_id,_id,_id,_idVisitante};
+         String sql = "";
+            sql = "select 1 from( select ? id_usuario union all select id_usuario "
                 + "from amigo_usuario where id_usuario_amigo = ?  union all  select id_usuario_amigo "
                 + "from amigo_usuario where id_usuario = ?) a where a.id_usuario = ?";
 
-        Object[] vetor = {_id,_id,_id,_idVisitante};
         boolean valida = false;
         try {
             Connection c = Data.openConnection();
             ResultSet rs = Data.executeQuery(c, sql, vetor);
-
-            while (rs.next()) {
-                valida = true;
-            }
+            while(rs.next()) {
+               valida = true;
+            }         
             rs.close();
             c.close();
             return valida;

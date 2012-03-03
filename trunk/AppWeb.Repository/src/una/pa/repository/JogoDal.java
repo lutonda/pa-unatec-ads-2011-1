@@ -51,13 +51,11 @@ public class JogoDal {
             inicio = fim - quantidePorPagina;
         }
 
-        sql = "select top " + quantidePorPagina + " * from (select row_number() over (order by j.id_jogo) as linha"
-                + ", (select count(j.id_jogo) from jogo j left join "
-                + "titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo "
+        sql = "select top " + quantidePorPagina + " * from (select distinct row_number() over (order by j.id_jogo) as linha"
+                + ", (select distinct count( distinct j.id_jogo) from jogo j "
                 + "left join console c on j.id_console = c.id_console "
                 + "left join jogo_usuario ju on j.id_jogo = ju.id_jogo "
                 + " " + sqlWhere + ") as totalregistros"
-                + ", ju.nivel_interesse"
                 + ", j.id_jogo, j.id_console, j.id_titulo_jogo, imagem, nm_titulo, ds_console "
                 + "from jogo j "
                 + "left join titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo "
@@ -88,8 +86,8 @@ public class JogoDal {
                 o.setImagem(rs.getString("IMAGEM"));
                 o.setTitulo_jogo(rs.getString("NM_TITULO"));
                 o.setConsole(rs.getString("DS_CONSOLE"));
-                if ((busca != null) || (pId_usuario != 0) || (console != 0))
-                    o.setNivelInteresse(rs.getString("NIVEL_INTERESSE"));
+               // if ((busca != null) || (pId_usuario != 0) || (console != 0))
+               //     o.setNivelInteresse(rs.getString("NIVEL_INTERESSE"));
                 o.setTotal(Integer.parseInt(rs.getString("totalregistros")));
                 objC.add(o);
             }

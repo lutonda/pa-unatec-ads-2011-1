@@ -32,7 +32,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Descrição</th>
-                            <th>Data Cadastro</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -51,9 +50,6 @@
                                 </td>
                                 <td>
                                     <c:out value="${Linguagem.nm_linguagem}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${Linguagem.dt_cadastro}"/>
                                 </td>
                                 <td>
                                     <a href="editar.htm?id=${Linguagem.id_linguagem}" title="Editar">Editar</a>

@@ -32,7 +32,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Descrição</th>
-                            <th>Data Cadastro</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -51,9 +50,6 @@
                                 </td>
                                 <td>
                                     <c:out value="${Categoria.nm_categoria}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${Categoria.dt_cadastro}"/>
                                 </td>
                                 <td>
                                     <a href="editar.htm?id=${Categoria.id_categoria}" title="Editar">Editar</a>

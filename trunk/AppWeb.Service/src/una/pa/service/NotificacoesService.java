@@ -25,20 +25,21 @@ public class NotificacoesService {
         return NotificacoesDao.listarUnico(_id);
     }
     public static List<Notificacoes> listarNotPerfil(int pId_usuario, int quantidePorPagina, int pagina,int _idVisitante){
-        if(_idVisitante != 0){
+        if(_idVisitante == pId_usuario){
+            return  NotificacoesDao.listarNotPerfil(pId_usuario, quantidePorPagina, pagina);
+        }else {
             boolean valida = AmigoUsuarioDao.retornaAmigo(pId_usuario, _idVisitante);
 
             if (valida){
-               return NotificacoesDao.listarNotPerfil(pId_usuario, quantidePorPagina, pagina);
+               return NotificacoesDao.listarUnico(_idVisitante,quantidePorPagina,pagina, valida);
             }else{
-                return NotificacoesDao.listarUnico(pId_usuario);
+                return NotificacoesDao.listarUnico(_idVisitante,quantidePorPagina,pagina, valida);
             }
         }
-        return NotificacoesDao.listarNotPerfil(pId_usuario, quantidePorPagina, pagina) ;
     }
 
     public static boolean enviaNotificacao(Notificacoes objct) {
-        return NotificacoesDao.enviaNotificacao(objct);
+        return NotificacoesDao.enviaNotificacao(objct, Notificacoes.numeraNotificacao.FALA);
     }
 
     public static boolean enviaNotificacao(Notificacoes.numeraNotificacao hh,
@@ -85,6 +86,6 @@ public class NotificacoesService {
         objNot.setId_usuario(_idUser);
         objNot.setBroadcast((false) ? 1 : 0);
         objNot.setDescricao(descricao);
-        return NotificacoesDao.enviaNotificacao(objNot);
+        return NotificacoesDao.enviaNotificacao(objNot, hh);
     }
 }

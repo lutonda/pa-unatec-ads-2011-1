@@ -97,7 +97,7 @@ public class NotificacoesDao {
         }
 
     }
-    public static List<Notificacoes> listarUnico(int _id, int quantidePorPagina, int pagina) {
+    public static List<Notificacoes> listarUnico(int _id, int quantidePorPagina, int pagina,boolean valida) {
         List<Notificacoes> objct = new ArrayList<Notificacoes>();
         int inicio = 0;
         int fim = quantidePorPagina;
@@ -106,7 +106,7 @@ public class NotificacoesDao {
             fim = (quantidePorPagina * pagina);
             inicio = fim - quantidePorPagina;
         }
-
+        String sqlWhare = " and tipo_notificacao = 'SYS'";
         String sql = "select top " + quantidePorPagina + " * from ("
                 + " select row_number() over (order by dt_notificacao desc) as linha,"
                 + "      notificacoes.id_notificacao, "
@@ -114,12 +114,15 @@ public class NotificacoesDao {
                 + "      usuario.nm_usuario, "
                 + "      notificacoes.descricao, "
                 + "      notificacoes.broadcast, "
-                + "      notificacoes.dt_notificacao,"
+                + "      notificacoes.dt_notificacao, notificacoes.tipo_notificacao,"
                 + "	  (select count(*) from notificacoes where id_usuario = ?)total_registros "
                 + "      from  usuario "
                 + "     	inner join notificacoes	on usuario.id_usuario = notificacoes.id_usuario "
                 + "      where usuario.id_usuario = ? )AS TABELA"
                 + " where linha > " + inicio+ " and linha <= " + fim ;
+        if(! valida){
+            sql += sqlWhare;
+        }
 
         Object[] vetor = {_id,_id};
 
@@ -155,7 +158,6 @@ public class NotificacoesDao {
 
     public static List<Notificacoes> listarNotPerfil(int pId_usuario, int quantidePorPagina, int pagina) {
 
-
         List<Notificacoes> objct = new ArrayList<Notificacoes>();
         int inicio = 0;
         int fim = quantidePorPagina;
@@ -165,28 +167,26 @@ public class NotificacoesDao {
             inicio = fim - quantidePorPagina;
         }
 
-        String sql = "select top   "+quantidePorPagina+"  * from (select  row_number() over (order by dt_notificacao desc) as linha,"
-                + " id_notificacao,broadcast,id_usuario,nm_usuario,nm_sobrenome,descricao,dt_notificacao,	dbo.fnc_retornaTotalRegistros(4,?)TOTAL"
-                + " from(select id_notificacao,broadcast,	u.id_usuario,u.nm_usuario,u.nm_sobrenome,n.descricao,dt_notificacao"
-                + " from	usuario u"
-                + " inner join notificacoes n on n.id_usuario  = u.id_usuario "
-                + " where u.id_usuario = ? union all select id_notificacao,broadcast,	u.id_usuario,u.nm_usuario,u.nm_sobrenome,n.descricao,"
-                + " dt_notificacao  from	usuario u inner join notificacoes n on n.id_usuario  = u.id_usuario "
+        String sql = "select top   " + quantidePorPagina +"  *"
+                + "  from (select row_number() over (order by dt_notificacao desc) as linha,"
+                + " id_notificacao,broadcast,id_usuario,nm_usuario,nm_sobrenome,descricao,dt_notificacao,"
+                + " dbo.fnc_retornaTotalRegistros(4,?)TOTAL"
+                + " from(select id_notificacao,broadcast,u.id_usuario, u.nm_usuario, u.nm_sobrenome,"
+                + " n.descricao,dt_notificacao from usuario u inner join notificacoes n on n.id_usuario  = u.id_usuario "
+                + " where u.id_usuario = ? "
+                + " union all select id_notificacao, broadcast,	"
+                + " u.id_usuario, u.nm_usuario, u.nm_sobrenome,"
+                + " n.descricao, dt_notificacao  from	usuario u inner join notificacoes n on n.id_usuario  = u.id_usuario "
                 + " where n.id_usuario in (select id_usuario_amigo from amigo_usuario"
-                + " where id_usuario = ? and ignorado = 0 and dt_aceite is not null"
-                + " union  select id_usuario as id_usuario_amigo  from amigo_usuario where id_usuario_amigo = ?"
-                + " and ignorado = 0 and dt_aceite is not null )union all select id_notificacao,broadcast,	u.id_usuario,"
-                + " u.nm_usuario,u.nm_sobrenome,n.descricao,dt_notificacao		"
-                + " from	usuario u inner join notificacoes n on n.id_usuario  = u.id_usuario "
-                + " where n.id_usuario in (select id_usuario_amigo from amigo_usuario"
-                + " where id_usuario = ? and ignorado = 0 and dt_aceite is null"
-                + " union select id_usuario as id_usuario_amigo"
-                + " from amigo_usuario	where id_usuario_amigo = ?"
-                + " and ignorado = 0 and dt_aceite is null )  and n.tipo_notificacao = 'SYS') a "
-                + " )t where linha >  "+inicio+"  and linha <= " + fim;
+                + " where id_usuario = ? and ignorado = 0 and sn_Aceite = 1"
+                + " union  select id_usuario as id_usuario_amigo  "
+                + " from amigo_usuario where id_usuario_amigo = ?"
+                + " and ignorado = 0 and sn_Aceite = 1 )"
+                + " ) a "
+                + "    )t where linha >  " +inicio + "  and linha <= " + fim ;
 
 
-        Object[] vetor = {pId_usuario, pId_usuario, pId_usuario, pId_usuario, pId_usuario, pId_usuario};
+        Object[] vetor = {pId_usuario, pId_usuario, pId_usuario, pId_usuario};
 
         try {
             Connection c = Data.openConnection();
@@ -214,11 +214,11 @@ public class NotificacoesDao {
 
     }
 
-    public static boolean enviaNotificacao(Notificacoes objct) {
+    public static boolean enviaNotificacao(Notificacoes objct, Notificacoes.numeraNotificacao hh) {
         try {
             Connection c = Data.openConnection();
-            String sql = "INSERT INTO NOTIFICACOES(ID_USUARIO, DESCRICAO, BROADCAST,DT_NOTIFICACAO)VALUES(?,?,?,getdate())";
-            Object[] vetor = {objct.getId_usuario(), objct.getDescricao(), objct.getBroadcast()};
+            String sql = "INSERT INTO NOTIFICACOES(ID_USUARIO, DESCRICAO, BROADCAST,DT_NOTIFICACAO,TIPO_NOTIFICACAO)VALUES(?,?,?,getdate(),?)";
+            Object[] vetor = {objct.getId_usuario(), objct.getDescricao(), objct.getBroadcast(), (hh == Notificacoes.numeraNotificacao.FALA)? "SMS":"SYS"};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();

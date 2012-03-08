@@ -160,8 +160,8 @@ public class AmigoUsuarioDao {
          Object[] vetor = {_id,_id,_id,_idVisitante};
          String sql = "";
             sql = "select 1 from( select ? id_usuario union all select id_usuario "
-                + "from amigo_usuario where id_usuario_amigo = ?  union all  select id_usuario_amigo "
-                + "from amigo_usuario where id_usuario = ?) a where a.id_usuario = ?";
+                + "from amigo_usuario where id_usuario_amigo = ? and sn_Aceite = 1  union all  select id_usuario_amigo "
+                + "from amigo_usuario where id_usuario = ? and sn_Aceite = 1 ) a where a.id_usuario = ?";
 
         boolean valida = false;
         try {

@@ -23,7 +23,7 @@ Notificacoes.prototype = {
     initialize: function() {
 
         this.dataBindMvc('listaNotificacao.do', {
-            idUsuario : $('#idUser').text(),
+            idUsuario : (($('#idUserVisitante').length == 0)? $('#idUser').text():$('#idUserVisitante').text()),
             qtd : 10,
             pagina: _pagina,
             idUser: $('#idUser').text()

@@ -214,7 +214,7 @@ public class JogoDal {
         String sqlWhere = "";
 
         if(_tipoFiltro.equals("G")){ //para buscar por genero
-            sqlWhere = "g.id_genero = " + _idTipo;
+            sqlWhere = " id_genero = " + _idTipo;
         }
         if(_tipoFiltro.equals("L")){// para buscar por lancamentos
             sqlWhere = "dt_lancamento between DATEADD(DAY, -30 , GETDATE()) AND getdate()";
@@ -253,12 +253,16 @@ public class JogoDal {
                 + " left join titulo_jogo t on j.id_titulo_jogo = t.id_titulo_jogo "
                 + " left join console c on j.id_console = c.id_console "
                 + " left join jogo_usuario ju on j.id_jogo = ju.id_jogo "
-                + " left join genero g on g.id_genero = t.id_genero"
+                + " left join genero_titulo gt on t.id_titulo_jogo = gt.id_titulo_jogo "
+                + " left join editora_titulo et on t.id_titulo_jogo = et.id_titulo_jogo "
+                + " left join desenvolvedor_titulo dt on t.id_titulo_jogo = dt.id_titulo_jogo"
                 + " where " + sqlWhere + " ) as totalregistros "
                 + " from titulo_jogo t"
                 + " inner join jogo on t.id_titulo_jogo = jogo.id_titulo_jogo "
-                + "	  inner join genero g on t.id_genero = g.id_genero"
-                + "	  inner join console c on jogo.id_console = c.id_console"
+                + " inner join genero_titulo gt on t.id_titulo_jogo = gt.id_titulo_jogo "
+                + " inner join editora_titulo et on t.id_titulo_jogo = et.id_titulo_jogo "
+                + " inner join desenvolvedor_titulo dt on t.id_titulo_jogo = dt.id_titulo_jogo "
+                + " inner join console c on jogo.id_console = c.id_console"
                 + "  where " + sqlWhere
                 + " ) a"
                 + " where linha > " + inicio + " and linha <= " + fim

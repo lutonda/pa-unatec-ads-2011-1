@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import una.pa.model.*;
+import una.pa.repository.Data;
 import una.pa.service.*;
+import una.pa.util.DateTime;
 
 @Controller
 public class AjaxTrocasController {
@@ -38,7 +40,20 @@ public class AjaxTrocasController {
                 TrocaJogos trocaJogos = it.next();
 
                 if (trocaJogos.getStatus_troca().equals(st.toString())) {
-                    Itens += listItem(trocaJogos);
+                    String Item = "";
+                    Item += "<li>" + trocaJogos.getTipo() + " - "
+                            + trocaJogos.getNm_usuario_destino() + " " + trocaJogos.getCidade() + "/"
+                            + trocaJogos.getEstado() + " - " + trocaJogos.getNm_titulo_destino()
+                            + " POR " + trocaJogos.getNm_titulo_origem() + " - "
+                            + trocaJogos.getStatus_troca();
+                            if(st.equals(TrocaJogos.statusTroca.andamento) && trocaJogos.getData_final_usu_origem() == null)
+                                Item += " <span id=btn_" + trocaJogos.getId_troca() + "><a href=\"javascript:void(0);\" class=btnFimTroca id=" + trocaJogos.getId_troca() + ">Finalizar Troca</a></span></li>";
+                            else if(st.equals(TrocaJogos.statusTroca.andamento))
+                                Item += " (Qualificar Usuário)</li>";
+                            else                           
+                                Item += " </li>";
+
+                    Itens += Item;
                     Count++;
                 }
             }
@@ -47,8 +62,21 @@ public class AjaxTrocasController {
         return Itens;
     }
 
-    private String listItem(TrocaJogos trocaJogos) {
-        String Itens = "";
-        return Itens += "<li>" + trocaJogos.getTipo() + " - " + trocaJogos.getNm_usuario_destino() + " " + trocaJogos.getCidade() + "/" + trocaJogos.getEstado() + " - " + trocaJogos.getNm_titulo_origem() + " POR " + trocaJogos.getNm_titulo_destino() + " - " + trocaJogos.getStatus_troca() + "</li>";
+    @RequestMapping(value = "site/inicio/trocaJogo.do", method = {RequestMethod.GET,
+        RequestMethod.POST})
+    @ResponseBody
+    public String getTrocaJogo(HttpServletRequest request,
+            @RequestParam int idTroca) {
+
+        TrocaJogos trocajogos = new TrocaJogos();
+        trocajogos.setId_troca(idTroca);
+        trocajogos.setData_final_usu_origem(DateTime.now().getDate());
+        
+        if(TrocaJogosService.editar(trocajogos))
+            NotificacoesService.enviaNotificacao(Notificacoes.numeraNotificacao.TROCA, "", 5, 0, "nome destino", 0, "nome jogo 1", 0, "nome jogo 2", 0);
+        
+        
+
+        return "";
     }
 }

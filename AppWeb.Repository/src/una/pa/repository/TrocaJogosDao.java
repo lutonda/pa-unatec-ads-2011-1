@@ -3,9 +3,12 @@ package una.pa.repository;
 import com.sun.org.apache.xpath.internal.operations.Equals;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.print.attribute.standard.DateTimeAtCompleted;
 import una.pa.model.*;
+import una.pa.util.DateTime;
 
 /**
  *
@@ -35,9 +38,9 @@ public class TrocaJogosDao {
             if (_obj.getDt_troca() != null && (_obj.getData_final_usu_origem() == null && _obj.getData_final_usu_destino() == null)) {
                 sql = "update troca set data_aceito = " + _obj.getDt_troca() + " where id_troca = " + _obj.getId_troca();
             } else if (_obj.getData_final_usu_origem() != null && _obj.getData_final_usu_destino() == null) {
-                sql = "update troca set data_final_usu_origem = " + _obj.getData_final_usu_origem() + " where id_troca = " + _obj.getId_troca();
+                sql = "update troca set data_final_usu_origem = getdate() where id_troca = " + _obj.getId_troca();
             } else if (_obj.getData_final_usu_origem() == null && _obj.getData_final_usu_destino() != null) {
-                sql = "update troca set data_final_usu_destino = " + _obj.getData_final_usu_destino() + " where id_troca = " + _obj.getId_troca();
+                sql = "update troca set data_final_usu_destino = getdate() where id_troca = " + _obj.getId_troca();
             }
             Data.executeUpdate(c, sql);
             c.close();
@@ -174,8 +177,8 @@ public class TrocaJogosDao {
         }
         List<TrocaJogos> objc = new ArrayList<TrocaJogos>();
         sql = "select top " + quantidePorPagina + " * from ("
-                + "select	troca.id_usuario_origem,"
-                + "troca.id_jogo_origem,"
+                + "select troca.id_troca, data_final_usu_origem, troca.id_usuario_origem,"
+                + " troca.id_jogo_origem,"
                 + " troca.id_jogo_destino,"
                 + " titulo_jogo.nm_titulo nm_titulo_destino,"
                 + " jo.imagem imagem_destino,"
@@ -198,7 +201,7 @@ public class TrocaJogosDao {
                 + "row_number() over (order by troca.tipo asc) as linha,"
                 + " dbo.fnc_retornaTotalRegistros(3,?) totalregistros"
                 + " from("
-                + "  select	case when ju.id_usuario = ? then ju.id_usuario else jud.id_usuario end as id_usuario_origem,"
+                + "  select	t.id_troca, t.data_final_usu_origem, case when ju.id_usuario = ? then ju.id_usuario else jud.id_usuario end as id_usuario_origem,"
                 + " case when jud.id_usuario = ? then ju.id_usuario else jud.id_usuario end as id_usuario_destino,"
                 + " ju.id_jogo id_jogo_origem,"
                 + " jud.id_jogo  as id_jogo_destino,"
@@ -245,12 +248,15 @@ public class TrocaJogosDao {
 
             while (rs.next()) {
                 TrocaJogos o = new TrocaJogos();
+                o.setId_troca(Integer.parseInt(rs.getString("id_troca")));
                 /// Dados Origem
                 o.setId_usuario(Integer.parseInt(rs.getString("id_usuario_origem")));
                 o.setId_jogo_origem(Integer.parseInt(rs.getString("id_jogo_origem")));
                 o.setNm_titulo_origem(rs.getString("nm_titulo_origem"));
                 o.setImagem_origem(rs.getString("imagem_origem"));
                 o.setDs_console_origem(rs.getString("ds_console_origem"));
+                o.setData_final_usu_origem(rs.getDate("data_final_usu_origem"));
+
                 // Dados Destino
                 o.setId_usuario(Integer.parseInt(rs.getString("id_usuario_destino")));
                 o.setNm_usuario_destino(rs.getString("nm_usuario_destino"));

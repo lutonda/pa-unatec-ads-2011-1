@@ -22,11 +22,24 @@ Proposta.Load = function(){
 Proposta.prototype = {
 
     initialize: function() {
+        var ini = this;
         $('#btnPropFinalizadas').bind('click', 'F', $.createDelegate(this, this._listaPropostasOnClick));
         $('#btnPropAndamento').bind('click', 'A', $.createDelegate(this, this._listaPropostasOnClick));
         $('#btnPropAberto').bind('click', 'P', $.createDelegate(this, this._listaPropostasOnClick));
+        
+        $("a.btnFimTroca").live("click", function () {
+            console.log(this);
+            
+            ini.dataBindMvc('../inicio/trocaJogo.do', {
+                idTroca : this.id
+            }, this._finalizarOnSuccess);
+        });
     },
-    
+    _finalizarOnSuccess: function(value){
+        //$('#btn_' + value.id).hide();
+        console.log(value);
+    },
+       
     _listaPropostasOnClick: function(value){
         this.dataBindMvc('../inicio/listaTrocasJogos.do', {
             id : $('#idUser').text(),
@@ -35,7 +48,11 @@ Proposta.prototype = {
             pagina: _pagina
         }, this._listaPropostasOnSuccess);
         
-        var myClose=function(hash) {hash.o.remove();  hash.w.hide(); $('#cxTrocas ul li').remove(); }; 
+        var myClose=function(hash) {
+            hash.o.remove();
+            hash.w.hide();
+            $('#cxTrocas ul li').remove();
+        }; 
         
         $('#cxTrocas').jqm({
             onHide:myClose,

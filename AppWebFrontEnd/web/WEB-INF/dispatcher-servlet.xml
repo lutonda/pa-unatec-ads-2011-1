@@ -38,6 +38,7 @@
                 <prop key="site/jogo/listaUsuarioJogo.do">ajaxUsuarioController</prop>
                 <prop key="site/inicio/enviarNotificacao.do">ajaxEnviaNotificacaoController</prop>
                 <prop key="site/inicio/ctrlUsuario.do">ajaxCtrlUsuarioController</prop>
+                <prop key="site/inicio/trocaJogo.do">ajaxTrocasController</prop>
             </props>
         </property>
     </bean>

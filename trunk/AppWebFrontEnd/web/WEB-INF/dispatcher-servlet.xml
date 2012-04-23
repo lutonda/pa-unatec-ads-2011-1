@@ -30,14 +30,14 @@
                 <prop key="inicio/cadastro/*.html">inicioController</prop>
                 <prop key="inicio/ajuda/*.html">ajudaController</prop>
                 <prop key="site/inicio/listaJogos.do">ajaxController</prop>
-                <prop key="site/inicio/listaFiltroJogos.do">ajaxFiltroJogosController</prop>
+                <prop key="site/inicio/listaFiltroJogos.do">ajaxController</prop>
                 <prop key="site/inicio/listaTrocasJogos.do">ajaxTrocasController</prop>
-                <prop key="site/inicio/listaMaisJogos.do">ajaxMaisJogosController</prop>
-                <prop key="site/inicio/listaTituloJogo.do">ajaxTituloJogoController</prop>
+                <prop key="site/inicio/listaMaisJogos.do">ajaxController</prop>
+                <prop key="site/inicio/listaTituloJogo.do">ajaxController</prop>
                 <prop key="site/inicio/listaNotificacao.do">ajaxNotificacaoController</prop>
                 <prop key="site/jogo/listaUsuarioJogo.do">ajaxUsuarioController</prop>
-                <prop key="site/inicio/enviarNotificacao.do">ajaxEnviaNotificacaoController</prop>
-                <prop key="site/inicio/ctrlUsuario.do">ajaxCtrlUsuarioController</prop>
+                <prop key="site/inicio/enviarNotificacao.do">ajaxNotificacaoController</prop>
+                <prop key="site/inicio/ctrlUsuario.do">ajaxUsuarioController</prop>
                 <prop key="site/inicio/trocaJogo.do">ajaxTrocasController</prop>
             </props>
         </property>
@@ -58,13 +58,8 @@
     <bean name="inicioController" class="una.pa.controller.InicioController"/>
     <bean name="jogoController" class="una.pa.controller.JogoController"/>
     <bean name="amigoController" class="una.pa.controller.AmigoController"/>
-    <bean name="ajaxController" class="una.pa.ajax.controller.AjaxController"/>
-    <bean name="ajaxFiltroJogosController" class="una.pa.ajax.controller.AjaxFiltroJogosController"/>
-    <bean name="ajaxMaisJogosController" class="una.pa.ajax.controller.AjaxMaisJogosController"/>
+    <bean name="ajaxController" class="una.pa.ajax.controller.AjaxJogoController"/>
     <bean name="ajaxTrocasController" class="una.pa.ajax.controller.AjaxTrocasController"/>
-    <bean name="ajaxTituloJogoController" class="una.pa.ajax.controller.AjaxTituloJogoController"/>
     <bean name="ajaxNotificacaoController" class="una.pa.ajax.controller.AjaxNotificacaoController"/>
     <bean name="ajaxUsuarioController" class="una.pa.ajax.controller.AjaxUsuarioController"/>
-    <bean name="ajaxEnviaNotificacaoController" class="una.pa.ajax.controller.AjaxEnviaNotificacaoController"/>
-    <bean name="ajaxCtrlUsuarioController" class="una.pa.ajax.controller.AjaxCtrlUsuarioController"/>
 </beans>

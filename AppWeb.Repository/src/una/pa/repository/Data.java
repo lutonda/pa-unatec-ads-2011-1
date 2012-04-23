@@ -18,7 +18,7 @@ import java.sql.Statement;
 public class Data {
 
     public static Connection openConnection() throws Exception {
-         return openConnectionSqlServer("NEWCOM-DESK550", "trocajogos", "sa", "");
+         return openConnectionSqlServer("localhost", "trocajogos", "sa", "sa");
     }
 
     public static Connection openConnectionPostgre(String server,

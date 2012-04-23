@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import una.pa.model.*;
-import una.pa.repository.Data;
 import una.pa.service.*;
 import una.pa.util.DateTime;
 
@@ -41,11 +40,14 @@ public class AjaxTrocasController {
 
                 if (trocaJogos.getStatus_troca().equals(st.toString())) {
                     String Item = "";
-                    Item += "<li>" + trocaJogos.getTipo() + " - "
-                            + trocaJogos.getNm_usuario_destino() + " " + trocaJogos.getCidade() + "/"
-                            + trocaJogos.getEstado() + " - " + trocaJogos.getNm_titulo_destino()
-                            + " POR " + trocaJogos.getNm_titulo_origem() + " - "
-                            + trocaJogos.getStatus_troca();
+                    Item += "<li>"
+                            + "Usuário: " + trocaJogos.getNm_usuario_destino()
+                            + " - " + trocaJogos.getCidade() + "/"  + trocaJogos.getEstado()
+                            + "<br/>Contato: " + trocaJogos.getTel_usuario() + " " + trocaJogos.getEmail()
+                            + "<br/><br/>Jogo 1: " + trocaJogos.getNm_titulo_destino() + " (" + trocaJogos.getDs_console_destino() + ")"
+                            + "<br/>Jogo 2: " + trocaJogos.getNm_titulo_origem() + " (" + trocaJogos.getDs_console_origem() + ")"
+                            + "<br/><br/>Status " + trocaJogos.getStatus_troca() + " (" + trocaJogos.getTipo() + ")" ;
+
                             if(st.equals(TrocaJogos.statusTroca.andamento) && trocaJogos.getData_final_usu_origem() == null)
                                 Item += " <span id=btn_" + trocaJogos.getId_troca() + "><a href=\"javascript:void(0);\" class=btnFimTroca id=" + trocaJogos.getId_troca() + ">Finalizar Troca</a></span></li>";
                             else if(st.equals(TrocaJogos.statusTroca.andamento))

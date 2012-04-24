@@ -10,17 +10,24 @@ package una.pa.model;
  */
 public class Jogo extends TituloJogo{
 
+    public static enum enNivelUsuarioJogo {
+        desejo, jogo, nenhum
+    }
+
     protected int total;
     protected int id_jogo;
     protected int id_console;
     protected String imagem;
-    private String descricao;
-    private int pontos;
-    private int proprietario;
-    private int interessado;
-    private int oferta;
-    private String nivelInteresse;
-    private String nivelDesejo;
+    protected String descricao;
+    protected int pontos;
+    protected int proprietario;
+    protected int interessado;
+    protected int oferta;
+    protected String nivelInteresse;
+    protected String nivelDesejo;
+
+    protected String console;
+    protected String titulo_jogo;
 
     public String getNivelDesejo() {
         return nivelDesejo;
@@ -71,8 +78,7 @@ public class Jogo extends TituloJogo{
     }
 
     
-    protected String console;
-    protected String titulo_jogo;
+    
 
     public String getDescricao() {
         return descricao;

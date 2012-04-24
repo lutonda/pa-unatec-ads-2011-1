@@ -56,22 +56,32 @@ public class JogoService {
     public static boolean incluir(Jogo _obj) {
         return JogoDal.incluir(_obj);
     }
+
     public static boolean excluir(int id) {
         return JogoDal.excluir(id);
     }
+
     public static Jogo detalheJogo(int _id) {
         return JogoDal.detalhesJogo(_id);
     }
-    public static List<Jogo> filtroJogosGenerico(int _idTipo, String _tipoFiltro, String tipoCategoria,  int quantidePorPagina, int pagina){
-        return JogoDal.filtroJogosGenerico(_idTipo, _tipoFiltro, tipoCategoria,  quantidePorPagina, pagina);
+
+    public static Jogo.enNivelUsuarioJogo nivelUsuarioJogo (int _idUsuario, int _idjogo) {
+        return JogoDal.nivelUsuarioJogo(_idUsuario, _idjogo);
     }
-   public static List<Jogo> filtroMaisDesejados(int quantidePorPagina, int pagina ){
-       return JogoDal.FiltroJogoDesejado(quantidePorPagina, pagina);
-   }
-    public static List<Jogo> filtroMaisTrocados(int quantidePorPagina, int pagina ){
-        return JogoDal.FiltroJogosTrocados(quantidePorPagina,pagina);
+
+    public static List<Jogo> filtroJogosGenerico(int _idTipo, String _tipoFiltro, String tipoCategoria, int quantidePorPagina, int pagina) {
+        return JogoDal.filtroJogosGenerico(_idTipo, _tipoFiltro, tipoCategoria, quantidePorPagina, pagina);
     }
-    public static List<Jogo> filtroMaisQualificados(int quantidePorPagina, int pagina ){
-        return JogoDal.FiltroMaisQualificados(quantidePorPagina,pagina);
+
+    public static List<Jogo> filtroMaisDesejados(int quantidePorPagina, int pagina) {
+        return JogoDal.FiltroJogoDesejado(quantidePorPagina, pagina);
+    }
+
+    public static List<Jogo> filtroMaisTrocados(int quantidePorPagina, int pagina) {
+        return JogoDal.FiltroJogosTrocados(quantidePorPagina, pagina);
+    }
+
+    public static List<Jogo> filtroMaisQualificados(int quantidePorPagina, int pagina) {
+        return JogoDal.FiltroMaisQualificados(quantidePorPagina, pagina);
     }
 }

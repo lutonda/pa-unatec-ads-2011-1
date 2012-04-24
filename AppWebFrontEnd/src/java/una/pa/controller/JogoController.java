@@ -33,13 +33,13 @@ public class JogoController extends MultiActionController {
             
 
             Jogo objct = JogoService.detalheJogo(id);
-            //List <Usuario> usu = UsuarioService.usuarioJogos(id, false, 10, 1, 0);
             DadosIniciais obj = UsuarioService.inicioPerfil(request);
             List<Tags> objTags = TagsService.listarTags(obj.getId_usuario());
+            Jogo.enNivelUsuarioJogo o = JogoService.nivelUsuarioJogo(obj.getId_usuario(), id);
             mav.addObject("Jogo", objct);
-            //mav.addObject("usuarios", usu);
             mav.addObject("DadosIniciais", obj);
             mav.addObject("tags", objTags);
+            mav.addObject("nivel", o);
 
         } catch (Exception e) {
             response.sendRedirect("/site/inicio/index.html");

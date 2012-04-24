@@ -71,6 +71,10 @@
                             </td><br><br>
                             <li>${Jogo.descricao}</li>
                         </ul>
+                            <c:if test="${nivel == 'jogo'}">Este Jogo estar em sua lista de Jogos (Editar)</c:if>
+                            <c:if test="${nivel == 'desejo'}">Este Jogo estar em sua lista de Desejos (Excluir da Lista)</c:if>
+                            <c:if test="${nivel == 'nenhum'}">
+                        <div>Tenho / Desejo</div></c:if>
                         <div class="cb"></div>
                     </div>
                     <div class="box-df"><span><a href="#">Avalie (${Jogo.pontos})</a></span>

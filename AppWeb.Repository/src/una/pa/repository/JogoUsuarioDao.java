@@ -80,12 +80,12 @@ public class JogoUsuarioDao {
             return false;
         }
     }
-     public static boolean excluir(int _id) {
+     public static boolean excluir(Jogousuario _obj) {
 
         try {
             Connection c = Data.openConnection();
-            String sql = "delete dbo.JOGO_USUARIO where where id_jogo_usuario = ?";
-            Object[] vetor = {_id};
+            String sql = "delete dbo.JOGO_USUARIO where where id_usuario = ? and id_jogo = ?";
+            Object[] vetor = {_obj.getId_usuario(),_obj.getId_jogo()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();

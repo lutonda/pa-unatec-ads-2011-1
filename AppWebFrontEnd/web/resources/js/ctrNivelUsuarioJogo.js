@@ -18,20 +18,68 @@ CtrlNivel.Load = function(){
 CtrlNivel.prototype = {
 
     initialize: function() {
-        $('#btnTenho').bind('click', 'J', $.createDelegate(this, this._btnSetNivelOnClick));
-        $('#btnDesejo').bind('click', 'I', $.createDelegate(this, this._btnSetNivelOnClick));
-        $('#btnDesejoExcluir').bind('click', 'E', $.createDelegate(this, this._btnSetNivelOnClick));
+        $('#btnTenho').bind('click', 'I', $.createDelegate(this, this._btnSetTenhoOnClick));
+        $('#btnTenhoAlterar').bind('click', 'A', $.createDelegate(this, this._btnSetTenhoOnClick));
+        $('#btnTenhoExcluir').bind('click', 'E', $.createDelegate(this, this._btnSetTenhoOnClick));
+        $('#btnTenhoVisualizar').bind('click', 'V', $.createDelegate(this, this._btnSetTenhoOnClick));
+
+        $('#btnDesejo').bind('click', 'I', $.createDelegate(this, this._btnSetDesejoOnClick));
+        $('#btnDesejoExcluir').bind('click', 'E', $.createDelegate(this, this._btnSetDesejoOnClick));
     },
 
-    _btnSetNivelOnClick: function(value){
+    _btnSetTenhoOnClick: function(value){
+
+        //        this.dataBindMvc('setTenho.do', {
+        //            idUsuario : $('#idUser').text(),
+        //            idJogo: $('#idJogo').text(),
+        //            tipoPar: value.data
+        //        }, this._postTenhoOnSuccess);
+
+
+        //$('input[name="star1"]')
+
+        $("#stars-wrapper1").stars({
+            showTitles: true,
+            cancelShow: false,
+            captionEl: $("#stars1-cap")
+        });
+        $("#stars-wrapper2").stars({
+            showTitles: true,
+            cancelTitle: 'Sem Manual',
+            captionEl: $("#stars2-cap")
+        });
+        $("#stars-wrapper3").stars({
+            showTitles: true,
+            cancelTitle: 'Sem Capa',
+            captionEl: $("#stars3-cap")
+        });
+
+        var myClose=function(hash) {
+            hash.o.remove();
+            hash.w.hide();
+        //$('#cxTrocas ul li').remove();
+        };
+
+        $('#cxEstadoJogo').jqm({
+            onHide:myClose,
+            overlay:80,
+            modal: true,
+            overlayClass:'bgModal',
+            closeClass:'btnFecharModal'
+        }).jqmShow();
+
+
+    },
+
+    _btnSetDesejoOnClick: function(value){
         this.dataBindMvc('setDesejo.do', {
             idUsuario : $('#idUser').text(),
             idJogo: $('#idJogo').text(),
             tipoPar: value.data
-        }, this._postNivelOnSuccess);
+        }, this._postDesejoOnSuccess);
     },
 
-    _postNivelOnSuccess: function(value){
+    _postDesejoOnSuccess: function(value){
         var setText;
         if (value == 'I')
             setText = '<span>Este Jogo esta em sua lista de Desejos (<a id="btnDesejoExcluir" href="javascript:void(0);">Excluir da Lista</a>)</span>';

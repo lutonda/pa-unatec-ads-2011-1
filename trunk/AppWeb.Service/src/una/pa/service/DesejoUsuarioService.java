@@ -27,7 +27,7 @@ public class DesejoUsuarioService {
     public static boolean alterar(Desejousuario _obj){
         return DesejoUsuarioDao.alterar(_obj);
     }
-    public static boolean excluir(int _id){
-        return DesejoUsuarioDao.excluir(_id);
+    public static boolean excluir(Desejousuario _obj){
+        return DesejoUsuarioDao.excluir(_obj);
     }
 }

@@ -22,7 +22,7 @@ public class Jogo extends TituloJogo{
     protected int proprietario;
     protected int interessado;
     protected int oferta;
-    protected String nivelInteresse;
+    protected int nivelInteresse;
     protected int nivelDesejo;
 
     protected String console;
@@ -36,11 +36,11 @@ public class Jogo extends TituloJogo{
         this.nivelDesejo = nivelDesejo;
     }
 
-    public String getNivelInteresse() {
+    public int getNivelInteresse() {
         return nivelInteresse;
     }
 
-    public void setNivelInteresse(String nivelInteresse) {
+    public void setNivelInteresse(int nivelInteresse) {
         this.nivelInteresse = nivelInteresse;
     }
 

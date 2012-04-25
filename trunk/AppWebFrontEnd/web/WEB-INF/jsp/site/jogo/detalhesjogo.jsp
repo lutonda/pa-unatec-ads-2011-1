@@ -12,6 +12,8 @@
     <head>
         <title>Joga Trocas</title>
         <%@ include file="/inc/taghead.jsp" %>
+        <link rel="stylesheet" type="text/css" href="/AppWebFrontEnd/resources/css/plugins/jquery.ui.stars.css" rel="stylesheet" />
+
     </head>
     <body>
         <div id="container">
@@ -44,37 +46,24 @@
                         </c:if>
                         <ul style="float: left; width: 392px;">             
                             <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${Jogo.titulo_jogo}<span id="idJogo" style="display: none;">${Jogo.id_jogo}</span></li>                            
-                            <td>
+
+                            <li>
                                 <c:forEach items="${Jogo.listaCategoria}" var="Categoria" varStatus="count" >
                                     <c:out value="${Categoria.nm_categoria}"/>
                                 </c:forEach>
-                            </td><br><br>
-                            <td>
-                                <c:forEach items="${Jogo.listaEditora}" var="Editora" varStatus="count" >
-                                    <c:out value="${Editora.nm_editora}"/>
-                                </c:forEach>
-                            </td><br><br>
-                            <td>
+                            </li>
+                            <li>
                                 <c:forEach items="${Jogo.listaGenero}" var="Genero" varStatus="count" >
                                     <c:out value="${Genero.ds_genero}"/>
                                 </c:forEach>
-                            </td><br><br>
-                            <td>
-                                <c:forEach items="${Jogo.listaDesenv}" var="Desenvolvedor" varStatus="count" >
-                                    <c:out value="${Desenvolvedor.ds_desenv}"/>
-                                </c:forEach>
-                            </td><br><br>
-                            <td>
-                                <c:forEach items="${Jogo.listaLinguagem}" var="Linguagem" varStatus="count" >
-                                    <c:out value="${Linguagem.nm_linguagem}"/>
-                                </c:forEach>
-                            </td><br><br>
-                            <li>${Jogo.descricao}</li>
+                            </li>
+                            <li><br/>${Jogo.descricao}</li>
                         </ul>
-                        <div id="dvNivel"><span><c:if test="${nivel == 'jogo'}">Este Jogo esta em sua lista de Jogos (Editar)</c:if>
+                        <div class="cb"></div>
+                        <div id="dvNivel" style="margin-top: 20px;"><span><c:if test="${nivel == 'jogo'}">Este Jogo esta em sua lista de Jogos (<a id="btnTenhoAlterar" href="javascript:void(0);">Editar</a>)</c:if>
                                 <c:if test="${nivel == 'desejo'}">Este Jogo esta em sua lista de Desejos (<a id="btnDesejoExcluir" href="javascript:void(0);">Excluir da Lista</a>)</c:if>
                                 <c:if test="${nivel == 'nenhum'}"><a id="btnTenho" href="javascript:void(0);">Tenho</a> / <a id="btnDesejo" href="javascript:void(0);">Desejo</a></c:if></span></div>
-                        <div class="cb"></div>
+
                     </div>
                     <div class="box-df"><span><a href="#">Avalie (${Jogo.pontos})</a></span>
                         <span style="float: right"><a id="btnUserOferta" href="javascript:void(0);" title="Listar apenas Ofertados">Oferta (${Jogo.oferta})</a> - <a id="btnUserPro" href="javascript:void(0);" title="Listar apenas Proprietario">Proprietarios (${Jogo.proprietario})</a> - <a id="btnUserInt" href="javascript:void(0);" title="Listar apenas Interessados">Interesados (${Jogo.interessado})</a></span>
@@ -96,6 +85,9 @@
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaUsuarios.js"></script>
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaPropostas.js"></script>
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/ctrNivelUsuarioJogo.js"></script>
+
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/plugins/jquery.ui.stars.js"></script>
+        
         <%@ include file="/inc/metrics.jsp" %>
     </body>
 </html>

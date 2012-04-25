@@ -34,4 +34,35 @@ public class AjaxNivelController {
 
         return tipoPar;
     }
+
+    @RequestMapping(value = "site/jogo/setTenho.do", method = {RequestMethod.GET,
+        RequestMethod.POST})
+    @ResponseBody
+    public String setTenho(HttpServletRequest request,
+            @RequestParam int idUsuario, @RequestParam int idJogo, @RequestParam String tipoPar) {
+
+        try {
+            Jogousuario jogousuario = new Jogousuario();
+            jogousuario.setId_usuario(idUsuario);
+            jogousuario.setId_jogo(idJogo);
+            jogousuario.setNivelInteresse(0);
+            jogousuario.setEst_midia(0);
+            jogousuario.setEst_manual(0);
+            jogousuario.setEst_capa(0);
+            jogousuario.setRegiao_jogo(0);
+            jogousuario.setDescricao("");
+
+
+            if(tipoPar.equals("I"))
+                JogoUsuarioService.incluir(jogousuario);
+            else if (tipoPar.equals("A"))
+                JogoUsuarioService.alterar(jogousuario);
+            else if (tipoPar.equals("E"))
+                JogoUsuarioService.excluir(jogousuario);
+        } catch (Exception e) {
+            return String.valueOf(false);
+        }
+
+        return tipoPar;
+    }
 }

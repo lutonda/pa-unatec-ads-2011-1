@@ -45,36 +45,35 @@
                         <ul style="float: left; width: 392px;">             
                             <li style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${Jogo.titulo_jogo}<span id="idJogo" style="display: none;">${Jogo.id_jogo}</span></li>                            
                             <td>
-                               <c:forEach items="${Jogo.listaCategoria}" var="Categoria" varStatus="count" >
-                                   <c:out value="${Categoria.nm_categoria}"/>
-                               </c:forEach>
+                                <c:forEach items="${Jogo.listaCategoria}" var="Categoria" varStatus="count" >
+                                    <c:out value="${Categoria.nm_categoria}"/>
+                                </c:forEach>
                             </td><br><br>
                             <td>
-                               <c:forEach items="${Jogo.listaEditora}" var="Editora" varStatus="count" >
-                                   <c:out value="${Editora.nm_editora}"/>
-                               </c:forEach>
+                                <c:forEach items="${Jogo.listaEditora}" var="Editora" varStatus="count" >
+                                    <c:out value="${Editora.nm_editora}"/>
+                                </c:forEach>
                             </td><br><br>
                             <td>
-                               <c:forEach items="${Jogo.listaGenero}" var="Genero" varStatus="count" >
-                                  <c:out value="${Genero.ds_genero}"/>
-                               </c:forEach>
+                                <c:forEach items="${Jogo.listaGenero}" var="Genero" varStatus="count" >
+                                    <c:out value="${Genero.ds_genero}"/>
+                                </c:forEach>
                             </td><br><br>
                             <td>
-                               <c:forEach items="${Jogo.listaDesenv}" var="Desenvolvedor" varStatus="count" >
-                                   <c:out value="${Desenvolvedor.ds_desenv}"/>
-                               </c:forEach>
+                                <c:forEach items="${Jogo.listaDesenv}" var="Desenvolvedor" varStatus="count" >
+                                    <c:out value="${Desenvolvedor.ds_desenv}"/>
+                                </c:forEach>
                             </td><br><br>
                             <td>
-                               <c:forEach items="${Jogo.listaLinguagem}" var="Linguagem" varStatus="count" >
-                                  <c:out value="${Linguagem.nm_linguagem}"/>
-                               </c:forEach>
+                                <c:forEach items="${Jogo.listaLinguagem}" var="Linguagem" varStatus="count" >
+                                    <c:out value="${Linguagem.nm_linguagem}"/>
+                                </c:forEach>
                             </td><br><br>
                             <li>${Jogo.descricao}</li>
                         </ul>
-                            <c:if test="${nivel == 'jogo'}">Este Jogo estar em sua lista de Jogos (Editar)</c:if>
-                            <c:if test="${nivel == 'desejo'}">Este Jogo estar em sua lista de Desejos (Excluir da Lista)</c:if>
-                            <c:if test="${nivel == 'nenhum'}">
-                        <div>Tenho / Desejo</div></c:if>
+                        <div id="dvNivel"><span><c:if test="${nivel == 'jogo'}">Este Jogo esta em sua lista de Jogos (Editar)</c:if>
+                                <c:if test="${nivel == 'desejo'}">Este Jogo esta em sua lista de Desejos (<a id="btnDesejoExcluir" href="javascript:void(0);">Excluir da Lista</a>)</c:if>
+                                <c:if test="${nivel == 'nenhum'}"><a id="btnTenho" href="javascript:void(0);">Tenho</a> / <a id="btnDesejo" href="javascript:void(0);">Desejo</a></c:if></span></div>
                         <div class="cb"></div>
                     </div>
                     <div class="box-df"><span><a href="#">Avalie (${Jogo.pontos})</a></span>
@@ -96,6 +95,7 @@
         <!-- scripts de escopo local -->
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaUsuarios.js"></script>
         <script type="text/javascript" src="/AppWebFrontEnd/resources/js/listaPropostas.js"></script>
+        <script type="text/javascript" src="/AppWebFrontEnd/resources/js/ctrNivelUsuarioJogo.js"></script>
         <%@ include file="/inc/metrics.jsp" %>
     </body>
 </html>

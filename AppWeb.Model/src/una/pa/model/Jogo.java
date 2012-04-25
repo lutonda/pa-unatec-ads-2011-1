@@ -18,22 +18,21 @@ public class Jogo extends TituloJogo{
     protected int id_jogo;
     protected int id_console;
     protected String imagem;
-    protected String descricao;
     protected int pontos;
     protected int proprietario;
     protected int interessado;
     protected int oferta;
     protected String nivelInteresse;
-    protected String nivelDesejo;
+    protected int nivelDesejo;
 
     protected String console;
     protected String titulo_jogo;
 
-    public String getNivelDesejo() {
+    public int getNivelDesejo() {
         return nivelDesejo;
     }
 
-    public void setNivelDesejo(String nivelDesejo) {
+    public void setNivelDesejo(int nivelDesejo) {
         this.nivelDesejo = nivelDesejo;
     }
 
@@ -75,17 +74,6 @@ public class Jogo extends TituloJogo{
 
     public void setProprietario(int proprietario) {
         this.proprietario = proprietario;
-    }
-
-    
-    
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public int getPontos() {

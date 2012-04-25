@@ -62,11 +62,11 @@ public class DesejoUsuarioDao {
 
         List<Jogo> objct = new ArrayList<Jogo>();
         String sql = "select top " + quantidePorPagina + " * "
-                + "from (select row_number() over (order by id_jogo) as linha "
+                + "from (select row_number() over (order by DT_SOLICITACAO desc) as linha "
                 + ", (select count(*) from jogos_desejados where id_usuario = ?) as totalregistros "
-                + ", * from jogos_desejados where id_usuario = ? and id_jogo not in(select id_jogo from jogo_usuario where id_jogo = ?)) as buscapaginada where linha > " + inicio + " and linha <= " + fim;
+                + ", * from jogos_desejados where id_usuario = ? and id_jogo not in(select id_jogo from jogo_usuario where id_usuario = ?)) as buscapaginada where linha > " + inicio + " and linha <= " + fim;
 
-        Object[] vetor = {pId_usuario, pId_usuario,pId_usuario};
+        Object[] vetor = {pId_usuario, pId_usuario, pId_usuario};
 
         try {
             Connection c = Data.openConnection();
@@ -81,7 +81,7 @@ public class DesejoUsuarioDao {
                 o.setImagem(rs.getString("IMAGEM"));
                 o.setTitulo_jogo(rs.getString("NM_TITULO"));
                 o.setConsole(rs.getString("DS_CONSOLE"));
-                o.setNivelDesejo(rs.getString("NIVEL_DESEJO"));
+                o.setNivelDesejo(Integer.parseInt(rs.getString("NIVEL_DESEJO")));
                 o.setTotal(Integer.parseInt(rs.getString("totalregistros")));
                 objct.add(o);
             }
@@ -93,38 +93,41 @@ public class DesejoUsuarioDao {
             return null;
         }
     }
-    public static boolean incluir(Desejousuario _obj){
-        try{
+
+    public static boolean incluir(Desejousuario _obj) {
+        try {
             Connection c = Data.openConnection();
-            String sql = "insert into dbo.JOGO_DESEJADO (id_jogo,id_usuario,dt_solicitacao,nivel_desejo)"
-                        +" values (?,?,getdate(),?)";
-            Object[] vetor = {_obj.getId_jogo(),_obj.getId_usuario(),_obj.getNivelDesejo()};
+            String sql = "insert into JOGO_DESEJADO (id_jogo,id_usuario,dt_solicitacao,nivel_desejo)"
+                    + " values (?,?,getdate(),?)";
+            Object[] vetor = {_obj.getId_jogo(), _obj.getId_usuario(), _obj.getNivelDesejo()};
             Data.executeQuery(c, sql, vetor);
             c.close();
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-    public static boolean alterar(Desejousuario _obj){
-        try{
+
+    public static boolean alterar(Desejousuario _obj) {
+        try {
             Connection c = Data.openConnection();
             String sql = "update dbo.JOGO_DESEJADO set id_jogo = ?,id_usuario = ?, dt_solicitacao = getdate(), nivel_desejo = ? where id_jogo_desejado = ?";
-            Object[] vetor = {_obj.getId_jogo(),_obj.getId_usuario(),_obj.getNivelDesejo()};
+            Object[] vetor = {_obj.getId_jogo(), _obj.getId_usuario(), _obj.getNivelDesejo()};
 
             Data.executeQuery(c, sql, vetor);
             c.close();
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-    public static boolean excluir(int _id) {
+
+    public static boolean excluir(Desejousuario _obj) {
 
         try {
             Connection c = Data.openConnection();
-            String sql = "delete dbo.JOGO_DESEJADO where id_jogo_desejado = ?";
-            Object[] vetor = {_id};
+            String sql = "delete dbo.JOGO_DESEJADO where id_jogo = ? and id_usuario = ?";
+            Object[] vetor = {_obj.getId_jogo(), _obj.getId_usuario()};
 
             Data.executeUpdate(c, sql, vetor);
             c.close();

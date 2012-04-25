@@ -22,8 +22,8 @@ public class JogoUsuarioService {
     public static boolean alterar(Jogousuario _obj){
         return JogoUsuarioDao.alterar(_obj);
     }
-    public static boolean excluir(int _id){
-        return JogoUsuarioDao.excluir(_id);
+    public static boolean excluir(Jogousuario _obj){
+        return JogoUsuarioDao.excluir(_obj);
     }
 
 }

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.print.attribute.standard.DateTimeAtCompleted;
 import una.pa.model.*;
-import una.pa.util.DateTime;
 
 /**
  *

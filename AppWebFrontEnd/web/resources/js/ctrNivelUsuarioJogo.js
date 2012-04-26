@@ -18,41 +18,90 @@ CtrlNivel.Load = function(){
 CtrlNivel.prototype = {
 
     initialize: function() {
-        $('#btnTenho').bind('click', 'I', $.createDelegate(this, this._btnSetTenhoOnClick));
-        $('#btnTenhoAlterar').bind('click', 'A', $.createDelegate(this, this._btnSetTenhoOnClick));
-        $('#btnTenhoExcluir').bind('click', 'E', $.createDelegate(this, this._btnSetTenhoOnClick));
-        $('#btnTenhoVisualizar').bind('click', 'V', $.createDelegate(this, this._btnSetTenhoOnClick));
+        $('#btnTenho').bind('click', 'I', $.createDelegate(this, this._btnSetTenhoOnClick)); //Abrir
+        $('#btnTenhoAlterar').bind('click', 'A', $.createDelegate(this, this._btnSetTenhoOnClick)); //Abrir e Popular
+        $('#btnTenhoVisualizar').bind('click', 'V', $.createDelegate(this, this._btnSetTenhoOnClick)); //Abrir Simples
+
+        
+        //$('#btnTenhoExcluir').bind('click', 'E', $.createDelegate(this, this._btnSetTenhoOnClick));
 
         $('#btnDesejo').bind('click', 'I', $.createDelegate(this, this._btnSetDesejoOnClick));
         $('#btnDesejoExcluir').bind('click', 'E', $.createDelegate(this, this._btnSetDesejoOnClick));
     },
 
     _btnSetTenhoOnClick: function(value){
+        //console.log(value)
+        var tipoPar = value.data;
 
-        //        this.dataBindMvc('setTenho.do', {
-        //            idUsuario : $('#idUser').text(),
-        //            idJogo: $('#idJogo').text(),
-        //            tipoPar: value.data
-        //        }, this._postTenhoOnSuccess);
+        switch (tipoPar){
+            
+            case "I":
+                $('#btnTenhoExcluir').hide();
+                $('#btnTenhoSalvar').bind('click', 'I', $.createDelegate(this, this._btnSalvarTenhoOnClick));
+            case "A":
+
+                //        this.dataBindMvc('setTenho.do', {
+                //            idUsuario : $('#idUser').text(),
+                //            idJogo: $('#idJogo').text(),
+                //            tipoPar: value.data
+                //        }, this._postTenhoOnSuccess);
+
+                $("#stars-wrapper1").stars({
+                    showTitles: true,
+                    cancelShow: false,
+                    captionEl: $("#stars1-cap")
+                });
+                $("#stars-wrapper2").stars({
+                    showTitles: true,
+                    cancelTitle: 'Sem Manual',
+                    captionEl: $("#stars2-cap")
+                });
+                $("#stars-wrapper3").stars({
+                    showTitles: true,
+                    cancelTitle: 'Sem Capa',
+                    captionEl: $("#stars3-cap")
+                });
+
+                
+                break;
+            case "V":
+
+                //        this.dataBindMvc('setTenho.do', {
+                //            idUsuario : $('#idUser').text(),
+                //            idJogo: $('#idJogo').text(),
+                //            tipoPar: value.data
+                //        }, this._postTenhoOnSuccess);
+
+                $("#stars-wrapper1").stars({
+                    showTitles: true,
+                    cancelShow: false,
+                    disabled: true,
+                    captionEl: $("#stars1-cap")
+                });
+                $("#stars-wrapper2").stars({
+                    showTitles: true,
+                    disabled: true,
+                    cancelTitle: 'Sem Manual',
+                    captionEl: $("#stars2-cap")
+                });
+                $("#stars-wrapper3").stars({
+                    showTitles: true,
+                    disabled: true,
+                    cancelTitle: 'Sem Capa',
+                    captionEl: $("#stars3-cap")
+                });
+
+                $('#btnTenhoSalvar').hide();
+                $('#btnTenhoExcluir').hide();
+                break;
+        }
+
+        
 
 
         //$('input[name="star1"]')
 
-        $("#stars-wrapper1").stars({
-            showTitles: true,
-            cancelShow: false,
-            captionEl: $("#stars1-cap")
-        });
-        $("#stars-wrapper2").stars({
-            showTitles: true,
-            cancelTitle: 'Sem Manual',
-            captionEl: $("#stars2-cap")
-        });
-        $("#stars-wrapper3").stars({
-            showTitles: true,
-            cancelTitle: 'Sem Capa',
-            captionEl: $("#stars3-cap")
-        });
+        
 
         var myClose=function(hash) {
             hash.o.remove();
@@ -67,8 +116,35 @@ CtrlNivel.prototype = {
             overlayClass:'bgModal',
             closeClass:'btnFecharModal'
         }).jqmShow();
+    },
 
+    _btnSalvarTenhoOnClick: function(value){
+        this.dataBindMvc('setTenho.do', {
+            idUsuario: $('#idUser').text(),
+            idJogo: $('#idJogo').text(),
+            tipoPar: value.data,
+            nivelInteresse: $("input[@name=rbNivel]:checked").val(),
+            est_midia: $('input[name="rbStarMidia"]').val(),
+            est_manual: $('input[name="rbStarManual"]').val(),
+            est_capa: $('input[name="rbStarCaixa"]').val(),
+            regiao_jogo: $('#ddlRegiao option:selected').val(),
+            descricao: $('#txtDescricao').val()
+        }, this._postTenhoSalvarOnSuccess);
+    },
 
+    _postTenhoSalvarOnSuccess: function(value){
+        var setText;
+        if (value == 'I')
+            setText = '<span>Este Jogo esta em sua lista de Jogos (<a id="btnTenhoAlterar" href="javascript:void(0);">Editar</a>)</span>';
+        else if (value == 'E')
+            setText = '<span><a id="btnTenho" href="javascript:void(0);">Tenho</a> / <a id="btnDesejo" href="javascript:void(0);">Desejo</a></span>';
+
+        $('#dvNivel span').remove();
+        $('#dvNivel').append(setText);
+
+        $('#cxEstadoJogo').jqm().jqmHide();
+
+        this.initialize();
     },
 
     _btnSetDesejoOnClick: function(value){

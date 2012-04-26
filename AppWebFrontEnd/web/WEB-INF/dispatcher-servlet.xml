@@ -40,6 +40,7 @@
                 <prop key="site/inicio/ctrlUsuario.do">ajaxUsuarioController</prop>
                 <prop key="site/inicio/trocaJogo.do">ajaxTrocasController</prop>
                 <prop key="site/jogo/setDesejo.do">ajaxNivelController</prop>
+                <prop key="site/jogo/setTenho.do">ajaxNivelController</prop>
             </props>
         </property>
     </bean>

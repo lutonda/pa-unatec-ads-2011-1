@@ -28,7 +28,7 @@ Proposta.prototype = {
         $('#btnPropAberto').bind('click', 'P', $.createDelegate(this, this._listaPropostasOnClick));
         
         $("a.btnFimTroca").live("click", function () {
-            console.log(this);
+            //console.log(this);
             
             ini.dataBindMvc('../inicio/trocaJogo.do', {
                 idTroca : this.id
@@ -37,7 +37,7 @@ Proposta.prototype = {
     },
     _finalizarOnSuccess: function(value){
         //$('#btn_' + value.id).hide();
-        console.log(value);
+        //console.log(value);
     },
        
     _listaPropostasOnClick: function(value){

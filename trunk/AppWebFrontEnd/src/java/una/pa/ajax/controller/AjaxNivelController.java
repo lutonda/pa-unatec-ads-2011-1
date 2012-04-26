@@ -39,18 +39,20 @@ public class AjaxNivelController {
         RequestMethod.POST})
     @ResponseBody
     public String setTenho(HttpServletRequest request,
-            @RequestParam int idUsuario, @RequestParam int idJogo, @RequestParam String tipoPar) {
+            @RequestParam int idUsuario, @RequestParam int idJogo, @RequestParam String tipoPar,
+            @RequestParam int nivelInteresse, @RequestParam int est_midia, @RequestParam int est_manual,
+            @RequestParam int est_capa, @RequestParam int regiao_jogo, @RequestParam String descricao) {
 
         try {
             Jogousuario jogousuario = new Jogousuario();
             jogousuario.setId_usuario(idUsuario);
             jogousuario.setId_jogo(idJogo);
-            jogousuario.setNivelInteresse(0);
-            jogousuario.setEst_midia(0);
-            jogousuario.setEst_manual(0);
-            jogousuario.setEst_capa(0);
-            jogousuario.setRegiao_jogo(0);
-            jogousuario.setDescricao("");
+            jogousuario.setNivelInteresse(nivelInteresse);
+            jogousuario.setEst_midia(est_midia);
+            jogousuario.setEst_manual(est_manual);
+            jogousuario.setEst_capa(est_capa);
+            jogousuario.setRegiao_jogo(regiao_jogo);
+            jogousuario.setDescricao(descricao);
 
 
             if(tipoPar.equals("I"))

@@ -32,12 +32,17 @@ Proposta.prototype = {
             
             ini.dataBindMvc('../inicio/trocaJogo.do', {
                 idTroca : this.id
-            }, this._finalizarOnSuccess);
+            }, ini._finalizarOnSuccess);
         });
     },
     _finalizarOnSuccess: function(value){
         //$('#btn_' + value.id).hide();
         //console.log(value);
+
+
+
+        $('#cxTrocas').jqm().jqmHide();
+        alert('Troca Realizada!');
     },
        
     _listaPropostasOnClick: function(value){

@@ -84,4 +84,7 @@ public class JogoService {
     public static List<Jogo> filtroMaisQualificados(int quantidePorPagina, int pagina) {
         return JogoDal.FiltroMaisQualificados(quantidePorPagina, pagina);
     }
+    public static List<Jogo> filtroTopDez(){
+        return JogoDal.ListaTopDez();
+    }
 }

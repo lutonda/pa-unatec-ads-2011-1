@@ -594,4 +594,58 @@ public class JogoDal {
             return null;
         }
     }
+    public static List<Jogo> ListaTopDez(){
+        String sql = "";
+        sql = "select top   10   * from("
+                + "             select troca.id_jogo,"
+                + "                  titulo_jogo.id_titulo_jogo,"
+                + "                  nm_titulo,"
+                + "                  genero.ds_genero,"
+                + "                  console.id_console,"
+                + "                  console.ds_console,"
+                + "                  jogo.imagem,"
+                + "                  troca.qtd, "
+                + "                  row_number() over (order by troca.qtd desc) as linha,"
+                + "                  dbo.fnc_retornaTotalRegistros(1,0) totalregistros "
+                + "                  from (select id_jogo,"
+                + "                 		 count(*)qtd	"
+                + "                         from (select jogo_usuario.id_jogo"
+                + "                                 from jogo_usuario "
+                + "                  			 where	dt_cadastro between DATEADD(DAY, -30 , GETDATE()) AND getdate()                 			                  			"
+                + "                 		)troca"
+                + "                 		 group by id_jogo"
+                + "                 	) troca"
+                + "                 	inner join jogo			on	troca.id_jogo = jogo.id_jogo"
+                + "                 	inner join titulo_jogo	on	jogo.id_titulo_jogo = titulo_jogo.id_titulo_jogo"
+                + "                  inner join genero_titulo on genero_titulo.id_titulo_jogo = titulo_jogo.id_titulo_jogo "
+                + "                 	inner join genero on genero_titulo.id_genero = genero.id_genero"
+                + "                 	inner join console on jogo.id_console = console.id_console"
+                + "                 ) a"
+                + "                  where linha >   0   and linha <=   10"
+                + "                   order by qtd desc ";
+
+        List<Jogo> objC = new ArrayList<Jogo>();
+        try {
+            Connection c = Data.openConnection();
+            ResultSet rs = Data.executeQuery(c, sql);
+
+            while (rs.next()) {
+                Jogo o = new Jogo();
+                o.setId_jogo(Integer.parseInt(rs.getString("id_jogo")));
+                o.setId_console((Integer.parseInt(rs.getString("ID_CONSOLE"))));
+                o.setId_titulo_jogo(Integer.parseInt(rs.getString("ID_TITULO_JOGO")));
+                o.setImagem(rs.getString("imagem"));
+                o.setTitulo_jogo(rs.getString("nm_titulo"));
+                o.setConsole(rs.getString("ds_console"));
+                o.setTotal(Integer.parseInt(rs.getString("totalregistros")));
+                objC.add(o);
+            }
+            rs.close();
+            c.close();
+            return objC;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

@@ -253,7 +253,7 @@ public class JogoDal {
             sqlWhere = " id_desenv = " + _idTipo;
         }
         if (_tipoFiltro.equals("C")) { // para buscar por Categoria
-            sqlWhere = " tipo like '%" + tipoCategoria + "%'";
+            sqlWhere = " id_Categoria= " + _idTipo;
         }
         if (_tipoFiltro.equals("E")) { // para buscar por Editora
             sqlWhere = " id_editora = " + _idTipo;
@@ -289,6 +289,7 @@ public class JogoDal {
                 + " inner join genero_titulo gt on t.id_titulo_jogo = gt.id_titulo_jogo "
                 + " inner join editora_titulo et on t.id_titulo_jogo = et.id_titulo_jogo "
                 + " inner join desenvolvedor_titulo dt on t.id_titulo_jogo = dt.id_titulo_jogo "
+                + " inner join categoria_titulo ct on t.id_titulo_jogo = ct.id_titulo_jogo "
                 + " inner join console c on jogo.id_console = c.id_console"
                 + "  where " + sqlWhere
                 + " ) a"

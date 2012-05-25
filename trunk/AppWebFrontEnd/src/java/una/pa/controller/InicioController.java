@@ -94,12 +94,14 @@ public class InicioController extends MultiActionController {
             List<Genero> objGenero = GeneroService.listar();
             List<Desenvolvedor> objDeve = DesenvolvedorService.listar();
             List<Editora> objEditora = EditoraService.listar();
+            List<Categoria> objCategoria = CategoriaService.listar();
             
             mav.addObject("DadosIniciais", obj);
             mav.addObject("tags", objTags);
             mav.addObject("generos", objGenero);
             mav.addObject("desenvolvedores", objDeve);
             mav.addObject("editoras", objEditora);
+            mav.addObject("categorias", objCategoria);
 
         } catch (Exception e) {
             return null;

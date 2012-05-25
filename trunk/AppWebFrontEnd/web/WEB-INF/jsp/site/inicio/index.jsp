@@ -37,9 +37,10 @@
                                 <ul class="dropdown">
                                     <li>
                                         Categorias
-                                        <ul>
-                                            <li><a id="btn" href="javascript:void(0);">Single-Playe</a></li>
-                                            <li><a id="btn" href="javascript:void(0);">Mult-Playe</a></li>
+                                        <ul id="lsCategorias">
+                                            <c:forEach items="${categorias}" var="Categoria" varStatus="count" >
+                                                <li><a id="btn" rev="C" rel="<c:out value="${Categoria.id_categoria}"/>" href="javascript:void(0);"><c:out value="${Categoria.nm_categoria}"/></a></li>
+                                            </c:forEach>
                                         </ul>
                                     </li>
                                     <li>

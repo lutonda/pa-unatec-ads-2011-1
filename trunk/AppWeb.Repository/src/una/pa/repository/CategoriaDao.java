@@ -89,7 +89,7 @@ public class CategoriaDao {
 
         List<Categoria> objC = new ArrayList<Categoria>();
 
-        String sql = "select id_categoria,nm_categoria, dt_cadastro from categoria";
+        String sql = "select id_categoria,nm_categoria from categoria";
 
 
         try {

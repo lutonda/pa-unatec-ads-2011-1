@@ -77,8 +77,17 @@ FiltroJogos.prototype = {
             }
         });
 
+        $('ul#lsCategorias li').each(function() {
+            var launch = $('a', this);
+            var id = launch.attr('rel');
+            if (launch.size() > 0) {
+                $(launch).bind('click', launch, $.createDelegate(ini, FiltroJogos.prototype._btnFiltroOnClick));
+            }
+        });
+
         //clicks btn
         $('#btnLancamentos').bind('click', 'L', $.createDelegate(this, this._btnFiltroSplOnClick));
+        $('#btnTop10').bind('click', 'P', $.createDelegate(this, this._btnFiltroSplOnClick));
         $('#btnNovidades').bind('click', 'N', $.createDelegate(this, this._btnFiltroSplOnClick));
         
         $('#btnMaisDesejados').bind('click', 'D', $.createDelegate(this, this._btnMaisrOnClick));
@@ -117,6 +126,7 @@ FiltroJogos.prototype = {
         _pagina = 1;
         _idTipo = -1;
         _tipoFiltro = value.data;
+        console.log();
         this.dataBindMvc('listaFiltroJogos.do', {
             idTipo : _idTipo,
             tipoFiltro : _tipoFiltro,

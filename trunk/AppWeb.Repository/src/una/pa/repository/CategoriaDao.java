@@ -18,7 +18,7 @@ public class CategoriaDao {
     public static boolean incluirCategoria(Categoria _obj) {
         try {
             Connection c = Data.openConnection();
-            String sql = "insert into categoria(nm_categoria,dt_cadastro) values (?,getdate())";
+            String sql = "insert into categoria(nm_categoria) values (?)";
             Object[] vetor = {_obj.getNm_categoria()};
             Data.executeUpdate(c, sql, vetor);
             c.close();

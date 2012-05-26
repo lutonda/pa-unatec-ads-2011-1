@@ -18,6 +18,10 @@ public class TituloJogoService {
         return TituloJogoDao.listarDao();
     }
 
+    public static List<TituloJogo> listarSimples() {
+        return TituloJogoDao.listarDao(false);
+    }
+
     public static TituloJogo unico(int id) {
 
         List<TituloJogo> lObjec = TituloJogoDao.listarDao();

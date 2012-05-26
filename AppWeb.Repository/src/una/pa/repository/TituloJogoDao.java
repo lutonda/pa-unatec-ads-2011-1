@@ -12,8 +12,10 @@ import una.pa.model.*;
  * @author Magno
  */
 public class TituloJogoDao {
-    
     public static List<TituloJogo> listarDao() {
+        return listarDao(true);
+    }
+    public static List<TituloJogo> listarDao(boolean completo) {
         List<TituloJogo> objC = new ArrayList<TituloJogo>();
 
         String sql = "select *"
@@ -30,12 +32,15 @@ public class TituloJogoDao {
                 o.setDt_cadastro(rs.getString("DT_CADASTRO"));
                 o.setDt_lancamento(rs.getString("DT_LANCAMENTO"));
                 o.setDescricao(rs.getString("DESCRICAO"));
-                
-                o.setListaCategoria(CategoriaDao.listarDal(o.getId_titulo_jogo()));
-                o.setListaEditora(EditoraDal.listarEditora(o.getId_titulo_jogo()));
-                o.setListaGenero(GeneroDal.listarGeneroDal(o.getId_titulo_jogo()));
-                o.setListaDesenv(DesenvolvedorDal.listarDesenvolvedorDal(o.getId_titulo_jogo()));
-                o.setListaLinguagem(LinguagemDao.listarDal(o.getId_titulo_jogo()));
+
+                if (completo) {
+                    o.setListaCategoria(CategoriaDao.listarDal(o.getId_titulo_jogo()));
+                    o.setListaEditora(EditoraDal.listarEditora(o.getId_titulo_jogo()));
+                    o.setListaGenero(GeneroDal.listarGeneroDal(o.getId_titulo_jogo()));
+                    o.setListaDesenv(DesenvolvedorDal.listarDesenvolvedorDal(o.getId_titulo_jogo()));
+                    o.setListaLinguagem(LinguagemDao.listarDal(o.getId_titulo_jogo()));
+                    
+                }
                 objC.add(o);
             }
             rs.close();

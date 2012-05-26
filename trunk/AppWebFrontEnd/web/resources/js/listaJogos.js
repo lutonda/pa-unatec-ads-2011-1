@@ -48,6 +48,7 @@ Jogo.Load = function(){
 Jogo.prototype = {
 
     initialize: function() {
+        var ini = this;
         this.dataBindMvc('listaJogos.do', {
             id : $('#idUser').text(),
             qtd : 10,
@@ -59,6 +60,25 @@ Jogo.prototype = {
         }, this._listaJogoOnSuccess);
         
         this.dataBindMvc('listaTituloJogo.do', '', this._listaTituloJogoOnSuccess);
+
+        $('#txtBuscarJogo').keyup(function(e) {
+            if(e.keyCode == 13) {
+                _pagina = 1;
+                _busca = true;
+                _desejo = false;
+                _console = 0;
+                _nivelOfetas = -1;
+                ini.dataBindMvc('listaJogos.do', {
+                    id : 0,
+                    qtd : 10,
+                    pagina: _pagina,
+                    busca: $('#txtBuscarJogo').val(),
+                    desejo: _desejo,
+                    console: _console,
+                    nivelOfetas: _nivelOfetas
+                }, ini._listaJogoOnSuccess);
+            }
+        });
 
         //clicks btn
         $('#btnBuscar').bind('click', '', $.createDelegate(this, this._btnBuscarOnClick));

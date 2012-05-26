@@ -29,15 +29,15 @@
                             <li>
                                 <a id="btnLancamentos" href="javascript:void(0);">Lançamentos</a> - 
                                 <a id="btnTop10" href="javascript:void(0);">Top 10</a> -
-                                <a id="btnNovidades" href="javascript:void(0);">Novidades</a><br/>
-                                Mais: <a id="btnMaisDesejados" href="javascript:void(0);">Desejados</a> -
+                                <a id="btnNovidades" href="javascript:void(0);">Novidades</a> -
+                                <a id="btnMaisDesejados" href="javascript:void(0);">Desejados</a> -
                                 <a id="btnMaisTrocados" href="javascript:void(0);">Trocados</a> -
                                 <a id="btnMaisQualificados" href="javascript:void(0);">Qualificados</a><br/>
 
-                                <ul class="dropdown">
+                                <ul class="dropdown" >
                                     <li>
                                         Categorias
-                                        <ul id="lsCategorias">
+                                        <ul id="lsCategorias" style="z-index: 1;">
                                             <c:forEach items="${categorias}" var="Categoria" varStatus="count" >
                                                 <li><a id="btn" rev="C" rel="<c:out value="${Categoria.id_categoria}"/>" href="javascript:void(0);"><c:out value="${Categoria.nm_categoria}"/></a></li>
                                             </c:forEach>
@@ -45,7 +45,7 @@
                                     </li>
                                     <li>
                                         Gêneros
-                                        <ul id="lsGeneros">
+                                        <ul id="lsGeneros" style="z-index: 1;">
                                             <c:forEach items="${generos}" var="Genero" varStatus="count" >
                                                 <li><a id="btn" rev="G" rel="<c:out value="${Genero.id_genero}"/>" href="javascript:void(0);"><c:out value="${Genero.ds_genero}"/></a></li>
                                             </c:forEach>
@@ -53,7 +53,7 @@
                                     </li>
                                     <li>
                                         Editora
-                                        <ul id="lsEditoras">
+                                        <ul id="lsEditoras" style="z-index: 1;">
                                             <c:forEach items="${editoras}" var="Editora" varStatus="count" >
                                                 <li><a id="btn" rev="E" rel="<c:out value="${Editora.id_editora}"/>" href="javascript:void(0);"><c:out value="${Editora.nm_editora}"/></a></li>
                                             </c:forEach>
@@ -61,7 +61,7 @@
                                     </li>
                                     <li>
                                         Developers
-                                        <ul id="lsDesenv">
+                                        <ul id="lsDesenv" style="z-index: 1;">
                                             <c:forEach items="${desenvolvedores}" var="Desenvolvedor" varStatus="count" >
                                                 <li><a id="btn" rev="D" rel="<c:out value="${Desenvolvedor.id_desenv}"/>" href="javascript:void(0);"><c:out value="${Desenvolvedor.ds_desenv}"/></a></li>
                                             </c:forEach>

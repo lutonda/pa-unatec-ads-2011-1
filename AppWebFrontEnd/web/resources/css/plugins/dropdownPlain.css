@@ -16,7 +16,7 @@ ul.dropdown li:hover                { position: relative; }
 	LEVEL TWO
 */
 ul.dropdown ul                      { width: 150px; visibility: hidden; position: absolute; top: 100%; left: 0; }
-ul.dropdown ul li                   { font-weight: normal; float: none; background: #fff; padding: 0 5px 0 5px;}
+ul.dropdown ul li                   { font-weight: normal; float: none; background:#fff; padding: 0 5px 0 5px;}
                                     /* IE 6 & 7 Needs Inline Block */
 ul.dropdown ul li a                 { border-right: none; width: 100%; display: inline-block; } 
 

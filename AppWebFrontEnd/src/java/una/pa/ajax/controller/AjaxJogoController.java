@@ -75,7 +75,7 @@ public class AjaxJogoController {
     public String getAutoComplete(HttpServletRequest request) {
 
         String Itens = "";
-        List<TituloJogo> titulosJogos = TituloJogoService.listar();
+        List<TituloJogo> titulosJogos = TituloJogoService.listarSimples();
 
         for (Iterator<TituloJogo> it = titulosJogos.iterator(); it.hasNext();) {
             TituloJogo tituloJogo = it.next();
